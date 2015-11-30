@@ -12,14 +12,17 @@ namespace ThanhHuongSolution.Common.Infrastrucure
     {
         public IKernel Kernel { get; private set; }
 
-        public void BindFromAssemblyContainingConfigure<T>(string endsWith)
+        public void BindFromAssemblyContainingEndsWith<T>(string endsWith)
         {
-            Kernel.Bind(reg => reg
-                .FromAssemblyContaining<T>()
-                .SelectAllClasses()
-                .Where(type => type.Name.EndsWith(endsWith))
-                .BindDefaultInterface()
-                .Configure(b => b.InSingletonScope()));
+            Kernel.Bind(
+                reg => reg.FromAssemblyContaining<T>()
+                    .SelectAllClasses()
+                    .Where(type => type.Name.EndsWith(endsWith))
+                    .BindAllInterfaces()
+                    .Configure(c =>
+                    {
+                        c.InTransientScope();
+                    }));
         }
 
         public void BindWithConstructorArgument<T>(Type factory, string connectionStr) where T : class

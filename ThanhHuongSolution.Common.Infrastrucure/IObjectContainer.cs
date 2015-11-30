@@ -11,7 +11,7 @@ namespace ThanhHuongSolution.Common.Infrastrucure
     {
         IKernel Kernel { get; }
 
-        void BindFromAssemblyContainingConfigure<T>(string endsWith);
+        void BindFromAssemblyContainingEndsWith<T>(string endsWith);
 
         void BindWithConstructorArgument<T>(Type factory, string connectionStr) where T : class;
 
