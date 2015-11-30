@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThanhHuongSolution.Common.Infrastrucure.Utilities;
 
 namespace ThanhHuongSolution.Common.Infrastrucure
 {
@@ -14,7 +15,7 @@ namespace ThanhHuongSolution.Common.Infrastrucure
         {
             if (Instance == null)
             {
-                Instance = new WebContainer(RocketUncle.Common.Infrastructure.Utilities.DIHelper.CreateObjectContainer());
+                Instance = new WebContainer(DIHelper.CreateObjectContainer());
             }
         }
 

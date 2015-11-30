@@ -14,5 +14,7 @@ namespace ThanhHuongSolution.Common.Infrastrucure
         void BindFromAssemblyContainingConfigure<T>(string endsWith);
 
         void BindWithConstructorArgument<T>(Type factory, string connectionStr) where T : class;
+
+        T Get<T>();
     }
 }

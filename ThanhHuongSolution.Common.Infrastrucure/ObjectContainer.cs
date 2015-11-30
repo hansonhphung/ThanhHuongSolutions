@@ -34,5 +34,10 @@ namespace ThanhHuongSolution.Common.Infrastrucure
         {
             Kernel = kernel;
         }
+
+        public T Get<T>()
+        {
+            return Kernel.Get<T>();
+        }
     }
 }
