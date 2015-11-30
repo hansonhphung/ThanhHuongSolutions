@@ -1,7 +1,0 @@
-D:\Project\ThanhHuongSolution\ThanhHuongSolution.Common.LocResources\bin\Debug\ThanhHuongSolution.Common.LocResources.dll
-D:\Project\ThanhHuongSolution\ThanhHuongSolution.Common.LocResources\bin\Debug\ThanhHuongSolution.Common.LocResources.pdb
-D:\Project\ThanhHuongSolution\ThanhHuongSolution.Common.LocResources\obj\Debug\ThanhHuongSolution.Common.LocResources.csprojResolveAssemblyReference.cache
-D:\Project\ThanhHuongSolution\ThanhHuongSolution.Common.LocResources\obj\Debug\ThanhHuongSolution.Common.LocResources.CommonResources.resources
-D:\Project\ThanhHuongSolution\ThanhHuongSolution.Common.LocResources\obj\Debug\ThanhHuongSolution.Common.LocResources.csproj.GenerateResource.Cache
-D:\Project\ThanhHuongSolution\ThanhHuongSolution.Common.LocResources\obj\Debug\ThanhHuongSolution.Common.LocResources.dll
-D:\Project\ThanhHuongSolution\ThanhHuongSolution.Common.LocResources\obj\Debug\ThanhHuongSolution.Common.LocResources.pdb
