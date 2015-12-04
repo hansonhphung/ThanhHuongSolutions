@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThanhHuongSolution.Customer;
 
 namespace ThanhHuongSolution.Common.Infrastrucure
 {
@@ -10,7 +11,7 @@ namespace ThanhHuongSolution.Common.Infrastrucure
     {
         public static void Setup(IObjectContainer objectContainer)
         {
-
+            Customer.CompositionRoot.Bootstraper.Load(objectContainer);
         }
     }
 }
