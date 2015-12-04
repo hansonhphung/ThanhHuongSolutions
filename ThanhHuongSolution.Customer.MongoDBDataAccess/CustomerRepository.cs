@@ -8,7 +8,7 @@ using ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess;
 
 namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 {
-    public class CustomerRepository
+    public class CustomerRepository : ICustomerRepository
     {
         private readonly IReadDataContextFactory _readDataContectFactory;
         private readonly IWriteDataContextFactory _writeDataContextFactory;
@@ -21,5 +21,8 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
             _readDataContectFactory = readDataContextFactory;
             _writeDataContextFactory = writeDataContextFactory;
         }
+
+        public void tmp()
+        { }
     }
 }

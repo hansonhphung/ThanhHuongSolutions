@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{97481C14-21E9-4B3C-81F5-13D2FE590F7E}</ProjectGuid>
+    <ProjectGuid>{DF001F5C-08DE-473F-AFCD-9675D301155F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ThanhHuongSolution.Customer.MongoDBDataAccess</RootNamespace>
-    <AssemblyName>ThanhHuongSolution.Customer.MongoDBDataAccess</AssemblyName>
+    <RootNamespace>ThanhHuongSolution.Customer.Services</RootNamespace>
+    <AssemblyName>ThanhHuongSolution.Customer.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,14 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerRepository.cs" />
-    <Compile Include="ICustomerRepository.cs" />
+    <Compile Include="CustomerManagementServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastrucure.csproj">
       <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
       <Name>ThanhHuongSolution.Common.Infrastrucure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.Customer.MongoDBDataAccess\ThanhHuongSolution.Customer.MongoDBDataAccess.csproj">
+      <Project>{97481c14-21e9-4b3c-81f5-13d2fe590f7e}</Project>
+      <Name>ThanhHuongSolution.Customer.MongoDBDataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
