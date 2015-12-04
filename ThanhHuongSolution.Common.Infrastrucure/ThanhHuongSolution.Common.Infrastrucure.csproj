@@ -78,8 +78,13 @@
   <ItemGroup>
     <Compile Include="Check.cs" />
     <Compile Include="CustomException.cs" />
-    <Compile Include="IObjectContainer.cs" />
+    <Compile Include="FrameworkParamInput.cs" />
+    <Compile Include="FrameworkParamOutput.cs" />
+    <Compile Include="Interfaces\IFrameworkParamInput.cs" />
+    <Compile Include="Interfaces\IFrameworkParamOutput.cs" />
+    <Compile Include="Interfaces\IObjectContainer.cs" />
     <Compile Include="MongoDBDataAccess\DatabaseConfiguration.cs" />
+    <Compile Include="MongoDBDataAccess\Entity\MongoDBEntityNames.cs" />
     <Compile Include="MongoDBDataAccess\IReadDataContextFactory.cs" />
     <Compile Include="MongoDBDataAccess\IWriteDataContextFactory.cs" />
     <Compile Include="MongoDBDataAccess\ReadDataContextFactory.cs" />
@@ -88,7 +93,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\DIHelper.cs" />
     <Compile Include="WebContainer.cs" />
-    <Compile Include="WebDIRegister.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

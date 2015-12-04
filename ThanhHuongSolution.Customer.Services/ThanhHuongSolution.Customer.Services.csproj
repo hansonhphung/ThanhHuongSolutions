@@ -48,10 +48,21 @@
       <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
       <Name>ThanhHuongSolution.Common.Infrastrucure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.Common.LocResources\ThanhHuongSolution.Common.LocResources.csproj">
+      <Project>{3371514f-209b-477e-b2b3-874ebeeb536a}</Project>
+      <Name>ThanhHuongSolution.Common.LocResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.Customer.Domain\ThanhHuongSolution.Customer.Domain.csproj">
+      <Project>{4403b937-14f8-4cce-ac7a-7fc7924876fb}</Project>
+      <Name>ThanhHuongSolution.Customer.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ThanhHuongSolution.Customer.MongoDBDataAccess\ThanhHuongSolution.Customer.MongoDBDataAccess.csproj">
       <Project>{97481c14-21e9-4b3c-81f5-13d2fe590f7e}</Project>
       <Name>ThanhHuongSolution.Customer.MongoDBDataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
