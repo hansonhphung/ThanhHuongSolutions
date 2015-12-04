@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ThanhHuongSolution.Common.Infrastrucure
 {
-    class WebDIRegister
+    public class WebDIRegister
     {
+        public static void Setup(IObjectContainer objectContainer)
+        {
+
+        }
     }
 }
