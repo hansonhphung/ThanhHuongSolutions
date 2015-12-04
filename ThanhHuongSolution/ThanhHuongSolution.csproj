@@ -199,7 +199,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -245,6 +247,16 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastrucure.csproj">
+      <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
+      <Name>ThanhHuongSolution.Common.Infrastrucure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.Common.LocResources\ThanhHuongSolution.Common.LocResources.csproj">
+      <Project>{3371514f-209b-477e-b2b3-874ebeeb536a}</Project>
+      <Name>ThanhHuongSolution.Common.LocResources</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
