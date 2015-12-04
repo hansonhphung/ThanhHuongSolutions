@@ -8,8 +8,5 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 {
     public interface ICustomerRepository
     {
-        void tmp();
-
-        void tmp2();
     }
 }

@@ -16,12 +16,5 @@ namespace ThanhHuongSolution.Customer.Services
         {
             _objectContainer = objectContainer;
         }
-
-        public void tmp()
-        { 
-            var repository = _objectContainer.Get<ICustomerRepository>();
-
-            repository.tmp();
-        }
     }
 }
