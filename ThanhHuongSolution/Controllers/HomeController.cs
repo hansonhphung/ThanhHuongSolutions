@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ThanhHuongSolution.Common.Infrastrucure;
 
 namespace ThanhHuongSolution.Controllers
 {
@@ -16,6 +17,8 @@ namespace ThanhHuongSolution.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+
+            //var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
 
             return View();
         }

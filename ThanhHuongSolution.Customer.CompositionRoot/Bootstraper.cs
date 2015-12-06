@@ -11,6 +11,8 @@ namespace ThanhHuongSolution.Customer.CompositionRoot
     {
         public static void Load(IObjectContainer objectContainer)
         {
+            DIRegister.RegisterForObjectContainer(objectContainer);
+
             DIRegister.RegisterRepositories(objectContainer);
 
             DIRegister.RegisterServices(objectContainer);

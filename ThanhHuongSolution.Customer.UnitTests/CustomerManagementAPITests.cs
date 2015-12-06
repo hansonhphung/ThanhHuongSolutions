@@ -20,15 +20,15 @@ namespace ThanhHuongSolution.Customer.Handler
         {
             _objectContainer = UnitTestHelper.SetupKernelBootstraper();
 
-            var api = _objectContainer.Get<ICustomerManagementAPI>();
-
-            var result = api.CreateCustomer(new FrameworkParamInput<Domain.Model.CustomerInfo>(new CustomerInfo()));
+            
         }
 
         [TestMethod]
-        public void CustomerManagementAPITest()
+        public async Task CustomerManagementAPITest()
         {
-            
+            var api = _objectContainer.Get<ICustomerManagementAPI>();
+
+            var result = await api.CreateCustomer(new FrameworkParamInput<Domain.Model.CustomerInfo>(new CustomerInfo()));
         }
     }
 }
