@@ -44,9 +44,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastrucure.csproj">
+    <ProjectReference Include="..\ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastructure.csproj">
       <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
-      <Name>ThanhHuongSolution.Common.Infrastrucure</Name>
+      <Name>ThanhHuongSolution.Common.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\ThanhHuongSolution.Common.LocResources\ThanhHuongSolution.Common.LocResources.csproj">
       <Project>{3371514f-209b-477e-b2b3-874ebeeb536a}</Project>
