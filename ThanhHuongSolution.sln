@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution", "ThanhHuongSolution\ThanhHuongSolution.csproj", "{FC63B4AA-F13F-4D49-A0F4-03319CCE0C9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution.Common.Infrastrucure", "ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastrucure.csproj", "{EF63555B-B10B-4854-BEA8-4FE45D69C438}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution.Common.Infrastructure", "ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastructure.csproj", "{EF63555B-B10B-4854-BEA8-4FE45D69C438}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution.Common.LocResources", "ThanhHuongSolution.Common.LocResources\ThanhHuongSolution.Common.LocResources.csproj", "{3371514F-209B-477E-B2B3-874EBEEB536A}"
 EndProject
@@ -24,6 +24,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution.Customer.Domain", "ThanhHuongSolution.Customer.Domain\ThanhHuongSolution.Customer.Domain.csproj", "{4403B937-14F8-4CCE-AC7A-7FC7924876FB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{63AF5B24-9B0B-43A9-87BC-7409C6572DED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution.Customer.UnitTests", "ThanhHuongSolution.Customer.UnitTests\ThanhHuongSolution.Customer.UnitTests.csproj", "{DD3D2F5E-67F8-44B9-9F92-A20F5EFFA535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{DF2AE8C8-978D-42F8-A6A5-E41A0291BCEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,14 @@ Global
 		{4403B937-14F8-4CCE-AC7A-7FC7924876FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4403B937-14F8-4CCE-AC7A-7FC7924876FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4403B937-14F8-4CCE-AC7A-7FC7924876FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD3D2F5E-67F8-44B9-9F92-A20F5EFFA535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD3D2F5E-67F8-44B9-9F92-A20F5EFFA535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD3D2F5E-67F8-44B9-9F92-A20F5EFFA535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD3D2F5E-67F8-44B9-9F92-A20F5EFFA535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF2AE8C8-978D-42F8-A6A5-E41A0291BCEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF2AE8C8-978D-42F8-A6A5-E41A0291BCEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF2AE8C8-978D-42F8-A6A5-E41A0291BCEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF2AE8C8-978D-42F8-A6A5-E41A0291BCEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,5 +88,7 @@ Global
 		{DF001F5C-08DE-473F-AFCD-9675D301155F} = {0E37549D-874C-4C45-AF01-8C9233CDC21E}
 		{A9C7C485-8340-4943-BE78-FA41B69B7FE5} = {0E37549D-874C-4C45-AF01-8C9233CDC21E}
 		{4403B937-14F8-4CCE-AC7A-7FC7924876FB} = {0E37549D-874C-4C45-AF01-8C9233CDC21E}
+		{DD3D2F5E-67F8-44B9-9F92-A20F5EFFA535} = {0E37549D-874C-4C45-AF01-8C9233CDC21E}
+		{DF2AE8C8-978D-42F8-A6A5-E41A0291BCEA} = {847E4D02-DB0A-418A-BFDD-F44EC16FEAA4}
 	EndGlobalSection
 EndGlobal
