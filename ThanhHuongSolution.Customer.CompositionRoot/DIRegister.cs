@@ -27,12 +27,5 @@ namespace ThanhHuongSolution.Customer.CompositionRoot
         {
             objectContainer.BindFromAssemblyContainingEndsWith<CustomerManagementAPI>("API");
         }
-
-        public static void RegisterForObjectContainer(IObjectContainer objectContainer)
-        {
-            objectContainer.BindFromAssemblyContainingEndsWith<ObjectContainer>("bjectContainer");
-            objectContainer.BindFromAssemblyContainingEndsWith<ReadDataContextFactory>("DataContextFactory");
-            objectContainer.BindWithConstructorArgument<ReadDataContextFactory>(typeof(ReadDataContextFactory), "connectionString");
-        }
     }
 }

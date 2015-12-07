@@ -16,6 +16,8 @@ namespace ThanhHuongSolution.Customer.UnitTests
 
             CompositionRoot.Bootstraper.Load(objectContainer);
 
+            Common.Infrastrucure.CompositionRoot.Bootstraper.Load(objectContainer);
+
             return objectContainer;
         }
     }
