@@ -38,6 +38,17 @@ namespace ThanhHuongSolution.Common.Infrastrucure
             Kernel = kernel;
         }
 
+
+        public void BindTo<TInterface, TClass>(bool bSingleton = true)
+            where TInterface : class
+            where TClass : class, TInterface
+        {
+            if (bSingleton)
+                Kernel.Bind<TInterface>().To<TClass>().InSingletonScope();
+            else
+                Kernel.Bind<TInterface>().To<TClass>();
+        }
+
         public T Get<T>()
         {
             return Kernel.Get<T>();

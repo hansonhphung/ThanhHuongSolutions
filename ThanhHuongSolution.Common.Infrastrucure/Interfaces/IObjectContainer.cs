@@ -15,6 +15,10 @@ namespace ThanhHuongSolution.Common.Infrastrucure
 
         void BindWithConstructorArgument<T>(Type factory, string connectionStr) where T : class;
 
+        void BindTo<TInterface, TClass>(bool bSingleton = true)
+            where TInterface : class
+            where TClass : class, TInterface;
+
         T Get<T>();
     }
 }
