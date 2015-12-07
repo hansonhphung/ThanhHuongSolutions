@@ -77,6 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Check.cs" />
+    <Compile Include="CompositionRoot\Bootstraper.cs" />
+    <Compile Include="CompositionRoot\DIRegister.cs" />
     <Compile Include="CustomException.cs" />
     <Compile Include="FrameworkParamInput.cs" />
     <Compile Include="FrameworkParamOutput.cs" />
