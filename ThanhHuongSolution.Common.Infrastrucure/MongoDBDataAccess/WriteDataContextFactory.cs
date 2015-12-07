@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess
 {
-    public class WriteDataContextFactory
+    public class WriteDataContextFactory : IWriteDataContextFactory 
     {
         private readonly MongoClient _mongoDBClient;
         private readonly string _connectionString;
@@ -21,7 +21,7 @@ namespace ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess
             _mongoDBClient = new MongoClient(connectionString);
         }
 
-        public IMongoDatabase CreateMongoDBReadContext()
+        public IMongoDatabase CreateMongoDBWriteContext()
         {
             var dbName = new MongoUrl(_connectionString).DatabaseName;
 
