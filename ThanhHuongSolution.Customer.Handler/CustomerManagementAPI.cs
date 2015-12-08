@@ -48,7 +48,7 @@ namespace ThanhHuongSolution.Customer.Handler
             }
             catch (CustomException ex)
             {
-                throw new CustomException(ex);
+                throw new CustomException(ex.Message);
             }
         }
     }
