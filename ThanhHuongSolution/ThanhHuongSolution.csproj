@@ -102,6 +102,22 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="ThanhHuongSolution.Common.Infrastrucure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.Common.Infrastrucure.dll</HintPath>
+    </Reference>
+    <Reference Include="ThanhHuongSolution.Common.LocResources, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.Common.LocResources.dll</HintPath>
+    </Reference>
+    <Reference Include="ThanhHuongSolution.Customer.CompositionRoot, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.Customer.CompositionRoot.dll</HintPath>
+    </Reference>
+    <Reference Include="ThanhHuongSolution.Customer.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.Customer.Domain.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -249,20 +265,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastructure.csproj">
-      <Project>{EF63555B-B10B-4854-BEA8-4FE45D69C438}</Project>
-      <Name>ThanhHuongSolution.Common.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ThanhHuongSolution.Customer.CompositionRoot\ThanhHuongSolution.Customer.CompositionRoot.csproj">
-      <Project>{5be18a13-a499-47a3-8292-a1789cce5bbf}</Project>
-      <Name>ThanhHuongSolution.Customer.CompositionRoot</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ThanhHuongSolution.Customer.Domain\ThanhHuongSolution.Customer.Domain.csproj">
-      <Project>{4403b937-14f8-4cce-ac7a-7fc7924876fb}</Project>
-      <Name>ThanhHuongSolution.Customer.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
