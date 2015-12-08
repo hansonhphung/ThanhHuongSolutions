@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ThanhHuongSolution.Common.Infrastrucure;
-using ThanhHuongSolution.Customer.Domain.Model;
-using ThanhHuongSolution.Customer.Handler;
-using ThanhHuongSolution.Models;
+using ThanhHuongSolution.Customer.Domain.Interfaces;
 
 namespace ThanhHuongSolution.Controllers
 {
@@ -30,9 +28,7 @@ namespace ThanhHuongSolution.Controllers
 
             var data = await api.GetAllCustomer();
 
-            var vm = new TestModel() { CustomerName = data.Result.Select(x => x.Name).ToList() };
-
-            return View(vm);
+            return View();
         }
 
         public ActionResult Contact()

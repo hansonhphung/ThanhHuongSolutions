@@ -1,14 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ThanhHuongSolution.Customer.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ThanhHuongSolution.Common.Infrastrucure;
-using ThanhHuongSolution.Customer.UnitTests;
+using ThanhHuongSolution.Customer.Domain.Interfaces;
+using ThanhHuongSolution.Customer.Domain.Model;
 
-namespace ThanhHuongSolution.Customer.Handler
+namespace ThanhHuongSolution.Customer.UnitTests
 {
     [TestClass]
     public class CustomerManagementAPITests
