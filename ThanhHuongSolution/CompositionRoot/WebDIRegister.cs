@@ -12,6 +12,8 @@ namespace ThanhHuongSolution.Common.Infrastrucure
         public static void Setup(IObjectContainer objectContainer)
         {
             Customer.CompositionRoot.Bootstraper.Load(objectContainer);
+
+            CompositionRoot.Bootstraper.Load(objectContainer);
         }
     }
 }
