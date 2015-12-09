@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using ThanhHuongSolution.Common.Infrastrucure;
 using ThanhHuongSolution.Customer.Domain.Interfaces;
+using ThanhHuongSolution.Customer.Domain.Model;
+using ThanhHuongSolution.Models;
 
 namespace ThanhHuongSolution.Controllers
 {
@@ -22,13 +24,15 @@ namespace ThanhHuongSolution.Controllers
 
             var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
 
-            //var samplePerson = new CustomerInfo();
+            var samplePerson = new CustomerInfo();
 
             //var resut = await api.CreateCustomer(new FrameworkParamInput<CustomerInfo>(samplePerson));
 
+            var tmp = await api.CreateCustomer(new FrameworkParamInput<CustomerInfo>(samplePerson));
+            
             var data = await api.GetAllCustomer();
 
-            return View();
+            return View(new TestModel() { CustomerName = data.Result.Select(x => x.Id).ToList() });
         }
 
         public ActionResult Contact()
