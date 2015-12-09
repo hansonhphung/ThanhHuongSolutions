@@ -9,7 +9,12 @@ namespace ThanhHuongSolution.Customer.Domain.Interfaces
 {
     public interface ICustomerManagementServices
     {
-        Task<CustomerInfo> CreateCustomer(CustomerInfo customer);
+        Task<bool> CreateCustomer(CustomerInfo customer);
+
         Task<IList<CustomerInfo>> GetAllCustomer();
+
+        Task<CustomerInfo> GetCustomerById(string id);
+
+        Task<CustomerInfo> GetCustomerByTrackingNumber(string trackingNumber);
     }
 }

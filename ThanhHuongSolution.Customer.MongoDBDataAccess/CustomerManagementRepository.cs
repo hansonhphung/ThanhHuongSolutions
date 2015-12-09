@@ -25,7 +25,7 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
             _writeDataContextFactory = writeDataContextFactory;
         }
 
-        public async Task<MDCustomer> CreateCustomer(MDCustomer customer)
+        public async Task<bool> CreateCustomer(MDCustomer customer)
         {
             var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
 
@@ -33,7 +33,7 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 
             await collection.InsertOneAsync(customer);
 
-            return await Task.FromResult<MDCustomer>(customer);
+            return await Task.FromResult(true);
         }
 
         public async Task<IList<MDCustomer>> GetAllCustomer()
@@ -43,8 +43,30 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
             var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
 
             var data = await collection.Find(x => x.Id != null).ToListAsync();
-
+            
             return await Task.FromResult<IList<MDCustomer>>(data);
+        }
+
+        public async Task<MDCustomer> GetCustomerById(string id)
+        {
+            var dbContext = _readDataContectFactory.CreateMongoDBReadContext();
+
+            var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
+
+            var data = await collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+
+            return await Task.FromResult(data);
+        }
+
+        public async Task<MDCustomer> GetCustomerByTrackingNumber(string trackingNumber)
+        {
+            var dbContext = _readDataContectFactory.CreateMongoDBReadContext();
+
+            var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
+
+            var data = await collection.Find(x => x.TrackingNumber == trackingNumber).FirstOrDefaultAsync();
+
+            return await Task.FromResult(data);
         }
     }
 }

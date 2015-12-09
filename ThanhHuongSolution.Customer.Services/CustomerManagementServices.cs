@@ -20,15 +20,19 @@ namespace ThanhHuongSolution.Customer.Services
             _objectContainer = objectContainer;
         }
 
-        public async Task<CustomerInfo> CreateCustomer(CustomerInfo customer)
+        public async Task<bool> CreateCustomer(CustomerInfo customer)
         {
             var repository = _objectContainer.Get<ICustomerRepository>();
 
             var mdCustomer = customer.GetEntity();
 
+            var oldCustomer = await repository.GetCustomerByTrackingNumber(customer.TrackingNumber);
+
+            Check.ThrowExceptionIfNotNull(oldCustomer, CustomerManagementResources.CUSTOMER_EXIST);
+
             var result = await repository.CreateCustomer(mdCustomer);
 
-            return await Task.FromResult<CustomerInfo>(new CustomerInfo(result));
+            return await Task.FromResult(true);
         }
 
         public async Task<IList<CustomerInfo>> GetAllCustomer()
@@ -47,6 +51,32 @@ namespace ThanhHuongSolution.Customer.Services
             }
 
             return await Task.FromResult<IList<CustomerInfo>>(result);
+        }
+
+        public async Task<CustomerInfo> GetCustomerById(string id)
+        {
+            Check.ThrowExceptionIfNullOrEmpty(id, CustomerManagementResources.CUSTOMER_ID_REQUIRED);
+
+            var repository = _objectContainer.Get<ICustomerRepository>();
+
+            var data = await repository.GetCustomerById(id);
+
+            Check.ThrowExceptionIfNull(data, CustomerManagementResources.CUSTOMER_NOT_FOUND);
+
+            return await Task.FromResult(new CustomerInfo(data));
+        }
+
+        public async Task<CustomerInfo> GetCustomerByTrackingNumber(string trackingNumber)
+        {
+            Check.ThrowExceptionIfNullOrEmpty(trackingNumber, CustomerManagementResources.CUSTOMER_ID_REQUIRED);
+
+            var repository = _objectContainer.Get<ICustomerRepository>();
+
+            var data = await repository.GetCustomerByTrackingNumber(trackingNumber);
+
+            Check.ThrowExceptionIfNull(data, CustomerManagementResources.CUSTOMER_NOT_FOUND);
+
+            return await Task.FromResult(new CustomerInfo(data));
         }
     }
 }

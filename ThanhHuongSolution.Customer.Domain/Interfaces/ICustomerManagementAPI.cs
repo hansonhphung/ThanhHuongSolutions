@@ -9,6 +9,10 @@ namespace ThanhHuongSolution.Customer.Domain.Interfaces
     {
         Task<FrameworkParamOutput<IList<CustomerInfo>>> GetAllCustomer();
 
-        Task<FrameworkParamOutput<CustomerInfo>> CreateCustomer(FrameworkParamInput<CustomerInfo> input);
+        Task<FrameworkParamOutput<bool>> CreateCustomer(FrameworkParamInput<CustomerInfo> input);
+
+        Task<FrameworkParamOutput<CustomerInfo>> GetCustomerById(FrameworkParamInput<string> input);
+
+        Task<FrameworkParamOutput<CustomerInfo>> GetCustomerByTrackingNumber(FrameworkParamInput<string> input);
     }
 }

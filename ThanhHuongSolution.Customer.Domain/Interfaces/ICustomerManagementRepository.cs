@@ -9,8 +9,12 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 {
     public interface ICustomerRepository
     {
-        Task<MDCustomer> CreateCustomer(MDCustomer customer);
+        Task<bool> CreateCustomer(MDCustomer customer);
 
         Task<IList<MDCustomer>> GetAllCustomer();
+
+        Task<MDCustomer> GetCustomerById(string id);
+
+        Task<MDCustomer> GetCustomerByTrackingNumber(string trackingNumber);
     }
 }
