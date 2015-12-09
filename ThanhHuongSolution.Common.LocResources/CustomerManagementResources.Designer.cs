@@ -88,6 +88,15 @@ namespace ThanhHuongSolution.Common.LocResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mã khách hàng không hợp lệ..
+        /// </summary>
+        public static string ID_INVALID {
+            get {
+                return ResourceManager.GetString("ID_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hiện tại chưa có khách hàng..
         /// </summary>
         public static string NO_CUSTOMER {

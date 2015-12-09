@@ -59,11 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CommonResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerManagementResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CustomerManagementResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorResources.resx">

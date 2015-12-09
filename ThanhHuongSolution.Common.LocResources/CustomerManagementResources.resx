@@ -126,6 +126,9 @@
   <data name="CUSTOMER_NOT_FOUND" xml:space="preserve">
     <value>Không tìm thấy khách hàng.</value>
   </data>
+  <data name="ID_INVALID" xml:space="preserve">
+    <value>Mã khách hàng không hợp lệ.</value>
+  </data>
   <data name="NO_CUSTOMER" xml:space="preserve">
     <value>Hiện tại chưa có khách hàng.</value>
   </data>
