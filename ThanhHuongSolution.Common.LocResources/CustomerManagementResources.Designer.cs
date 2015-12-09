@@ -61,6 +61,33 @@ namespace ThanhHuongSolution.Common.LocResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mã khách hàng này đã tồn tại.
+        /// </summary>
+        public static string CUSTOMER_EXIST {
+            get {
+                return ResourceManager.GetString("CUSTOMER_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã khách hàng không được rỗng..
+        /// </summary>
+        public static string CUSTOMER_ID_REQUIRED {
+            get {
+                return ResourceManager.GetString("CUSTOMER_ID_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không tìm thấy khách hàng..
+        /// </summary>
+        public static string CUSTOMER_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("CUSTOMER_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hiện tại chưa có khách hàng..
         /// </summary>
         public static string NO_CUSTOMER {
