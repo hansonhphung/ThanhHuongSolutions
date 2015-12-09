@@ -63,6 +63,12 @@ namespace ThanhHuongSolution.Common.Infrastrucure
                 throw new CustomException(errorMessage, innerException);
         }
 
+        public static void ThrowExceptionIfNotNull(object value, string errorMessage, Exception innerException = null)
+        {
+            if (!IsNull(value))
+                throw new CustomException(errorMessage, innerException);
+        }
+
         public static void ThrowExceptionIfCollectionIsNullOrZero<T>(IEnumerable<T> value, string errorMessage, Exception innerException = null)
         {
             if (value == null)
