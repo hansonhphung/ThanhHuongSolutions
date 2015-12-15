@@ -1,0 +1,17 @@
+{
+  "name": "ASP.NET",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.7",
+    "bootstrap": "3.3.4",
+    "jquery": "2.1.4",
+    "toast": "2.1.2"
+  }
+}
