@@ -78,5 +78,21 @@ namespace ThanhHuongSolution.Customer.Services
 
             return await Task.FromResult(new CustomerInfo(data));
         }
+
+        public async Task<IList<CustomerInfo>> Search(string query)
+        {
+            var repository = _objectContainer.Get<ICustomerRepository>();
+
+            var data = await repository.Search(query);
+
+            var result = new List<CustomerInfo>();
+
+            foreach (var customer in data)
+            {
+                result.Add(new CustomerInfo(customer));
+            }
+
+            return await Task.FromResult(result);
+        }
     }
 }

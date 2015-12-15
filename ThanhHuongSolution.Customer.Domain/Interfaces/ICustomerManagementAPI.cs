@@ -14,5 +14,7 @@ namespace ThanhHuongSolution.Customer.Domain.Interfaces
         Task<FrameworkParamOutput<CustomerInfo>> GetCustomerById(FrameworkParamInput<string> input);
 
         Task<FrameworkParamOutput<CustomerInfo>> GetCustomerByTrackingNumber(FrameworkParamInput<string> input);
+
+        Task<FrameworkParamOutput<IList<CustomerInfo>>> Search(FrameworkParamInput<string> input);
     }
 }

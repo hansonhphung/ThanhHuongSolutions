@@ -8,6 +8,7 @@ using ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess;
 using ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess.Entity;
 using ThanhHuongSolution.Customer.Domain.Entity;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 {
@@ -65,6 +66,25 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
             var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
 
             var data = await collection.Find(x => x.TrackingNumber == trackingNumber).FirstOrDefaultAsync();
+
+            return await Task.FromResult(data);
+        }
+
+        public async Task<IList<MDCustomer>> Search(string query)
+        {
+            var keyLower= query.ToLower();
+
+            var dbContext = _readDataContectFactory.CreateMongoDBReadContext();
+
+            var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
+
+            var builder = Builders<MDCustomer>.Filter;
+
+            var filter = builder.Or(builder.Regex(x => x.Name, new BsonRegularExpression(keyLower, "i"))
+                       & builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i"))
+                       & builder.Where(x => x.TrackingNumber.Contains(keyLower) || x.Name.Contains(keyLower))));
+
+            var data = await collection.Find(filter).ToListAsync();
 
             return await Task.FromResult(data);
         }

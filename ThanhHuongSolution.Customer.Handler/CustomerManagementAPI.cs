@@ -90,5 +90,23 @@ namespace ThanhHuongSolution.Customer.Handler
                 throw new CustomException(ex.Message);
             }
         }
+
+        public async Task<FrameworkParamOutput<IList<CustomerInfo>>> Search(FrameworkParamInput<string> input)
+        {
+            try
+            {
+                var query = input.Request;
+
+                var services = _objectContainer.Get<ICustomerManagementServices>();
+
+                var data = await services.Search(query);
+
+                return await Task.FromResult(new FrameworkParamOutput<IList<CustomerInfo>>(data));
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex.Message);
+            }
+        }
     }
 }
