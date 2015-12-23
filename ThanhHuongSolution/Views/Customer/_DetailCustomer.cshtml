@@ -1,0 +1,62 @@
+﻿<div id="detailCustomerFormModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm Khách Hàng</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-rounded center-block" src="http://placehold.it/200x200">
+                        <button type="button" class="btn btn-xs btn-primary center-block">Thay đổi</button>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Mã Khách Hàng (*)</label>
+                                    <input type="text" name="firstname" ng-model="trackingNumber" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Tên Khánh Hàng (*)</label>
+                                    <input type="text" name="lastname" ng-model="name" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Số Điện Thoại</label>
+                                    <input type="text" name="firstname" ng-model="phoneNumber" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" ng-model="liabilityAmount">Tồn Nợ (VNĐ)</label>
+                                    <input type="text" name="lastname" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Địa Chỉ</label>
+                                    <input type="text" name="firstname" ng-model="address" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success center-block" href="#"><i class="fa fa-user-plus"></i>Thêm Khách Hàng</button>
+            </div>
+        </div>
+    </div>
+</div>
