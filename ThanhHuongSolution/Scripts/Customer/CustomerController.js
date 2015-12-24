@@ -19,4 +19,29 @@ app.controller('CustomerController', function ($scope) {
             }
         }
     }
+
+    $scope.searchKeyDown = function(event)
+    {
+        if (event.keyCode == 13)
+        {
+            var query = $scope.query;
+            
+            $.ajax({
+                type: "POST",
+                url: "/Customer/Search",
+                data: {query : query},
+                success: function (response) {
+                    if (response.isSuccess)
+                    {
+                        var data = response.data;
+                        alert(JSON.stringify(data));
+                    }
+                    else
+                    {
+                        alert('error at: ' + response.message);
+                    }
+                }
+            });
+        }
+    }
 });
