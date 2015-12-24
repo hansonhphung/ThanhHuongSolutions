@@ -9,7 +9,7 @@
     <div class="panel-body" ng-init="init(@Json.Encode(Model))">
         <div class="pull-right form-inline">
             <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#detailCustomerFormModal"><i class="fa fa-user-plus"></i>Thêm Khách Hàng</button>
-            <input type="text" class="form-control" placeholder="Search...">
+            <input type="text" class="form-control" placeholder="Search..." ng-model="query" ng-keydown="searchKeyDown($event)">
         </div>
 
         <table class="table table-responsive table-striped">
@@ -42,7 +42,7 @@
                 </tr>
             </tbody>
         </table>
-        @Html.Partial("/Views/Customer/_DetailCustomer.cshtml");
+        @Html.Partial("/Views/Customer/_DetailCustomer.cshtml")
     </div>
 </div>
 
