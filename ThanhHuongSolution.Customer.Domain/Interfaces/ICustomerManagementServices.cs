@@ -18,5 +18,7 @@ namespace ThanhHuongSolution.Customer.Domain.Interfaces
         Task<CustomerInfo> GetCustomerByTrackingNumber(string trackingNumber);
 
         Task<IList<CustomerInfo>> Search(string query);
+
+        Task<bool> UpdateCustomer(CustomerInfo customer);
     }
 }

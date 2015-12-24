@@ -13,7 +13,7 @@ namespace ThanhHuongSolution.Customer.Domain.Entity
         public MDCustomer()
         { }
 
-        public MDCustomer(string trackingNumber, string name, string phoneNumber, string address, List<string> transactionDetailIds, long liabilityAmount)
+        public MDCustomer(string trackingNumber, string name, string phoneNumber, string address, List<string> transactionDetailIds, long liabilityAmount, bool isVIP, string imgURL)
         {
             TrackingNumber = trackingNumber;
             Name = name;
@@ -21,6 +21,8 @@ namespace ThanhHuongSolution.Customer.Domain.Entity
             Address = address;
             TransactionDetailIds = transactionDetailIds;
             LiabilityAmount = liabilityAmount;
+            IsVIP = isVIP;
+            ImgURL = imgURL;
         }
 
         [BsonId]
@@ -32,5 +34,10 @@ namespace ThanhHuongSolution.Customer.Domain.Entity
         public string Address { get; set; }
         public List<string> TransactionDetailIds { get; set; }
         public long LiabilityAmount { get; set; }
+        public bool IsVIP { get; set; }
+        public string ImgURL { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public DateTime DeletedAt { get; set; }
     }
 }

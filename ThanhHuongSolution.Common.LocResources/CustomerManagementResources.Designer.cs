@@ -104,5 +104,14 @@ namespace ThanhHuongSolution.Common.LocResources {
                 return ResourceManager.GetString("NO_CUSTOMER", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã khách hàng đã tồn tại..
+        /// </summary>
+        public static string TRACKING_NUMBER_EXIST {
+            get {
+                return ResourceManager.GetString("TRACKING_NUMBER_EXIST", resourceCulture);
+            }
+        }
     }
 }

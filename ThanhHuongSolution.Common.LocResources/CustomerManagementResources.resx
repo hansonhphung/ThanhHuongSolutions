@@ -132,4 +132,7 @@
   <data name="NO_CUSTOMER" xml:space="preserve">
     <value>Hiện tại chưa có khách hàng.</value>
   </data>
+  <data name="TRACKING_NUMBER_EXIST" xml:space="preserve">
+    <value>Mã khách hàng đã tồn tại.</value>
+  </data>
 </root>

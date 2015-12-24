@@ -18,5 +18,7 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
         Task<MDCustomer> GetCustomerByTrackingNumber(string trackingNumber);
 
         Task<IList<MDCustomer>> Search(string query);
+
+        Task<bool> UpdateCustomer(MDCustomer customer);
     }
 }

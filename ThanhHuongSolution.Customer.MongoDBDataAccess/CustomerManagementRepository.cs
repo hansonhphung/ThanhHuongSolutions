@@ -32,6 +32,8 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 
             var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
 
+            customer.CreatedAt = customer.UpdatedAt = DateTime.UtcNow;
+
             await collection.InsertOneAsync(customer);
 
             return await Task.FromResult(true);
@@ -72,6 +74,7 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 
         public async Task<IList<MDCustomer>> Search(string query)
         {
+
             var keyLower= query.ToLower();
 
             var dbContext = _readDataContectFactory.CreateMongoDBReadContext();
@@ -80,13 +83,29 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 
             var builder = Builders<MDCustomer>.Filter;
 
-            var filter = builder.Or(builder.Regex(x => x.Name, new BsonRegularExpression(keyLower, "i"))
-                       & builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i"))
-                       & builder.Where(x => x.TrackingNumber.Contains(keyLower) || x.Name.Contains(keyLower))));
+
+            var filter = builder.Or(
+                         builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
+                         builder.Where(x => x.TrackingNumber.Contains(keyLower))),
+                         builder.Or(builder.Regex(x => x.Name, new BsonRegularExpression(keyLower, "i")),
+                         builder.Where(x => x.TrackingNumber.Contains(keyLower))));
 
             var data = await collection.Find(filter).ToListAsync();
 
             return await Task.FromResult(data);
+        }
+
+        public async Task<bool> UpdateCustomer(MDCustomer customer)
+        {
+            var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
+
+            var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
+
+            customer.UpdatedAt = DateTime.UtcNow;
+
+            await collection.ReplaceOneAsync(x => x.Id == customer.Id, customer);
+
+            return await Task.FromResult(true);
         }
     }
 }

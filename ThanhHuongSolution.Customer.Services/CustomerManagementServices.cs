@@ -94,5 +94,20 @@ namespace ThanhHuongSolution.Customer.Services
 
             return await Task.FromResult(result);
         }
+
+        public async Task<bool> UpdateCustomer(CustomerInfo customer)
+        {
+            var repository = _objectContainer.Get<ICustomerRepository>();
+
+            var existCustomer = await repository.GetCustomerByTrackingNumber(customer.TrackingNumber);
+
+            Check.ThrowExceptionIfNotNull(existCustomer, CustomerManagementResources.TRACKING_NUMBER_EXIST);
+
+            var mdCustomer = customer.GetEntity();
+
+            var data = await repository.UpdateCustomer(mdCustomer);
+
+            return await Task.FromResult(true);
+        }
     }
 }
