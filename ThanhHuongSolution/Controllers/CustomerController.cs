@@ -26,10 +26,9 @@ namespace ThanhHuongSolution.Controllers
         {
             var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
 
-            //var data = await api.GetAllCustomer();
+            var data = await api.GetAllCustomer();
 
-            //return View(new ListCustomerModel(data.Result));
-            return View();
+            return View(new ListCustomerModel(data.Result));
         }
 
         public async Task<ActionResult> Search(string query)
