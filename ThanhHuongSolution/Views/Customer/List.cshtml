@@ -30,7 +30,7 @@
         </header>
         <div class="panel-body" ng-init="init(@Json.Encode(Model))">
             <div class="pull-right form-inline">
-                <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#detailCustomerFormModal"><i class="fa fa-user-plus"></i>Thêm Khách Hàng</button>
+                <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#detailCustomerFormModal" ng-click="viewCustomer('')"><i class="fa fa-user-plus"></i>Thêm Khách Hàng</button>
                 <input type="text" class="form-control" placeholder="Search..." ng-model="query" ng-keydown="searchKeyDown($event)">
             </div>
 
@@ -58,7 +58,7 @@
                         </td>
                         <td class="center hidden-phone">
                             <button type="button" class="btn btn-default"><i class="fa fa-star fa-lg color-yellow"></i></button>
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalEdit" ng-click="viewCustomer(customer.Id)"><i class="fa fa-edit"></i></button>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#detailCustomerFormModal" ng-click="viewCustomer(customer.Id)"><i class="fa fa-edit"></i></button>
                             <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
                         </td>
                     </tr>
