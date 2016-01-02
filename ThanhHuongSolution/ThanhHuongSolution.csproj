@@ -201,8 +201,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\assets\custom\style.css" />
-    <Content Include="Content\assets\images\!logged-user.jpg" />
-    <Content Include="Content\assets\images\ThanhHuongLogo.png" />
+    <Content Include="Images\!logged-user.jpg" />
+    <Content Include="Images\ThanhHuongLogo.png" />
     <Content Include="Content\assets\stylesheets\skins\default.css" />
     <Content Include="Content\assets\stylesheets\skins\extension.css" />
     <Content Include="Content\assets\stylesheets\theme-custom.css" />
