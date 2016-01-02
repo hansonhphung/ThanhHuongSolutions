@@ -5,46 +5,69 @@
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="inner-wrapper" ng-app="ThanhHuongSolution" ng-controller="CustomerController">
-    <div class="panel-body" ng-init="init(@Json.Encode(Model))">
-        <div class="pull-right form-inline">
-            <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#detailCustomerFormModal"><i class="fa fa-user-plus"></i>Thêm Khách Hàng</button>
-            <input type="text" class="form-control" placeholder="Search..." ng-model="query" ng-keydown="searchKeyDown($event)">
-        </div>
+<div ng-app="ThanhHuongSolution" ng-controller="CustomerController">
+    <header class="page-header">
+        <h2>Quản Lý Khách Hàng</h2>
 
-        <table class="table table-responsive table-striped">
-            <thead>
-                <tr>
-                    <th>Mã Khách Hàng</th>
-                    <th>Tên Khách Hàng</th>
-                    <th>Số Điện Thoại</th>
-                    <th>Địa Chỉ</th>
-                    <th class="hidden-phone">Tồn Nợ</th>
-                    <th class="hidden-phone">Lịch Sử Mua Bán</th>
-                    <th class="hidden-phone"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="gradeX" ng-repeat="customer in customers">
-                    <td>{{customer.TrackingNumber}}</td>
-                    <td>{{customer.Name}}</td>
-                    <td>{{customer.PhoneNumber}}</td>
-                    <td class="center hidden-phone">{{customer.Address}}</td>
-                    <td class="center hidden-phone">{{customer.LiabilityAmount}} VND</td>
-                    <td class="center hidden-phone">
-                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
-                    </td>
-                    <td class="center hidden-phone">
-                        <button type="button" class="btn btn-default"><i class="fa fa-star fa-lg color-yellow"></i></button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalEdit" ng-click="viewCustomer(customer.Id)"><i class="fa fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        @Html.Partial("/Views/Customer/_DetailCustomer.cshtml")
-    </div>
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Quản Lý Khách Hàng</span></li>
+
+            </ol>
+
+            <a class="sidebar-right-toggle"></a>
+        </div>
+    </header>
+
+    <section class="panel">
+        <header class="panel-heading">
+            <h2 class="panel-title">Danh Sách Khách Hàng</h2>
+        </header>
+        <div class="panel-body" ng-init="init(@Json.Encode(Model))">
+            <div class="pull-right form-inline">
+                <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#detailCustomerFormModal"><i class="fa fa-user-plus"></i>Thêm Khách Hàng</button>
+                <input type="text" class="form-control" placeholder="Search..." ng-model="query" ng-keydown="searchKeyDown($event)">
+            </div>
+
+            <table class="table table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th>Mã Khách Hàng</th>
+                        <th>Tên Khách Hàng</th>
+                        <th>Số Điện Thoại</th>
+                        <th>Địa Chỉ</th>
+                        <th class="hidden-phone">Tồn Nợ</th>
+                        <th class="hidden-phone">Lịch Sử Mua Bán</th>
+                        <th class="hidden-phone"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="gradeX" ng-repeat="customer in customers">
+                        <td>{{customer.TrackingNumber}}</td>
+                        <td>{{customer.Name}}</td>
+                        <td>{{customer.PhoneNumber}}</td>
+                        <td class="center hidden-phone">{{customer.Address}}</td>
+                        <td class="center hidden-phone">{{customer.LiabilityAmount}} VND</td>
+                        <td class="center hidden-phone">
+                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
+                        </td>
+                        <td class="center hidden-phone">
+                            <button type="button" class="btn btn-default"><i class="fa fa-star fa-lg color-yellow"></i></button>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalEdit" ng-click="viewCustomer(customer.Id)"><i class="fa fa-edit"></i></button>
+                            <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            @Html.Partial("/Views/Customer/_DetailCustomer.cshtml")
+        </div>
+    </section>
 </div>
 
-<script src="/Vendor/angular/angular.min.js"></script>
-<script src="~/Scripts/Customer/CustomerController.js"></script>
+    <script src="/Vendor/angular/angular.min.js"></script>
+    <script src="~/Scripts/Customer/CustomerController.js"></script>
