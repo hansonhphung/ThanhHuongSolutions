@@ -60,6 +60,10 @@
       <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
       <Name>ThanhHuongSolution.Common.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.Common.LocResources\ThanhHuongSolution.Common.LocResources.csproj">
+      <Project>{3371514f-209b-477e-b2b3-874ebeeb536a}</Project>
+      <Name>ThanhHuongSolution.Common.LocResources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ThanhHuongSolution.Customer.Domain\ThanhHuongSolution.Customer.Domain.csproj">
       <Project>{4403b937-14f8-4cce-ac7a-7fc7924876fb}</Project>
       <Name>ThanhHuongSolution.Customer.Domain</Name>

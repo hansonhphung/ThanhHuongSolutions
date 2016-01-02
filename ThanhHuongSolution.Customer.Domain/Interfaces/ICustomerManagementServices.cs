@@ -20,5 +20,7 @@ namespace ThanhHuongSolution.Customer.Domain.Interfaces
         Task<IList<CustomerInfo>> Search(string query);
 
         Task<bool> UpdateCustomer(CustomerInfo customer);
+
+        Task<bool> DeleteCustomer(string customerId);
     }
 }

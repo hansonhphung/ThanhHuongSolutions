@@ -1,5 +1,5 @@
-﻿var app = angular.module('ThanhHuongSolution', []);
-app.controller('CustomerController', function ($scope) {
+﻿var app = angular.module('ThanhHuongSolution', ['toastr']);
+app.controller('CustomerController', function ($scope, toastr) {
     $scope.init = function (data) {
         $scope.availableCustomer = data.LstCustomer;
         $scope.customers = data.LstCustomer;
@@ -29,25 +29,25 @@ app.controller('CustomerController', function ($scope) {
         }
     }
 
-    //$scope.searchCustomer = function()
-    //{
-    //    var query = $scope.query;
+    $scope.search = function()
+    {
+        var query = $scope.query;
 
-    //    $.ajax({
-    //        type: "POST",
-    //        url: "/Customer/Search",
-    //        data: { query: query },
-    //        success: function (response) {
-    //            if (response.isSuccess) {
-    //                var data = response.data;
-    //                $scope.customers = data;
-    //            }
-    //            else {
-    //                alert('error at: ' + response.message);
-    //            }
-    //        }
-    //    });
-    //}
+        $.ajax({
+            type: "POST",
+            url: "/Customer/Search",
+            data: { query: query },
+            success: function (response) {
+                if (response.isSuccess) {
+                    var data = response.data;
+                    $scope.customers = data;
+                }
+                else {
+                    alert('error at: ' + response.message);
+                }
+            }
+        });
+    }
 
     $scope.searchCustomer = function ()
     {
@@ -70,5 +70,24 @@ app.controller('CustomerController', function ($scope) {
         {
             $scope.searchCustomer();
         }
+    }
+
+    $scope.deleteCustomer = function (customerId)
+    {
+        alert(customerId);
+        $.ajax({
+            type: "POST",
+            url: "/Customer/Delete",
+            data: { customerId: customerId },
+            success: function (response) {
+                if (response.isSuccess) {
+                    toastr.success('Xoá khách hàng thành công');
+                    $scope.search();
+                }
+                else {
+                    alert('error at: ' + response.message);
+                }
+            }
+        });
     }
 });

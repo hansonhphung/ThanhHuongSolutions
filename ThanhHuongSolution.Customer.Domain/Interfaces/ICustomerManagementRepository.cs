@@ -20,5 +20,7 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
         Task<IList<MDCustomer>> Search(string query);
 
         Task<bool> UpdateCustomer(MDCustomer customer);
+
+        Task<bool> DeleteCustomer(string customerId);
     }
 }

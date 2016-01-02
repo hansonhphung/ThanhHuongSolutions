@@ -61,7 +61,7 @@ namespace ThanhHuongSolution.Common.LocResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mã khách hàng này đã tồn tại.
+        ///   Looks up a localized string similar to Mã khách hàng này đã tồn tại..
         /// </summary>
         public static string CUSTOMER_EXIST {
             get {
@@ -75,6 +75,15 @@ namespace ThanhHuongSolution.Common.LocResources {
         public static string CUSTOMER_ID_REQUIRED {
             get {
                 return ResourceManager.GetString("CUSTOMER_ID_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Khách hàng này không tồn tại..
+        /// </summary>
+        public static string CUSTOMER_NOT_EXIST {
+            get {
+                return ResourceManager.GetString("CUSTOMER_NOT_EXIST", resourceCulture);
             }
         }
         

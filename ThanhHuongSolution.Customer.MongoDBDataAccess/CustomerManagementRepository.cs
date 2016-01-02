@@ -9,6 +9,7 @@ using ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess.Entity;
 using ThanhHuongSolution.Customer.Domain.Entity;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using ThanhHuongSolution.Common.LocResources;
 
 namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 {
@@ -105,6 +106,25 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
             customer.UpdatedAt = DateTime.UtcNow;
 
             await collection.ReplaceOneAsync(x => x.Id == customer.Id, customer);
+
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> DeleteCustomer(string customerId)
+        {
+            var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
+
+            var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
+
+            var oldCustomer = await GetCustomerById(customerId);
+
+            Check.ThrowExceptionIfNull(oldCustomer, CustomerManagementResources.CUSTOMER_NOT_EXIST);
+
+            oldCustomer.UpdatedAt = DateTime.UtcNow;
+
+            oldCustomer.DeletedAt = DateTime.UtcNow;
+
+            await collection.ReplaceOneAsync(x => x.Id == customerId, oldCustomer);
 
             return await Task.FromResult(true);
         }

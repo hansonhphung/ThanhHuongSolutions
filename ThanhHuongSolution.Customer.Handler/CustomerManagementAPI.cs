@@ -29,7 +29,25 @@ namespace ThanhHuongSolution.Customer.Handler
 
                 var data = await services.CreateCustomer(request);
 
-                return await Task.FromResult(new FrameworkParamOutput<bool>(true));
+                return await Task.FromResult(new FrameworkParamOutput<bool>(data));
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex);
+            }
+        }
+
+        public async Task<FrameworkParamOutput<bool>> DeleteCustomer(FrameworkParamInput<string> input)
+        {
+            try
+            {
+                var request = input.Request;
+
+                var services = _objectContainer.Get<ICustomerManagementServices>();
+
+                var data = await services.DeleteCustomer(request);
+
+                return await Task.FromResult(new FrameworkParamOutput<bool>(data));
             }
             catch (CustomException ex)
             {
@@ -106,6 +124,24 @@ namespace ThanhHuongSolution.Customer.Handler
             catch (CustomException ex)
             {
                 throw new CustomException(ex.Message);
+            }
+        }
+
+        public async Task<FrameworkParamOutput<bool>> UpdateCustomer(FrameworkParamInput<CustomerInfo> input)
+        {
+            try
+            {
+                var request = input.Request;
+
+                var services = _objectContainer.Get<ICustomerManagementServices>();
+
+                var data = await services.UpdateCustomer(request);
+
+                return await Task.FromResult(new FrameworkParamOutput<bool>(data));
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex);
             }
         }
     }

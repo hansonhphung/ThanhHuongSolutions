@@ -46,5 +46,21 @@ namespace ThanhHuongSolution.Controllers
                 return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public async Task<ActionResult> Delete(string customerId)
+        {
+            try
+            {
+                var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
+
+                var data = await api.DeleteCustomer(new FrameworkParamInput<string>(customerId));
+
+                return Json(new { isSuccess = true, data = data.Result }, JsonRequestBehavior.AllowGet);
+            }
+            catch (CustomException ex)
+            {
+                return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

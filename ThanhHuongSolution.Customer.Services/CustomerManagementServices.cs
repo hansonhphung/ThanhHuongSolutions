@@ -32,7 +32,16 @@ namespace ThanhHuongSolution.Customer.Services
 
             var result = await repository.CreateCustomer(mdCustomer);
 
-            return await Task.FromResult(true);
+            return await Task.FromResult(result);
+        }
+
+        public async Task<bool> DeleteCustomer(string customerId)
+        {
+            var repository = _objectContainer.Get<ICustomerRepository>();
+
+            var result = await repository.DeleteCustomer(customerId);
+
+            return await Task.FromResult(result);
         }
 
         public async Task<IList<CustomerInfo>> GetAllCustomer()

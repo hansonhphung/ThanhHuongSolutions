@@ -118,10 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CUSTOMER_EXIST" xml:space="preserve">
-    <value>Mã khách hàng này đã tồn tại</value>
+    <value>Mã khách hàng này đã tồn tại.</value>
   </data>
   <data name="CUSTOMER_ID_REQUIRED" xml:space="preserve">
     <value>Mã khách hàng không được rỗng.</value>
+  </data>
+  <data name="CUSTOMER_NOT_EXIST" xml:space="preserve">
+    <value>Khách hàng này không tồn tại.</value>
   </data>
   <data name="CUSTOMER_NOT_FOUND" xml:space="preserve">
     <value>Không tìm thấy khách hàng.</value>
