@@ -77,7 +77,6 @@ app.controller('CustomerController', function ($scope, toastr) {
 
     $scope.deleteCustomer = function (customerId)
     {
-        alert(customerId);
         $.ajax({
             type: "POST",
             url: "/Customer/Delete",
@@ -106,7 +105,6 @@ app.controller('CustomerController', function ($scope, toastr) {
                 if (response.isSuccess) {
                     $scope.search();
                     toastr.success('Cập nhật khách hàng thân thiết thành công');
-                    
                 }
                 else {
                     alert('error at: ' + response.message);
