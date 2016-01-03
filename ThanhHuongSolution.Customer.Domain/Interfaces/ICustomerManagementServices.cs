@@ -22,5 +22,7 @@ namespace ThanhHuongSolution.Customer.Domain.Interfaces
         Task<bool> UpdateCustomer(CustomerInfo customer);
 
         Task<bool> DeleteCustomer(string customerId);
+
+        Task<bool> SetVIPCustomer(string customerId, bool isVIP);
     }
 }

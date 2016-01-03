@@ -57,14 +57,14 @@
                             <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
                         </td>
                         <td class="center hidden-phone">
-                            <button type="button" class="btn btn-default"><i class="fa fa-star fa-lg color-yellow"></i></button>
+                            <button type="button" class="btn btn-default" ng-click="setVIPCustomer(customer.Id, customer.IsVIP)"><i ng-class="{ 'color-yellow': customer.IsVIP}" class="fa fa-star fa-lg"></i></button>
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#detailCustomerFormModal" ng-click="viewCustomer(customer.Id)"><i class="fa fa-edit"></i></button>
                             <button type="button" class="btn btn-danger" ng-click="deleteCustomer(customer.Id)"><i class="fa fa-trash-o"></i></button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            @Html.Partial("/Views/Customer/_DetailCustomer.cshtml")
+            @Html.Partial("_DetailCustomer")
         </div>
     </section>
 </div>

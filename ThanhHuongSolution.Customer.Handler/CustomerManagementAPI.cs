@@ -127,6 +127,24 @@ namespace ThanhHuongSolution.Customer.Handler
             }
         }
 
+        public async Task<FrameworkParamOutput<bool>> SetVIPCustomer(FrameworkParamInput<CustomerVIPModel> input)
+        {
+            try
+            {
+                var customerInfo = input.Request;
+
+                var services = _objectContainer.Get<ICustomerManagementServices>();
+
+                var data = await services.SetVIPCustomer(customerInfo.CustomerId, customerInfo.IsVIP);
+
+                return await Task.FromResult(new FrameworkParamOutput<bool>(data));
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex.Message);
+            }
+        }
+
         public async Task<FrameworkParamOutput<bool>> UpdateCustomer(FrameworkParamInput<CustomerInfo> input)
         {
             try

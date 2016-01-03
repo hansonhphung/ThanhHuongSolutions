@@ -57,6 +57,7 @@
     <Compile Include="Interfaces\ICustomerManagementRepository.cs" />
     <Compile Include="Interfaces\ICustomerManagementServices.cs" />
     <Compile Include="Model\CustomerInfo.cs" />
+    <Compile Include="Model\CustomerVIPModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

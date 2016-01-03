@@ -22,5 +22,7 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
         Task<bool> UpdateCustomer(MDCustomer customer);
 
         Task<bool> DeleteCustomer(string customerId);
+
+        Task<bool> SetVIPCustomer(string customerId, bool isVIP);
     }
 }

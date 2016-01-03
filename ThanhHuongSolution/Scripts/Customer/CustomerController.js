@@ -31,16 +31,19 @@ app.controller('CustomerController', function ($scope, toastr) {
 
     $scope.search = function()
     {
-        var query = $scope.query;
+        $scope.query = '';
 
         $.ajax({
             type: "POST",
             url: "/Customer/Search",
-            data: { query: query },
+            data: { query: $scope.query },
             success: function (response) {
                 if (response.isSuccess) {
                     var data = response.data;
-                    $scope.customers = data;
+
+                    $scope.availableCustomer = data;
+                    
+                    $scope.searchCustomer();
                 }
                 else {
                     alert('error at: ' + response.message);
@@ -81,8 +84,29 @@ app.controller('CustomerController', function ($scope, toastr) {
             data: { customerId: customerId },
             success: function (response) {
                 if (response.isSuccess) {
-                    toastr.success('Xoá khách hàng thành công');
                     $scope.search();
+                    toastr.success('Xoá khách hàng thành công');
+                }
+                else {
+                    alert('error at: ' + response.message);
+                }
+            }
+        });
+    }
+
+    $scope.setVIPCustomer = function (customerId, isVIP) {
+
+        isVIP = !isVIP;
+        
+        $.ajax({
+            type: "POST",
+            url: "/Customer/SetVIPCustomer",
+            data: { customerId: customerId, isVIP: isVIP },
+            success: function (response) {
+                if (response.isSuccess) {
+                    $scope.search();
+                    toastr.success('Cập nhật khách hàng thân thiết thành công');
+                    
                 }
                 else {
                     alert('error at: ' + response.message);

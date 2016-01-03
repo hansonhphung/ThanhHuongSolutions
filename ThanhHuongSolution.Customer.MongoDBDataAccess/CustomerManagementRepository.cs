@@ -128,5 +128,24 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 
             return await Task.FromResult(true);
         }
+
+        public async Task<bool> SetVIPCustomer(string customerId, bool isVIP)
+        {
+            var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
+
+            var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
+
+            var oldCustomer = await GetCustomerById(customerId);
+
+            Check.ThrowExceptionIfNull(oldCustomer, CustomerManagementResources.CUSTOMER_NOT_EXIST);
+
+            oldCustomer.UpdatedAt = DateTime.UtcNow;
+
+            oldCustomer.IsVIP = isVIP;
+
+            await collection.ReplaceOneAsync(x => x.Id == customerId, oldCustomer);
+
+            return await Task.FromResult(true);
+        }
     }
 }

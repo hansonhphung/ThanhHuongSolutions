@@ -62,5 +62,21 @@ namespace ThanhHuongSolution.Controllers
                 return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public async Task<ActionResult> SetVIPCustomer(string customerId, bool isVIP)
+        {
+            try
+            {
+                var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
+
+                var data = await api.SetVIPCustomer(new FrameworkParamInput<CustomerVIPModel>(new CustomerVIPModel(customerId, isVIP)));
+
+                return Json(new { isSuccess = true, data = data.Result }, JsonRequestBehavior.AllowGet);
+            }
+            catch (CustomException ex)
+            {
+                return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

@@ -20,5 +20,7 @@ namespace ThanhHuongSolution.Customer.Domain.Interfaces
         Task<FrameworkParamOutput<bool>> UpdateCustomer(FrameworkParamInput<CustomerInfo> input);
 
         Task<FrameworkParamOutput<bool>> DeleteCustomer(FrameworkParamInput<string> input);
+
+        Task<FrameworkParamOutput<bool>> SetVIPCustomer(FrameworkParamInput<CustomerVIPModel> input);
     }
 }

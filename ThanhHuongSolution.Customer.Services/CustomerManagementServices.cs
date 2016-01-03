@@ -104,6 +104,19 @@ namespace ThanhHuongSolution.Customer.Services
             return await Task.FromResult(result);
         }
 
+        public async Task<bool> SetVIPCustomer(string customerId, bool isVIP)
+        {
+            var repository = _objectContainer.Get<ICustomerRepository>();
+
+            var existCustomer = await repository.GetCustomerById(customerId);
+
+            Check.ThrowExceptionIfNull(existCustomer, CustomerManagementResources.CUSTOMER_NOT_EXIST);
+
+            var data = await repository.SetVIPCustomer(customerId, isVIP);
+
+            return await Task.FromResult(data);
+        }
+
         public async Task<bool> UpdateCustomer(CustomerInfo customer)
         {
             var repository = _objectContainer.Get<ICustomerRepository>();
@@ -116,7 +129,7 @@ namespace ThanhHuongSolution.Customer.Services
 
             var data = await repository.UpdateCustomer(mdCustomer);
 
-            return await Task.FromResult(true);
+            return await Task.FromResult(data);
         }
     }
 }
