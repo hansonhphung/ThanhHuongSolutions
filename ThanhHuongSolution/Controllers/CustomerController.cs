@@ -24,11 +24,18 @@ namespace ThanhHuongSolution.Controllers
 
         public async Task<ActionResult> List()
         {
-            var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
+            try
+            {
+                var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
 
-            var data = await api.GetAllCustomer();
+                var data = await api.GetAllCustomer();
 
-            return View(new ListCustomerModel(data.Result));
+                return View(new ListCustomerModel(data.Result));
+            }
+            catch (CustomException ex)
+            {
+                return View();
+            }
         }
 
         public async Task<ActionResult> Search(string query)
@@ -76,6 +83,51 @@ namespace ThanhHuongSolution.Controllers
             catch (CustomException ex)
             {
                 return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public async Task<ActionResult> SaveCustomer(FormCollection formCollection)
+        {
+            try
+            {
+                if (Request.Files.Count == 1) //check validation and parse uploaded image
+                {
+                    var file = Request.Files[0];
+                }
+
+                var customer = new CustomerInfo();
+
+                customer.Id = formCollection.Get("Id");
+                customer.TrackingNumber = formCollection.Get("TrackingNumber");
+                customer.Name = formCollection.Get("Name");
+                customer.Address = formCollection.Get("Address");
+                customer.PhoneNumber = formCollection.Get("PhoneNumber");
+                customer.LiabilityAmount = long.Parse(formCollection.Get("LiabilityAmount"));
+
+                var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
+
+                var result = false;
+
+                if (Check.IsNullOrEmpty(customer.Id))
+                {
+                    var data = await api.CreateCustomer(new FrameworkParamInput<CustomerInfo>(customer));
+                    result = data.Result;
+                }
+                else
+                {
+                    var data = await api.UpdateCustomer(new FrameworkParamInput<CustomerInfo>(customer));
+                    result = data.Result;
+                }
+
+                return Json(new { isSuccess = true, data = result }, JsonRequestBehavior.AllowGet);
+            }
+            catch (CustomException ex)
+            {
+                return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new { isSuccess = false, message = e.Message }, JsonRequestBehavior.AllowGet);
             }
         }
     }

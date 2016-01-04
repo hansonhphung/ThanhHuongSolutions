@@ -13,8 +13,9 @@ namespace ThanhHuongSolution.Customer.Domain.Entity
         public MDCustomer()
         { }
 
-        public MDCustomer(string trackingNumber, string name, string phoneNumber, string address, List<string> transactionDetailIds, long liabilityAmount, bool isVIP, string imgURL)
+        public MDCustomer(string id,string trackingNumber, string name, string phoneNumber, string address, List<string> transactionDetailIds, long liabilityAmount, bool isVIP, string imgURL)
         {
+            Id = id;
             TrackingNumber = trackingNumber;
             Name = name;
             PhoneNumber = phoneNumber;

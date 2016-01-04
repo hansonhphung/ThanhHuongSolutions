@@ -57,7 +57,7 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 
             var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
 
-            var data = await collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            var data = await collection.Find(x => x.Id == id && x.DeletedAt == null).FirstOrDefaultAsync();
 
             return await Task.FromResult(data);
         }
@@ -68,7 +68,7 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 
             var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
 
-            var data = await collection.Find(x => x.TrackingNumber == trackingNumber).FirstOrDefaultAsync();
+            var data = await collection.Find(x => x.TrackingNumber == trackingNumber && x.DeletedAt == null).FirstOrDefaultAsync();
 
             return await Task.FromResult(data);
         }
