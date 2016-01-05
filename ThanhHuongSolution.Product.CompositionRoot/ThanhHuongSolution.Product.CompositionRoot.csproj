@@ -49,6 +49,10 @@
       <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
       <Name>ThanhHuongSolution.Common.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.Product.Domain\ThanhHuongSolution.Product.Domain.csproj">
+      <Project>{ca843cf3-6fc2-4d04-80c1-af3c2d5faa08}</Project>
+      <Name>ThanhHuongSolution.Product.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ThanhHuongSolution.Product.Handler\ThanhHuongSolution.Product.Handler.csproj">
       <Project>{3605d654-5cfa-44f2-af64-774fb462a0fa}</Project>
       <Name>ThanhHuongSolution.Product.Handler</Name>
