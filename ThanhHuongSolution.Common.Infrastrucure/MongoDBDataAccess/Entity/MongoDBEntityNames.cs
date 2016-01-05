@@ -10,9 +10,8 @@ namespace ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess.Entity
     {
         public string TableName { get; set; }
 
-        #region Customer
         public static readonly MongoDBEntityNames CustomerCollection = new MongoDBEntityNames() { TableName = "Customers" };
-        #endregion
+        public static readonly MongoDBEntityNames ProductCollection = new MongoDBEntityNames() { TableName = "Products" };
 
         public override string ToString()
         {
