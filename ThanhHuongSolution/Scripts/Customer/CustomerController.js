@@ -1,5 +1,5 @@
 ﻿var app = angular.module('ThanhHuongSolution', ['toastr']);
-app.controller('CustomerController', function ($scope, toastr) {
+app.controller('CustomerController', function ($scope, toastr, $http) {
     $scope.init = function (data) {
         $scope.availableCustomer = data.LstCustomer;
         $scope.customers = data.LstCustomer;
@@ -26,6 +26,8 @@ app.controller('CustomerController', function ($scope, toastr) {
             $scope.phoneNumber = '';
             $scope.address = '';
             $scope.liabilityAmount = '';
+
+            $scope.form_customer_details.$setPristine();
         }
     }
 
@@ -77,7 +79,6 @@ app.controller('CustomerController', function ($scope, toastr) {
 
     $scope.deleteCustomer = function (customerId)
     {
-        alert(customerId);
         $.ajax({
             type: "POST",
             url: "/Customer/Delete",
@@ -106,11 +107,48 @@ app.controller('CustomerController', function ($scope, toastr) {
                 if (response.isSuccess) {
                     $scope.search();
                     toastr.success('Cập nhật khách hàng thân thiết thành công');
-                    
                 }
                 else {
                     alert('error at: ' + response.message);
                 }
+            }
+        });
+    }
+
+    $scope.saveCustomer = function ()
+    {
+        var file = $('#File')[0];
+        var form = new FormData();
+        //form.append("file", this.myFile);
+        form.append("file", file.files[0]);
+        form.append("Id", $scope.customerId);
+        form.append("TrackingNumber", $scope.trackingNumber);
+        form.append("Name", $scope.name);
+        form.append("PhoneNumber", $scope.phoneNumber);
+        form.append("Address", $scope.address);
+        form.append("LiabilityAmount", $scope.liabilityAmount);
+
+        //$.ajax({
+        //    type: "POST",
+        //    url: "/Customer/SaveCustomer",
+        //    data: form,
+        //    success: function (response)
+        //    {
+        //        alert('success');
+        //    }
+        //});
+
+        $http.post("/Customer/SaveCustomer", form, {
+            withCredentials: true,
+            headers: { 'Content-Type': undefined },
+            transformRequest: angular.identity
+        }).success(function(response) {
+            if (response.isSuccess) {
+                $scope.search();
+                toastr.success('Lưu thông tin khách hàng thành công');
+            }
+            else {
+                alert('error at: ' + response.message);
             }
         });
     }

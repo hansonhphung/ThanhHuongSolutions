@@ -1,62 +1,75 @@
 ﻿<div id="detailCustomerFormModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">{{customerId == '' ? 'Thêm khách hàng' : 'Sửa khách hàng'}}</h4>
-            </div>
-            <div class="modal-body">
+            <form name="form_customer_details" novalidate enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{customerId == '' ? 'Thêm khách hàng' : 'Sửa khách hàng'}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-rounded center-block" src="http://placehold.it/200x200">
+                            <input style="margin-top:5px;" class="btn btn-xs btn-primary center-block" type="file" name="File" id="File" file-feed ng-model="myFile">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Mã Khách Hàng (*)</label>
+                                        <input type="text" name="TrackingNumber" ng-model="trackingNumber" class="form-control" required>
+                                        <span class="color-red" data-valmsg-for="TrackingNumber" data-valmsg-replace="true" ng-show="form_customer_details.TrackingNumber.$dirty && form_customer_details.TrackingNumber.$error.required">
+                                            <span for="Name" class="">Vui lòng nhập Mã Khách Hàng.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Tên Khánh Hàng (*)</label>
+                                        <input type="text" name="Name" ng-model="name" class="form-control" required>
+                                        <span class="color-red" data-valmsg-for="Name" data-valmsg-replace="true" ng-show="form_customer_details.Name.$dirty && form_customer_details.Name.$error.required">
+                                            <span for="Name" class="">Vui lòng nhập Tên Khách Hàng.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Số Điện Thoại</label>
+                                        <input type="text" name="PhoneNumber" ng-model="phoneNumber" class="form-control" required>
+                                        <span class="color-red" data-valmsg-for="PhoneNumber" data-valmsg-replace="true" ng-show="form_customer_details.PhoneNumber.$dirty && form_customer_details.PhoneNumber.$error.required">
+                                            <span for="Name" class="">Vui lòng nhập số điện thoại.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Tồn Nợ (VNĐ)</label>
+                                        <input type="text" name="LiabilityAmount" ng-model="liabilityAmount" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Địa Chỉ</label>
+                                        <input type="text" name="Address" ng-model="address" class="form-control" required>
+                                        <span class="color-red" data-valmsg-for="Address" data-valmsg-replace="true" ng-show="form_customer_details.Address.$dirty && form_customer_details.Address.$error.required">
+                                            <span for="Name" class="">Vui lòng nhập địa chỉ.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="row">
-                    <div class="col-md-4">
-                        <img class="img-rounded center-block" src="http://placehold.it/200x200">
-                        <button type="button" style="margin-top:5px;" class="btn btn-xs btn-primary center-block">Thay đổi</button>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Mã Khách Hàng (*)</label>
-                                    <input type="text" name="firstname" ng-model="trackingNumber" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Tên Khánh Hàng (*)</label>
-                                    <input type="text" name="lastname" ng-model="name" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Số Điện Thoại</label>
-                                    <input type="text" name="firstname" ng-model="phoneNumber" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Tồn Nợ (VNĐ)</label>
-                                    <input type="text" name="lastname" ng-model="liabilityAmount" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">Địa Chỉ</label>
-                                    <input type="text" name="firstname" ng-model="address" class="form-control">
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-block" href="#"><i class="fa fa-user-plus" ng-click="saveCustomer()"></i>Lưu</button>
-            </div>
+                <div class="modal-footer">
+                    <input type="button" ng-disabled="form_customer_details.$invalid" class="btn btn-success btn-block" value="Lưu" ng-click="saveCustomer()" ><i class="fa fa-user-plus" data-dismiss="modal"></i>
+                </div>
+            </form>
         </div>
     </div>
 </div>

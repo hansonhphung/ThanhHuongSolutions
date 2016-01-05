@@ -39,7 +39,8 @@ namespace ThanhHuongSolution.Customer.Domain.Model
         public MDCustomer GetEntity()
         {
             return new 
-                MDCustomer(TrackingNumber, 
+                MDCustomer(Id,
+                TrackingNumber, 
                 Name, 
                 PhoneNumber, 
                 Address, 

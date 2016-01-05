@@ -11,8 +11,8 @@ namespace ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess
     {
         public static string MongoDbConnection
         {
-            //get { return ConfigurationManager.ConnectionStrings["MongoDB"].ConnectionString; }
-            get { return "mongodb://127.0.0.1:27017/ThanhHuongSolution"; }
+            get { return ConfigurationManager.ConnectionStrings["MongoDB"].ConnectionString; }
+            //get { return "mongodb://127.0.0.1:27017/ThanhHuongSolution"; }
             
         }
     }
