@@ -61,10 +61,6 @@
       <Project>{990bc88f-2a70-4af6-b305-f39a1a1e4e15}</Project>
       <Name>ThanhHuongSolution.Product.MongoDBDataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ThanhHuongSolution.Product.Services\ThanhHuongSolution.Product.Services.csproj">
-      <Project>{69431bc7-0fc2-4c78-ae1c-cf30296be434}</Project>
-      <Name>ThanhHuongSolution.Product.Services</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

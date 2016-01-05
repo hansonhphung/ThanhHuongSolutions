@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ThanhHuongSolution.Product.Domain.Model
 {
-    class ProductInfo
+    public class ProductInfo
     {
     }
 }
