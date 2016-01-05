@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2A7844B2-A8A6-4CE3-909D-812AA939D004}</ProjectGuid>
+    <ProjectGuid>{ED6189D5-CC35-46F6-BDEE-48B8845C927D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ThanhHuongSolution.Backend.BuildTrigger</RootNamespace>
-    <AssemblyName>ThanhHuongSolution.Backend.BuildTrigger</AssemblyName>
+    <RootNamespace>ThanhHuongSolution.Product.Handler</RootNamespace>
+    <AssemblyName>ThanhHuongSolution.Product.Handler</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\packages\Backend_dlls\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,26 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ReadMe.cs" />
+    <Compile Include="ProductManagementAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastructure.csproj">
-      <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
-      <Name>ThanhHuongSolution.Common.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ThanhHuongSolution.Common.LocResources\ThanhHuongSolution.Common.LocResources.csproj">
-      <Project>{3371514f-209b-477e-b2b3-874ebeeb536a}</Project>
-      <Name>ThanhHuongSolution.Common.LocResources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ThanhHuongSolution.Customer.CompositionRoot\ThanhHuongSolution.Customer.CompositionRoot.csproj">
-      <Project>{5be18a13-a499-47a3-8292-a1789cce5bbf}</Project>
-      <Name>ThanhHuongSolution.Customer.CompositionRoot</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ThanhHuongSolution.Product.CompositionRoot\ThanhHuongSolution.Product.CompositionRoot.csproj">
-      <Project>{33bc65de-a88e-4385-9163-0d9994130a06}</Project>
-      <Name>ThanhHuongSolution.Product.CompositionRoot</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

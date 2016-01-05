@@ -118,6 +118,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.Customer.Domain.dll</HintPath>
     </Reference>
+    <Reference Include="ThanhHuongSolution.Product.CompositionRoot">
+      <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.Product.CompositionRoot.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
