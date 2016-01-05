@@ -102,7 +102,12 @@ namespace ThanhHuongSolution.Controllers
                 customer.Name = formCollection.Get("Name");
                 customer.Address = formCollection.Get("Address");
                 customer.PhoneNumber = formCollection.Get("PhoneNumber");
-                customer.LiabilityAmount = long.Parse(formCollection.Get("LiabilityAmount"));
+                customer.LiabilityAmount = 0;
+
+                var liabilityAmount = formCollection.Get("LiabilityAmount");
+
+                if(liabilityAmount != "")
+                    customer.LiabilityAmount = long.Parse(liabilityAmount);
 
                 var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
 

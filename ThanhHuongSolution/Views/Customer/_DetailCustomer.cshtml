@@ -46,7 +46,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Tồn Nợ (VNĐ)</label>
-                                        <input type="text" name="LiabilityAmount" ng-model="liabilityAmount" class="form-control">
+                                        <input type="number" name="LiabilityAmount" ng-model="liabilityAmount" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <input type="button" ng-disabled="form_customer_details.$invalid" class="btn btn-success btn-block" value="Lưu" ng-click="saveCustomer()" ><i class="fa fa-user-plus" data-dismiss="modal"></i>
+                    <input type="button" ng-disabled="form_customer_details.$invalid" class="btn btn-success btn-block" value="Lưu" ng-click="saveCustomer()" data-dismiss="modal"><i class="fa fa-user-plus" ></i>
                 </div>
             </form>
         </div>
