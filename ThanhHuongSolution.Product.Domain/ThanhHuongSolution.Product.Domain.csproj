@@ -40,8 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Entity\MDProduct.cs" />
+    <Compile Include="Entity\ProductType.cs" />
+    <Compile Include="Entity\UnitType.cs" />
+    <Compile Include="Interfaces\IProductManagementAPI.cs" />
+    <Compile Include="Interfaces\IProductManagementRepository.cs" />
+    <Compile Include="Interfaces\IProductManagementServices.cs" />
+    <Compile Include="Model\ProductInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
