@@ -58,7 +58,7 @@
       <Name>ThanhHuongSolution.Product.Handler</Name>
     </ProjectReference>
     <ProjectReference Include="..\ThanhHuongSolution.Product.MongoDBDataAccess\ThanhHuongSolution.Product.MongoDBDataAccess.csproj">
-      <Project>{e4011294-8a99-464e-8c4c-414a0202691e}</Project>
+      <Project>{990bc88f-2a70-4af6-b305-f39a1a1e4e15}</Project>
       <Name>ThanhHuongSolution.Product.MongoDBDataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\ThanhHuongSolution.Product.Services\ThanhHuongSolution.Product.Services.csproj">
