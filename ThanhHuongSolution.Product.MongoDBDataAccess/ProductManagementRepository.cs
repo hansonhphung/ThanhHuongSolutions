@@ -1,7 +1,6 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using ThanhHuongSolution.Common.Infrastrucure;
 using ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess;
@@ -36,6 +35,39 @@ namespace ThanhHuongSolution.Product.MongoDBDataAccess
             await collection.InsertOneAsync(product);
 
             return await Task.FromResult(true);
+        }
+
+        public async Task<IList<MDProduct>> GetAllProduct()
+        {
+            var dbContext = _readDataContectFactory.CreateMongoDBReadContext();
+
+            var collection = dbContext.GetCollection<MDProduct>(MongoDBEntityNames.ProductCollection.TableName);
+
+            var data = await collection.Find(x => x.Id != null).ToListAsync();
+
+            return await Task.FromResult<IList<MDProduct>>(data);
+        }
+
+        public async Task<MDProduct> GetProductById(string productId)
+        {
+            var dbContext = _readDataContectFactory.CreateMongoDBReadContext();
+
+            var collection = dbContext.GetCollection<MDProduct>(MongoDBEntityNames.ProductCollection.TableName);
+
+            var data = await collection.Find(x => x.Id == productId).FirstOrDefaultAsync();
+
+            return await Task.FromResult<MDProduct>(data);
+        }
+
+        public async Task<MDProduct> GetProductByTrackingNumber(string trackingNumber)
+        {
+            var dbContext = _readDataContectFactory.CreateMongoDBReadContext();
+
+            var collection = dbContext.GetCollection<MDProduct>(MongoDBEntityNames.ProductCollection.TableName);
+
+            var data = await collection.Find(x => x.TrackingNumber == trackingNumber).FirstOrDefaultAsync();
+
+            return await Task.FromResult<MDProduct>(data);
         }
     }
 }

@@ -52,12 +52,7 @@ namespace ThanhHuongSolution.Customer.Services
 
             Check.ThrowExceptionIfCollectionIsNullOrZero(data, CustomerManagementResources.NO_CUSTOMER);
 
-            var result = new List<CustomerInfo>();
-
-            foreach (var customer in data)
-            {
-                result.Add(new CustomerInfo(customer));
-            }
+            var result = data.Select(x => new CustomerInfo(x)).ToList();
 
             return await Task.FromResult<IList<CustomerInfo>>(result);
         }

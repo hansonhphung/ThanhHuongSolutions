@@ -43,6 +43,20 @@
     <Compile Include="ProductManagementServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastructure.csproj">
+      <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
+      <Name>ThanhHuongSolution.Common.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.Common.LocResources\ThanhHuongSolution.Common.LocResources.csproj">
+      <Project>{3371514f-209b-477e-b2b3-874ebeeb536a}</Project>
+      <Name>ThanhHuongSolution.Common.LocResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.Product.Domain\ThanhHuongSolution.Product.Domain.csproj">
+      <Project>{ca843cf3-6fc2-4d04-80c1-af3c2d5faa08}</Project>
+      <Name>ThanhHuongSolution.Product.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
