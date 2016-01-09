@@ -89,12 +89,7 @@ namespace ThanhHuongSolution.Customer.Services
 
             var data = await repository.Search(query);
 
-            var result = new List<CustomerInfo>();
-
-            foreach (var customer in data)
-            {
-                result.Add(new CustomerInfo(customer));
-            }
+            var result = data.Select(x => new CustomerInfo(x)).ToList();
 
             return await Task.FromResult(result);
         }
