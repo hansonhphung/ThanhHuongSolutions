@@ -92,5 +92,23 @@ namespace ThanhHuongSolution.Product.Handler
                 throw new CustomException(ex.Message);
             }
         }
+
+        public async Task<FrameworkParamOutput<IList<ProductInfo>>> Search(FrameworkParamInput<string> input)
+        {
+            try
+            {
+                var query = input.Request;
+
+                var services = _objectContainer.Get<IProductManagementServices>();
+
+                var data = await services.Search(query);
+
+                return await Task.FromResult(new FrameworkParamOutput<IList<ProductInfo>>(data));
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex.Message);
+            }
+        }
     }
 }

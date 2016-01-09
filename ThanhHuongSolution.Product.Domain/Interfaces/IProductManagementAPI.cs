@@ -17,5 +17,7 @@ namespace ThanhHuongSolution.Product.Domain.Interfaces
         Task<FrameworkParamOutput<ProductInfo>> GetProductByTrackingNumber(FrameworkParamInput<string> input);
 
         Task<FrameworkParamOutput<ProductInfo>> GetProductById(FrameworkParamInput<string> input);
+
+        Task<FrameworkParamOutput<IList<ProductInfo>>> Search(FrameworkParamInput<string> input);
     }
 }

@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -69,5 +70,29 @@ namespace ThanhHuongSolution.Product.MongoDBDataAccess
 
             return await Task.FromResult<MDProduct>(data);
         }
+
+        public async Task<IList<MDProduct>> Search(string query)
+        {
+            var keyLower = query.ToLower();
+
+            var dbContext = _readDataContectFactory.CreateMongoDBReadContext();
+
+            var collection = dbContext.GetCollection<MDProduct>(MongoDBEntityNames.ProductCollection.TableName);
+
+            var builder = Builders<MDProduct>.Filter;
+
+
+            var filter = builder.Or(
+                         builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
+                         builder.Where(x => x.TrackingNumber.Contains(keyLower))),
+                         builder.Or(builder.Regex(x => x.Name, new BsonRegularExpression(keyLower, "i")),
+                         builder.Where(x => x.TrackingNumber.Contains(keyLower))));
+
+            var data = await collection.Find(filter).ToListAsync();
+
+            return await Task.FromResult(data);
+        }
+
+        
     }
 }

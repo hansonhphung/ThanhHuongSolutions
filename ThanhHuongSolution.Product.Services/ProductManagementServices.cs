@@ -68,5 +68,16 @@ namespace ThanhHuongSolution.Product.Services
 
             return await Task.FromResult<ProductInfo>(new ProductInfo(data));
         }
+
+        public async Task<IList<ProductInfo>> Search(string query)
+        {
+            var repository = _objectContainer.Get<IProductManagementRepository>();
+
+            var data = await repository.Search(query);
+
+            var result = data.Select(x => new ProductInfo(x)).ToList();
+
+            return await Task.FromResult(result);
+        }
     }
 }

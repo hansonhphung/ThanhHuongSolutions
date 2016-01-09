@@ -16,5 +16,7 @@ namespace ThanhHuongSolution.Product.Domain.Interfaces
         Task<ProductInfo> GetProductByTrackingNumber(string trackingNumber);
 
         Task<ProductInfo> GetProductById(string productId);
+
+        Task<IList<ProductInfo>> Search(string query);
     }
 }
