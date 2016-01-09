@@ -10,7 +10,6 @@ app.controller('ProductController', function ($scope, toastr, $http) {
     }
 
     $scope.search = function () {
-        //$scope.query = '';
 
         $http.post("/Product/Search", {query: $scope.query}, {
         }).success(function (response) {
@@ -30,6 +29,7 @@ app.controller('ProductController', function ($scope, toastr, $http) {
     $scope.searchKeyDown = function (event) {
         if (event.keyCode == 13) {
             $scope.search();
+            $scope.selectedProductType = $scope.productTypes[0];
             //$scope.searchProduct();
         }
     }
