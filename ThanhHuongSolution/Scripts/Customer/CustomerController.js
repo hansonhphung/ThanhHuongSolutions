@@ -35,21 +35,17 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
     {
         $scope.query = '';
 
-        $.ajax({
-            type: "POST",
-            url: "/Customer/Search",
-            data: { query: $scope.query },
-            success: function (response) {
-                if (response.isSuccess) {
-                    var data = response.data;
+        $http.post("/Customer/Search", { query: $scope.query })
+        .success(function (response) {
+            if (response.isSuccess) {
+                var data = response.data;
 
-                    $scope.availableCustomer = data;
+                $scope.availableCustomer = data;
                     
-                    $scope.searchCustomer();
-                }
-                else {
-                    alert('error at: ' + response.message);
-                }
+                $scope.searchCustomer();
+            }
+            else {
+                toastr.error('error at: ' + response.message);
             }
         });
     }
@@ -79,18 +75,14 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
 
     $scope.deleteCustomer = function (customerId)
     {
-        $.ajax({
-            type: "POST",
-            url: "/Customer/Delete",
-            data: { customerId: customerId },
-            success: function (response) {
-                if (response.isSuccess) {
-                    $scope.search();
-                    toastr.success('Xoá khách hàng thành công');
-                }
-                else {
-                    alert('error at: ' + response.message);
-                }
+        $http.post("/Customer/Delete", { customerId: customerId})
+        .success(function (response) {
+            if (response.isSuccess) {
+                $scope.search();
+                toastr.success('Xoá khách hàng thành công');
+            }
+            else {
+                toastr.error('error at: ' + response.message);
             }
         });
     }
@@ -99,18 +91,14 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
 
         isVIP = !isVIP;
         
-        $.ajax({
-            type: "POST",
-            url: "/Customer/SetVIPCustomer",
-            data: { customerId: customerId, isVIP: isVIP },
-            success: function (response) {
-                if (response.isSuccess) {
-                    $scope.search();
-                    toastr.success('Cập nhật khách hàng thân thiết thành công');
-                }
-                else {
-                    alert('error at: ' + response.message);
-                }
+        $http.post("/Customer/SetVIPCustomer", { customerId: customerId, isVIP: isVIP })
+        .success(function (response) {
+            if (response.isSuccess) {
+                $scope.search();
+                toastr.success('Cập nhật khách hàng thân thiết thành công');
+            }
+            else {
+                toastr.error('error at: ' + response.message);
             }
         });
     }
@@ -128,16 +116,6 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
         form.append("Address", $scope.address);
         form.append("LiabilityAmount", $scope.liabilityAmount);
 
-        //$.ajax({
-        //    type: "POST",
-        //    url: "/Customer/SaveCustomer",
-        //    data: form,
-        //    success: function (response)
-        //    {
-        //        alert('success');
-        //    }
-        //});
-
         $http.post("/Customer/SaveCustomer", form, {
             withCredentials: true,
             headers: { 'Content-Type': undefined },
@@ -148,7 +126,7 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
                 toastr.success('Lưu thông tin khách hàng thành công');
             }
             else {
-                alert('error at: ' + response.message);
+                toastr.error('error at: ' + response.message);
             }
         });
     }
