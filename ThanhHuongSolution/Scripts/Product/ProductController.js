@@ -10,43 +10,27 @@ app.controller('ProductController', function ($scope, toastr, $http) {
     }
 
     $scope.search = function () {
-        $scope.query = '';
+        //$scope.query = '';
 
-        $.ajax({
-            type: "POST",
-            url: "/Product/Search",
-            data: { query: $scope.query },
-            success: function (response) {
-                if (response.isSuccess) {
-                    var data = response.data;
+        $http.post("/Product/Search", {query: $scope.query}, {
+        }).success(function (response) {
+            if (response.isSuccess) {
+                var data = response.data;
 
-                    $scope.availableProduct = data;
+                $scope.availableProduct = data;
 
-                    $scope.searchProduct();
-                }
-                else {
-                    alert('error at: ' + response.message);
-                }
+                $scope.products = data;
+            }
+            else {
+                alert('error at: ' + response.message);
             }
         });
     }
 
-    $scope.searchProduct = function () {
-        $scope.products = [];
-        var query = $scope.query.toLowerCase();
-
-        for (var i = 0; i < $scope.availableProduct.length; i++) {
-            var trackingLower = $scope.availableProduct[i].TrackingNumber.toLowerCase();
-            var nameLower = $scope.availableProduct[i].Name.toLowerCase();
-
-            if (trackingLower.indexOf(query) !== -1 || nameLower.indexOf(query) !== -1)
-                $scope.products.push($scope.availableProduct[i]);
-        }
-    }
-
     $scope.searchKeyDown = function (event) {
         if (event.keyCode == 13) {
-            $scope.searchProduct();
+            $scope.search();
+            //$scope.searchProduct();
         }
     }
     
