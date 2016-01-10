@@ -126,6 +126,12 @@
   <data name="PRODUCT_EXIST" xml:space="preserve">
     <value>Mã sản phẩm đã tồn tại.</value>
   </data>
+  <data name="PRODUCT_ID_EMPTY" xml:space="preserve">
+    <value>Mã sản phẩm không được rỗng.</value>
+  </data>
+  <data name="PRODUCT_NUMBER_GREATER_THAN_ZERO" xml:space="preserve">
+    <value>Sản phẩm này vẫn còn tồn kho, không thể xoá.</value>
+  </data>
   <data name="TRACKING_NUMBER_EMPTY" xml:space="preserve">
     <value>Mã sản phẩm không được rỗng.</value>
   </data>

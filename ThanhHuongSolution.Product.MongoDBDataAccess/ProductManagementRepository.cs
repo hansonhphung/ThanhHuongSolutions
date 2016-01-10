@@ -93,6 +93,15 @@ namespace ThanhHuongSolution.Product.MongoDBDataAccess
             return await Task.FromResult(data);
         }
 
-        
+        public async Task<bool> DeleteProduct(string productId)
+        {
+            var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
+
+            var collection = dbContext.GetCollection<MDProduct>(MongoDBEntityNames.ProductCollection.TableName);
+
+            await collection.DeleteOneAsync(x => x.Id == productId);
+
+            return await Task.FromResult(true);
+        }
     }
 }

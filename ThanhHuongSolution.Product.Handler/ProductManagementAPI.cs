@@ -110,5 +110,25 @@ namespace ThanhHuongSolution.Product.Handler
                 throw new CustomException(ex.Message);
             }
         }
+
+        public async Task<FrameworkParamOutput<bool>> DeleteProduct(FrameworkParamInput<string> input)
+        {
+            Check.ThrowExceptionIfNullOrEmpty(input.Request, ProductManagementResources.PRODUCT_ID_EMPTY);
+
+            try
+            {
+                var query = input.Request;
+
+                var services = _objectContainer.Get<IProductManagementServices>();
+
+                var data = await services.DeleteProduct(query);
+
+                return await Task.FromResult(new FrameworkParamOutput<bool>(data));
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex.Message);
+            }
+        }
     }
 }

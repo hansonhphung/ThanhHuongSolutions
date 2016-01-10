@@ -79,5 +79,19 @@ namespace ThanhHuongSolution.Product.Services
 
             return await Task.FromResult(result);
         }
+
+        public async Task<bool> DeleteProduct(string productId)
+        {
+            var repository = _objectContainer.Get<IProductManagementRepository>();
+
+            var oldProduct = await repository.GetProductById(productId);
+
+            if (oldProduct.Number > 0)
+                throw new CustomException(ProductManagementResources.PRODUCT_NUMBER_GREATER_THAN_ZERO);
+
+            var result = await repository.DeleteProduct(productId);
+
+            return await Task.FromResult(result);
+        }
     }
 }

@@ -6,6 +6,7 @@ app.controller('ProductController', function ($scope, toastr, $http) {
     $scope.pageIndex = 1;
     $scope.maxsize = 5;
     $scope.pagingSource = [];
+    $scope.query = '';
 
     $scope.init = function (data) {
         $scope.availableProduct = data.LstProduct;
@@ -114,5 +115,23 @@ app.controller('ProductController', function ($scope, toastr, $http) {
                 $scope.products.push($scope.pagingSource[index]);
             }
         }
+    }
+
+    $scope.deleteProduct = function (productId)
+    {
+        $http.post("/Product/Delete", {productId : productId}).
+        success(function (response)
+        {
+            if (response.isSuccess)
+            {
+                $scope.search();
+
+                toastr.success("Xoá sản phẩm thành công");
+            }
+            else
+            {
+                toastr.error(response.message);
+            }
+        });
     }
 });

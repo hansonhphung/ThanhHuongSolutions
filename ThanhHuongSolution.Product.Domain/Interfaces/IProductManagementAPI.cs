@@ -19,5 +19,7 @@ namespace ThanhHuongSolution.Product.Domain.Interfaces
         Task<FrameworkParamOutput<ProductInfo>> GetProductById(FrameworkParamInput<string> input);
 
         Task<FrameworkParamOutput<IList<ProductInfo>>> Search(FrameworkParamInput<string> input);
+
+        Task<FrameworkParamOutput<bool>> DeleteProduct(FrameworkParamInput<string> input);
     }
 }

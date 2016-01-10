@@ -18,5 +18,7 @@ namespace ThanhHuongSolution.Product.Domain.Interfaces
         Task<MDProduct> GetProductById(string productId);
 
         Task<IList<MDProduct>> Search(string query);
+
+        Task<bool> DeleteProduct(string productId);
     }
 }

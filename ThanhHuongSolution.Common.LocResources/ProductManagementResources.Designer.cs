@@ -90,6 +90,24 @@ namespace ThanhHuongSolution.Common.LocResources {
         /// <summary>
         ///   Looks up a localized string similar to Mã sản phẩm không được rỗng..
         /// </summary>
+        public static string PRODUCT_ID_EMPTY {
+            get {
+                return ResourceManager.GetString("PRODUCT_ID_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sản phẩm này vẫn còn tồn kho, không thể xoá..
+        /// </summary>
+        public static string PRODUCT_NUMBER_GREATER_THAN_ZERO {
+            get {
+                return ResourceManager.GetString("PRODUCT_NUMBER_GREATER_THAN_ZERO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã sản phẩm không được rỗng..
+        /// </summary>
         public static string TRACKING_NUMBER_EMPTY {
             get {
                 return ResourceManager.GetString("TRACKING_NUMBER_EMPTY", resourceCulture);
