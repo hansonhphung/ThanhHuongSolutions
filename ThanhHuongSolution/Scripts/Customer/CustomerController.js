@@ -1,8 +1,26 @@
-﻿var app = angular.module('ThanhHuongSolution', ['toastr']);
+﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.bootstrap']);
 app.controller('CustomerController', function ($scope, toastr, $http) {
+
+    //Pagination
+    $scope.pageIndex = 1;
+    $scope.recordPerPage = 3;
+    $scope.maxSize = 5;
+    $scope.pagingSource = [];
+
+
     $scope.init = function (data) {
         $scope.availableCustomer = data.LstCustomer;
         $scope.customers = data.LstCustomer;
+        $scope.pagingSource = $scope.availableCustomer;
+        
+        $scope.updatePagingConfig();
+        $scope.onChangePageIndex();
+    }
+
+    $scope.updatePagingConfig = function ()
+    {
+        $scope.totalCustomers = $scope.pagingSource.length;
+        $scope.numPages = Math.ceil($scope.totalCustomers / $scope.recordPerPage);
     }
 
     $scope.viewCustomer = function (customerId)
@@ -43,6 +61,11 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
                 $scope.availableCustomer = data;
                     
                 $scope.searchCustomer();
+
+                $scope.pagingSource = data;
+                $scope.updatePagingConfig();
+                $scope.pageIndex = 1;
+                $scope.onChangePageIndex();
             }
             else {
                 toastr.error('error at: ' + response.message);
@@ -101,6 +124,23 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
                 toastr.error('error at: ' + response.message);
             }
         });
+    }
+
+    $scope.onChangePageIndex = function()
+    {
+        $scope.customers = [];
+
+        if ($scope.pageIndex == $scope.numPages) {
+            for (var i = ($scope.pageIndex - 1) * $scope.recordPerPage; i < $scope.pagingSource.length; i++) {
+                $scope.customers.push($scope.pagingSource[i]);
+            }
+        }
+        else {
+            for (var i = 0; i < $scope.recordPerPage; i++) {
+                var index = ($scope.pageIndex - 1) * $scope.recordPerPage + i;
+                $scope.customers.push($scope.pagingSource[i]);
+            }
+        }
     }
 
     $scope.saveCustomer = function ()
