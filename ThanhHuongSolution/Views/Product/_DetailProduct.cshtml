@@ -1,1 +1,107 @@
 ﻿
+<div id="detailProductFormModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form name="form_product_details" novalidate enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{productId == '' ? 'Thêm sản phẩm' : 'Sửa thông tin sản phẩm'}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-rounded center-block" src="http://placehold.it/200x200">
+                            <input style="margin-top:5px;" class="btn btn-xs btn-primary center-block" type="file" name="File" id="File" file-feed ng-model="myFile">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Mã sản phẩm <span class="color-red">(*)</span></label>
+                                        <input type="text" name="TrackingNumber" ng-disabled="productId != ''" ng-model="trackingNumber" class="form-control" required>
+                                        <span class="color-red" data-valmsg-for="TrackingNumber" data-valmsg-replace="true" ng-show="form_product_details.TrackingNumber.$dirty && form_product_details.TrackingNumber.$error.required">
+                                            <span for="Name" class="">Vui lòng nhập Mã Sản Phẩm.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Tên sản phẩm <span class="color-red">(*)</span></label>
+                                        <input type="text" name="Name" ng-disabled="productId != ''" ng-model="name" class="form-control" required>
+                                        <span class="color-red" data-valmsg-for="Name" data-valmsg-replace="true" ng-show="form_product_details.Name.$dirty && form_product_details.Name.$error.required">
+                                            <span for="Name" class="">Vui lòng nhập Tên Sản Phẩm.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Mô tả chi tiết</label>
+                                        <input type="text" name="Description" ng-disabled="productId != ''" ng-model="description" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Số lượng</label>
+                                        <input type="number" name="Number" ng-disabled="true" ng-model="number" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Phân loại</label>
+                                        <select class="form-control" data-width="150px" data-style="btn-white" data-container="body" ng-disabled="productId != ''" ng-options="option.key for option in newProductTypes" ng-model="newSelectedProductType" ng-change="onChangeNewProductType(newSelectedProductType)"></select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Đơn vị tính</label>
+                                        <select class="form-control" data-width="150px" data-style="btn-white" data-container="body" ng-disabled="productId != ''" ng-options="option.key for option in newUnitTypes" ng-model="newSelectedUnitType" ng-change="onChangeNewUnitType(newSelectedUnitType)"></select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Giá sỉ (VNĐ) <span class="color-red">(*)</span></label>
+                                        <input type="number" name="WholesalePrice" ng-model="wholesalePrice" class="form-control" min="1" required>
+                                        <span class="color-red" data-valmsg-for="WholesalePrice" data-valmsg-replace="true" ng-show="form_product_details.WholesalePrice.$dirty && form_product_details.WholesalePrice.$error.required">
+                                            <span for="WholesalePrice" class="">Vui lòng nhập giá bán sỉ.</span>
+                                        </span>
+                                        <span class="color-red" data-valmsg-for="WholesalePrice" data-valmsg-replace="true" ng-show="form_product_details.WholesalePrice.$dirty && form_product_details.WholesalePrice.$error.min">
+                                            <span for="Name" class="">Giá bán phải lớn hơn 0.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Giá lẻ (VNĐ) <span class="color-red">(*)</span></label>
+                                        <input type="number" name="RetailPrice" ng-model="retailPrice" class="form-control" min="1" required>
+                                        <span class="color-red" data-valmsg-for="RetailPrice" data-valmsg-replace="true" ng-show="form_product_details.RetailPrice.$dirty && form_product_details.RetailPrice.$error.required">
+                                            <span for="RetailPrice" class="">Vui lòng nhập giá bán lẻ.</span>
+                                        </span>
+                                        <span class="color-red" data-valmsg-for="RetailPrice" data-valmsg-replace="true" ng-show="form_product_details.RetailPrice.$dirty && form_product_details.RetailPrice.$error.min">
+                                            <span for="RetailPrice" class="">Giá bán phải lớn hơn 0.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="button" ng-disabled="form_product_details.$invalid" class="btn btn-success btn-block" value="Lưu" ng-click="saveProduct()" data-dismiss="modal"><i class="fa fa-user-plus"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

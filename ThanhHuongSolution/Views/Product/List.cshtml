@@ -33,7 +33,7 @@
                 <select class="form-control" data-width="150px" data-style="btn-white" data-container="body" ng-options="option.key for option in productTypes" ng-model="selectedProductType" ng-change="onChangeProductType(selectedProductType)"></select>
             </div>
             <div class="pull-right form-inline">
-                <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#detailCustomerFormModal" ng-click="viewCustomer('')"><i class="fa fa-user-plus"></i>Thêm Sản Phẩm</button>
+                <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#detailProductFormModal" ng-click="viewProduct('')"><i class="fa fa-user-plus"></i>Thêm Sản Phẩm</button>
                 <input type="text" class="form-control" placeholder="Search..." ng-model="query" ng-keydown="searchKeyDown($event)">
             </div>
 
@@ -55,8 +55,8 @@
                         <td>{{product.TrackingNumber}}</td>
                         <td>{{product.Name}}</td>
                         <td>{{product.Description}}</td>
-                        <td class="center hidden-phone">{{getProductType(product.ProductType)}}</td>
-                        <td class="center hidden-phone">{{getUnitType(product.UnitType)}}</td>
+                        <td class="center hidden-phone">{{getProductType(product.ProductType).key}}</td>
+                        <td class="center hidden-phone">{{getUnitType(product.UnitType).key}}</td>
                         <td class="center hidden-phone">{{product.WholesalePrice}} VND</td>
                         <td class="center hidden-phone">{{product.RetailPrice}} VND</td>
                         <td class="center hidden-phone">{{product.Number}}</td>
@@ -71,11 +71,9 @@
             <div class="table-pagination">
                 <uib-pagination boundary-links="true" total-items="totalServerItems" ng-model="pageIndex" max-size="maxsize" class="pagination pagination-ru" rotate="false" items-per-page="pageSize" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
             </div>
-            
-                
-            
+           
+            @Html.Partial("_DetailProduct");
 
-            @Html.Partial("_DetailProduct")
         </div>
     </section>
 </div>
