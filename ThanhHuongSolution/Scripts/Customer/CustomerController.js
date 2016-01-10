@@ -124,6 +124,8 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
                 toastr.error('error at: ' + response.message);
             }
         });
+
+        $scope.onChangePageIndex();
     }
 
     $scope.onChangePageIndex = function()
@@ -138,7 +140,7 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
         else {
             for (var i = 0; i < $scope.recordPerPage; i++) {
                 var index = ($scope.pageIndex - 1) * $scope.recordPerPage + i;
-                $scope.customers.push($scope.pagingSource[i]);
+                $scope.customers.push($scope.pagingSource[index]);
             }
         }
     }
