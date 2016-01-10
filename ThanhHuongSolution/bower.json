@@ -13,6 +13,7 @@
     "bootstrap": "3.3.4",
     "jquery": "2.1.4",
     "fontawesome": "~4.2.0",
-    "angular-toastr": "*"
+    "angular-toastr": "*",
+    "angular-bootstrap": "0.14.3"
   }
 }
