@@ -6,6 +6,7 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
     $scope.recordPerPage = 3;
     $scope.maxSize = 5;
     $scope.pagingSource = [];
+    $scope.currentIndex = 1;
 
 
     $scope.init = function (data) {
@@ -64,7 +65,7 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
 
                 $scope.pagingSource = data;
                 $scope.updatePagingConfig();
-                $scope.pageIndex = 1;
+                $scope.pageIndex = $scope.currentIndex;
                 $scope.onChangePageIndex();
             }
             else {
@@ -124,8 +125,6 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
                 toastr.error('error at: ' + response.message);
             }
         });
-
-        $scope.onChangePageIndex();
     }
 
     $scope.onChangePageIndex = function()
@@ -143,6 +142,7 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
                 $scope.customers.push($scope.pagingSource[index]);
             }
         }
+        $scope.currentIndex = $scope.pageIndex;
     }
 
     $scope.saveCustomer = function ()

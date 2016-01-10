@@ -68,13 +68,14 @@
                 </tbody>                            
             </table>
 
-            <div class="table-pagination">
-                <uib-pagination boundary-links="true" total-items="totalServerItems" ng-model="pageIndex" max-size="maxsize" class="pagination pagination-ru" rotate="false" items-per-page="pageSize" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+            <div class="pull-right form-inline">
+                <div class="table-pagination">
+                    <uib-pagination boundary-links="true" total-items="totalServerItems" ng-model="pageIndex" max-size="maxsize" class="pagination pagination-ru" rotate="false" items-per-page="pageSize" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+                </div>
             </div>
-           
-            @Html.Partial("_DetailProduct");
+                @Html.Partial("_DetailProduct");
 
-        </div>
+            </div>
     </section>
 </div>
 
