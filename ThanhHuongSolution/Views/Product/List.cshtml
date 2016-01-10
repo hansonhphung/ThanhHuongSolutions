@@ -42,7 +42,7 @@
                     <tr>
                         <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
-                        <th>Mô tả</th>
+                        <th style="width:150px">Mô tả</th>
                         <th>Phân Loại</th>
                         <th class="hidden-phone">Đơn vị tính</th>
                         <th class="hidden-phone">Giá sỉ</th>
@@ -53,14 +53,14 @@
                 <tbody>
                     <tr class="gradeX" ng-repeat="product in products">
                         <td>{{product.TrackingNumber}}</td>
-                        <td>{{product.Name}}</td>
-                        <td>{{product.Description}}</td>
-                        <td class="center hidden-phone">{{getProductType(product.ProductType).key}}</td>
-                        <td class="center hidden-phone">{{getUnitType(product.UnitType).key}}</td>
-                        <td class="center hidden-phone">{{product.WholesalePrice}} VND</td>
-                        <td class="center hidden-phone">{{product.RetailPrice}} VND</td>
-                        <td class="center hidden-phone">{{product.Number}}</td>
-                        <td class="center hidden-phone">
+                        <td>{{product.Name | limitTo:20}} {{product.Name.length < 20 ? '' : '...'}}</td>
+                        <td>{{product.Description | limitTo:20}} {{product.Description.length < 20 ? '' : '...'}}</td>
+                        <td class="hidden-phone">{{getProductType(product.ProductType).key}}</td>
+                        <td class="hidden-phone">{{getUnitType(product.UnitType).key}}</td>
+                        <td class="hidden-phone">{{product.WholesalePrice}} VND</td>
+                        <td class="hidden-phone">{{product.RetailPrice}} VND</td>
+                        <td class="hidden-phone">{{product.Number}}</td>
+                        <td class="hidden-phone">
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#detailProductFormModal" ng-click="viewProduct(product.Id)"><i class="fa fa-edit"></i></button>
                             <button type="button" class="btn btn-danger" ng-click="deleteProduct(product.Id)"><i class="fa fa-trash-o"></i></button>
                         </td>

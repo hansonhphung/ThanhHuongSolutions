@@ -49,9 +49,9 @@
                 <tbody>
                     <tr class="gradeX" ng-repeat="customer in customers">
                         <td>{{customer.TrackingNumber}}</td>
-                        <td>{{customer.Name}}</td>
+                        <td>{{customer.Name | limitTo:20}} {{customer.Name.length < 20 ? '' : '...'}}</td>
                         <td>{{customer.PhoneNumber}}</td>
-                        <td class="hidden-phone">{{customer.Address}}</td>
+                        <td class="hidden-phone">{{customer.Address | limitTo:20}} {{customer.Address.length < 20 ? '' : '...'}}</td>
                         <td class="hidden-phone">{{customer.LiabilityAmount}} VND</td>
                         <td class="hidden-phone">
                             <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
