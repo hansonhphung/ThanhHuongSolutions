@@ -2,6 +2,8 @@
 app.controller('ProductController', function ($scope, toastr, $http) {
 
     $scope.productTypes = [{ 'key': 'Tất cả', 'value': '0' }, { 'key': 'Lương thực', 'value': '1' }, { 'key': 'Phân bón', 'value': '2' }];
+    $scope.newProductTypes = [{ 'key': 'Lương thực', 'value': '1' }, { 'key': 'Phân bón', 'value': '2' }];
+    $scope.newUnitTypes = [{ 'key': 'Kg', 'value': '1' }];
     $scope.pageSize = 2;
     $scope.pageIndex = 1;
     $scope.maxsize = 5;
@@ -12,6 +14,8 @@ app.controller('ProductController', function ($scope, toastr, $http) {
         $scope.availableProduct = data.LstProduct;
         $scope.pagingSource = $scope.availableProduct;
         $scope.selectedProductType = $scope.productTypes[0];
+        $scope.newSelectedProductType = $scope.newProductTypes[0];
+        $scope.newSelectedUnitType = $scope.newUnitTypes[0];
         
         $scope.updatePagingConfig();
 
@@ -67,15 +71,15 @@ app.controller('ProductController', function ($scope, toastr, $http) {
 
     $scope.getProductType = function (type) {
         switch (type) {
-            case 1: return 'Lương thực';
-            case 2: return 'Phân bón';
+            case 1: return $scope.newProductTypes[0];
+            case 2: return $scope.newProductTypes[1];
         }
         return '';
     }
 
     $scope.getUnitType = function (type) {
         switch (type) {
-            case 1: return 'Kg';
+            case 1: return $scope.newUnitTypes[0];
         }
         return '';
     }
@@ -133,5 +137,38 @@ app.controller('ProductController', function ($scope, toastr, $http) {
                 toastr.error(response.message);
             }
         });
+    }
+
+    $scope.viewProduct = function (productId)
+    {
+        $scope.productId = productId;
+
+        if (productId != '') {
+            for (var i = 0; i < $scope.products.length; i++) {
+                if ($scope.products[i].Id == productId) {
+                    $scope.trackingNumber = $scope.products[i].TrackingNumber;
+                    $scope.name = $scope.products[i].Name;
+                    $scope.description = $scope.products[i].Description;
+                    $scope.newSelectedProductType = $scope.getProductType($scope.products[i].ProductType);
+                    $scope.newSelectedUnitType = $scope.getUnitType($scope.products[i].UnitType);
+                    $scope.wholesalePrice = $scope.products[i].WholesalePrice;
+                    $scope.retailPrice = $scope.products[i].RetailPrice;
+                    $scope.number = $scope.products[i].Number;
+                    return;
+                }
+            }
+        }
+        else {
+            $scope.trackingNumber = '';
+            $scope.name = '';
+            $scope.description = '';
+            $scope.productType = $scope.newProductTypes[0];
+            $scope.unitType = $scope.newUnitTypes[0];
+            $scope.wholesalePrice = '';
+            $scope.retailPrice = '';
+            $scope.number = 0;
+
+            $scope.form_customer_details.$setPristine();
+        }
     }
 });

@@ -33,7 +33,7 @@
                 <select class="form-control" data-width="150px" data-style="btn-white" data-container="body" ng-options="option.key for option in productTypes" ng-model="selectedProductType" ng-change="onChangeProductType(selectedProductType)"></select>
             </div>
             <div class="pull-right form-inline">
-                <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#detailCustomerFormModal" ng-click="viewCustomer('')"><i class="fa fa-user-plus"></i>Thêm Sản Phẩm</button>
+                <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#detailProductFormModal" ng-click="viewProduct('')"><i class="fa fa-user-plus"></i>Thêm Sản Phẩm</button>
                 <input type="text" class="form-control" placeholder="Search..." ng-model="query" ng-keydown="searchKeyDown($event)">
             </div>
 
@@ -42,7 +42,7 @@
                     <tr>
                         <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
-                        <th>Mô tả</th>
+                        <th style="width:150px">Mô tả</th>
                         <th>Phân Loại</th>
                         <th class="hidden-phone">Đơn vị tính</th>
                         <th class="hidden-phone">Giá sỉ</th>
@@ -53,14 +53,14 @@
                 <tbody>
                     <tr class="gradeX" ng-repeat="product in products">
                         <td>{{product.TrackingNumber}}</td>
-                        <td>{{product.Name}}</td>
-                        <td>{{product.Description}}</td>
-                        <td class="center hidden-phone">{{getProductType(product.ProductType)}}</td>
-                        <td class="center hidden-phone">{{getUnitType(product.UnitType)}}</td>
-                        <td class="center hidden-phone">{{product.WholesalePrice}} VND</td>
-                        <td class="center hidden-phone">{{product.RetailPrice}} VND</td>
-                        <td class="center hidden-phone">{{product.Number}}</td>
-                        <td class="center hidden-phone">
+                        <td>{{product.Name | limitTo:20}} {{product.Name.length < 20 ? '' : '...'}}</td>
+                        <td>{{product.Description | limitTo:20}} {{product.Description.length < 20 ? '' : '...'}}</td>
+                        <td class="hidden-phone">{{getProductType(product.ProductType).key}}</td>
+                        <td class="hidden-phone">{{getUnitType(product.UnitType).key}}</td>
+                        <td class="hidden-phone">{{product.WholesalePrice}} VND</td>
+                        <td class="hidden-phone">{{product.RetailPrice}} VND</td>
+                        <td class="hidden-phone">{{product.Number}}</td>
+                        <td class="hidden-phone">
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#detailProductFormModal" ng-click="viewProduct(product.Id)"><i class="fa fa-edit"></i></button>
                             <button type="button" class="btn btn-danger" ng-click="deleteProduct(product.Id)"><i class="fa fa-trash-o"></i></button>
                         </td>
@@ -71,11 +71,9 @@
             <div class="table-pagination">
                 <uib-pagination boundary-links="true" total-items="totalServerItems" ng-model="pageIndex" max-size="maxsize" class="pagination pagination-ru" rotate="false" items-per-page="pageSize" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
             </div>
-            
-                
-            
+           
+            @Html.Partial("_DetailProduct");
 
-            @Html.Partial("_DetailProduct")
         </div>
     </section>
 </div>
