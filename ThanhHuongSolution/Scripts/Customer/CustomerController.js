@@ -25,7 +25,7 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
             $scope.name = '';
             $scope.phoneNumber = '';
             $scope.address = '';
-            $scope.liabilityAmount = '';
+            $scope.liabilityAmount = 0;
 
             $scope.form_customer_details.$setPristine();
         }
