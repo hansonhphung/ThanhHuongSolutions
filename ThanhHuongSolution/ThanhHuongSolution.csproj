@@ -196,6 +196,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SellingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -279,6 +280,7 @@
     <Content Include="Views\Customer\_DetailCustomer.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Product\_DetailProduct.cshtml" />
+    <Content Include="Views\Selling\Selling.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
