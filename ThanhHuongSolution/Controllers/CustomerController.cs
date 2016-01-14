@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -86,15 +89,57 @@ namespace ThanhHuongSolution.Controllers
             }
         }
 
+        private bool TryResize(Stream stream, int? width, int? height, out Stream output)
+        {
+            if (width == null && height == null)
+            {
+                throw new Exception("Must define width or height");
+            }
+
+            var src = Image.FromStream(stream) as Bitmap;
+            if (src != null)
+            {
+                if (width == null)
+                {
+                    var ratio = (Convert.ToDouble(height.Value) / src.Height);
+                    width = Convert.ToInt32(src.Width * ratio);
+                }
+                else
+                {
+                    if (height == null)
+                    {
+                        var ratio = (Convert.ToDouble(width.Value) / src.Width);
+                        height = Convert.ToInt32(src.Height * ratio);
+                    }
+                }
+
+                Bitmap _bitmap = new Bitmap(width.Value, height.Value);
+                using (Graphics g = Graphics.FromImage(_bitmap))
+                {
+                    g.DrawImage(src, new Rectangle(0, 0, _bitmap.Width, _bitmap.Height),
+                        new Rectangle(0, 0, src.Width, src.Height),
+                        GraphicsUnit.Pixel);
+
+                    var memoryStream = new MemoryStream();
+                    _bitmap.Save(memoryStream, src.RawFormat);
+
+                    memoryStream.Seek(0, 0);
+                    output = memoryStream;
+
+                    return true;
+                }
+            }
+            else
+            {
+                output = new MemoryStream();
+                return false;
+            }
+        }
+
         public async Task<ActionResult> SaveCustomer(FormCollection formCollection)
         {
             try
             {
-                if (Request.Files.Count == 1) //check validation and parse uploaded image
-                {
-                    var file = Request.Files[0];
-                }
-
                 var customer = new CustomerInfo();
 
                 customer.Id = formCollection.Get("Id");
@@ -106,8 +151,35 @@ namespace ThanhHuongSolution.Controllers
 
                 var liabilityAmount = formCollection.Get("LiabilityAmount");
 
-                if(liabilityAmount != "")
+                if (liabilityAmount != "")
                     customer.LiabilityAmount = long.Parse(liabilityAmount);
+
+                //get uploaded image file
+                if (Request.Files["customerImage"] != null && Request.Files["customerImage"].ContentLength > 0)
+                {
+                    var customerImg = Request.Files["customerImage"];
+
+                    Stream imgStream = customerImg.InputStream;
+
+                    Stream outputStream;
+
+                    TryResize(imgStream, 80, 80, out outputStream);
+
+                    Image img = Image.FromStream(outputStream);
+
+                    var extension = Path.GetExtension(customerImg.FileName).ToLower();
+
+                    var path1 = Server.MapPath(".");
+                    var path2 = Server.MapPath("..");
+                    var path3 = Server.MapPath("~");
+                    var path4 = Server.MapPath("/");
+
+                    var path = Path.Combine(string.Format(path3 + "Images\\Customer\\{0}{1}",customer.TrackingNumber, extension));
+
+                    img.Save(path, ImageFormat.Jpeg);
+
+                    customer.ImgURL = path;
+                }
 
                 var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
 

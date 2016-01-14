@@ -35,6 +35,7 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
                     $scope.phoneNumber = $scope.customers[i].PhoneNumber;
                     $scope.address = $scope.customers[i].Address;
                     $scope.liabilityAmount = $scope.customers[i].LiabilityAmount;
+                    $scope.imgURL = $scope.customers[i].ImgURL;
                     return;
                 }
             }
@@ -45,6 +46,7 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
             $scope.phoneNumber = '';
             $scope.address = '';
             $scope.liabilityAmount = 0;
+            $scope.imgURL = '';
 
             $scope.form_customer_details.$setPristine();
         }
@@ -147,10 +149,10 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
 
     $scope.saveCustomer = function ()
     {
-        var file = $('#File')[0];
+        var file = $('#customerImage')[0];
         var form = new FormData();
         //form.append("file", this.myFile);
-        form.append("file", file.files[0]);
+        form.append("customerImage", file.files[0]);
         form.append("Id", $scope.customerId);
         form.append("TrackingNumber", $scope.trackingNumber);
         form.append("Name", $scope.name);

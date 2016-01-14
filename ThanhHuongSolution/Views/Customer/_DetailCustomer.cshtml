@@ -9,8 +9,8 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <img class="img-rounded center-block" src="http://placehold.it/200x200">
-                            <input style="margin-top:5px;" class="btn btn-xs btn-primary center-block" type="file" name="File" id="File" file-feed ng-model="myFile">
+                            <img class="img-rounded center-block" ng-src="{{imgURL != '' ? imgURL : 'http://placehold.it/200x200'}}">
+                            <input style="margin-top:5px;" class="btn btn-xs btn-primary center-block" type="file" name="customerImage" id="customerImage" file-feed>
                         </div>
                         <div class="col-md-8">
                             <div class="row">
