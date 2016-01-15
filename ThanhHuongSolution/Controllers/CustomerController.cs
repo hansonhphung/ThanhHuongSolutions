@@ -169,14 +169,13 @@ namespace ThanhHuongSolution.Controllers
 
                     var extension = Path.GetExtension(customerImg.FileName).ToLower();
 
-                    var path1 = Server.MapPath(".");
-                    var path2 = Server.MapPath("..");
-                    var path3 = Server.MapPath("~");
-                    var path4 = Server.MapPath("/");
+                    var path = string.Format("/Images/Customer/{0}{1}", customer.TrackingNumber, extension);
 
-                    var path = Path.Combine(string.Format(path3 + "Images\\Customer\\{0}{1}",customer.TrackingNumber, extension));
+                    var absoulutePath = Path.Combine(string.Format(Server.MapPath("~/Images/Customer/{0}{1}"), customer.TrackingNumber, extension));
 
-                    img.Save(path, ImageFormat.Jpeg);
+                    ImageFormat format = img.RawFormat;
+
+                    img.Save(path, format);
 
                     customer.ImgURL = path;
                 }
