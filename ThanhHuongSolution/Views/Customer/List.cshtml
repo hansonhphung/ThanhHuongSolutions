@@ -7,27 +7,10 @@
 }
 <div ng-app="ThanhHuongSolution" ng-controller="CustomerController">
     <header class="page-header">
-        <h2>Quản Lý Khách Hàng</h2>
-
-        <div class="right-wrapper pull-right">
-            <ol class="breadcrumbs">
-                <li>
-                    <a href="index.html">
-                        <i class="fa fa-home"></i>
-                    </a>
-                </li>
-                <li><span>Quản Lý Khách Hàng</span></li>
-
-            </ol>
-
-            <a class="sidebar-right-toggle"></a>
-        </div>
+        <h2>Danh Sách Khách Hàng</h2>
     </header>
 
     <section class="panel">
-        <header class="panel-heading">
-            <h2 class="panel-title">Danh Sách Khách Hàng</h2>
-        </header>
         <div class="panel-body" ng-init="init(@Json.Encode(Model))">
             <div class="pull-right form-inline">
                 <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#detailCustomerFormModal" ng-click="viewCustomer('')"><i class="fa fa-user-plus"></i>Thêm Khách Hàng</button>
