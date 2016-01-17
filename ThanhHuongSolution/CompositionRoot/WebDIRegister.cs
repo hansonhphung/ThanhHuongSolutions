@@ -17,6 +17,8 @@ namespace ThanhHuongSolution.Common.Infrastrucure
             Product.CompositionRoot.Bootstraper.Load(objectContainer);
 
             CompositionRoot.Bootstraper.Load(objectContainer);
+
+            Common.MongoDBDataAccess.CompositionRoot.Bootstraper.Load(objectContainer);
         }
     }
 }

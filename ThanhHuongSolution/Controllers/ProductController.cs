@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ThanhHuongSolution.Common.Infrastrucure;
+using ThanhHuongSolution.Common.MongoDBDataAccess.Entity;
+using ThanhHuongSolution.Common.MongoDBDataAccess.Interface;
 using ThanhHuongSolution.Models.Product;
 using ThanhHuongSolution.Product.Domain.Interfaces;
 
@@ -13,7 +15,7 @@ namespace ThanhHuongSolution.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             return RedirectToAction("List");
         }

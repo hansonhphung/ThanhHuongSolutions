@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution", "ThanhHuongSolution\ThanhHuongSolution.csproj", "{FC63B4AA-F13F-4D49-A0F4-03319CCE0C9A}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -43,6 +43,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution.Product.Handler", "ThanhHuongSolution.Product.Handler\ThanhHuongSolution.Product.Handler.csproj", "{3605D654-5CFA-44F2-AF64-774FB462A0FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution.Product.Domain", "ThanhHuongSolution.Product.Domain\ThanhHuongSolution.Product.Domain.csproj", "{CA843CF3-6FC2-4D04-80C1-AF3C2D5FAA08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution.Common.MongoDBDataAccess", "ThanhHuongSolution.Common.MongoDBDataAccess\ThanhHuongSolution.Common.MongoDBDataAccess.csproj", "{AAA44882-AF05-4431-BD88-E87B33228219}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,6 +112,10 @@ Global
 		{CA843CF3-6FC2-4D04-80C1-AF3C2D5FAA08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA843CF3-6FC2-4D04-80C1-AF3C2D5FAA08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA843CF3-6FC2-4D04-80C1-AF3C2D5FAA08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAA44882-AF05-4431-BD88-E87B33228219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAA44882-AF05-4431-BD88-E87B33228219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAA44882-AF05-4431-BD88-E87B33228219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAA44882-AF05-4431-BD88-E87B33228219}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,5 +136,6 @@ Global
 		{76EC0FDA-4D15-4E96-BB1E-3A019C2D1542} = {40A33315-5D83-45E9-BE0B-9C817409DA59}
 		{3605D654-5CFA-44F2-AF64-774FB462A0FA} = {40A33315-5D83-45E9-BE0B-9C817409DA59}
 		{CA843CF3-6FC2-4D04-80C1-AF3C2D5FAA08} = {40A33315-5D83-45E9-BE0B-9C817409DA59}
+		{AAA44882-AF05-4431-BD88-E87B33228219} = {63AF5B24-9B0B-43A9-87BC-7409C6572DED}
 	EndGlobalSection
 EndGlobal

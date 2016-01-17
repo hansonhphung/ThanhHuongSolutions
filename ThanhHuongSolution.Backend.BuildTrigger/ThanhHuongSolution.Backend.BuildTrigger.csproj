@@ -52,6 +52,10 @@
       <Project>{3371514f-209b-477e-b2b3-874ebeeb536a}</Project>
       <Name>ThanhHuongSolution.Common.LocResources</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.Common.MongoDBDataAccess\ThanhHuongSolution.Common.MongoDBDataAccess.csproj">
+      <Project>{aaa44882-af05-4431-bd88-e87b33228219}</Project>
+      <Name>ThanhHuongSolution.Common.MongoDBDataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ThanhHuongSolution.Customer.CompositionRoot\ThanhHuongSolution.Customer.CompositionRoot.csproj">
       <Project>{5be18a13-a499-47a3-8292-a1789cce5bbf}</Project>
       <Name>ThanhHuongSolution.Customer.CompositionRoot</Name>

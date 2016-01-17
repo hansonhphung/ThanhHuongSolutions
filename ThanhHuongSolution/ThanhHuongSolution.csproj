@@ -110,6 +110,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.Common.LocResources.dll</HintPath>
     </Reference>
+    <Reference Include="ThanhHuongSolution.Common.MongoDBDataAccess">
+      <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.Common.MongoDBDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="ThanhHuongSolution.Customer.CompositionRoot, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.Customer.CompositionRoot.dll</HintPath>
