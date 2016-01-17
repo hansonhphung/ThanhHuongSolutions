@@ -7,27 +7,10 @@
 }
 <div ng-app="ThanhHuongSolution" ng-controller="ProductController">
     <header class="page-header">
-        <h2>Quản Lý Sản Phẩm</h2>
-
-        <div class="right-wrapper pull-right">
-            <ol class="breadcrumbs">
-                <li>
-                    <a href="index.html">
-                        <i class="fa fa-home"></i>
-                    </a>
-                </li>
-                <li><span>Quản Lý Sản Phẩm</span></li>
-
-            </ol>
-
-            <a class="sidebar-right-toggle"></a>
-        </div>
+        <h2>Danh Sách Sản Phẩm</h2>
     </header>
 
     <section class="panel">
-        <header class="panel-heading">
-            <h2 class="panel-title">Danh Sách Sản Phẩm</h2>
-        </header>
         <div class="panel-body" ng-init="init(@Json.Encode(Model))">
             <div class="col-lg-2">
                 <select class="form-control" data-width="150px" data-style="btn-white" data-container="body" ng-options="option.key for option in productTypes" ng-model="selectedProductType" ng-change="onChangeProductType(selectedProductType)"></select>

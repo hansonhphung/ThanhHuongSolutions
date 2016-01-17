@@ -4,30 +4,13 @@
 }
 
 <header class="page-header">
-    <h2>Form Validation</h2>
-
-    <div class="right-wrapper pull-right">
-        <ol class="breadcrumbs">
-            <li>
-                <a href="index.html">
-                    <i class="fa fa-home"></i>
-                </a>
-            </li>
-            <li><span>Forms</span></li>
-            <li><span>Validation</span></li>
-        </ol>
-
-        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
-    </div>
+    <h2>Xuất Hóa Đơn</h2>
 </header>
 
 <!-- start: page -->
 <div class="row">
     <div class="col-md-12">
         <section class="panel">
-            <header class="panel-heading">
-                <h2 class="panel-title">Xuất Hóa Đơn</h2>
-            </header>
             <div class="panel-body">
 
                 <div class="row">
@@ -43,7 +26,7 @@
                             <input type="text" name="fullname" class="form-control" title="Plase enter a name." />
                         </div>
                     </div>
-                    <div class="col-md-2 col-md-2 col-md-offset-2">
+                    <div class="col-md-4 col-md-4">
                         <label class="col-sm-4 control-label">Ngày Lập <span class="required">*</span></label>
                         <div class="col-sm-8">
                             <div class="input-group">
@@ -56,13 +39,11 @@
                     </div>
                 </div>
 
-                <hr class="separator" />
-
                 <div class="row">
-                    <div class="col-md-4 col-xs-4">
-                        <section class="panel">
+                    <section class="panel-body">
+                        <div class="col-md-4 col-xs-4">
                             <header class="panel-heading">
-                                <!--blank-->
+                                <h2 class="panel-title">Thêm Hàng</h2>
                             </header>
                             <div class="panel-body">
                                 <div class="form-group">
@@ -104,21 +85,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <footer class="panel-footer">
-                                <div class="row">
-                                    <div class="col-md-12 center">
-                                        <button class="btn btn-success">Thêm</button>
-                                        <button type="reset" class="btn btn-default">Hủy Bỏ</button>
-                                    </div>
-                                </div>
-                            </footer>
-                        </section>
-                    </div>
-
-                    <div class="col-md-8 col-xs-8">
-                        <section class="panel">
+                        </div>
+                        <div class="col-md-8 col-xs-8">
                             <header class="panel-heading">
-                                <!--blank-->
+                                <h2 class="panel-title">Danh Sách Hàng Đã Chọn</h2>
                             </header>
                             <div class="panel-body">
                                 <table class="table table-responsive table-striped">
@@ -185,30 +155,37 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <footer class="panel-footer text-right">
-                                <ul class="pagination">
-                                    <li>
-                                        <a href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li>
-                                        <a href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </footer>
-                        </section>
-                    </div>
-                </div>
+                        </div>
+                        <footer class="panel-footer">
+                            <div class="row">
+                                <div class="col-md-4 center">
+                                    <button class="btn btn-success">Thêm</button>
+                                    <button type="reset" class="btn btn-default">Hủy Bỏ</button>
+                                </div>
+                                <div class="col-md-8 text-right">
+                                    <ul class="pagination">
+                                        <li>
+                                            <a href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li>
+                                            <a href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </footer>
+                    </section>
 
-                <hr class="separator divider" />
+                </div>
 
                 <div class="row">
                     <div class="col-md-4 col-xs-4 center">
@@ -224,7 +201,7 @@
                             <span><h3>Giảm : 5%</h3></span>
                         </div>
                         <div class="m-none">
-                            <span class="text text-danger"><h1>Tổng Cộng : 160.000.000 VND<h1></span>
+                            <span class="text text-danger"><h2>Tổng Cộng : 160.000.000 VND<h2></span>
                         </div>
                     </div>
                 </div>
