@@ -24,5 +24,7 @@ namespace ThanhHuongSolution.Customer.Domain.Interfaces
         Task<bool> DeleteCustomer(string customerId);
 
         Task<bool> SetVIPCustomer(string customerId, bool isVIP);
+
+        Task<bool> IsCustomerExist(string customerId, string trackingNumber);
     }
 }

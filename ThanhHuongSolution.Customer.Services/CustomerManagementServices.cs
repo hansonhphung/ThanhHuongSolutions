@@ -24,11 +24,11 @@ namespace ThanhHuongSolution.Customer.Services
         {
             var repository = _objectContainer.Get<ICustomerRepository>();
 
+            var isExist = await IsCustomerExist(customer.Id, customer.TrackingNumber);
+
+            Check.ThrowExceptionIfTrue(isExist, CustomerManagementResources.TRACKING_NUMBER_EXIST);
+
             var mdCustomer = customer.GetEntity();
-
-            var oldCustomer = await repository.GetCustomerByTrackingNumber(customer.TrackingNumber);
-
-            Check.ThrowExceptionIfNotNull(oldCustomer, CustomerManagementResources.CUSTOMER_EXIST);
 
             var result = await repository.CreateCustomer(mdCustomer);
 
@@ -111,15 +111,27 @@ namespace ThanhHuongSolution.Customer.Services
         {
             var repository = _objectContainer.Get<ICustomerRepository>();
 
-            var existCustomer = await repository.GetCustomerByTrackingNumber(customer.TrackingNumber);
+            var isExist = await IsCustomerExist(customer.Id, customer.TrackingNumber);
 
-            Check.ThrowExceptionIfNotNull(existCustomer, CustomerManagementResources.TRACKING_NUMBER_EXIST);
+            Check.ThrowExceptionIfTrue(isExist, CustomerManagementResources.TRACKING_NUMBER_EXIST);
 
             var mdCustomer = customer.GetEntity();
 
             var data = await repository.UpdateCustomer(mdCustomer);
 
             return await Task.FromResult(data);
+        }
+
+        public async Task<bool> IsCustomerExist(string customerId, string trackingNumber)
+        {
+            var repository = _objectContainer.Get<ICustomerRepository>();
+
+            var existCustomer = await repository.GetCustomerByTrackingNumber(trackingNumber);
+
+            if (existCustomer == null || existCustomer.Id == customerId)
+                return await Task.FromResult(false);
+
+            return await Task.FromResult(true);
         }
     }
 }

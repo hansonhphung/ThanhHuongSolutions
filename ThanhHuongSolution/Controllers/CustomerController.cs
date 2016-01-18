@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using ThanhHuongSolution.Common.Infrastrucure;
 using ThanhHuongSolution.Common.Infrastrucure.Utilities;
+using ThanhHuongSolution.Common.MongoDBDataAccess.Entity;
+using ThanhHuongSolution.Common.MongoDBDataAccess.Interface;
 using ThanhHuongSolution.Customer.Domain.Interfaces;
 using ThanhHuongSolution.Customer.Domain.Model;
 using ThanhHuongSolution.Models;
@@ -107,6 +109,15 @@ namespace ThanhHuongSolution.Controllers
 
                 if (liabilityAmount != "")
                     customer.LiabilityAmount = long.Parse(liabilityAmount);
+
+                if (Check.IsNullOrEmpty(customer.TrackingNumber))
+                {
+                    var trackingNumberGenerator = WebContainer.Instance.ResolveAPI<ITrackingNumberGenerator>();
+
+                    var number = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.KhachHang);
+
+                    customer.TrackingNumber = number;
+                }
 
                 //get uploaded image file
                 if (Request.Files["customerImage"] != null && Request.Files["customerImage"].ContentLength > 0)
