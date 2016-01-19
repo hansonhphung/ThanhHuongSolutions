@@ -46,6 +46,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution.Product.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution.Common.MongoDBDataAccess", "ThanhHuongSolution.Common.MongoDBDataAccess\ThanhHuongSolution.Common.MongoDBDataAccess.csproj", "{AAA44882-AF05-4431-BD88-E87B33228219}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BillingManagement", "BillingManagement", "{2FE61657-BB8D-4EAE-B61A-8AF658F7DD8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThanhHuongSolution.BillingManagement.Domain", "ThanhHuongSolution.BillingManagement.Domain\ThanhHuongSolution.BillingManagement.Domain.csproj", "{85044D2A-0D23-4FED-98B4-B05181E5240D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +120,10 @@ Global
 		{AAA44882-AF05-4431-BD88-E87B33228219}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAA44882-AF05-4431-BD88-E87B33228219}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAA44882-AF05-4431-BD88-E87B33228219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85044D2A-0D23-4FED-98B4-B05181E5240D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85044D2A-0D23-4FED-98B4-B05181E5240D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85044D2A-0D23-4FED-98B4-B05181E5240D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85044D2A-0D23-4FED-98B4-B05181E5240D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,5 +145,7 @@ Global
 		{3605D654-5CFA-44F2-AF64-774FB462A0FA} = {40A33315-5D83-45E9-BE0B-9C817409DA59}
 		{CA843CF3-6FC2-4D04-80C1-AF3C2D5FAA08} = {40A33315-5D83-45E9-BE0B-9C817409DA59}
 		{AAA44882-AF05-4431-BD88-E87B33228219} = {63AF5B24-9B0B-43A9-87BC-7409C6572DED}
+		{2FE61657-BB8D-4EAE-B61A-8AF658F7DD8B} = {847E4D02-DB0A-418A-BFDD-F44EC16FEAA4}
+		{85044D2A-0D23-4FED-98B4-B05181E5240D} = {2FE61657-BB8D-4EAE-B61A-8AF658F7DD8B}
 	EndGlobalSection
 EndGlobal
