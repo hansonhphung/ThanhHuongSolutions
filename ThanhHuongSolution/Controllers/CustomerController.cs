@@ -21,10 +21,8 @@ namespace ThanhHuongSolution.Controllers
     public class CustomerController : Controller
     {
         // GET: Customer
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-
-            //return RedirectToAction("List", new TestModel() { CustomerName = data.Result.Select(x => x.Id).ToList() });
             return RedirectToAction("List");
         }
 
