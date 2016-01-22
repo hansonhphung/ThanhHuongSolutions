@@ -13,8 +13,8 @@
                             <input style="margin-top:5px;" class="btn btn-xs btn-primary center-block" type="file" name="customerImage" id="customerImage" file-feed>
                         </div>
                         <div class="col-md-8">
-                            <div class="row" ng-if="customerId != ''">
-                                <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6" ng-if="customerId != ''">
                                     <div class="form-group">
                                         <label class="control-label">Mã Khách Hàng <span class="color-red">(*)</span></label>
                                         <input type="text" name="TrackingNumber" ng-disabled="true" ng-model="trackingNumber" class="form-control" required>
@@ -23,7 +23,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div ng-class="customerId != '' ? 'col-md-6' : 'col-md-12'">
                                     <div class="form-group">
                                         <label class="control-label">Tên Khánh Hàng <span class="color-red">(*)</span></label>
                                         <input type="text" name="Name" ng-model="name" class="form-control" required>
@@ -34,17 +34,6 @@
                                 </div>
                             </div>
 
-                            <div class="row" ng-if="customerId == ''">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Tên Khánh Hàng <span class="color-red">(*)</span></label>
-                                        <input type="text" name="Name" ng-model="name" class="form-control" required>
-                                        <span class="color-red" data-valmsg-for="Name" data-valmsg-replace="true" ng-show="form_customer_details.Name.$dirty && form_customer_details.Name.$error.required">
-                                            <span for="Name">Vui lòng nhập Tên Khách Hàng.</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
