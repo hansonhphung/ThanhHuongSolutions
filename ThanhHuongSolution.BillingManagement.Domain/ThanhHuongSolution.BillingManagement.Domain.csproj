@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="Entity\MDBilling.cs" />
     <Compile Include="Entity\STBillingItem.cs" />
-    <Compile Include="Model\STCustomer.cs" />
+    <Compile Include="Entity\STCustomer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interface\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

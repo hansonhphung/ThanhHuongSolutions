@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ThanhHuongSolution.BillingManagement.Domain.Model
+namespace ThanhHuongSolution.BillingManagement.Domain.Entity
 {
     public class STCustomer
     {
