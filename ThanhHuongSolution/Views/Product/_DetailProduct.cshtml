@@ -15,16 +15,16 @@
                         </div>
                         <div class="col-md-8">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6" ng-if="productId != ''">
                                     <div class="form-group">
                                         <label class="control-label">Mã sản phẩm <span class="color-red">(*)</span></label>
-                                        <input type="text" name="TrackingNumber" ng-disabled="productId != ''" ng-model="trackingNumber" class="form-control" required>
+                                        <input type="text" name="TrackingNumber" ng-disabled="true" ng-model="trackingNumber" class="form-control" required>
                                         <span class="color-red" data-valmsg-for="TrackingNumber" data-valmsg-replace="true" ng-show="form_product_details.TrackingNumber.$dirty && form_product_details.TrackingNumber.$error.required">
                                             <span for="Name" class="">Vui lòng nhập Mã Sản Phẩm.</span>
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div ng-class="productID != '' ? 'col-md-6' : 'col-md-12'">
                                     <div class="form-group">
                                         <label class="control-label">Tên sản phẩm <span class="color-red">(*)</span></label>
                                         <input type="text" name="Name" ng-disabled="productId != ''" ng-model="name" class="form-control" required>
