@@ -5,3 +5,11 @@
 .color-red {
     color:red;
 }
+
+.hover_hand{
+
+}
+
+.hover_hand :hover{
+    cursor:pointer;
+}
