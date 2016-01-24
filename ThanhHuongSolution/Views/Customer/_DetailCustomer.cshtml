@@ -9,11 +9,11 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <div id="btnFile" class="hover_hand">
-                                <img id="showImage" class="img-rounded center-block" ng-src="{{imgURL != '' ? imgURL : 'http://placehold.it/200x200'}}">
+                            <div id="btnFile" class="hover_hand" ng-click="chooseFile()">
+                                <img id="showImage" class="img-rounded center-block upload-images" ng-src="{{imgURL != '' ? imgURL : 'http://placehold.it/200x200'}}">
                             </div>    
                             <span hidden>
-                                <input style="margin-top:5px;" class="btn btn-xs btn-primary center-block" type="file" name="customerImage" id="customerImage" file-feed>
+                                <input style="margin-top:5px;" class="btn btn-xs btn-primary center-block" type="file" name="customerImage" id="customerImage" onchange="angular.element(this).scope().changeImage(this)" file-feed>
                             </span>
                         </div>
                         <div class="col-md-8">

@@ -13,3 +13,8 @@
 .hover_hand :hover{
     cursor:pointer;
 }
+
+.upload-images {
+    width:200px;
+    height:200px;
+}

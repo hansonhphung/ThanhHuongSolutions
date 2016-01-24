@@ -35,6 +35,7 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
                     $scope.phoneNumber = $scope.customers[i].PhoneNumber;
                     $scope.address = $scope.customers[i].Address;
                     $scope.liabilityAmount = $scope.customers[i].LiabilityAmount;
+                    $scope.isVIP = $scope.customers[i].IsVIP;
                     $scope.imgURL = $scope.customers[i].ImgURL;
                     return;
                 }
@@ -47,6 +48,7 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
             $scope.address = '';
             $scope.liabilityAmount = 0;
             $scope.imgURL = '';
+            $scope.isVIP = false;
 
             $scope.form_customer_details.$setPristine();
         }
@@ -159,6 +161,7 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
         form.append("PhoneNumber", $scope.phoneNumber);
         form.append("Address", $scope.address);
         form.append("LiabilityAmount", $scope.liabilityAmount);
+        form.append("IsVIP", $scope.isVIP);
 
         $http.post("/Customer/SaveCustomer", form, {
             withCredentials: true,
@@ -173,5 +176,16 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
                 toastr.error('error at: ' + response.message);
             }
         });
+    }
+
+    $scope.chooseFile = function ()
+    {
+        $("#customerImage").click();
+    }
+
+    $scope.changeImage = function (chooseFileElement, imageElement)
+    {   
+        var chooseFileControl = new FileControl();
+        chooseFileControl.BindingImage(chooseFileElement, document.getElementById("showImage"))
     }
 });
