@@ -162,13 +162,52 @@ app.controller('ProductController', function ($scope, toastr, $http) {
             $scope.trackingNumber = '';
             $scope.name = '';
             $scope.description = '';
-            $scope.productType = $scope.newProductTypes[0];
-            $scope.unitType = $scope.newUnitTypes[0];
+            $scope.newSelectedProductType = $scope.newProductTypes[0];
+            $scope.newSelectedUnitType = $scope.newUnitTypes[0];
             $scope.wholesalePrice = '';
             $scope.retailPrice = '';
             $scope.number = 0;
 
             $scope.form_customer_details.$setPristine();
         }
+    }
+
+    $scope.saveProduct = function ()
+    {
+        var file = $('#productImage')[0];
+        var form = new FormData();
+        form.append("productImage", file.files[0]);
+        form.append("Id", $scope.productId);
+        form.append("TrackingNumber", $scope.trackingNumber);
+        form.append("Name", $scope.name);
+        form.append("Description", $scope.description);
+        form.append("UnitType", $scope.newSelectedUnitType.value);
+        form.append("ProductType", $scope.newSelectedProductType.value);
+        form.append("WholesalePrice", $scope.wholesalePrice);
+        form.append("RetailPrice", $scope.retailPrice);
+        form.append("Number", $scope.number);
+
+        $http.post("/Product/SaveProduct", form, {
+            withCredentials: true,
+            headers: { 'Content-Type': undefined },
+            transformRequest: angular.identity
+        }).success(function (response) {
+            if (response.isSuccess) {
+                $scope.search();
+                toastr.success('Lưu thông tin sản phẩm thành công');
+            }
+            else {
+                toastr.error('error at: ' + response.message);
+            }
+        });
+    }
+
+    $scope.chooseFile = function () {
+        $("#productImage").click();
+    }
+
+    $scope.changeImage = function (chooseFileElement, imageElement) {
+        var chooseFileControl = new FileControl();
+        chooseFileControl.BindingImage(chooseFileElement, document.getElementById("showImage"))
     }
 });
