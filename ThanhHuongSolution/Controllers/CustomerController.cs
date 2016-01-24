@@ -101,6 +101,7 @@ namespace ThanhHuongSolution.Controllers
                 customer.Name = formCollection.Get("Name");
                 customer.Address = formCollection.Get("Address");
                 customer.PhoneNumber = formCollection.Get("PhoneNumber");
+                customer.IsVIP = Boolean.Parse(formCollection.Get("IsVIP"));
                 customer.LiabilityAmount = 0;
 
                 var liabilityAmount = formCollection.Get("LiabilityAmount");
