@@ -95,6 +95,12 @@ namespace ThanhHuongSolution.Common.Infrastrucure
                 throw new CustomException(errorMessage, innerException);
         }
 
+        public static void ThrowExceptionIfLessThanZero(long value, string errorMessage, Exception innerException = null)
+        {
+            if (value < 0)
+                throw new CustomException(errorMessage, innerException);
+        }
+
         public static bool CollectionIsNullOrEmpty<T>(IEnumerable<T> collection)
         {
             return collection == null || !collection.Any();
