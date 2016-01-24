@@ -103,5 +103,18 @@ namespace ThanhHuongSolution.Product.MongoDBDataAccess
 
             return await Task.FromResult(true);
         }
+
+        public async Task<bool> UpdateProduct(MDProduct product)
+        {
+            var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
+
+            var collection = dbContext.GetCollection<MDProduct>(MongoDBEntityNames.ProductCollection.TableName);
+
+            product.UpdatedAt = DateTime.UtcNow;
+
+            await collection.ReplaceOneAsync(x => x.Id == product.Id, product);
+
+            return await Task.FromResult(true);
+        }
     }
 }

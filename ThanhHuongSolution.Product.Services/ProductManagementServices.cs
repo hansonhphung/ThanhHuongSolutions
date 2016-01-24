@@ -93,5 +93,34 @@ namespace ThanhHuongSolution.Product.Services
 
             return await Task.FromResult(result);
         }
+
+        public async Task<bool> IsProductExist(string productId, string trackingNumber)
+        {
+            var repository = _objectContainer.Get<IProductManagementRepository>();
+
+            var existProduct = await repository.GetProductByTrackingNumber(trackingNumber);
+
+            if (existProduct == null || existProduct.Id == productId)
+                return await Task.FromResult(false);
+
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> UpdateProduct(ProductInfo product)
+        {
+            Check.ThrowExceptionIfLessThanZero(product.Number, ProductManagementResources.NUMBER_LESS_THAN_ZERO);
+
+            var repository = _objectContainer.Get<IProductManagementRepository>();
+
+            var isExist = await IsProductExist(product.Id, product.TrackingNumber);
+
+            Check.ThrowExceptionIfTrue(isExist, ProductManagementResources.TRACKING_NUMBER_EXIST);
+
+            var mdProduct = product.GetEntity();
+
+            var data = await repository.UpdateProduct(mdProduct);
+
+            return await Task.FromResult(data);
+        }
     }
 }

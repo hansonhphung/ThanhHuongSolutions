@@ -123,6 +123,9 @@
   <data name="NO_PRODUCT" xml:space="preserve">
     <value>Sản phẩm này không tồn tại.</value>
   </data>
+  <data name="NUMBER_LESS_THAN_ZERO" xml:space="preserve">
+    <value>Số lượng sản phẩm nhỏ hơn 0.</value>
+  </data>
   <data name="PRODUCT_EXIST" xml:space="preserve">
     <value>Mã sản phẩm đã tồn tại.</value>
   </data>
@@ -134,5 +137,8 @@
   </data>
   <data name="TRACKING_NUMBER_EMPTY" xml:space="preserve">
     <value>Mã sản phẩm không được rỗng.</value>
+  </data>
+  <data name="TRACKING_NUMBER_EXIST" xml:space="preserve">
+    <value>Mã sản phẩm đã tồn tại.</value>
   </data>
 </root>

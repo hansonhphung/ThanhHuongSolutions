@@ -20,5 +20,9 @@ namespace ThanhHuongSolution.Product.Domain.Interfaces
         Task<IList<ProductInfo>> Search(string query);
 
         Task<bool> DeleteProduct(string productId);
+
+        Task<bool> UpdateProduct(ProductInfo product);
+
+        Task<bool> IsProductExist(string productId, string trackingNumber);
     }
 }

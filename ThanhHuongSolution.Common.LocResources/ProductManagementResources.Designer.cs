@@ -79,6 +79,15 @@ namespace ThanhHuongSolution.Common.LocResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Số lượng sản phẩm nhỏ hơn 0..
+        /// </summary>
+        public static string NUMBER_LESS_THAN_ZERO {
+            get {
+                return ResourceManager.GetString("NUMBER_LESS_THAN_ZERO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mã sản phẩm đã tồn tại..
         /// </summary>
         public static string PRODUCT_EXIST {
@@ -111,6 +120,15 @@ namespace ThanhHuongSolution.Common.LocResources {
         public static string TRACKING_NUMBER_EMPTY {
             get {
                 return ResourceManager.GetString("TRACKING_NUMBER_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã sản phẩm đã tồn tại..
+        /// </summary>
+        public static string TRACKING_NUMBER_EXIST {
+            get {
+                return ResourceManager.GetString("TRACKING_NUMBER_EXIST", resourceCulture);
             }
         }
     }
