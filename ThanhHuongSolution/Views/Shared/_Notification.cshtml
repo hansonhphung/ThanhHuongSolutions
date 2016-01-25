@@ -1,0 +1,37 @@
+﻿@using ThanhHuongSolution.Notification
+@model NotificationCollection
+
+<script>
+    $(function () {
+        @foreach (var notification in Model)
+        {
+            @: var messageContent = "@notification.Message";
+            switch (notification.Type)
+            {
+                case NotificationType.Success:
+                {
+                    @: toastr.success(messageContent, "Success");
+                    break;
+                }
+
+                case NotificationType.Warning:
+                {
+                     @: toastr.warning(messageContent, "Warning");
+                    break;
+                }
+
+                case NotificationType.Inforamation:
+                {
+                    @: toastr.info(messageContent, "Information");
+                    break;
+                    }
+
+                case NotificationType.Failure:
+                {
+                    @: toastr.error(messageContent, "Error");
+                    break;
+                }
+            }
+        }
+        });
+</script>

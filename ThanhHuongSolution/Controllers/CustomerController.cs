@@ -15,6 +15,8 @@ using ThanhHuongSolution.Customer.Domain.Interfaces;
 using ThanhHuongSolution.Customer.Domain.Model;
 using ThanhHuongSolution.Models;
 using ThanhHuongSolution.Models.Customer;
+using ThanhHuongSolution.Extension;
+using ThanhHuongSolution.Notification;
 
 namespace ThanhHuongSolution.Controllers
 {
