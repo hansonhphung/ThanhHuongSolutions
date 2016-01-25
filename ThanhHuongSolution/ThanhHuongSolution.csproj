@@ -102,6 +102,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="ThanhHuongSolution.BillingManagement.CompositionRoot">
+      <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.BillingManagement.CompositionRoot.dll</HintPath>
+    </Reference>
+    <Reference Include="ThanhHuongSolution.BillingManagement.Domain">
+      <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.BillingManagement.Domain.dll</HintPath>
+    </Reference>
     <Reference Include="ThanhHuongSolution.Common.Infrastrucure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.Common.Infrastrucure.dll</HintPath>

@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ThanhHuongSolution.BillingManagement.CompositionRoot\ThanhHuongSolution.BillingManagement.CompositionRoot.csproj">
+      <Project>{702c31cf-f9f0-4bda-a762-db6aaca1b4d8}</Project>
+      <Name>ThanhHuongSolution.BillingManagement.CompositionRoot</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastructure.csproj">
       <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
       <Name>ThanhHuongSolution.Common.Infrastructure</Name>

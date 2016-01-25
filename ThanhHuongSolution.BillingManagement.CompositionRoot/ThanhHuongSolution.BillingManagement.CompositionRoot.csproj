@@ -44,6 +44,24 @@
     <Compile Include="DIRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThanhHuongSolution.BillingManagement.Handler\ThanhHuongSolution.BillingManagement.Handler.csproj">
+      <Project>{368cde98-c42b-41cb-b57e-2298b57ee919}</Project>
+      <Name>ThanhHuongSolution.BillingManagement.Handler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.BillingManagement.MongoDBDataAccess\ThanhHuongSolution.BillingManagement.MongoDBDataAccess.csproj">
+      <Project>{17a2dd4b-0f9a-4fd3-b884-b81d80176804}</Project>
+      <Name>ThanhHuongSolution.BillingManagement.MongoDBDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.BillingManagement.Services\ThanhHuongSolution.BillingManagement.Services.csproj">
+      <Project>{f155d910-4448-4e8f-a02b-f8887b693109}</Project>
+      <Name>ThanhHuongSolution.BillingManagement.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastructure.csproj">
+      <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
+      <Name>ThanhHuongSolution.Common.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
