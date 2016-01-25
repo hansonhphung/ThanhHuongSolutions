@@ -215,6 +215,7 @@
   <ItemGroup>
     <Content Include="Content\assets\custom\style.css" />
     <Content Include="Images\!logged-user.jpg" />
+    <Content Include="Images\image-placeholder.png" />
     <Content Include="Images\ThanhHuongLogo.png" />
     <Content Include="Content\assets\stylesheets\skins\default.css" />
     <Content Include="Content\assets\stylesheets\skins\extension.css" />

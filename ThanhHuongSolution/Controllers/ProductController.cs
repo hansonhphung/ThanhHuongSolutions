@@ -94,7 +94,9 @@ namespace ThanhHuongSolution.Controllers
                 {
                     var trackingNumberGenerator = WebContainer.Instance.ResolveAPI<ITrackingNumberGenerator>();
 
-                    var number = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.KhachHang);
+                    var productType = (ObjectType) Enum.Parse(typeof (ObjectType), product.ProductType.ToString());
+
+                    var number = await trackingNumberGenerator.GenerateTrackingNumber(productType);
 
                     product.TrackingNumber = number;
                 }

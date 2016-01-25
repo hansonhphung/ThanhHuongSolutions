@@ -9,10 +9,13 @@ namespace ThanhHuongSolution.Product.Domain.Entity
 {
     public enum ProductType
     {
-        [Description("Lương thực")]
-        LuongThuc = 1,
-
         [Description("Phân bón")]
-        PhanBon = 2
+        PhanBon = 1,
+
+        [Description("Gạo")]
+        Gao = 2,
+
+        [Description("Cà Phê")]
+        CaPhe = 3
     }
 }

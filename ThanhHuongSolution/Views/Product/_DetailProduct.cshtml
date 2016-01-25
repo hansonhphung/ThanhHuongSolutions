@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div id="btnFile" class="hover_hand" ng-click="chooseFile()">
-                                <img id="showImage" class="img-rounded center-block upload-images" ng-src="{{imgURL != '' ? imgURL : 'http://placehold.it/200x200'}}">
+                                <img id="showImage" class="img-rounded center-block upload-images" ng-src="{{imgURL != '' ? imgURL : '/Images/image-placeholder.png'}}">
                             </div>
                             <span hidden>
                                 <input style="margin-top:5px;" class="btn btn-xs btn-primary center-block" type="file" name="productImage" id="productImage" onchange="angular.element(this).scope().changeImage(this)" file-feed>
@@ -28,7 +28,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div ng-class="productID != '' ? 'col-md-6' : 'col-md-12'">
+                                <div ng-class="productId != '' ? 'col-md-6' : 'col-md-12'">
                                     <div class="form-group">
                                         <label class="control-label">Tên sản phẩm <span class="color-red">(*)</span></label>
                                         <input type="text" name="Name" ng-disabled="productId != ''" ng-model="name" class="form-control" required>

@@ -1,8 +1,8 @@
 ﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.bootstrap']);
 app.controller('ProductController', function ($scope, toastr, $http) {
 
-    $scope.productTypes = [{ 'key': 'Tất cả', 'value': '0' }, { 'key': 'Lương thực', 'value': '1' }, { 'key': 'Phân bón', 'value': '2' }];
-    $scope.newProductTypes = [{ 'key': 'Lương thực', 'value': '1' }, { 'key': 'Phân bón', 'value': '2' }];
+    $scope.productTypes = [{ 'key': 'Tất cả', 'value': '0' }, { 'key': 'Phân bón', 'value': '1' }, { 'key': 'Gạo', 'value': '2' }, { 'key': 'Cà phê', 'value': '3' }];
+    $scope.newProductTypes = [{ 'key': 'Phân bón', 'value': '1' }, { 'key': 'Gạo', 'value': '2' }, { 'key': 'Cà phê', 'value': '3' }];
     $scope.newUnitTypes = [{ 'key': 'Kg', 'value': '1' }];
     $scope.pageSize = 2;
     $scope.pageIndex = 1;
@@ -58,23 +58,9 @@ app.controller('ProductController', function ($scope, toastr, $http) {
             $scope.selectedProductType = $scope.productTypes[0];
         }
     }
-    
-    $scope.getProductType = function (type)
-    {
-        switch (type)
-        {
-            case 1: return 'Lương thực';
-            case 2: return 'Phân bón';
-        }
-        return '';
-    }
 
     $scope.getProductType = function (type) {
-        switch (type) {
-            case 1: return $scope.newProductTypes[0];
-            case 2: return $scope.newProductTypes[1];
-        }
-        return '';
+        return $scope.newProductTypes[type - 1];
     }
 
     $scope.getUnitType = function (type) {
