@@ -16,7 +16,7 @@ namespace ThanhHuongSolution.Common.MongoDBDataAccess.Entity
         PhanBon = 2,
 
         [Description("Gạo")]
-        Gạo = 3,
+        Gao = 3,
 
         [Description("Cà phê")]
         CaPhe = 4,
