@@ -93,6 +93,9 @@ app.controller('ProductController', function ($scope, toastr, $http) {
     $scope.onChangePageIndex = function ()
     {
         $scope.products = [];
+        if ($scope.numPages == 0)
+            return;
+
         if ($scope.pageIndex == $scope.numPages) {
             for (var i = ($scope.pageIndex - 1) * $scope.pageSize; i < $scope.pagingSource.length; i++) {
                 $scope.products.push($scope.pagingSource[i]);
