@@ -70,7 +70,7 @@ namespace ThanhHuongSolution.Common.LocResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sản phẩm này không tồn tại..
+        ///   Looks up a localized string similar to Hiện tại chưa có sản phẩm..
         /// </summary>
         public static string NO_PRODUCT {
             get {
