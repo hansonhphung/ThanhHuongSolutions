@@ -11,7 +11,9 @@ using ThanhHuongSolution.Common.Infrastrucure;
 using ThanhHuongSolution.Common.Infrastrucure.Utilities;
 using ThanhHuongSolution.Common.MongoDBDataAccess.Entity;
 using ThanhHuongSolution.Common.MongoDBDataAccess.Interface;
+using ThanhHuongSolution.Extension;
 using ThanhHuongSolution.Models.Product;
+using ThanhHuongSolution.Notification;
 using ThanhHuongSolution.Product.Domain.Entity;
 using ThanhHuongSolution.Product.Domain.Interfaces;
 using ThanhHuongSolution.Product.Domain.Model;
@@ -38,6 +40,7 @@ namespace ThanhHuongSolution.Controllers
             }
             catch (CustomException ex)
             {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return View();
             }
         }
@@ -54,6 +57,7 @@ namespace ThanhHuongSolution.Controllers
             }
             catch (CustomException ex)
             {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -70,6 +74,7 @@ namespace ThanhHuongSolution.Controllers
             }
             catch (CustomException ex)
             {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return Json(new { isSuccess = false, message = ex.Message}, JsonRequestBehavior.AllowGet);
             }
         }
@@ -156,6 +161,7 @@ namespace ThanhHuongSolution.Controllers
             }
             catch (CustomException ex)
             {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
