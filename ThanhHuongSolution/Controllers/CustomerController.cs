@@ -40,6 +40,7 @@ namespace ThanhHuongSolution.Controllers
             }
             catch (CustomException ex)
             {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return View();
             }
         }
@@ -56,6 +57,7 @@ namespace ThanhHuongSolution.Controllers
             }
             catch (CustomException ex)
             {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -72,6 +74,7 @@ namespace ThanhHuongSolution.Controllers
             }
             catch (CustomException ex)
             {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -88,6 +91,7 @@ namespace ThanhHuongSolution.Controllers
             }
             catch (CustomException ex)
             {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -175,6 +179,7 @@ namespace ThanhHuongSolution.Controllers
             }
             catch (CustomException ex)
             {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)

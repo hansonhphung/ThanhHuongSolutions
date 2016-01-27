@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<header class="page-header">
+    <h2>Danh Sách Hóa Đơn</h2>
+</header>
+
+    <div class="panel-body">
+        <div class="pull-right form-inline">
+            <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#modalAdd"><i class="fa fa-user-plus"></i>Tạo Hóa Đơn</button>
+            <input type="text" class="form-control" placeholder="Search...">
+        </div>
+
+        <table class="table table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Mã Hóa Đơn</th>
+                    <th>Tên Khách Hàng</th>
+                    <th>Tổng Số Lượng</th>
+                    <th>Các Mặt Hàng</th>
+                    <th class="hidden-phone"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="gradeX">
+                    <td>KH001</td>
+                    <td>
+                        Jason
+                    </td>
+                    <td>Win 95+</td>
+                    <td class="center hidden-phone">10,000,000 VND</td>
+                    <td class="center hidden-phone">
+                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
+                    </td>
+                </tr>
+                <tr class="gradeC">
+                    <td>KH002</td>
+                    <td>
+                        Hoàng
+                    </td>
+                    <td>Win 95+</td>
+                    <td class="center hidden-phone">10,000,000 VND</td>
+                    <td class="center hidden-phone">
+                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
+                    </td>
+
+                </tr>
+                <tr class="gradeA">
+                    <td>KH003</td>
+                    <td>
+                        Hùng
+                    </td>
+                    <td>Win 95+</td>
+                    <td class="center hidden-phone">10,000,000 VND</td>
+                    <td class="center hidden-phone">
+                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
+                    </td>
+                </tr>
+                <tr class="gradeA">
+                    <td>KH004</td>
+                    <td>
+                        Phương
+                    </td>
+                    <td>Win 98+</td>
+                    <td class="center hidden-phone">10,000,000 VND</td>
+                    <td class="center hidden-phone">
+                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
+                    </td>
+                </tr>
+                <tr class="gradeA">
+                    <td>KH005</td>
+                    <td>Internet Explorer 7</td>
+                    <td>Win XP SP2+</td>
+                    <td class="center hidden-phone">10,000,000 VND</td>
+                    <td class="center hidden-phone">
+                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
+                    </td>
+                </tr>
+                <tr class="gradeA">
+                    <td>KH007</td>
+                    <td>AOL browser (AOL desktop)</td>
+                    <td>Win XP</td>
+                    <td class="center hidden-phone">10,000,000 VND</td>
+                    <td class="center hidden-phone">
+                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
+                    </td>
+                </tr>
+                <tr class="gradeA">
+                    <td>KH008</td>
+                    <td>Firefox 1.0</td>
+                    <td>Win 98+ / OSX.2+</td>
+                    <td class="center hidden-phone">10,000,000 VND</td>
+                    <td class="center hidden-phone">
+                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+

@@ -121,7 +121,7 @@
     <value>Mã sản phẩm không hợp lệ.</value>
   </data>
   <data name="NO_PRODUCT" xml:space="preserve">
-    <value>Sản phẩm này không tồn tại.</value>
+    <value>Hiện tại chưa có sản phẩm.</value>
   </data>
   <data name="NUMBER_LESS_THAN_ZERO" xml:space="preserve">
     <value>Số lượng sản phẩm nhỏ hơn 0.</value>
