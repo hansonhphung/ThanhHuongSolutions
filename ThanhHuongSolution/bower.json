@@ -15,6 +15,7 @@
     "fontawesome": "~4.2.0",
     "angular-toastr": "*",
     "angular-bootstrap": "0.14.3",
-    "toastr": "2.1.2"
+    "toastr": "2.1.2",
+    "angular-ui-select": "*"
   }
 }

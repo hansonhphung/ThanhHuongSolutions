@@ -8,25 +8,29 @@
 </header>
 
 <!-- start: page -->
-<div class="row">
+<div class="row" ng-app="ThanhHuongSolution" ng-controller="SellingController">
     <div class="col-md-12">
         <section class="panel">
             <div class="panel-body">
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <label class="col-md-4 col-sm-4 control-label">Phiếu<span class="required">*</span></label>
-                        <div class="col-sm-8">
-                            <input type="text" name="fullname" class="form-control" title="Plase enter a name." />
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-4">
+                    <div class="col-md-6 col-md-6">
                         <label class="col-sm-4 control-label">Khách Hàng <span class="required">*</span></label>
                         <div class="col-sm-8">
-                            <input type="text" name="fullname" class="form-control" title="Plase enter a name." />
+
+                            <ui-select ng-model ="employee.selected" theme="bootstrap">
+
+                                <ui-select-match placeholder="Enter a name...">
+                                    {{$select.selected.name}}
+                                </ui-select-match>
+
+                                <ui-select-choices repeat="e in employees | filter: $select.search">
+                                    {{e.name}}
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                     </div>
-                    <div class="col-md-4 col-md-4">
+                    <div class="col-md-6 col-md-6">
                         <label class="col-sm-4 control-label">Ngày Lập <span class="required">*</span></label>
                         <div class="col-sm-8">
                             <div class="input-group">
@@ -209,3 +213,6 @@
         </section>
     </div>
 </div>
+
+<script src="/Vendor/angular/angular.min.js"></script>
+<script src="~/Scripts/Selling/SellingController.js"></script>
