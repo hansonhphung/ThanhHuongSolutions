@@ -217,6 +217,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product\ListProductModel.cs" />
+    <Compile Include="Models\Selling\CustomerInfoModel.cs" />
+    <Compile Include="Models\Selling\ProductInfoModel.cs" />
+    <Compile Include="Models\Selling\SellingInformationModel.cs" />
     <Compile Include="Models\TestModel.cs" />
     <Compile Include="Notification\NotificationCollection.cs" />
     <Compile Include="Notification\NotificationMessage.cs" />
