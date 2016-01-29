@@ -6,8 +6,18 @@ app.controller('SellingController', function ($scope, toastr, $http) {
         alert(JSON.stringify(data));
         $scope.lstCustomer = data.LstCustomer;
         $scope.lstProduct = data.LstProduct;
+    }
 
-        $scope.selectedCustomer = $scope.lstCustomer[0];
-        $scope.selectedProduct = $scope.lstProduct[0];
+    $scope.selecteCustomer = function (selectedCustomer)
+    {
+        $scope.selectedCustomer = selectedCustomer;
+    }
+
+    $scope.selectProduct = function (selectedProduct)
+    {
+        $scope.selectedProduct = selectedProduct;
+
+        $scope.wholesalePrice = selectedProduct.WholesalePrice;
+        $scope.retailPrice = selectedProduct.RetailPrice;
     }
 });
