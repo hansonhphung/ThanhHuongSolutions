@@ -143,6 +143,15 @@
     <script type="text/javascript" src="/Vendor/toastr/toastr.min.js"></script>
     <script type="text/javascript" src="/Vendor/angular-ui-select/dist/select.min.js"></script>
 
+    <!-- Must be import above theme.js-->
+    <script type="text/javascript" src="~/Content/assets/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="~/Content/assets/nanoscroller/nanoscroller.js"></script>
+
+    <!-- Must be import at last-->
+    <script type="text/javascript" src="~/Content/assets/javascripts/theme.js"></script>
+    
+    
+
     @Html.Partial("_Notification", TempData.Notifications())
 </body>
 </html>
