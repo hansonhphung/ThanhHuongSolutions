@@ -229,6 +229,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\assets\custom\style.css" />
+    <Content Include="Content\assets\javascripts\theme.js" />
+    <Content Include="Content\assets\modernizr\modernizr.js" />
+    <Content Include="Content\assets\nanoscroller\nanoscroller.css" />
+    <Content Include="Content\assets\nanoscroller\nanoscroller.js" />
     <Content Include="Images\!logged-user.jpg" />
     <Content Include="Images\image-placeholder.png" />
     <Content Include="Images\ThanhHuongLogo.png" />
