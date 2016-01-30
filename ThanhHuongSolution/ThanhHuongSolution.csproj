@@ -229,8 +229,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\assets\custom\style.css" />
-    <Content Include="Content\assets\javascripts\theme.js" />
-    <Content Include="Content\assets\modernizr\modernizr.js" />
     <Content Include="Content\assets\nanoscroller\nanoscroller.css" />
     <Content Include="Content\assets\nanoscroller\nanoscroller.js" />
     <Content Include="Images\!logged-user.jpg" />
@@ -251,6 +249,9 @@
     <Content Include="bower.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\CommonHelper\ChooseFileHelper.js" />
+    <Content Include="Scripts\CommonHelper\modernizr.js" />
+    <Content Include="Scripts\CommonHelper\nanoscroller.js" />
+    <Content Include="Scripts\CommonHelper\theme.js" />
     <Content Include="Scripts\Customer\CustomerController.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
