@@ -30,7 +30,7 @@ namespace ThanhHuongSolution.Controllers
 
                 var lstProductInfo = productData.Result.Select(x => new ProductInfoModel(x.Id, x.TrackingNumber, x.Name, x.WholesalePrice, x.RetailPrice, x.Number)).ToList();
 
-                var data = new SellingInformationModel(lstCustomerInfo, lstProductInfo);
+                var data = new SellingInformationModel(lstCustomerInfo, lstProductInfo, DateTime.UtcNow.ToString("dd/MM/yyyy"));
 
                 return View("Selling", data);
 
