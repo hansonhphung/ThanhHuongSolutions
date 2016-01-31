@@ -1,6 +1,6 @@
 ﻿@using ThanhHuongSolution.Extension;
 <!DOCTYPE html>
-<html>
+<html class="fixed">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -144,14 +144,12 @@
     <script type="text/javascript" src="/Vendor/angular-ui-select/dist/select.min.js"></script>
 
     <!-- Must be import above theme.js-->
-    <script type="text/javascript" src="~/Content/assets/modernizr/modernizr.js"></script>
-    <script type="text/javascript" src="~/Content/assets/nanoscroller/nanoscroller.js"></script>
+    <script type="text/javascript" src="~/Scripts/CommonHelper/nanoscroller.js"></script>
+    <script type="text/javascript" src="~/Scripts/CommonHelper/modernizr.js"></script>
 
     <!-- Must be import at last-->
-    <script type="text/javascript" src="~/Content/assets/javascripts/theme.js"></script>
+    <script type="text/javascript" src="~/Scripts/CommonHelper/theme.js"></script>
     
-    
-
     @Html.Partial("_Notification", TempData.Notifications())
 </body>
 </html>

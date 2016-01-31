@@ -28,7 +28,7 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
         {
             var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
 
-            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.ProductCollection.TableName);
+            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.BillingCollection.TableName);
 
             bill.CreatedAt = DateTime.UtcNow;
 
@@ -41,7 +41,7 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
         {
             var dbContext = _readDataContextFactory.CreateMongoDBReadContext();
 
-            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.ProductCollection.TableName);
+            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.BillingCollection.TableName);
 
             var data = await collection.Find(x => x.Id != null).ToListAsync();
 
@@ -52,7 +52,7 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
         {
             var dbContext = _readDataContextFactory.CreateMongoDBReadContext();
 
-            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.ProductCollection.TableName);
+            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.BillingCollection.TableName);
 
             var data = await collection.Find(x => x.Id == billId).FirstOrDefaultAsync();
 
@@ -63,7 +63,7 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
         {
             var dbContext = _readDataContextFactory.CreateMongoDBReadContext();
 
-            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.ProductCollection.TableName);
+            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.BillingCollection.TableName);
 
             var data = await collection.Find(x => x.TrackingNumber == trackingNumber).FirstOrDefaultAsync();
 
