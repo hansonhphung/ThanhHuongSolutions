@@ -7,11 +7,11 @@ namespace ThanhHuongSolution.Models.Billing
 {
     public class ListBillingModel
     {
-        public IList<BillingInfo> LstProduct { get; set; }
+        public IList<BillingInfo> LstBilling { get; set; }
 
-        public ListBillingModel(IList<BillingInfo> lstProduct)
+        public ListBillingModel(IList<BillingInfo> lstBilling)
         {
-            LstProduct = lstProduct;
+            LstBilling = lstBilling;
         }
     }
 }
