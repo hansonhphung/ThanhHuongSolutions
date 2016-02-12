@@ -69,5 +69,26 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
 
             return await Task.FromResult<MDBilling>(data);
         }
+
+        public async Task<IList<MDBilling>> Search(string query)
+        {
+            var keyLower = query.ToLower();
+
+            var dbContext = _readDataContextFactory.CreateMongoDBReadContext();
+
+            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.BillingCollection.TableName);
+
+            var builder = Builders<MDBilling>.Filter;
+
+            var filter = builder.Or(
+                         builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
+                         builder.Where(x=>x.TrackingNumber.Contains(keyLower))),
+                         builder.Or(builder.Regex(x=>x.CreatedAt, new BsonRegularExpression(keyLower,"i")),
+                         builder.Where(x=>x.TrackingNumber.Contains(keyLower))));
+
+            var data = await collection.Find(filter).ToListAsync();
+
+            return await Task.FromResult(data);
+        }
     }
 }

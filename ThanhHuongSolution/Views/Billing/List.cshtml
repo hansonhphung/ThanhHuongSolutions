@@ -13,7 +13,7 @@
     <div class="panel-body" ng-init="init(@Json.Encode(Model))">
         <div class="pull-right form-inline">
             <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#modalAdd"><i class="fa fa-user-plus"></i>Tạo Hóa Đơn</button>
-            <input type="text" class="form-control" placeholder="Search...">
+            <input type="text" class="form-control" placeholder="Search..." ng-model="query" ng-keydown="searchKeyDown($event)">
         </div>
 
         <table class="table table-responsive table-striped">
@@ -21,19 +21,19 @@
                 <tr>
                     <th>Mã Hóa Đơn</th>
                     <th>Tên Khách Hàng</th>
-                    <th>Tổng Số Lượng</th>
-                    <th>Các Mặt Hàng</th>
+                    <th>Ngày Lập</th>
+                    <th>Thành Tiền</th>
                     <th class="hidden-phone"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="gradeX" ng-repeat="bill in bills">
                     <td>{{bill.TrackingNumber}}</td>
-                    <td>{{bill.TrackingNumber}}</td>
-                    <td>{{bill.TotalAmount}}</td>
-                    <td class="hidden-phone">10,000,000 VND</td>
+                    <td>{{bill.Customer.CustomerName}}</td>
+                    <td>{{bill.CreatedAt | limitTo : 13 : 6 | date:'medium'}}</td>
+                    <td class="hidden-phone">{{bill.TotalAmount}} VND</td>
                     <td class="hidden-phone">
-                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
+                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Chi Tiết</button>
                     </td>
                 </tr>
             </tbody>

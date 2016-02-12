@@ -16,7 +16,7 @@ namespace ThanhHuongSolution.Controllers
         public ActionResult Index()
         {
             //return View();
-            return RedirectToAction("Index", "Selling");
+            return RedirectToAction("Index", "Billing");
         }
 
         public async Task<ActionResult> About()
