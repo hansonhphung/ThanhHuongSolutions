@@ -68,5 +68,16 @@ namespace ThanhHuongSolution.BillingManagement.Services
 
             return await Task.FromResult<BillingInfo>(new BillingInfo(data));
         }
+
+        public async Task<IList<BillingInfo>> Search(string query)
+        {
+            var repository = _objectContainer.Get<IBillingManagementRepository>();
+
+            var data = await repository.Search(query);
+
+            var result = data.Select(x => new BillingInfo(x)).ToList();
+
+            return await Task.FromResult(result);
+        }
     }
 }

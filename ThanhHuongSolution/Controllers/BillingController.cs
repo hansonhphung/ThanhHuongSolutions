@@ -32,5 +32,21 @@ namespace ThanhHuongSolution.Controllers
                 return View();
             }
         }
+
+        public async Task<ActionResult> Search(string query)
+        {
+            try
+            {
+                var api = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
+
+                var data = await api.Search(query);
+
+                return Json(new { isSuccess = true, data = data.Result }, JsonRequestBehavior.AllowGet);
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex);
+            }
+        }
     }
 }

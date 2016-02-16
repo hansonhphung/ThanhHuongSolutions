@@ -88,5 +88,21 @@ namespace ThanhHuongSolution.BillingManagement.Handler
                 throw new CustomException(ex);
             }
         }
+
+        public async Task<FrameworkParamOutput<IList<BillingInfo>>> Search(string query)
+        {
+            try
+            {
+                var services = _objectContainer.Get<IBillingManagementServices>();
+
+                var data = await services.Search(query);
+
+                return await Task.FromResult(new FrameworkParamOutput<IList<BillingInfo>>(data));
+            } 
+            catch(CustomException ex)
+            {
+                throw new CustomException(ex);
+            }
+        }
     }
 }
