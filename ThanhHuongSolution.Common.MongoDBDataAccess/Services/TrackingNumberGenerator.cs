@@ -42,7 +42,7 @@ namespace ThanhHuongSolution.Common.MongoDBDataAccess.Services
 
             var data = await collection.Find(x => x.ObjectType == objectType).FirstOrDefaultAsync();
 
-            var result = string.Format("{0}-{1}", data.Prefix, data.Ordinal.ToString("D7"));
+            var result = string.Format("{0}-{1}", data.Prefix, data.Ordinal.ToString("D9"));
 
             return await Task.FromResult(result);
         }
