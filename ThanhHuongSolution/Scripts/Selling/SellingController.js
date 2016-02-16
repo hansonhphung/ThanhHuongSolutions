@@ -7,6 +7,8 @@ app.controller('SellingController', function ($scope, toastr, $http) {
     $scope.maxSize = 1;
     $scope.recordPerPage = 1;
     $scope.pageIndex = 1;
+    $scope.totalAmount = 0;
+    $scope.payAmount = 0;
 
     $scope.init = function (data)
     {
@@ -63,6 +65,19 @@ app.controller('SellingController', function ($scope, toastr, $http) {
             $scope.pagingSource.push({ TrackingNumber: $scope.selectedProduct.TrackingNumber, Name: $scope.selectedProduct.Name, Number: $scope.number, TotalPrice: price * $scope.number });
         }
 
+        $scope.totalAmount += price * $scope.number;
+
+        var payAmount = 0;
+
+        if ($scope.payAmount != null) {
+            payAmount = $scope.payAmount;
+        }
+
+        if (payAmount >= $scope.totalAmount)
+            $scope.liabilityAmount = 0;
+        else
+            $scope.liabilityAmount = $scope.totalAmount - payAmount;
+
         $scope.updatePagingConfig();
         $scope.onChangePageIndex();
     }
@@ -73,9 +88,21 @@ app.controller('SellingController', function ($scope, toastr, $http) {
         {
             if ($scope.pagingSource[i].TrackingNumber == trackingNumber)
             {
+                $scope.totalAmount -= $scope.pagingSource[i].TotalPrice;
                 $scope.pagingSource.splice(i, 1);
             }
         }
+
+        var payAmount = 0;
+
+        if ($scope.payAmount != null) {
+            payAmount = $scope.payAmount;
+        }
+
+        if (payAmount >= $scope.totalAmount)
+            $scope.liabilityAmount = 0;
+        else
+            $scope.liabilityAmount = $scope.totalAmount - payAmount;
 
         $scope.updatePagingConfig();
         $scope.onChangePageIndex();
@@ -87,7 +114,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
         $scope.selectedProduct = $scope.lstProduct[0];
 
-        $scope.selecteCustomer = $scope.lstCustomer[0];
+        $scope.selectedCustomer = $scope.lstCustomer[0];
 
         $scope.wholesalePrice = $scope.selectedProduct.WholesalePrice;
 
@@ -121,5 +148,59 @@ app.controller('SellingController', function ($scope, toastr, $http) {
                 $scope.shoppingCart.push($scope.pagingSource[index]);
             }
         }
+    }
+
+    $scope.numberInputTypeKeyPress = function ($event)
+    {
+        if (($event.keyCode >= 48 && $event.keyCode <= 57 ) || $event.keyCode == 8 || $event.keyCode == 46)
+        {
+
+            var payAmount = 0;
+
+            if ($scope.payAmount != null)
+            {
+                payAmount = $scope.payAmount;
+            }
+                
+            if (payAmount >= $scope.totalAmount)
+                $scope.liabilityAmount = 0;
+            else
+                $scope.liabilityAmount = $scope.totalAmount - payAmount;
+        }
+    }
+
+    $scope.createBilling = function ()
+    {
+        var form = new FormData();
+        form.append("Customer.CustomerId", $scope.selectedCustomer.CustomerId);
+        form.append("Customer.CustomerTrackingNumber", $scope.selectedCustomer.CustomerTrackingNumber);
+        form.append("Customer.CustomerName", $scope.selectedCustomer.CustomerName);
+
+        if ($scope.pagingSource != null && $scope.pagingSource.length > 0)
+        {
+            for (var i = 0; i < $scope.pagingSource.length; i++)
+            {
+                form.append("Cart[" + i + "].ProductTrackingNumber", $scope.pagingSource[i].TrackingNumber);
+                form.append("Cart[" + i + "].ProductName", $scope.pagingSource[i].Name);
+                form.append("Cart[" + i + "].Number", $scope.pagingSource[i].Number);
+                form.append("Cart[" + i + "].Price", $scope.pagingSource[i].TotalPrice);
+            }
+        }
+
+        form.append("TotalAmount", $scope.totalAmount);
+
+        $http.post("/Selling/CreateBilling", form, {
+            withCredentials: true,
+            headers: { 'Content-Type': undefined },
+            transformRequest: angular.identity
+        }).success(function (response) {
+            if (response.isSuccess) {
+                toastr.success('Tạo hoá đơn thành công');
+                $scope.initData();
+            }
+            else {
+                toastr.error('error at: ' + response.message);
+            }
+        });
     }
 });

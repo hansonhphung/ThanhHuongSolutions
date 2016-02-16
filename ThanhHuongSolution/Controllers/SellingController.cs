@@ -10,6 +10,12 @@ using ThanhHuongSolution.Models.Selling;
 using ThanhHuongSolution.Customer.Domain.Model;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
+using System.Web.Script.Serialization;
+using ThanhHuongSolution.BillingManagement.Domain.Model;
+using ThanhHuongSolution.Common.MongoDBDataAccess.Interface;
+using ThanhHuongSolution.Common.MongoDBDataAccess.Entity;
+using ThanhHuongSolution.BillingManagement.Domain.Interface;
 
 namespace ThanhHuongSolution.Controllers
 {
@@ -39,6 +45,35 @@ namespace ThanhHuongSolution.Controllers
             {
                 TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return View("Selling"); // TODO refractor to change another view when no product or customer
+            }
+        }
+
+        public async Task<ActionResult> CreateBilling(FormCollection formCollection)
+        {
+            try
+            {
+                var billingModel = new BillingInfo();
+
+                if (TryUpdateModel(billingModel, formCollection))
+                {
+                    billingModel.CreatedAt = DateTime.UtcNow;
+
+                    var trackingNumberGenerator = WebContainer.Instance.ResolveAPI<ITrackingNumberGenerator>();
+
+                    billingModel.TrackingNumber = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.HoaDon);
+
+                    var billingAPI = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
+
+                    var result = await billingAPI.CreateBill(new FrameworkParamInput<BillingInfo>(billingModel));
+
+                    return Json(new { isSuccess = true, data = result.Result }, JsonRequestBehavior.AllowGet);
+                }
+
+                return Json(new { isSuccess = false, message = "Can not update model" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (CustomException ex)
+            {
+                return Json(new { isSuccess = false, message = ex.Message}, JsonRequestBehavior.AllowGet);
             }
         }
     }
