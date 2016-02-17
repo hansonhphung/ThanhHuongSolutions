@@ -89,7 +89,7 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
                          builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
                          builder.Where(x => x.TrackingNumber.Contains(keyLower))),
                          builder.Or(builder.Regex(x => x.Name, new BsonRegularExpression(keyLower, "i")),
-                         builder.Where(x => x.TrackingNumber.Contains(keyLower))))
+                         builder.Where(x => x.Name.Contains(keyLower))))
                          & builder.Where(x => x.DeletedAt == null);
 
             var data = await collection.Find(filter).ToListAsync();

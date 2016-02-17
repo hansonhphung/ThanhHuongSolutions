@@ -84,7 +84,7 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
                          builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
                          builder.Where(x=>x.TrackingNumber.Contains(keyLower))),
                          builder.Or(builder.Regex(x=>x.Customer.CustomerName, new BsonRegularExpression(keyLower,"i")),
-                         builder.Where(x=>x.TrackingNumber.Contains(keyLower))));
+                         builder.Where(x=>x.Customer.CustomerName.Contains(keyLower))));
 
             var data = await collection.Find(filter).ToListAsync();
 
