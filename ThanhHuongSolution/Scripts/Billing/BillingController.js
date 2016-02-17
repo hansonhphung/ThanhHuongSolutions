@@ -8,7 +8,6 @@ app.controller('BillingController', function ($scope, toastr, $http) {
     }
 
     $scope.search = function () {
-        
         $http.post("/Billing/Search", { query: $scope.query }, {
         }).success(function (response) {
             if (response.isSuccess) {

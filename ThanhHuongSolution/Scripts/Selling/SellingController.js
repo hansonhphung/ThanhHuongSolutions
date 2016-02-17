@@ -120,6 +120,8 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
         $scope.retailPrice = $scope.selectedProduct.RetailPrice;
 
+        $scope.totalPrice = 0;
+
         $scope.number = 0;
     }
 
@@ -171,6 +173,18 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
     $scope.createBilling = function ()
     {
+        if ($scope.selectedCustomer == null)
+        {
+            toastr.warning("Vui lòng chọn khách hàng.");
+            return;
+        }
+
+        if ($scope.shoppingCart.length == 0)
+        {
+            toastr.warning("Hoá đơn chưa có mặt hàng.");
+            return;
+        }
+
         var form = new FormData();
         form.append("Customer.CustomerId", $scope.selectedCustomer.CustomerId);
         form.append("Customer.CustomerTrackingNumber", $scope.selectedCustomer.CustomerTrackingNumber);

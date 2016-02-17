@@ -56,11 +56,11 @@ namespace ThanhHuongSolution.Controllers
 
                 if (TryUpdateModel(billingModel, formCollection))
                 {
-                    billingModel.CreatedAt = DateTime.UtcNow;
-
                     var trackingNumberGenerator = WebContainer.Instance.ResolveAPI<ITrackingNumberGenerator>();
 
                     billingModel.TrackingNumber = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.HoaDon);
+
+                    billingModel.BillCreatedDate = DateTime.UtcNow.ToString("dd/MM/yyyy");
 
                     var billingAPI = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
 

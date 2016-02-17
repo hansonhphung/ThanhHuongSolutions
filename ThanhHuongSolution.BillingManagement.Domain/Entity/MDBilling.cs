@@ -12,12 +12,13 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Entity
     {
         public MDBilling() { }
 
-        public MDBilling(string id, string trackingNumber, STCustomer customer, long totalAmount, DateTime createdAt, List<STBillingItem> cart)
+        public MDBilling(string id, string trackingNumber, STCustomer customer, long totalAmount, string billCreatedDate, DateTime createdAt, List<STBillingItem> cart)
         {
             Id = id;
             TrackingNumber = trackingNumber;
             Customer = customer;
             TotalAmount = totalAmount;
+            BillCreatedDate = billCreatedDate;
             CreatedAt = createdAt;
             Cart = cart;
         }
@@ -33,6 +34,8 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Entity
         public long TotalAmount { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        public string BillCreatedDate { get; set; }
 
         public List<STBillingItem> Cart { get; set; }
     }
