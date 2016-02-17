@@ -3,6 +3,7 @@
 app.controller('BillingController', function ($scope, toastr, $http) {
 
     $scope.init = function (data) {
+        //alert(JSON.stringify(data));
         $scope.lstBilling = data.LstBilling;
         $scope.bills = data.LstBilling;
     }
@@ -24,6 +25,29 @@ app.controller('BillingController', function ($scope, toastr, $http) {
     $scope.searchKeyDown = function (event) {
         if (event.keyCode == 13) {
             $scope.search();
+        }
+    }
+
+    $scope.viewBill = function (billId)
+    {
+        $scope.billId = billId;
+        if (billId != '')
+        {
+            for (var i = 0; i < $scope.bills.length; i++)
+            {
+                if ($scope.bills[i].Id == billId)
+                {
+                    alert(JSON.stringify($scope.bills[i]));
+                    $scope.trackingNumber = $scope.bills[i].TrackingNumber;
+                    $scope.customerId = $scope.bills[i].Customer.Id;
+                    $scope.customerTrackingNumber = $scope.bills[i].Customer.CustomerTrackingNumber;
+                    $scope.customerName = $scope.bills[i].Customer.CustomerName;
+                    $scope.totalAmount = $scope.bills[i].TotalAmount;
+                    $scope.createdAt = $scope.bills[i].CreatedAt;
+                    $scope.cart = $scope.bills[i].Cart;                    
+                    return;
+                }
+            }
         }
     }
 });

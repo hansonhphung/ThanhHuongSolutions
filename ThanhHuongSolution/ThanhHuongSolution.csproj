@@ -311,6 +311,7 @@
     <Content Include="Views\Shared\_Notification.cshtml" />
     <Content Include="Views\Billing\List.cshtml" />
     <Content Include="Views\Selling\_DetailSelling.cshtml" />
+    <Content Include="Views\Billing\_DetailBilling.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

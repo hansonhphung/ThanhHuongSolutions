@@ -40,11 +40,13 @@
                     <td>{{bill.BillCreatedDate}}</td>
                     <td class="hidden-phone">{{bill.TotalAmount}} VND</td>
                     <td class="hidden-phone">
-                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Chi Tiết</button>
+                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-info" data-toggle="modal" data-target="#detailBillingFormModal" ng-click="viewBill(bill.Id)">Xem Chi Tiết</button>
+                        
                     </td>
                 </tr>
             </tbody>
         </table>
+        @Html.Partial("_DetailBilling")
     </div>
 </div>
 
