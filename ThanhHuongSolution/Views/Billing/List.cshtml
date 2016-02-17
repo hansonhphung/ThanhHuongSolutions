@@ -12,7 +12,7 @@
 
     <div class="panel-body" ng-init="init(@Json.Encode(Model))">
         <div class="pull-right form-inline">
-            <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#modalAdd"><i class="fa fa-user-plus"></i>Tạo Hóa Đơn</button>
+            <a type="button" class="btn btn-success" href="/Selling/Index"><i class="fa fa-user-plus"></i>Tạo Hóa Đơn</a>
 
             <div class="btn-group form-control btn-group-search has-feedback">
                 <input type="text" class="form-control" ng-show="isSearchName == true" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
