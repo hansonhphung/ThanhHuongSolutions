@@ -21,6 +21,23 @@
                 <a id="search_date_enable" data-toggle="tooltip" tooltip data-placement="bottom" title="Tìm theo ngày lập" class="search_by date" ng-click="changeSearchMode()">N</a>
                 <i class="fa fa-search form-control-feedback"></i>
             </div>
+
+            <div class="input-group mb-md">
+                <input type="text" class="form-control" ng-show="isSearchName == true" placeholder="Tìm kiếm tên..." ng-model="query" ng-keydown="searchKeyDown($event)">
+                <input id="search_date" ui-mask="99/99/9999" model-view-value="true" ui-mask-placeholder type="text" ng-show="isSearchName == false" class="form-control" placeholder="Tìm kiếm ngày..." ng-model="query" ng-keydown="searchKeyDown($event)">
+
+                <div class="input-group-btn">
+                    <button tabindex="-1" class="btn btn-primary" type="button"><i class="fa fa-search"></i> Tìm Theo Tên</button>
+                    <button tabindex="-1" data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">
+                        <span class="caret"></span>
+                    </button>
+                    <ul role="menu" class="dropdown-menu pull-right">
+                        <li>Tìm Theo Tên</li>
+                        <li>Tìm Theo Ngày</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
 
         <table class="table table-responsive table-striped">
