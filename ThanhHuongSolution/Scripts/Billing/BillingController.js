@@ -37,12 +37,12 @@ app.controller('BillingController', function ($scope, toastr, $http) {
             {
                 if ($scope.bills[i].Id == billId)
                 {
-                    alert(JSON.stringify($scope.bills[i]));
                     $scope.trackingNumber = $scope.bills[i].TrackingNumber;
                     $scope.customerId = $scope.bills[i].Customer.Id;
                     $scope.customerTrackingNumber = $scope.bills[i].Customer.CustomerTrackingNumber;
                     $scope.customerName = $scope.bills[i].Customer.CustomerName;
                     $scope.totalAmount = $scope.bills[i].TotalAmount;
+                    $scope.billCreatedDate = $scope.bills[i].BillCreatedDate;
                     $scope.createdAt = $scope.bills[i].CreatedAt;
                     $scope.cart = $scope.bills[i].Cart;                    
                     return;
