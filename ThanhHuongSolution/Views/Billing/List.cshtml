@@ -15,27 +15,27 @@
             <a type="button" class="btn btn-success" href="/Selling/Index"><i class="fa fa-user-plus"></i>Tạo Hóa Đơn</a>
 
             <div class="btn-group form-control btn-group-search has-feedback">
-                <input type="text" class="form-control" ng-show="isSearchName == true" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
+                <input type="text" class="form-control" ng-show="isSearchName == true" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">                
+                <a id="search_name_enable" data-toggle="tooltip" ng-show="isSearchName == true" tooltip data-placement="bottom" title="Tìm theo mã hoá đơn" class="search_by name" ng-click="changeSearchMode()">T</a>
+
                 <input id="search_date" ui-mask="99/99/9999" model-view-value="true" ui-mask-placeholder type="text" ng-show="isSearchName == false" class="form-control" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
-                <a id="search_name_enable" data-toggle="tooltip" tooltip data-placement="bottom" title="Tìm theo mã hoá đơn" class="search_by name" ng-click="changeSearchMode()">T</a>
                 <a id="search_date_enable" data-toggle="tooltip" tooltip data-placement="bottom" title="Tìm theo ngày lập" class="search_by date" ng-click="changeSearchMode()">N</a>
+
                 <i class="fa fa-search form-control-feedback"></i>
             </div>
 
-            <div class="input-group mb-md">
-                <input type="text" class="form-control" ng-show="isSearchName == true" placeholder="Tìm kiếm tên..." ng-model="query" ng-keydown="searchKeyDown($event)">
-                <input id="search_date" ui-mask="99/99/9999" model-view-value="true" ui-mask-placeholder type="text" ng-show="isSearchName == false" class="form-control" placeholder="Tìm kiếm ngày..." ng-model="query" ng-keydown="searchKeyDown($event)">
+            <div class="input-group" ng-show="isSearchName == true">
+                <input type="text" class="form-control"  placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="button" ng-click="switchSearch()"><i class="fa fa-sort-alpha-asc"></i></button>
+                </span>
+            </div>
 
-                <div class="input-group-btn">
-                    <button tabindex="-1" class="btn btn-primary" type="button"><i class="fa fa-search"></i> Tìm Theo Tên</button>
-                    <button tabindex="-1" data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">
-                        <span class="caret"></span>
-                    </button>
-                    <ul role="menu" class="dropdown-menu pull-right">
-                        <li>Tìm Theo Tên</li>
-                        <li>Tìm Theo Ngày</li>
-                    </ul>
-                </div>
+            <div class="input-group" ng-show="isSearchName == false">
+                <input id="search_date" ui-mask="99/99/9999" model-view-value="true" ui-mask-placeholder type="text" ng-show="isSearchName == false" class="form-control" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="button" ng-click="switchSearch()"><i class="fa fa-calendar"></i></button>
+                </span>
             </div>
 
         </div>
