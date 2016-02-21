@@ -6,6 +6,7 @@ app.controller('BillingController', function ($scope, toastr, $http) {
         //alert(JSON.stringify(data));
         $scope.lstBilling = data.LstBilling;
         $scope.bills = data.LstBilling;
+        $scope.isSearchName = false;
     }
 
     $scope.search = function () {
@@ -49,5 +50,10 @@ app.controller('BillingController', function ($scope, toastr, $http) {
                 }
             }
         }
+    }
+
+    $scope.switchSearch = function()
+    {
+        $scope.isSearchName = !$scope.isSearchName;
     }
 });
