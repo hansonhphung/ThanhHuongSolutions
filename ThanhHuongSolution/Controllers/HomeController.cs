@@ -23,17 +23,7 @@ namespace ThanhHuongSolution.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
-
-            var samplePerson = new CustomerInfo();
-
-            //var resut = await api.CreateCustomer(new FrameworkParamInput<CustomerInfo>(samplePerson));
-
-            var tmp = await api.CreateCustomer(new FrameworkParamInput<CustomerInfo>(samplePerson));
-            
-            var data = await api.GetAllCustomer();
-
-            return View(new TestModel() { CustomerName = data.Result.Select(x => x.Id).ToList() });
+            return View();
         }
 
         public ActionResult Contact()

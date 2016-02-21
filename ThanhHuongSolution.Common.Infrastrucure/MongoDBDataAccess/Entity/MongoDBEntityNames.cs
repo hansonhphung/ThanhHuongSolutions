@@ -10,6 +10,7 @@ namespace ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess.Entity
     {
         public string TableName { get; set; }
 
+        public static readonly MongoDBEntityNames UserCollection = new MongoDBEntityNames() { TableName = "Users" };
         public static readonly MongoDBEntityNames CustomerCollection = new MongoDBEntityNames() { TableName = "Customers" };
         public static readonly MongoDBEntityNames ProductCollection = new MongoDBEntityNames() { TableName = "Products" };
         public static readonly MongoDBEntityNames BillingCollection = new MongoDBEntityNames() { TableName = "Billings" };
