@@ -1,0 +1,28 @@
+﻿<div class="ibox ibox-transparent" ng-app="ThanhHuongSolution" ng-controller="AccountController" >
+    <div class="ibox-content">
+            <input type="text" class="form-control" ng-model="username"/>
+
+            <input type="password" class="form-control" ng-model="password" />
+
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <div class="text-left">
+                        <a id="btn-reset-password" href="@Url.Action("ResetPassword", new { ReturnUrl = ViewBag.ReturnUrl })">Forgot Your Password?</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-t-md m-b-md" id="container-submit">
+                <a class="btn btn-success btn-block" ng-click="login()">
+                    Log in
+                </a>
+            </div>
+
+            <a id="btn-sign-up" href="@Url.Action("Register", new { ReturnUrl = ViewBag.ReturnUrl })">
+                <strong>Need an account? Sign up for free</strong>
+            </a>
+    </div>
+</div>
+
+<script src="/Vendor/angular/angular.min.js"></script>
+<script src="~/Scripts/Account/AccountController.js"></script>
