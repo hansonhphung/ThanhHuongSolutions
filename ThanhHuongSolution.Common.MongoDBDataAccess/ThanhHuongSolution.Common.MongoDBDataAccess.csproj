@@ -55,15 +55,22 @@
     <Compile Include="CompositionRoot\Bootstraper.cs" />
     <Compile Include="CompositionRoot\DIRegister.cs" />
     <Compile Include="Entity\MDTrackingNumberGenerator.cs" />
+    <Compile Include="Entity\MDUser.cs" />
     <Compile Include="Entity\ObjectType.cs" />
     <Compile Include="Interface\ITrackingNumberGenerator.cs" />
+    <Compile Include="Interface\IUserManagementRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\TrackingNumberGenerator.cs" />
+    <Compile Include="Services\UserManagementService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastructure.csproj">
       <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
       <Name>ThanhHuongSolution.Common.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.Common.LocResources\ThanhHuongSolution.Common.LocResources.csproj">
+      <Project>{3371514f-209b-477e-b2b3-874ebeeb536a}</Project>
+      <Name>ThanhHuongSolution.Common.LocResources</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
