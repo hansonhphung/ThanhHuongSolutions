@@ -17,9 +17,11 @@ using ThanhHuongSolution.Notification;
 using ThanhHuongSolution.Product.Domain.Entity;
 using ThanhHuongSolution.Product.Domain.Interfaces;
 using ThanhHuongSolution.Product.Domain.Model;
+using ThanhHuongSolution.Security;
 
 namespace ThanhHuongSolution.Controllers
 {
+    [CustomAuthorize]
     public class ProductController : Controller
     {
         // GET: Product

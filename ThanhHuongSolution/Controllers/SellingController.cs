@@ -16,9 +16,11 @@ using ThanhHuongSolution.BillingManagement.Domain.Model;
 using ThanhHuongSolution.Common.MongoDBDataAccess.Interface;
 using ThanhHuongSolution.Common.MongoDBDataAccess.Entity;
 using ThanhHuongSolution.BillingManagement.Domain.Interface;
+using ThanhHuongSolution.Security;
 
 namespace ThanhHuongSolution.Controllers
 {
+    [CustomAuthorize]
     public class SellingController : Controller
     {
         public async Task<ActionResult> Index()

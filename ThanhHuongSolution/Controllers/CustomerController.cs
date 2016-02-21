@@ -17,9 +17,11 @@ using ThanhHuongSolution.Models;
 using ThanhHuongSolution.Models.Customer;
 using ThanhHuongSolution.Extension;
 using ThanhHuongSolution.Notification;
+using ThanhHuongSolution.Security;
 
 namespace ThanhHuongSolution.Controllers
 {
+    [CustomAuthorize]
     public class CustomerController : Controller
     {
         // GET: Customer

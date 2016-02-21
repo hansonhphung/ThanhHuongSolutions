@@ -7,9 +7,13 @@ using ThanhHuongSolution.Common.Infrastrucure;
 using ThanhHuongSolution.BillingManagement.Domain.Interface;
 
 using ThanhHuongSolution.Models.Billing;
+using ThanhHuongSolution.Extension;
+using ThanhHuongSolution.Notification;
+using ThanhHuongSolution.Security;
 
 namespace ThanhHuongSolution.Controllers
 {
+    [CustomAuthorize]
     public class BillingController : Controller
     {
         public ActionResult Index()
@@ -27,8 +31,9 @@ namespace ThanhHuongSolution.Controllers
 
                 return View(new ListBillingModel(data.Result));
             }
-            catch
+            catch(CustomException ex)
             {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return View();
             }
         }
@@ -45,7 +50,8 @@ namespace ThanhHuongSolution.Controllers
             }
             catch (CustomException ex)
             {
-                throw new CustomException(ex);
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
+                return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
     }
