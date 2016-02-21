@@ -14,6 +14,7 @@ namespace ThanhHuongSolution.Common.MongoDBDataAccess.CompositionRoot
         public static void RegisterMongoDBDataAccessService(IObjectContainer objectContainer)
         {
             objectContainer.BindTo<ITrackingNumberGenerator, TrackingNumberGenerator>();
+            objectContainer.BindTo<IUserManagementRepository, UserManagementService>();
         }
     }
 }
