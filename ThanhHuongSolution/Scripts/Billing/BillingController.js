@@ -1,12 +1,13 @@
-﻿var app = angular.module('ThanhHuongSolution', ['toastr']);
+﻿var app = angular.module('ThanhHuongSolution', ['toastr','ui.mask']);
 
 app.controller('BillingController', function ($scope, toastr, $http) {
 
     $scope.init = function (data) {
-        //alert(JSON.stringify(data));
         $scope.lstBilling = data.LstBilling;
         $scope.bills = data.LstBilling;
         $scope.isSearchName = false;
+
+        $('#search_date').trigger('input');
     }
 
     $scope.search = function () {
@@ -52,8 +53,9 @@ app.controller('BillingController', function ($scope, toastr, $http) {
         }
     }
 
-    $scope.switchSearch = function()
+    $scope.changeSearchMode = function()
     {
         $scope.isSearchName = !$scope.isSearchName;
+        $scope.query = '';
     }
 });
