@@ -10,16 +10,13 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-6" ng-if="customerId != ''">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Mã Phiếu</label>
                                         <input type="text" name="TrackingNumber" ng-disabled="true" ng-model="trackingNumber" class="form-control" required>
-                                        <span class="color-red" data-valmsg-for="TrackingNumber" data-valmsg-replace="true" ng-show="form_customer_details.TrackingNumber.$dirty && form_customer_details.TrackingNumber.$error.required">
-                                            <span for="Name">Vui lòng nhập Mã Khách Hàng.</span>
-                                        </span>
                                     </div>
                                 </div>
-                                <div ng-class="customerId != '' ? 'col-md-6' : 'col-md-12'">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Ngày Lập</label>
                                         <div class="input-group">
@@ -28,9 +25,6 @@
                                             </span>
                                             <input class="form-control" ng-disabled="true" ng-model="billCreatedDate">
                                         </div>
-                                        <span class="color-red" data-valmsg-for="Name" data-valmsg-replace="true" ng-show="form_customer_details.Name.$dirty && form_customer_details.Name.$error.required">
-                                            <span for="Name">Vui lòng nhập Tên Khách Hàng.</span>
-                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -38,18 +32,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Mã KH</label>
-                                        <input type="text" name="CustomerTrackingNumber" ng-model="customerTrackingNumber" class="form-control">
+                                        <label class="control-label">Mã Khách Hàng</label>
+                                        <input type="text" name="CustomerTrackingNumber" ng-model="customerTrackingNumber" ng-disabled="true" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Tên KH</label>
-                                        <input type="text" name="CustomerName" ng-model="customerName" min="0" class="form-control">
+                                        <label class="control-label">Tên Khách Hàng</label>
+                                        <input type="text" name="CustomerName" ng-model="customerName" ng-disabled="true" class="form-control">
                                     </div>
-                                    <span class="color-red" data-valmsg-for="LiabilityAmount" data-valmsg-replace="true" ng-show="form_customer_details.LiabilityAmount.$dirty && form_customer_details.LiabilityAmount.$error.min">
-                                        <span for="LiabilityAmount">Tồn nợ phải lớn hơn hoặc bằng 0.</span>
-                                    </span>
                                 </div>
                             </div>
                             <div class="row">
@@ -57,8 +48,8 @@
                                     <table class="table table-responsive table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Mã SP</th>
-                                                <th>Tên SP</th>
+                                                <th>Mã Sản Phẩm</th>
+                                                <th>Tên Sản Phẩm</th>
                                                 <th>Đơn Giá</th>
                                                 <th>Số Lượng</th>
                                                 <th>Thành Tiền</th>
@@ -84,17 +75,11 @@
                     <div class="row">
                         <div class="col-md-6 center">
                             <button type="button" class="mb-xs mt-xs mr-xs btn btn-lg btn-default"><i class="fa fa-print"></i></button>
-                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-lg btn-warning" ng-click="">Trở Về</button>
+                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-lg btn-warning" data-dismiss="modal">Trở Về</button>
                         </div>
                         <div class="col-md-6 col-xs-6 text-left">
                             <div class="m-none">
-                                <h4>Thành Tiền : {{totalAmount}} VND</h4>
-                            </div>
-                            <div class="m-none">
-                                <h4>Đã Thanh Toán : 100.000.000 VND</h4>
-                            </div>
-                            <div class="m-none">
-                                <h4>Còn Lại : 60.000.000 VND</h4>
+                                <h4><span class="color-red">Thành Tiền : {{totalAmount}} VND</span></h4>
                             </div>
                         </div>
                     </div>
