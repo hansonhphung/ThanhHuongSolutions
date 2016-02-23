@@ -10,7 +10,7 @@ app.controller('AccountController', function ($scope, toastr, $http) {
             url: "/Account/Login",
             data: { username: $scope.username, password: $scope.password }
         }).success(function (response) {
-            location.href = "/Billing/List";
+            location.href = "/Billing/Index";
         });
     }
 

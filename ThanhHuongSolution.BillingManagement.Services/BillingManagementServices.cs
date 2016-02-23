@@ -7,6 +7,7 @@ using ThanhHuongSolution.Common.Infrastrucure;
 using ThanhHuongSolution.Common.LocResources;
 using ThanhHuongSolution.BillingManagement.Domain.Interface;
 using ThanhHuongSolution.BillingManagement.Domain.Model;
+using ThanhHuongSolution.Common.Infrastrucure.Model;
 
 namespace ThanhHuongSolution.BillingManagement.Services
 {
@@ -34,19 +35,6 @@ namespace ThanhHuongSolution.BillingManagement.Services
             return await Task.FromResult(result);
         }
 
-        public async Task<IList<BillingInfo>> GetAllBill()
-        {
-            var repository = _objectContainer.Get<IBillingManagementRepository>();
-
-            var data = await repository.GetAllBill();
-
-            //Check.ThrowExceptionIfNotNull(oldBill, BillManagementResources.BILL_EXIST);
-
-            var result = data.Select(x => new BillingInfo(x)).ToList();
-
-            return await Task.FromResult<IList<BillingInfo>>(result);
-        }
-
         public async Task<BillingInfo> GetBillById(string billId)
         {
             var repository = _objectContainer.Get<IBillingManagementRepository>();
@@ -69,15 +57,17 @@ namespace ThanhHuongSolution.BillingManagement.Services
             return await Task.FromResult<BillingInfo>(new BillingInfo(data));
         }
 
-        public async Task<IList<BillingInfo>> Search(string query)
+        public async Task<SearchBillingResponse> Search(string customerId, string query, Pagination pagination)
         {
             var repository = _objectContainer.Get<IBillingManagementRepository>();
 
-            var data = await repository.Search(query);
+            var data = await repository.Search(customerId, query, pagination);
 
             var result = data.Select(x => new BillingInfo(x)).ToList();
 
-            return await Task.FromResult(result);
+            var totalItem = await repository.Count(customerId, query);
+
+            return await Task.FromResult(new SearchBillingResponse(totalItem, result));
         }
     }
 }

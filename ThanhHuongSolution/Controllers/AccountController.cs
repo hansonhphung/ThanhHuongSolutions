@@ -17,7 +17,7 @@ namespace ThanhHuongSolution.Controllers
         public ActionResult Index()
         {
             if (!string.IsNullOrEmpty(SessionProvider.UserName))
-                return Redirect("/Billing/List");
+                return Redirect("/Billing/Index");
             return View();
         }
 

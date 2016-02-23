@@ -1,15 +1,12 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Threading.Tasks;
 using ThanhHuongSolution.Common.Infrastrucure;
-
 using ThanhHuongSolution.BillingManagement.Domain.Interface;
-
-using ThanhHuongSolution.Models.Billing;
+using ThanhHuongSolution.BillingManagement.Domain.Model;
 using ThanhHuongSolution.Extension;
 using ThanhHuongSolution.Notification;
 using ThanhHuongSolution.Security;
+using ThanhHuongSolution.Common.Infrastrucure.Model;
 
 namespace ThanhHuongSolution.Controllers
 {
@@ -18,33 +15,16 @@ namespace ThanhHuongSolution.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("List");
+            return View("List");
         }
 
-        public async Task<ActionResult> List()
+        public async Task<ActionResult> Search(string customerId, string query, Pagination pagination)
         {
             try
             {
                 var api = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
 
-                var data = await api.GetAllBill();
-
-                return View(new ListBillingModel(data.Result));
-            }
-            catch(CustomException ex)
-            {
-                TempData.AddNotification(NotificationType.Failure, ex.Message);
-                return View();
-            }
-        }
-
-        public async Task<ActionResult> Search(string query)
-        {
-            try
-            {
-                var api = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
-
-                var data = await api.Search(query);
+                var data = await api.Search(new SearchBillingRequest(customerId, query, pagination));
 
                 return Json(new { isSuccess = true, data = data.Result }, JsonRequestBehavior.AllowGet);
             }

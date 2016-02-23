@@ -12,12 +12,10 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
     {
         Task<FrameworkParamOutput<bool>> CreateBill(FrameworkParamInput<BillingInfo> input);
 
-        Task<FrameworkParamOutput<IList<BillingInfo>>> GetAllBill();
-
         Task<FrameworkParamOutput<BillingInfo>> GetBillById(FrameworkParamInput<string> input);
 
         Task<FrameworkParamOutput<BillingInfo>> GetBillByTrackingNumber(FrameworkParamInput<string> input);
 
-        Task<FrameworkParamOutput<IList<BillingInfo>>> Search(string query);
+        Task<FrameworkParamOutput<SearchBillingResponse>> Search(SearchBillingRequest request);
     }
 }

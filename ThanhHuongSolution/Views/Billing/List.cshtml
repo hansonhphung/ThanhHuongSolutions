@@ -1,5 +1,4 @@
 ﻿@using ThanhHuongSolution.Models.Billing;
-@model ListBillingModel
 
 @{
     ViewBag.Title = "List";
@@ -10,7 +9,7 @@
         <h2>Danh Sách Hóa Đơn</h2>
     </header>
 
-    <div class="panel-body" ng-init="init(@Json.Encode(Model))">
+    <div class="panel-body" ng-init="init()">
         <div class="pull-right form-inline">
             <a type="button" class="btn btn-success" href="/Selling/Index"><i class="fa fa-user-plus"></i>Tạo Hóa Đơn</a>
 
@@ -53,6 +52,12 @@
                 </tr>
             </tbody>
         </table>
+
+        <div class="pull-right form-inline">
+            <div class="table-pagination">
+                <uib-pagination boundary-links="true" total-items="totalBillings" ng-model="pageIndex" max-size="maxSize" class="pagination pagination-ru" rotate="false" items-per-page="recordPerPage" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+            </div>
+        </div>
         @Html.Partial("_DetailBilling")
     </div>
 </div>

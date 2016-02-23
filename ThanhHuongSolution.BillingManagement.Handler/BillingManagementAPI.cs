@@ -37,22 +37,6 @@ namespace ThanhHuongSolution.BillingManagement.Handler
             }
         }
 
-        public async Task<FrameworkParamOutput<IList<BillingInfo>>> GetAllBill()
-        {
-            try
-            {
-                var services = _objectContainer.Get<IBillingManagementServices>();
-
-                var data = await services.GetAllBill();
-
-                return await Task.FromResult(new FrameworkParamOutput<IList<BillingInfo>>(data));
-            }
-            catch (CustomException ex)
-            {
-                throw new CustomException(ex);
-            }
-        }
-
         public async Task<FrameworkParamOutput<BillingInfo>> GetBillById(FrameworkParamInput<string> input)
         {
             try
@@ -89,15 +73,15 @@ namespace ThanhHuongSolution.BillingManagement.Handler
             }
         }
 
-        public async Task<FrameworkParamOutput<IList<BillingInfo>>> Search(string query)
+        public async Task<FrameworkParamOutput<SearchBillingResponse>> Search(SearchBillingRequest request)
         {
             try
             {
                 var services = _objectContainer.Get<IBillingManagementServices>();
 
-                var data = await services.Search(query);
+                var data = await services.Search(request.CustomerId, request.Query, request.Pagination);
 
-                return await Task.FromResult(new FrameworkParamOutput<IList<BillingInfo>>(data));
+                return await Task.FromResult(new FrameworkParamOutput<SearchBillingResponse>(data));
             } 
             catch(CustomException ex)
             {

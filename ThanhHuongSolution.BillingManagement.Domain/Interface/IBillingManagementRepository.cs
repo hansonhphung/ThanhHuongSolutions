@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThanhHuongSolution.BillingManagement.Domain.Entity;
+using ThanhHuongSolution.Common.Infrastrucure.Model;
 
 namespace ThanhHuongSolution.BillingManagement.Domain.Interface
 {
@@ -11,12 +12,12 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
     {
         Task<bool> CreateBill(MDBilling bill);
 
-        Task<IList<MDBilling>> GetAllBill();
-
         Task<MDBilling> GetBillById(string billId);
 
         Task<MDBilling> GetBillByTrackingNumber(string trackingNumber);
 
-        Task<IList<MDBilling>> Search(string query);
+        Task<IList<MDBilling>> Search(string customerId, string query, Pagination pagination);
+
+        Task<long> Count(string customerId, string query);
     }
 }

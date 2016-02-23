@@ -86,6 +86,7 @@
     <Compile Include="Interfaces\IFrameworkParamInput.cs" />
     <Compile Include="Interfaces\IFrameworkParamOutput.cs" />
     <Compile Include="Interfaces\IObjectContainer.cs" />
+    <Compile Include="Model\Pagination.cs" />
     <Compile Include="MongoDBDataAccess\DatabaseConfiguration.cs" />
     <Compile Include="MongoDBDataAccess\Entity\MongoDBEntityNames.cs" />
     <Compile Include="MongoDBDataAccess\IReadDataContextFactory.cs" />
