@@ -43,7 +43,9 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
 
             var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.BillingCollection.TableName);
 
-            var data = await collection.Find(x => x.Id != null).ToListAsync();
+            var sortBy = Builders<MDBilling>.Sort.Descending(x => x.BillCreatedDate);
+
+            var data = await collection.Find(x => x.Id != null).Sort(sortBy).ToListAsync();
 
             return await Task.FromResult<IList<MDBilling>>(data);
         }
@@ -87,7 +89,9 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
                          builder.Where(x=>x.Customer.CustomerName.Contains(keyLower))),
                          builder.Where(x => x.BillCreatedDate.Contains(keyLower)));
 
-            var data = await collection.Find(filter).ToListAsync();
+            var sortBy = Builders<MDBilling>.Sort.Descending(x => x.BillCreatedDate);
+
+            var data = await collection.Find(filter).Sort(sortBy).ToListAsync();
 
             return await Task.FromResult(data);
         }

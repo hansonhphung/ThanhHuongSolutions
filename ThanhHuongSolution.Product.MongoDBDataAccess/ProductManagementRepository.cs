@@ -44,7 +44,9 @@ namespace ThanhHuongSolution.Product.MongoDBDataAccess
 
             var collection = dbContext.GetCollection<MDProduct>(MongoDBEntityNames.ProductCollection.TableName);
 
-            var data = await collection.Find(x => x.Id != null).ToListAsync();
+            var sortBy = Builders<MDProduct>.Sort.Descending(x => x.UpdatedAt);
+
+            var data = await collection.Find(x => x.Id != null).Sort(sortBy).ToListAsync();
 
             return await Task.FromResult<IList<MDProduct>>(data);
         }
@@ -88,7 +90,9 @@ namespace ThanhHuongSolution.Product.MongoDBDataAccess
                          builder.Or(builder.Regex(x => x.Name, new BsonRegularExpression(keyLower, "i")),
                          builder.Where(x => x.Name.Contains(keyLower))));
 
-            var data = await collection.Find(filter).ToListAsync();
+            var sortBy = Builders<MDProduct>.Sort.Descending(x => x.UpdatedAt);
+
+            var data = await collection.Find(filter).Sort(sortBy).ToListAsync();
 
             return await Task.FromResult(data);
         }

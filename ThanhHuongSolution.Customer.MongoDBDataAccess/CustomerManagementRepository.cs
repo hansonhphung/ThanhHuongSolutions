@@ -46,7 +46,9 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 
             var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
 
-            var data = await collection.Find(x => x.DeletedAt == null).ToListAsync();
+            var sortBy = Builders<MDCustomer>.Sort.Descending(x => x.UpdatedAt);
+
+            var data = await collection.Find(x => x.DeletedAt == null).Sort(sortBy).ToListAsync();
             
             return await Task.FromResult<IList<MDCustomer>>(data);
         }
@@ -92,7 +94,9 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
                          builder.Where(x => x.Name.Contains(keyLower))))
                          & builder.Where(x => x.DeletedAt == null);
 
-            var data = await collection.Find(filter).ToListAsync();
+            var sortBy = Builders<MDCustomer>.Sort.Descending(x => x.UpdatedAt);
+
+            var data = await collection.Find(filter).Sort(sortBy).ToListAsync();
 
             return await Task.FromResult(data);
         }
