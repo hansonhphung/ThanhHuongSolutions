@@ -59,6 +59,8 @@
     <Compile Include="Interface\IBillingManagementRepository.cs" />
     <Compile Include="Interface\IBillingManagementServices.cs" />
     <Compile Include="Model\BillingInfo.cs" />
+    <Compile Include="Model\SearchBillingRequest.cs" />
+    <Compile Include="Model\SearchBillingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
