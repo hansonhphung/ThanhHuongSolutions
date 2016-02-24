@@ -297,6 +297,7 @@
     <Content Include="Views\Billing\_DetailBilling.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\test.cshtml" />
+    <Content Include="Views\Billing\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

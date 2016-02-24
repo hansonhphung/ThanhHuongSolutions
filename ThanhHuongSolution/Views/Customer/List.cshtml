@@ -37,7 +37,7 @@
                         <td class="hidden-phone">{{customer.Address | limitTo:20}} {{customer.Address.length < 20 ? '' : '...'}}</td>
                         <td class="hidden-phone">{{customer.LiabilityAmount}} VND</td>
                         <td class="hidden-phone">
-                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Xem Lịch Sử</button>
+                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info" ng-click="customerHistory(customer.Id)">Xem Lịch Sử</button>
                         </td>
                         <td class="hidden-phone">
                             <button type="button" class="btn btn-default" ng-click="setVIPCustomer(customer.Id, customer.IsVIP)"><i ng-class="{ 'color-yellow': customer.IsVIP}" class="fa fa-star fa-lg"></i></button>
@@ -58,5 +58,6 @@
 </div>
 
 <script src="/Vendor/angular/angular.min.js"></script>
+<script src="/Vendor/angular-cookies/angular-cookies.js"></script>
 <script src="~/Scripts/Customer/CustomerController.js"></script>
 <script type="text/javascript" src="~/Scripts/CommonHelper/ChooseFileHelper.js"></script>

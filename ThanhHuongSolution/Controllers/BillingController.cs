@@ -54,5 +54,24 @@ namespace ThanhHuongSolution.Controllers
                 return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public async Task<ActionResult> History()
+        {
+            try
+            {
+                string customerId = Request.QueryString["id"];
+
+                var api = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
+
+                var data = await api.GetBillsByCustomerId(customerId);
+
+                return View(new ListBillingModel(data.Result));
+            }
+            catch (CustomException ex)
+            {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
+                return View();
+            }
+        }
     }
 }

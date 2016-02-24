@@ -1,5 +1,5 @@
-﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.bootstrap']);
-app.controller('CustomerController', function ($scope, toastr, $http) {
+﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.bootstrap', 'ngCookies']);
+app.controller('CustomerController', function ($scope, toastr, $location, $http, $cookieStore) {
 
     //Pagination
     $scope.pageIndex = 1;
@@ -76,6 +76,27 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
                 toastr.error('error at: ' + response.message);
             }
         });
+    }
+
+    $scope.customerHistory = function(customerId)
+    {
+        $scope.query = customerId;
+
+        location.href = "/Billing/History?id=" + customerId;
+
+        /*$http.post("/Billing/History", { query: $scope.query })
+        .success(function (response) {
+            if (response.isSuccess) {
+                var data = response.data;
+                alert("good");
+                location.href = "/Billing/History";
+            }
+            else {
+                //toastr.error('error at: ' + response.message);
+                //alert("bad");
+                location.href = "/Billing/History";
+            }
+        });*/
     }
 
     $scope.searchCustomer = function ()
