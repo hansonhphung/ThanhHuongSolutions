@@ -30,11 +30,10 @@ namespace ThanhHuongSolution.Controllers
                 var encryptPassword = HashUtility.CalculateMD5Hash(password);
 
                 var result = await userManagementService.Login(username, encryptPassword);
-
                 if (result)
                 {
                     SessionProvider.UserName = username;
-                    return Json(new { isSuccess = true, message = ""}, JsonRequestBehavior.AllowGet);
+                    return RedirectToAction("Index","Billing",new { area = ""});
                 }
 
                 TempData.AddNotification(NotificationType.Failure, UserManagementResources.USERNAME_PASS_INCORECT);
