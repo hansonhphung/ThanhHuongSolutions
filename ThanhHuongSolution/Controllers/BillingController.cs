@@ -7,6 +7,7 @@ using ThanhHuongSolution.Extension;
 using ThanhHuongSolution.Notification;
 using ThanhHuongSolution.Security;
 using ThanhHuongSolution.Common.Infrastrucure.Model;
+using ThanhHuongSolution.Models.Billing;
 
 namespace ThanhHuongSolution.Controllers
 {
@@ -15,7 +16,14 @@ namespace ThanhHuongSolution.Controllers
     {
         public ActionResult Index()
         {
-            return View("List");
+            return RedirectToAction("List");
+        }
+
+        public ActionResult List(string id)
+        {
+            if (Check.IsNullOrEmpty(id))
+                id = "";
+            return View(new BillingCustomerModel(id));
         }
 
         public async Task<ActionResult> Search(string customerId, string query, Pagination pagination)
@@ -32,25 +40,6 @@ namespace ThanhHuongSolution.Controllers
             {
                 TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        public async Task<ActionResult> History()
-        {
-            try
-            {
-                string customerId = Request.QueryString["id"];
-
-                var api = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
-
-                var data = await api.GetBillsByCustomerId(customerId);
-
-                return View(new ListBillingModel(data.Result));
-            }
-            catch (CustomException ex)
-            {
-                TempData.AddNotification(NotificationType.Failure, ex.Message);
-                return View();
             }
         }
     }

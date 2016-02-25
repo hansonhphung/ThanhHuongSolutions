@@ -82,21 +82,7 @@ app.controller('CustomerController', function ($scope, toastr, $location, $http,
     {
         $scope.query = customerId;
 
-        location.href = "/Billing/History?id=" + customerId;
-
-        /*$http.post("/Billing/History", { query: $scope.query })
-        .success(function (response) {
-            if (response.isSuccess) {
-                var data = response.data;
-                alert("good");
-                location.href = "/Billing/History";
-            }
-            else {
-                //toastr.error('error at: ' + response.message);
-                //alert("bad");
-                location.href = "/Billing/History";
-            }
-        });*/
+        location.href = "/Billing/List?id=" + customerId;
     }
 
     $scope.searchCustomer = function ()
