@@ -42,7 +42,7 @@
                         <td class="hidden-phone">
                             <button type="button" class="btn btn-default" ng-click="setVIPCustomer(customer.Id, customer.IsVIP)"><i ng-class="{ 'color-yellow': customer.IsVIP}" class="fa fa-star fa-lg"></i></button>
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#detailCustomerFormModal" ng-click="viewCustomer(customer.Id)"><i class="fa fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger" ng-click="deleteCustomer(customer.Id)"><i class="fa fa-trash-o"></i></button>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletePrompt" ng-click="promptDeleteCustomer(customer.Id)"><i class="fa fa-trash-o"></i></button>                            
                         </td>
                     </tr>
                 </tbody>
@@ -53,6 +53,7 @@
                 </div>
             </div>
             @Html.Partial("_DetailCustomer")
+            @Html.Partial("_Prompt")
         </div>
     </section>
 </div>

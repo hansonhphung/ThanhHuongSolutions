@@ -108,18 +108,31 @@ app.controller('CustomerController', function ($scope, toastr, $location, $http,
         }
     }
 
-    $scope.deleteCustomer = function (customerId)
+    $scope.promptDeleteCustomer = function(customerId)
     {
-        $http.post("/Customer/Delete", { customerId: customerId})
-        .success(function (response) {
-            if (response.isSuccess) {
-                $scope.search();
-                toastr.success('Xoá khách hàng thành công');
-            }
-            else {
-                toastr.error('error at: ' + response.message);
-            }
-        });
+        $scope.customerIdtoDelete = customerId;
+    }
+
+    $scope.deleteCustomer = function (customerId, accept)
+    {
+        if (accept == true)
+        {
+            $http.post("/Customer/Delete", { customerId: customerId })
+            .success(function (response) {
+                if (response.isSuccess) {
+                    $scope.search();
+                    toastr.success('Xoá khách hàng thành công');
+                }
+                else {
+                    toastr.error('error at: ' + response.message);
+                }
+            });
+        }
+        else
+        {
+            $scope.customerIdtoDelete = '';
+        }
+        
     }
 
     $scope.setVIPCustomer = function (customerId, isVIP) {
