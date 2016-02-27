@@ -1,8 +1,8 @@
 ﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.mask', 'ui.bootstrap']);
 
-app.controller('BillingController', function ($scope, toastr, $http) {
+app.controller('BillingController', function ($scope, toastr, $location, $http) {
 
-    $scope.init = function () {
+    $scope.init = function (data) {
         $scope.pageIndex = 1;
         $scope.recordPerPage = 5;
         $scope.maxSize = 5;
@@ -10,10 +10,11 @@ app.controller('BillingController', function ($scope, toastr, $http) {
         $scope.sortBy = 'CreatedAt';
         $scope.sortDirection = false;
         $scope.isSearchName = false;
+        $scope.searchCustomerId = data.CustomerId;
         $scope.query = '';
         //$scope.currentIndex = 1;
 
-        $http.post("/Billing/Search", { customerId: '', query: '', pagination: { PageIndex: $scope.pageIndex, PageSize: $scope.recordPerPage, SortBy: $scope.sortBy, SortDirection: $scope.sortDirection } }, {
+        $http.post("/Billing/Search", { customerId: $scope.searchCustomerId, query: '', pagination: { PageIndex: $scope.pageIndex, PageSize: $scope.recordPerPage, SortBy: $scope.sortBy, SortDirection: $scope.sortDirection } }, {
         }).success(function (response) {
             $scope.bills = response.data.LstBilling;
             $scope.totalBillings = response.data.TotalItem;
@@ -23,7 +24,9 @@ app.controller('BillingController', function ($scope, toastr, $http) {
     }
 
     $scope.search = function () {
-        $http.post("/Billing/Search", { customerId: '', query: $scope.query, pagination: { PageIndex: $scope.pageIndex, PageSize: $scope.recordPerPage, SortBy: $scope.sortBy, SortDirection: $scope.sortDirection } }, {
+
+
+        $http.post("/Billing/Search", { customerId: $scope.searchCustomerId, query: $scope.query, pagination: { PageIndex: $scope.pageIndex, PageSize: $scope.recordPerPage, SortBy: $scope.sortBy, SortDirection: $scope.sortDirection } }, {
         }).success(function (response) {
             if (response.isSuccess) {
                 var data = response.data.LstBilling;

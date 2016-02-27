@@ -1,5 +1,5 @@
-﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.bootstrap']);
-app.controller('CustomerController', function ($scope, toastr, $http) {
+﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.bootstrap', 'ngCookies']);
+app.controller('CustomerController', function ($scope, toastr, $location, $http, $cookieStore) {
 
     //Pagination
     $scope.pageIndex = 1;
@@ -78,6 +78,13 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
         });
     }
 
+    $scope.customerHistory = function(customerId)
+    {
+        $scope.query = customerId;
+
+        location.href = "/Billing/List?id=" + customerId;
+    }
+
     $scope.searchCustomer = function ()
     {
         $scope.customers = [];
@@ -101,18 +108,31 @@ app.controller('CustomerController', function ($scope, toastr, $http) {
         }
     }
 
-    $scope.deleteCustomer = function (customerId)
+    $scope.promptDeleteCustomer = function(customerId)
     {
-        $http.post("/Customer/Delete", { customerId: customerId})
-        .success(function (response) {
-            if (response.isSuccess) {
-                $scope.search();
-                toastr.success('Xoá khách hàng thành công');
-            }
-            else {
-                toastr.error('error at: ' + response.message);
-            }
-        });
+        $scope.customerIdtoDelete = customerId;
+    }
+
+    $scope.deleteCustomer = function (customerId, accept)
+    {
+        if (accept == true)
+        {
+            $http.post("/Customer/Delete", { customerId: customerId })
+            .success(function (response) {
+                if (response.isSuccess) {
+                    $scope.search();
+                    toastr.success('Xoá khách hàng thành công');
+                }
+                else {
+                    toastr.error('error at: ' + response.message);
+                }
+            });
+        }
+        else
+        {
+            $scope.customerIdtoDelete = '';
+        }
+        
     }
 
     $scope.setVIPCustomer = function (customerId, isVIP) {
