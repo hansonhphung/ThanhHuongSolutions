@@ -13,6 +13,7 @@ using ThanhHuongSolution.Common.MongoDBDataAccess.Entity;
 using ThanhHuongSolution.Common.MongoDBDataAccess.Interface;
 using ThanhHuongSolution.Extension;
 using ThanhHuongSolution.Models.Product;
+using ThanhHuongSolution.Models.Selling;
 using ThanhHuongSolution.Notification;
 using ThanhHuongSolution.Product.Domain.Entity;
 using ThanhHuongSolution.Product.Domain.Interfaces;
@@ -44,6 +45,24 @@ namespace ThanhHuongSolution.Controllers
             {
                 TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return View();
+            }
+        }
+
+        public async Task<ActionResult> GetAllProduct()
+        {
+            try
+            {
+                var productAPI = WebContainer.Instance.ResolveAPI<IProductManagementAPI>();
+
+                var productData = await productAPI.GetAllProduct();
+
+                var lstProductInfo = productData.Result.Select(x => new ProductInfoModel(x.Id, x.TrackingNumber, x.Name, x.WholesalePrice, x.RetailPrice, x.Number)).ToList();
+
+                return Json( new { isSuccess = true, data = lstProductInfo}, JsonRequestBehavior.AllowGet);
+            }
+            catch (CustomException ex)
+            {
+                return Json(new { isSuccess = false, message = ex.Message}, JsonRequestBehavior.AllowGet);
             }
         }
 
