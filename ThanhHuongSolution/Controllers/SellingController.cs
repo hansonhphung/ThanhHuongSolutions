@@ -17,6 +17,7 @@ using ThanhHuongSolution.Common.MongoDBDataAccess.Interface;
 using ThanhHuongSolution.Common.MongoDBDataAccess.Entity;
 using ThanhHuongSolution.BillingManagement.Domain.Interface;
 using ThanhHuongSolution.Security;
+using ThanhHuongSolution.Product.Domain.Model;
 
 namespace ThanhHuongSolution.Controllers
 {
@@ -75,6 +76,24 @@ namespace ThanhHuongSolution.Controllers
             }
             catch (CustomException ex)
             {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
+                return Json(new { isSuccess = false, message = ex.Message}, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public async Task<ActionResult> UpdateListSellingProduct(IList<UpdatedSellingProductInfo> lstProductInfo)
+        {
+            try
+            {
+                var productAPI = WebContainer.Instance.ResolveAPI<IProductManagementAPI>();
+
+                var result = await productAPI.UpdateListProductNumber(new FrameworkParamInput<IList<UpdatedSellingProductInfo>>(lstProductInfo));
+
+                return Json(new { isSuccess = true, message = ""}, JsonRequestBehavior.AllowGet);
+            }
+            catch (CustomException ex)
+            {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return Json(new { isSuccess = false, message = ex.Message}, JsonRequestBehavior.AllowGet);
             }
         }

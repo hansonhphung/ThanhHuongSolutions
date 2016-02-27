@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ThanhHuongSolution.Common.Infrastrucure;
@@ -8,6 +9,7 @@ using ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess;
 using ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess.Entity;
 using ThanhHuongSolution.Product.Domain.Entity;
 using ThanhHuongSolution.Product.Domain.Interfaces;
+using ThanhHuongSolution.Product.Domain.Model;
 
 namespace ThanhHuongSolution.Product.MongoDBDataAccess
 {
@@ -117,6 +119,19 @@ namespace ThanhHuongSolution.Product.MongoDBDataAccess
             product.UpdatedAt = DateTime.UtcNow;
 
             await collection.ReplaceOneAsync(x => x.Id == product.Id, product);
+
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> UpdateProductNumber(UpdatedSellingProductInfo productInfo)
+        {
+            var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
+
+            var collection = dbContext.GetCollection<MDProduct>(MongoDBEntityNames.ProductCollection.TableName);
+
+            var update = Builders<MDProduct>.Update.Set(x => x.UpdatedAt, DateTime.UtcNow).Set(y => y.Number, productInfo.ProductRemainingNumber);
+
+            await collection.UpdateOneAsync(x => x.TrackingNumber == productInfo.ProductTrackingNumber, update);
 
             return await Task.FromResult(true);
         }

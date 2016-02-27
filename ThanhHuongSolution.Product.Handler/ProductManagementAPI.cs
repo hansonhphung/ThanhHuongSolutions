@@ -148,5 +148,23 @@ namespace ThanhHuongSolution.Product.Handler
                 throw new CustomException(ex);
             }
         }
+
+        public async Task<FrameworkParamOutput<bool>> UpdateListProductNumber(FrameworkParamInput<IList<UpdatedSellingProductInfo>> input)
+        {
+            try
+            {
+                var request = input.Request;
+
+                var services = _objectContainer.Get<IProductManagementServices>();
+
+                var data = await services.UpdateListProductNumber(request);
+
+                return await Task.FromResult(new FrameworkParamOutput<bool>(data));
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex);
+            }
+        }
     }
 }

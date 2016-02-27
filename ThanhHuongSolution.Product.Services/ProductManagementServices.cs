@@ -122,5 +122,19 @@ namespace ThanhHuongSolution.Product.Services
 
             return await Task.FromResult(data);
         }
+
+        public async Task<bool> UpdateListProductNumber(IList<UpdatedSellingProductInfo> lstProductInfo)
+        {
+            var repository = _objectContainer.Get<IProductManagementRepository>();
+
+            foreach (var productInfo in lstProductInfo)
+            {
+                Check.ThrowExceptionIfLessThanZero(productInfo.ProductRemainingNumber, ProductManagementResources.NUMBER_LESS_THAN_ZERO);
+
+                var data = await repository.UpdateProductNumber(productInfo);
+            }
+
+            return await Task.FromResult(true);
+        }
     }
 }
