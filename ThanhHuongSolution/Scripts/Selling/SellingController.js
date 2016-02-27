@@ -3,12 +3,99 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
     $scope.shoppingCart = [];
     $scope.pagingSource = [];
+    $scope.needUpdateProduct = [];
 
     $scope.maxSize = 1;
     $scope.recordPerPage = 1;
     $scope.pageIndex = 1;
     $scope.totalAmount = 0;
     $scope.payAmount = 0;
+
+    // Declare a proxy to reference the hub.
+    var signalRHub = $.connection.signalRHub;
+    // Create a function that the hub can call to broadcast messages.
+    signalRHub.client.broadcastMessage = function () {
+    
+        $http.post("/Product/GetAllProduct")
+        .success(function (response) {
+            $scope.lstProduct = response.data.LstProduct;
+            toastr.success("Dữ liệu được cập nhật lại.");
+        });
+    };
+
+    $.connection.hub.start().done(function () { // start hub
+
+        $scope.createBilling = function () {
+            if ($scope.selectedCustomer == null) {
+                toastr.warning("Vui lòng chọn khách hàng.");
+                return;
+            }
+
+            if ($scope.shoppingCart.length == 0) {
+                toastr.warning("Hoá đơn chưa có mặt hàng.");
+                return;
+            }
+
+
+            for (var i = 0; i < $scope.pagingSource.length; i++)
+            {
+                for (var j = 0; j < $scope.lstProduct.length; j++) {
+                    if ($scope.pagingSource[i].TrackingNumber == $scope.lstProduct[j].TrackingNumber) {
+                        if ($scope.pagingSource[i].Number > $scope.lstProduct[j].Number) {
+                            toastr.error("Số lượng còn lại của mặt hàng " + $scope.pagingSource[i].Name + " không đủ. Còn tồn " + $scope.lstProduct[j].Number);
+                            return;
+                        }
+
+                        $scope.needUpdateProduct.push({ ProductTrackingNumber: $scope.pagingSource[i].TrackingNumber, ProductRemainingNumber: $scope.lstProduct[j].Number - $scope.pagingSource[i].Number });
+                    }
+                }
+            }
+
+            $http.post("/Selling/UpdateListSellingProduct", { lstProductInfo: $scope.needUpdateProduct }, {
+            }).success(function (response) {
+                if (response.isSuccess) {
+
+                    var form = new FormData();
+                    form.append("Customer.CustomerId", $scope.selectedCustomer.CustomerId);
+                    form.append("Customer.CustomerTrackingNumber", $scope.selectedCustomer.CustomerTrackingNumber);
+                    form.append("Customer.CustomerName", $scope.selectedCustomer.CustomerName);
+
+                    if ($scope.pagingSource != null && $scope.pagingSource.length > 0) {
+                        for (var i = 0; i < $scope.pagingSource.length; i++) {
+                            form.append("Cart[" + i + "].ProductTrackingNumber", $scope.pagingSource[i].TrackingNumber);
+                            form.append("Cart[" + i + "].ProductName", $scope.pagingSource[i].Name);
+                            form.append("Cart[" + i + "].Number", $scope.pagingSource[i].Number);
+                            form.append("Cart[" + i + "].Price", $scope.pagingSource[i].TotalPrice);
+                        }
+                    }
+
+                    form.append("TotalAmount", $scope.totalAmount);
+
+                    $http.post("/Selling/CreateBilling", form, {
+                        withCredentials: true,
+                        headers: { 'Content-Type': undefined },
+                        transformRequest: angular.identity
+                    }).success(function (response) {
+                        if (response.isSuccess) {
+
+
+
+                            toastr.success('Tạo hoá đơn thành công');
+                            $scope.initData();
+                        }
+                        else {
+                            toastr.error('error at: ' + response.message);
+                        }
+                    });
+                }
+                else {
+                    toastr.error('error at: ' + response.message);
+                }
+            });
+
+            signalRHub.server.send();
+        }
+    });
 
     $scope.init = function (data)
     {
@@ -57,6 +144,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
             {
                 $scope.pagingSource[i].Number += $scope.number;
                 isExist = true;
+                break;
             }
         }
 
@@ -80,7 +168,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
         $scope.updatePagingConfig();
         $scope.onChangePageIndex();
-    }
+      }
 
     $scope.deleteItemInCart = function (trackingNumber)
     {
@@ -120,9 +208,13 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
         $scope.retailPrice = $scope.selectedProduct.RetailPrice;
 
-        $scope.totalPrice = 0;
+        $scope.totalAmount = 0;
 
         $scope.number = 0;
+
+        $scope.liabilityAmount = 0;
+
+        $scope.payAmount = 0;
     }
 
     $scope.cancel = function ()
@@ -171,6 +263,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
         }
     }
 
+    /*
     $scope.createBilling = function ()
     {
         if ($scope.selectedCustomer == null)
@@ -217,4 +310,5 @@ app.controller('SellingController', function ($scope, toastr, $http) {
             }
         });
     }
+    */
 });
