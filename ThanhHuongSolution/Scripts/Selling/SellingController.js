@@ -18,7 +18,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
     
         $http.post("/Product/GetAllProduct")
         .success(function (response) {
-            $scope.lstProduct = response.data.LstProduct;
+            $scope.lstProduct = response.data;
             toastr.success("Dữ liệu được cập nhật lại.");
         });
     };
