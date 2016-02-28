@@ -311,8 +311,8 @@
     <Content Include="Views\Selling\_DetailSelling.cshtml" />
     <Content Include="Views\Billing\_DetailBilling.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Billing\History.cshtml" />
     <Content Include="Views\Customer\_Prompt.cshtml" />
+    <Content Include="Views\Shared\_LayoutSignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
