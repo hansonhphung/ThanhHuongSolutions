@@ -11,6 +11,8 @@ app.controller('SellingController', function ($scope, toastr, $http) {
     $scope.totalAmount = 0;
     $scope.payAmount = 0;
 
+    $scope.retailPriceChoosen = true;
+
     // Declare a proxy to reference the hub.
     var signalRHub = $.connection.signalRHub;
     // Create a function that the hub can call to broadcast messages.
@@ -134,7 +136,15 @@ app.controller('SellingController', function ($scope, toastr, $http) {
             return;
         }
 
-        var price = $scope.wholesalePrice; // price of per item
+        var price = 0;
+        if ($scope.retailPriceChoosen == true)
+        {
+            price = $scope.retailPrice; // price of per item
+        }
+        else
+        {
+            price = $scope.wholesalePrice; // price of per item
+        } 
 
         var isExist = false;
 
@@ -143,6 +153,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
             if ($scope.pagingSource[i].TrackingNumber == $scope.selectedProduct.TrackingNumber) //already in cart
             {
                 $scope.pagingSource[i].Number += $scope.number;
+                $scope.pagingSource[i].TotalPrice += price * $scope.number;
                 isExist = true;
                 break;
             }
@@ -150,6 +161,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
         if (!isExist)
         {
+            alert("Yes");
             $scope.pagingSource.push({ TrackingNumber: $scope.selectedProduct.TrackingNumber, Name: $scope.selectedProduct.Name, Number: $scope.number, TotalPrice: price * $scope.number });
         }
 
