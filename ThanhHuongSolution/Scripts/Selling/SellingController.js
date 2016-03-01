@@ -25,6 +25,29 @@ app.controller('SellingController', function ($scope, toastr, $http) {
         });
     };
 
+    signalRHub.client.updatePrice = function () {
+        $http.post("/Product/GetAllProduct")
+        .success(function (response) {
+            $scope.lstProduct = response.data;
+
+            for (var i = 0; i < $scope.pagingSource.length; i++)
+            {
+                for(var j = 0; j < $scope.lstProduct.length; j++)
+                {
+                    if ($scope.pagingSource[i].TrackingNumber == $scope.lstProduct[i].TrackingNumber)
+                    {
+                        $scope.pagingSource[i].TotalPrice = $scope.pagingSource[i].Number * $scope.lstProduct[i].WholesalePrice;
+                        break;
+                    }
+                }
+            }
+
+            $scope.onChangePageIndex();
+
+            toastr.success("Dữ liệu được cập nhật lại.");
+        });
+    }
+
     $.connection.hub.start().done(function () { // start hub
 
         $scope.createBilling = function () {
@@ -80,10 +103,9 @@ app.controller('SellingController', function ($scope, toastr, $http) {
                     }).success(function (response) {
                         if (response.isSuccess) {
 
-
-
                             toastr.success('Tạo hoá đơn thành công');
                             $scope.initData();
+                            signalRHub.server.send();
                         }
                         else {
                             toastr.error('error at: ' + response.message);
@@ -94,8 +116,6 @@ app.controller('SellingController', function ($scope, toastr, $http) {
                     toastr.error('error at: ' + response.message);
                 }
             });
-
-            signalRHub.server.send();
         }
     });
 
@@ -161,7 +181,6 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
         if (!isExist)
         {
-            alert("Yes");
             $scope.pagingSource.push({ TrackingNumber: $scope.selectedProduct.TrackingNumber, Name: $scope.selectedProduct.Name, Number: $scope.number, TotalPrice: price * $scope.number });
         }
 

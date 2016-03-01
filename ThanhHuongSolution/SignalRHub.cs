@@ -19,5 +19,10 @@ namespace ThanhHuongSolution
         {
             Clients.All.broadcastMessage();
         }
+
+        public void SendToUpdatePrice()
+        {
+            Clients.All.updatePrice();
+        }
     }
 }

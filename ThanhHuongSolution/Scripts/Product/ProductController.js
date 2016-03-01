@@ -10,6 +10,51 @@ app.controller('ProductController', function ($scope, toastr, $http) {
     $scope.pagingSource = [];
     $scope.query = '';
 
+    // Declare a proxy to reference the hub.
+    var signalRHub = $.connection.signalRHub;
+    // Create a function that the hub can call to broadcast messages.
+    signalRHub.client.broadcastMessage = function () {
+    
+        $http.post("/Product/GetAllProduct")
+        .success(function (response) {
+            $scope.lstProduct = response.data;
+            toastr.success("Dữ liệu được cập nhật lại.");
+        });
+    };
+
+    $.connection.hub.start().done(function () { // start hub
+
+        $scope.saveProduct = function () {
+            var file = $('#productImage')[0];
+            var form = new FormData();
+            form.append("productImage", file.files[0]);
+            form.append("Id", $scope.productId);
+            form.append("TrackingNumber", $scope.trackingNumber);
+            form.append("Name", $scope.name);
+            form.append("Description", $scope.description);
+            form.append("UnitType", $scope.newSelectedUnitType.value);
+            form.append("ProductType", $scope.newSelectedProductType.value);
+            form.append("WholesalePrice", $scope.wholesalePrice);
+            form.append("RetailPrice", $scope.retailPrice);
+            form.append("Number", $scope.number);
+
+            $http.post("/Product/SaveProduct", form, {
+                withCredentials: true,
+                headers: { 'Content-Type': undefined },
+                transformRequest: angular.identity
+            }).success(function (response) {
+                if (response.isSuccess) {
+                    $scope.search();
+                    toastr.success('Lưu thông tin sản phẩm thành công');
+                    signalRHub.server.sendToUpdatePrice();
+                }
+                else {
+                    toastr.error('error at: ' + response.message);
+                }
+            });
+        }
+    });
+
     $scope.init = function (data) {
         $scope.availableProduct = data.LstProduct;
         $scope.pagingSource = $scope.availableProduct;
@@ -159,36 +204,6 @@ app.controller('ProductController', function ($scope, toastr, $http) {
 
             $scope.form_customer_details.$setPristine();
         }
-    }
-
-    $scope.saveProduct = function ()
-    {
-        var file = $('#productImage')[0];
-        var form = new FormData();
-        form.append("productImage", file.files[0]);
-        form.append("Id", $scope.productId);
-        form.append("TrackingNumber", $scope.trackingNumber);
-        form.append("Name", $scope.name);
-        form.append("Description", $scope.description);
-        form.append("UnitType", $scope.newSelectedUnitType.value);
-        form.append("ProductType", $scope.newSelectedProductType.value);
-        form.append("WholesalePrice", $scope.wholesalePrice);
-        form.append("RetailPrice", $scope.retailPrice);
-        form.append("Number", $scope.number);
-
-        $http.post("/Product/SaveProduct", form, {
-            withCredentials: true,
-            headers: { 'Content-Type': undefined },
-            transformRequest: angular.identity
-        }).success(function (response) {
-            if (response.isSuccess) {
-                $scope.search();
-                toastr.success('Lưu thông tin sản phẩm thành công');
-            }
-            else {
-                toastr.error('error at: ' + response.message);
-            }
-        });
     }
 
     $scope.chooseFile = function () {
