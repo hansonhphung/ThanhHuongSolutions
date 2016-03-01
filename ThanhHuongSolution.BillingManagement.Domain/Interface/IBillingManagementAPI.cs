@@ -15,8 +15,6 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
         Task<FrameworkParamOutput<BillingInfo>> GetBillById(FrameworkParamInput<string> input);
 
         Task<FrameworkParamOutput<BillingInfo>> GetBillByTrackingNumber(FrameworkParamInput<string> input);
-
-        Task<FrameworkParamOutput<IList<BillingInfo>>> GetBillsByCustomerId(string input);
 		
         Task<FrameworkParamOutput<SearchBillingResponse>> Search(SearchBillingRequest request);
     }

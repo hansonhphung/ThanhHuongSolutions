@@ -73,22 +73,6 @@ namespace ThanhHuongSolution.BillingManagement.Handler
             }
         }
 
-        public async Task<FrameworkParamOutput<IList<BillingInfo>>> GetBillsByCustomerId(string customerId)
-        {
-            try
-            {
-                var services = _objectContainer.Get<IBillingManagementServices>();
-
-                var data = await services.GetBillsByCustomerId(customerId);
-
-                return await Task.FromResult(new FrameworkParamOutput<IList<BillingInfo>>(data));
-            }
-            catch (CustomException ex)
-            {
-                throw new CustomException(ex);
-            }
-        }
-
         public async Task<FrameworkParamOutput<SearchBillingResponse>> Search(SearchBillingRequest request)
         {
             try
