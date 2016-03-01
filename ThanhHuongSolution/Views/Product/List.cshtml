@@ -45,7 +45,7 @@
                         <td class="hidden-phone">{{product.Number}}</td>
                         <td class="hidden-phone">
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#detailProductFormModal" ng-click="viewProduct(product.Id)"><i class="fa fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger" ng-click="deleteProduct(product.Id)"><i class="fa fa-trash-o"></i></button>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletePrompt" ng-click="promptDeleteProduct(product.Id)"><i class="fa fa-trash-o"></i></button>
                         </td>
                     </tr>
                 </tbody>                            
@@ -57,7 +57,7 @@
                 </div>
             </div>
                 @Html.Partial("_DetailProduct")
-
+                @Html.Partial("_Prompt")
             </div>
     </section>
 </div>

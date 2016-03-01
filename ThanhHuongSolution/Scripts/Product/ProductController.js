@@ -155,6 +155,10 @@ app.controller('ProductController', function ($scope, toastr, $http) {
         }
     }
 
+    $scope.promptDeleteProduct = function (productId) {
+        $scope.productIdtoDelete = productId;
+    }
+
     $scope.deleteProduct = function (productId)
     {
         $http.post("/Product/Delete", {productId : productId}).
