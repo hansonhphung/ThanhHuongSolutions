@@ -206,7 +206,7 @@ app.controller('ProductController', function ($scope, toastr, $http) {
             $scope.retailPrice = '';
             $scope.number = 0;
 
-            $scope.form_customer_details.$setPristine();
+            $scope.form_product_details.$setPristine();
         }
     }
 
