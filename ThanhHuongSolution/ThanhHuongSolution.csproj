@@ -209,6 +209,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DeptController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SellingController.cs" />
@@ -236,6 +237,25 @@
     <Content Include="Content\assets\custom\style.css" />
     <Content Include="Content\assets\nanoscroller\nanoscroller.css" />
     <Content Include="Content\assets\nanoscroller\nanoscroller.js" />
+    <Content Include="Content\assets\patterns\az_subtle.png" />
+    <Content Include="Content\assets\patterns\blizzard.png" />
+    <Content Include="Content\assets\patterns\bright_squares.png" />
+    <Content Include="Content\assets\patterns\denim.png" />
+    <Content Include="Content\assets\patterns\fancy_deboss.png" />
+    <Content Include="Content\assets\patterns\gray_jean.png" />
+    <Content Include="Content\assets\patterns\honey_im_subtle.png" />
+    <Content Include="Content\assets\patterns\linedpaper.png" />
+    <Content Include="Content\assets\patterns\linen.png" />
+    <Content Include="Content\assets\patterns\noisy_net.png" />
+    <Content Include="Content\assets\patterns\pw_maze_white.png" />
+    <Content Include="Content\assets\patterns\random_grey_variations.png" />
+    <Content Include="Content\assets\patterns\skin_side_up.png" />
+    <Content Include="Content\assets\patterns\stitched_wool.png" />
+    <Content Include="Content\assets\patterns\straws.png" />
+    <Content Include="Content\assets\patterns\subtle_grunge.png" />
+    <Content Include="Content\assets\patterns\textured_stripes.png" />
+    <Content Include="Content\assets\patterns\wild_oliva.png" />
+    <Content Include="Content\assets\patterns\worn_dots.png" />
     <Content Include="Images\!logged-user.jpg" />
     <Content Include="Images\image-placeholder.png" />
     <Content Include="Images\ThanhHuongLogo.png" />
@@ -253,12 +273,14 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include=".bowerrc" />
     <Content Include="bower.json" />
+    <Content Include="Content\assets\patterns\Thumbs.db" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\CommonHelper\ChooseFileHelper.js" />
     <Content Include="Scripts\CommonHelper\modernizr.js" />
     <Content Include="Scripts\CommonHelper\nanoscroller.js" />
     <Content Include="Scripts\CommonHelper\theme.js" />
     <Content Include="Scripts\Customer\CustomerController.js" />
+    <Content Include="Scripts\Dept\DeptController.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -313,6 +335,7 @@
     <Content Include="Views\Customer\_Prompt.cshtml" />
     <Content Include="Views\Shared\_LayoutSignIn.cshtml" />
     <Content Include="Views\Product\_Prompt.cshtml" />
+    <Content Include="Views\Dept\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
