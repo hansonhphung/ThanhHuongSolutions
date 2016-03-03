@@ -248,7 +248,7 @@ a:active {
 @media only screen and (min-width: 1200px) {
 	/* Layout Boxed - Body Tag */
 	html.boxed body {
-		background: url(../images/patterns/denim.png) repeat;
+		background: url(../patterns/denim.png) repeat;
 	}
 
 	/* Layout Boxed - Main Wrapper */

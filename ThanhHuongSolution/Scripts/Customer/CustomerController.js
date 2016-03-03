@@ -1,5 +1,5 @@
-﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.bootstrap', 'ngCookies']);
-app.controller('CustomerController', function ($scope, toastr, $location, $http, $cookieStore) {
+﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.bootstrap']);
+app.controller('CustomerController', function ($scope, toastr, $location, $http) {
 
     //Pagination
     $scope.pageIndex = 1;
