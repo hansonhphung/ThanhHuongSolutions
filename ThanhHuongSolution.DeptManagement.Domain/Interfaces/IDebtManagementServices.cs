@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThanhHuongSolution.Common.Infrastrucure.Model;
-using ThanhHuongSolution.DeptManagement.Domain.Entity;
+using ThanhHuongSolution.DeptManagement.Domain.Model;
 
 namespace ThanhHuongSolution.DeptManagement.Domain.Interfaces
 {
     public interface IDebtManagementServices
     {
-        Task<bool> CreateDept(MDDebt dept);
+        Task<bool> CreateDept(BaseDebtModel dept);
 
-        Task<MDDebt> GetDeptById(string deptId);
+        Task<BaseDebtModel> GetDeptById(string deptId);
 
-        Task<MDDebt> GetDeptByTrackingNumber(string trackingNumber);
+        Task<BaseDebtModel> GetDeptByTrackingNumber(string trackingNumber);
 
-        Task<IList<MDDebt>> Search(string customerId, string query, Pagination pagination);
+        Task<IList<BaseDebtModel>> Search(string customerId, string query, Pagination pagination);
 
         Task<long> Count(string customerId, string query);
     }

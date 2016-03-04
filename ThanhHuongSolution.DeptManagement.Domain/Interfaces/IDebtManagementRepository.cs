@@ -11,13 +11,13 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Interfaces
 {
     public interface IDebtManagementRepository
     {
-        Task<bool> CreateDept(Debt dept);
+        Task<bool> CreateDept(MDBaseDebt dept);
 
-        Task<Debt> GetDeptById(string deptId);
+        Task<MDBaseDebt> GetDeptById(string deptId);
 
-        Task<Debt> GetDeptByTrackingNumber(string trackingNumber);
+        Task<MDBaseDebt> GetDeptByTrackingNumber(string trackingNumber);
 
-        Task<IList<Debt>> Search(string customerId, string query, Pagination pagination);
+        Task<IList<MDBaseDebt>> Search(string customerId, string query, Pagination pagination);
 
         Task<long> Count(string customerId, string query);
     }

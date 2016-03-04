@@ -52,11 +52,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\DebtType.cs" />
+    <Compile Include="Entity\MDBaseDebt.cs" />
     <Compile Include="Entity\MDDebt.cs" />
+    <Compile Include="Entity\MDPaidDebt.cs" />
+    <Compile Include="Factory\GetEntityVisitor.cs" />
+    <Compile Include="Factory\GetModelVisitor.cs" />
+    <Compile Include="Factory\IGetEntityVisitor.cs" />
+    <Compile Include="Factory\IGetModelVisitor.cs" />
     <Compile Include="Interfaces\IDebtManagementAPI.cs" />
     <Compile Include="Interfaces\IDebtManagementRepository.cs" />
     <Compile Include="Interfaces\IDebtManagementServices.cs" />
-    <Compile Include="Model\Debt.cs" />
+    <Compile Include="Model\BaseDebtModel.cs" />
+    <Compile Include="Model\DebtInfo.cs" />
+    <Compile Include="Model\PaidDebtInfo.cs" />
     <Compile Include="Model\SearchDebtRequest.cs" />
     <Compile Include="Model\SearchDebtResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
