@@ -1,19 +1,17 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThanhHuongSolution.BillingManagement.Domain.Entity;
 
-namespace ThanhHuongSolution.DeptManagement.Domain.Entity
+namespace ThanhHuongSolution.DeptManagement.Domain.Model
 {
-    class MDDept
+    public class Dept
     {
-        public MDDept() { }
+        public Dept() { }
 
-        public MDDept(string id, string trackingNumber, STCustomer customer, long totalAmount, DateTime createdAt, string deptCreatedDate)
+        public Dept(string id, string trackingNumber, STCustomer customer, long totalAmount, DateTime createdAt, string deptCreatedDate)
         {
             Id = id;
             TrackingNumber = trackingNumber;
@@ -23,14 +21,12 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Entity
             DeptCreatedDate = deptCreatedDate;
         }
 
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
         public string TrackingNumber { get; set; }
 
         public STCustomer Customer { get; set; }
-
+        
         public long TotalAmount { get; set; }
 
         public DateTime CreatedAt { get; set; }
