@@ -64,6 +64,10 @@
       <Project>{5be18a13-a499-47a3-8292-a1789cce5bbf}</Project>
       <Name>ThanhHuongSolution.Customer.CompositionRoot</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.DeptManagement.CompositionRoot\ThanhHuongSolution.DebtManagement.CompositionRoot.csproj">
+      <Project>{718b3ece-0bcd-4a85-b8d6-c5a24f2a7a70}</Project>
+      <Name>ThanhHuongSolution.DebtManagement.CompositionRoot</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ThanhHuongSolution.Product.CompositionRoot\ThanhHuongSolution.Product.CompositionRoot.csproj">
       <Project>{33bc65de-a88e-4385-9163-0d9994130a06}</Project>
       <Name>ThanhHuongSolution.Product.CompositionRoot</Name>

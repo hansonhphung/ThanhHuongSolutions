@@ -1,5 +1,5 @@
-﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.bootstrap']);
-app.controller('DeptController', function ($scope, toastr, $location, $http){
+﻿var app = angular.module('ThanhHuongSolution', ['toastr');
+app.controller('DebtController', function ($scope, toastr, $http){
     
     //Pagination
     $scope.pageIndex = 1;
@@ -7,5 +7,15 @@ app.controller('DeptController', function ($scope, toastr, $location, $http){
     $scope.maxSize = 5;
     $scope.pagingSource = [];
     $scope.currentIndex = 1;
-    $scope.isSearchName = true
+    $scope.isSearchName = true;
+    $scope.mode = 'debt';
+
+    $scope.switchDebtMode = function ()
+    {
+        $scope.mode = 'debt';
+    }
+
+    $scope.switchPaidDebtMode = function () {
+        $scope.mode = 'paiddebt';
+    }
 });

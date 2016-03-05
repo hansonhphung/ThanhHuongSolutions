@@ -10,12 +10,12 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Interfaces
 {
     public interface IDebtManagementAPI
     {
-        Task<FrameworkParamOutput<bool>> CreateBill(FrameworkParamInput<BaseDebtModel> input);
+        Task<FrameworkParamOutput<bool>> CreateDebt(FrameworkParamInput<BaseDebtModel> input);
 
-        Task<FrameworkParamOutput<BaseDebtModel>> GetBillById(FrameworkParamInput<string> input);
+        Task<FrameworkParamOutput<BaseDebtModel>> GetDebtById(FrameworkParamInput<string> input);
 
-        Task<FrameworkParamOutput<BaseDebtModel>> GetBillByTrackingNumber(FrameworkParamInput<string> input);
+        Task<FrameworkParamOutput<BaseDebtModel>> GetDebtByTrackingNumber(FrameworkParamInput<string> input);
 
-        Task<FrameworkParamOutput<SearchDebtResponse>> Search(SearchDebtRequest request);
+        Task<FrameworkParamOutput<SearchDebtResponse>> Search(FrameworkParamInput<SearchDebtRequest> input);
     }
 }

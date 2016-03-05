@@ -40,8 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeptManagementAPI.cs" />
+    <Compile Include="DebtManagementAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastructure.csproj">
+      <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
+      <Name>ThanhHuongSolution.Common.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.DeptManagement.Domain\ThanhHuongSolution.DebtManagement.Domain.csproj">
+      <Project>{2df8c4b5-1f46-499d-b2ee-ef09b6e8ba91}</Project>
+      <Name>ThanhHuongSolution.DebtManagement.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

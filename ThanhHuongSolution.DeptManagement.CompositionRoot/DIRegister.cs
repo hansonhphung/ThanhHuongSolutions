@@ -14,17 +14,17 @@ namespace ThanhHuongSolution.DeptManagement.CompositionRoot
     {
         public static void RegisterRepositories(IObjectContainer objectContainer)
         {
-            objectContainer.BindFromAssemblyContainingEndsWith<DeptManagementRepository>("Repository");
+            objectContainer.BindFromAssemblyContainingEndsWith<DebtManagementRepository>("Repository");
         }
 
         public static void RegisterServices(IObjectContainer objectContainer)
         {
-            objectContainer.BindFromAssemblyContainingEndsWith<DeptManagementServices>("Services");
+            objectContainer.BindFromAssemblyContainingEndsWith<DebtManagementServices>("Services");
         }
 
         public static void RegisterAPIs(IObjectContainer objectContainer)
         {
-            objectContainer.BindFromAssemblyContainingEndsWith<DeptManagementAPI>("API");
+            objectContainer.BindFromAssemblyContainingEndsWith<DebtManagementAPI>("API");
         }
     }
 }

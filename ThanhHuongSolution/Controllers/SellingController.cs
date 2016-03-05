@@ -18,6 +18,8 @@ using ThanhHuongSolution.Common.MongoDBDataAccess.Entity;
 using ThanhHuongSolution.BillingManagement.Domain.Interface;
 using ThanhHuongSolution.Security;
 using ThanhHuongSolution.Product.Domain.Model;
+using ThanhHuongSolution.DeptManagement.Domain.Model;
+using ThanhHuongSolution.DeptManagement.Domain.Interfaces;
 
 namespace ThanhHuongSolution.Controllers
 {
@@ -95,6 +97,23 @@ namespace ThanhHuongSolution.Controllers
             {
                 TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return Json(new { isSuccess = false, message = ex.Message}, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public async Task<ActionResult> CreateDebt(DebtInfo debt)
+        {
+            try
+            {
+                var debtAPI = WebContainer.Instance.ResolveAPI<IDebtManagementAPI>();
+
+                var result = await debtAPI.CreateDebt(new FrameworkParamInput<BaseDebtModel>(debt));
+
+                return Json(new { isSuccess = true, message = "" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (CustomException ex)
+            {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
+                return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
     }

@@ -15,6 +15,7 @@ namespace ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess.Entity
         public static readonly MongoDBEntityNames ProductCollection = new MongoDBEntityNames() { TableName = "Products" };
         public static readonly MongoDBEntityNames BillingCollection = new MongoDBEntityNames() { TableName = "Billings" };
         public static readonly MongoDBEntityNames TrackingGeneratorCollection = new MongoDBEntityNames() { TableName = "TrackingNumberGenerator" };
+        public static readonly MongoDBEntityNames DebtCollection = new MongoDBEntityNames() { TableName = "Debts" };
 
         public override string ToString()
         {

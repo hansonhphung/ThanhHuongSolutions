@@ -135,6 +135,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.Customer.Domain.dll</HintPath>
     </Reference>
+    <Reference Include="ThanhHuongSolution.DeptManagement.CompositionRoot">
+      <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.DeptManagement.CompositionRoot.dll</HintPath>
+    </Reference>
+    <Reference Include="ThanhHuongSolution.DeptManagement.Domain">
+      <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.DeptManagement.Domain.dll</HintPath>
+    </Reference>
     <Reference Include="ThanhHuongSolution.Product.CompositionRoot">
       <HintPath>..\packages\Backend_dlls\ThanhHuongSolution.Product.CompositionRoot.dll</HintPath>
     </Reference>

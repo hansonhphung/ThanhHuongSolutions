@@ -22,7 +22,7 @@ namespace ThanhHuongSolution.Common.LocResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class BillManagementResources {
+    public class BillManagementResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ThanhHuongSolution.Common.LocResources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ThanhHuongSolution.Common.LocResources.BillManagementResources", typeof(BillManagementResources).Assembly);
@@ -51,7 +51,7 @@ namespace ThanhHuongSolution.Common.LocResources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,9 +63,18 @@ namespace ThanhHuongSolution.Common.LocResources {
         /// <summary>
         ///   Looks up a localized string similar to Mã hóa đơn này đã tồn tại..
         /// </summary>
-        internal static string BILL_EXIST {
+        public static string BILL_EXIST {
             get {
                 return ResourceManager.GetString("BILL_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã phiếu này đã tồn tại..
+        /// </summary>
+        public static string DEBT_EXIST {
+            get {
+                return ResourceManager.GetString("DEBT_EXIST", resourceCulture);
             }
         }
     }

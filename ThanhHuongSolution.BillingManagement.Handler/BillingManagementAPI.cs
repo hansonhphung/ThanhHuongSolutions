@@ -73,11 +73,13 @@ namespace ThanhHuongSolution.BillingManagement.Handler
             }
         }
 
-        public async Task<FrameworkParamOutput<SearchBillingResponse>> Search(SearchBillingRequest request)
+        public async Task<FrameworkParamOutput<SearchBillingResponse>> Search(FrameworkParamInput<SearchBillingRequest> input)
         {
             try
             {
                 var services = _objectContainer.Get<IBillingManagementServices>();
+
+                var request = input.Request;
 
                 var data = await services.Search(request.CustomerId, request.Query, request.Pagination);
 

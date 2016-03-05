@@ -104,6 +104,27 @@ app.controller('SellingController', function ($scope, toastr, $http) {
                         if (response.isSuccess) {
 
                             toastr.success('Tạo hoá đơn thành công');
+                            
+                            if ($scope.payAmount < $scope.totalAmount) //Need to create debt
+                            {
+                                var debt = {
+                                    Customer: {
+                                        CustomerId: $scope.selectedCustomer.CustomerId,
+                                        CustomerTrackingNumber: $scope.selectedCustomer.CustomerTrackingNumber,
+                                        CustomerName: $scope.selectedCustomer.CustomerName
+                                    },
+                                    TotalAmount: $scope.totalAmount - $scope.payAmount,
+                                    DebtCreatedDate : $scope.createBillDate
+                                };
+
+                                $http.post("/Selling/CreateDebt", { debt: debt }, {
+                                }).success(function (response) {
+
+                                    //update the DEBT of its customer by calling API to update customer DEBT
+
+                                });
+                            }
+
                             $scope.initData();
                             signalRHub.server.send();
                         }

@@ -120,4 +120,7 @@
   <data name="BILL_EXIST" xml:space="preserve">
     <value>Mã hóa đơn này đã tồn tại.</value>
   </data>
+  <data name="DEBT_EXIST" xml:space="preserve">
+    <value>Mã phiếu này đã tồn tại.</value>
+  </data>
 </root>

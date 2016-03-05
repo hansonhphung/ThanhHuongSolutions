@@ -32,7 +32,7 @@ namespace ThanhHuongSolution.Controllers
             {
                 var api = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
 
-                var data = await api.Search(new SearchBillingRequest(customerId, query, pagination));
+                var data = await api.Search(new FrameworkParamInput<SearchBillingRequest>(new SearchBillingRequest(customerId, query, pagination)));
 
                 return Json(new { isSuccess = true, data = data.Result }, JsonRequestBehavior.AllowGet);
             }

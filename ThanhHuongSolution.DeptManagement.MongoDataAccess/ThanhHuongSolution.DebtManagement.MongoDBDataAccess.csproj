@@ -30,6 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson, Version=2.1.0.145, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.1.0\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.1.0.145, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.1.0\lib\net45\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.1.0.145, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.1.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,8 +52,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeptManagementRepository.cs" />
+    <Compile Include="DebtManagementRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThanhHuongSolution.BillingManagement.Domain\ThanhHuongSolution.BillingManagement.Domain.csproj">
+      <Project>{85044d2a-0d23-4fed-98b4-b05181e5240d}</Project>
+      <Name>ThanhHuongSolution.BillingManagement.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.Common.Infrastrucure\ThanhHuongSolution.Common.Infrastructure.csproj">
+      <Project>{ef63555b-b10b-4854-bea8-4fe45d69c438}</Project>
+      <Name>ThanhHuongSolution.Common.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThanhHuongSolution.DeptManagement.Domain\ThanhHuongSolution.DebtManagement.Domain.csproj">
+      <Project>{2df8c4b5-1f46-499d-b2ee-ef09b6e8ba91}</Project>
+      <Name>ThanhHuongSolution.DebtManagement.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

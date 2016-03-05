@@ -13,7 +13,7 @@ namespace ThanhHuongSolution.BillingManagement.Services
 {
     public class BillingManagementServices : IBillingManagementServices
     {
-        IObjectContainer _objectContainer;
+        public IObjectContainer _objectContainer;
 
         public BillingManagementServices(IObjectContainer objectContainer)
         {
@@ -28,7 +28,7 @@ namespace ThanhHuongSolution.BillingManagement.Services
 
             var oldBill = await repository.GetBillByTrackingNumber(bill.TrackingNumber);
 
-            //Check.ThrowExceptionIfNotNull(oldBill, BillManagementResources.BILL_EXIST);
+            Check.ThrowExceptionIfNotNull(oldBill, BillManagementResources.BILL_EXIST);
 
             var result = await repository.CreateBill(mdBill);
 

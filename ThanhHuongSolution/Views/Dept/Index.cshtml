@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div ng-app="ThanhHuongSolution" ng-controller="DeptController">
+<div ng-app="ThanhHuongSolution" ng-controller="DebtController">
     <header class="page-header">
         <h2>Quản Lý Nợ</h2>
     </header>
@@ -12,14 +12,14 @@
         <div class="tabs">
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#popular" data-toggle="tab">Popular</a>
+                    <a data-toggle="tab" href="#" ng-click="switchDebtMode()">Popular</a>
                 </li>
                 <li>
-                    <a href="#recent" data-toggle="tab">Recent</a>
+                    <a data-toggle="tab" href="#" ng-click="switchPaidDebtMode()">Recent</a>
                 </li>
             </ul>
             <div class="tab-content">
-                <div id="popular" class="tab-pane active">
+                <div class="tab-pane active" ng-if="mode == 'debt'">
 
                     <div class="pull-right form-inline">
                         <a type="button" class="btn btn-success" href="/Selling/Index"><i class="fa fa-user-plus"></i>Tạo Hóa Đơn</a>
@@ -28,13 +28,6 @@
                             <input type="text" class="form-control" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="button" ng-click="changeSearchMode()"><i class="fa fa-sort-alpha-asc"></i></button>
-                            </span>
-                        </div>
-
-                        <div class="input-group" ng-show="isSearchName == false">
-                            <input type="text" id="search_date" ui-mask="99/99/9999" model-view-value="true" ui-mask-placeholder class="form-control" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
-                            <span class="input-group-btn">
-                                <button class="btn btn-success" type="button" ng-click="changeSearchMode()"><i class="fa fa-calendar"></i></button>
                             </span>
                         </div>
 
@@ -82,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="recent" class="tab-pane">
+                <div class="tab-pane" ng-if="mode == 'paiddebt'">
 
                     <div class="row">
                         <div class="col-md-6">
