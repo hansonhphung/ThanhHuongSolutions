@@ -10,6 +10,11 @@ app.controller('DebtController', function ($scope, toastr, $http){
     $scope.isSearchName = true;
     $scope.mode = 'debt';
 
+    $scope.changeSearchMode = function()
+    {
+        $scope.isSearchName = !$scope.isSearchName;
+    }
+
     $scope.switchDebtMode = function ()
     {
         $scope.mode = 'debt';
