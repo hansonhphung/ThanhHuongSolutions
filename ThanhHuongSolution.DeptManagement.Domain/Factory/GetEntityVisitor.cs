@@ -12,16 +12,6 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Factory
     {
         public MDBaseDebt MDBaseDebt;
 
-        public Task<GetEntityVisitor> Visit(MDPaidDebt debt)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<GetEntityVisitor> Visit(MDDebt debt)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<GetEntityVisitor> Visit(PaidDebtInfo debt)
         {
             var mdPaidDebt = new MDPaidDebt()
@@ -41,7 +31,7 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Factory
 
         public async Task<GetEntityVisitor> Visit(DebtInfo debt)
         {
-            var mdDebt = new MDPaidDebt()
+            var mdDebt = new MDDebt()
             {
                 Id = debt.Id,
                 TrackingNumber = debt.TrackingNumber,
