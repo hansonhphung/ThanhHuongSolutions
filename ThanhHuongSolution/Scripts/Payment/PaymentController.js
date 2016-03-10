@@ -1,4 +1,4 @@
-﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.bootstrap']);
+﻿var app = angular.module('ThanhHuongSolution', ['toastr']);
 app.controller('PaymentController', function ($scope, toastr, $http) {
 
     //Pagination
@@ -8,22 +8,9 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
     $scope.pagingSource = [];
     $scope.currentIndex = 1;
     $scope.isSearchName = true;
-    $scope.mode = 'debt';
 
     $scope.changeSearchMode = function () {
         $scope.isSearchName = !$scope.isSearchName;
-    }
-
-    $scope.switchDebtMode = function () {
-        $scope.mode = 'debt';
-    }
-
-    $scope.switchPaidDebtMode = function () {
-        $scope.mode = 'paiddebt';
-    }
-
-    $scope.createPayDebt = function () {
-
     }
 
     $scope.updateCustomerDept = function () {
@@ -33,8 +20,9 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
         var form = new FromData();
         form.append("Id", $scope.customerId);
         form.append("DebtAmount", $scope.debtAmount);
+        form.append("IsIncDebt", false);
 
-        $http.post("/Customer/UpdateCustomerDept", from, {
+        $http.post("/Customer/UpdateCustomerDebt", from, {
             withCredentials: true,
             headers: { 'Content-Type': undefined },
             transformRequest: angular.identity
