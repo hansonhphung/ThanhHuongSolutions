@@ -1,4 +1,4 @@
-﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.bootstrap']);
+﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.select', 'ui.bootstrap']);
 app.controller('PaymentController', function ($scope, toastr, $http) {
 
     //Pagination
@@ -14,27 +14,28 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
         $scope.isSearchName = !$scope.isSearchName;
     }
 
-    $scope.switchDebtMode = function () {
-        $scope.mode = 'debt';
+    $scope.init = function (data)
+    {
+        $scope.lstCustomer = data.LstCustomer;
+
+        $scope.selectedCustomer = $scope.lstCustomer[0];
     }
 
-    $scope.switchPaidDebtMode = function () {
-        $scope.mode = 'paiddebt';
-    }
-
-    $scope.createPayDebt = function () {
-
+    $scope.selectCustomer = function (selectedCustomer)
+    {
+        $scope.selectedCustomer = selectedCustomer;
     }
 
     $scope.updateCustomerDept = function () {
 
-        $scope.query = '';
+        $scope.customerId = "56c772a4c185aa0c98ab251d";
+        $scope.debtAmount = '2000000';
 
-        var form = new FromData();
+        var form = new FormData();
         form.append("Id", $scope.customerId);
         form.append("DebtAmount", $scope.debtAmount);
 
-        $http.post("/Customer/UpdateCustomerDept", from, {
+        $http.post("/Customer/UpdateCustomerDebt", form, {
             withCredentials: true,
             headers: { 'Content-Type': undefined },
             transformRequest: angular.identity
