@@ -1,4 +1,4 @@
-﻿var app = angular.module('ThanhHuongSolution', ['toastr']);
+var app = angular.module('ThanhHuongSolution', ['toastr','ui.select']);
 app.controller('PaymentController', function ($scope, toastr, $http) {
 
     //Pagination
@@ -9,15 +9,24 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
     $scope.currentIndex = 1;
     $scope.isSearchName = true;
 
-    $scope.changeSearchMode = function () {
-        $scope.isSearchName = !$scope.isSearchName;
+    $scope.init = function (data)
+    {
+        $scope.lstCustomer = data.LstCustomer;
+
+        $scope.selectedCustomer = $scope.lstCustomer[0];
+    }
+
+    $scope.selectCustomer = function (selectedCustomer)
+    {
+        $scope.selectedCustomer = selectedCustomer;
     }
 
     $scope.updateCustomerDept = function () {
 
-        $scope.query = '';
+        $scope.customerId = "56c772a4c185aa0c98ab251d";
+        $scope.debtAmount = '2000000';
 
-        var form = new FromData();
+        var form = new FormData();
         form.append("Id", $scope.customerId);
         form.append("DebtAmount", $scope.debtAmount);
         form.append("IsIncDebt", false);

@@ -1,23 +1,31 @@
-﻿@{
+﻿@using ThanhHuongSolution.Models.Selling;
+@model PaymentInformationModel
+
+@{
     ViewBag.Title = "Thanh Toán Nợ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
 
 <div ng-app="ThanhHuongSolution" ng-controller="PaymentController">
     <header class="page-header">
         <h2>Thanh Toán Nợ</h2>
     </header>
 
-    <div class="panel-body">
-
+    <div class="panel-body" ng-init="init(@Json.Encode(Model))">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Khách Hàng <span class="required">*</span></label>
                     <div class="col-sm-8">
-                        <input type="number" class="form-control" />
+                        <ui-select ng-model="selectedCustomer" theme="bootstrap" on-select="selectCustomer(selectedCustomer)">
+                            <ui-select-match placeholder="Chọn khách hàng...">
+                                {{selectedCustomer.CustomerName | limitTo:25}} {{selectedCustomer.CustomerName.length < 25 ? '' : '...'}}
+                            </ui-select-match>
+
+                            <ui-select-choices repeat="customer in lstCustomer | filter: $select.search">
+                                {{customer.CustomerName}}
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
                 </div>
 
@@ -52,7 +60,7 @@
     <footer class="panel-footer">
         <div class="row">
             <div class="col-sm-12 center">
-                <button class="btn btn-success">Lập Phiếu</button>
+                <button class="btn btn-success" ng-click="updateCustomerDept()">Lập Phiếu</button>
                 <button type="reset" class="btn btn-default">Hủy Bỏ</button>
             </div>
         </div>

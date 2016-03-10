@@ -229,6 +229,7 @@
     <Compile Include="Models\Customer\ListCustomerModel.cs" />
     <Compile Include="Models\Product\ListProductModel.cs" />
     <Compile Include="Models\Selling\CustomerInfoModel.cs" />
+    <Compile Include="Models\Selling\PaymentInformationModel.cs" />
     <Compile Include="Models\Selling\ProductInfoModel.cs" />
     <Compile Include="Models\Selling\SellingInformationModel.cs" />
     <Compile Include="Notification\NotificationCollection.cs" />
@@ -350,6 +351,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Customer\" />
+    <Folder Include="Models\Payment\" />
     <Folder Include="Vendor\" />
   </ItemGroup>
   <ItemGroup>
