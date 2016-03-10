@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ThanhHuongSolution.Common.Infrastrucure;
 using ThanhHuongSolution.Common.Infrastrucure.Model;
 using ThanhHuongSolution.Common.LocResources;
+using ThanhHuongSolution.DeptManagement.Domain.Entity;
 using ThanhHuongSolution.DeptManagement.Domain.Factory;
 using ThanhHuongSolution.DeptManagement.Domain.Interfaces;
 using ThanhHuongSolution.DeptManagement.Domain.Model;
@@ -64,11 +65,11 @@ namespace ThanhHuongSolution.DeptManagement.Services
             return await Task.FromResult(debt);
         }
 
-        public async Task<SearchDebtResponse> Search(string customerId, string query, Pagination pagination)
+        public async Task<SearchDebtResponse> Search(string customerId, string query, Pagination pagination, string debtType)
         {
             var repository = _objectContainer.Get<IDebtManagementRepository>();
 
-            var data = await repository.Search(customerId, query, pagination);
+            var data = await repository.Search(customerId, query, pagination, debtType);
 
             var result = new List<BaseDebtModel>();
 
@@ -79,7 +80,7 @@ namespace ThanhHuongSolution.DeptManagement.Services
                 result.Add(debt.Debt);
             }
 
-            var totalItem = await repository.Count(customerId, query);
+            var totalItem = await repository.Count(customerId, query, debtType);
 
             return await Task.FromResult(new SearchDebtResponse(totalItem, result));
         }

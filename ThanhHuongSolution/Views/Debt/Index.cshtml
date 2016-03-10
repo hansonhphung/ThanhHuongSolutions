@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Quản Lý Nợ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-app="ThanhHuongSolution" ng-controller="DebtController">
+    <header class="page-header">
+        <h2>Quản Lý Nợ</h2>
+    </header>
+
+    <div class="panel-body" ng-init="init()">
+
+        <div class="pull-right form-inline">
+            <a type="button" href="" class="btn btn-success" data-toggle="modal" data-target="#payDebtFormModal"><i class="fa fa-user-plus"></i>Thanh Toán Nợ</a>
+
+            <div class="input-group" ng-show="isSearchName == true">
+                <input type="text" class="form-control" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="button" ng-click="changeSearchMode()"><i class="fa fa-sort-alpha-asc"></i></button>
+                </span>
+            </div>
+
+            <div class="input-group" ng-show="isSearchName == false">
+                <input type="text" id="search_date" ui-mask="99/99/9999" model-view-value="true" ui-mask-placeholder class="form-control" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="button" ng-click="changeSearchMode()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+
+        </div>
+
+        <div class="tabs">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#" ng-click="switchDebtMode()">Popular</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#" ng-click="switchPaidDebtMode()">Recent</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane {{mode == 'DEBT' ? 'active' : ''}}">
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th>Mã Hóa Đơn</th>
+                                <th>Tên Khách Hàng</th>
+                                <th>Ngày Lập</th>
+                                <th>Thành Tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="gradeX" ng-repeat="debt in lstDebt">
+                                <td>{{debt.TrackingNumber}}</td>
+                                <td>{{debt.Customer.CustomerName}}</td>
+                                <td>{{debt.DebtCreatedDate}}</td>
+                                <td class="hidden-phone">{{debt.TotalAmount}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                    
+                <div class="pull-right form-inline">
+                    <div class="table-pagination">
+                        <uib-pagination boundary-links="true" total-items="totalDebts" ng-model="pageIndex" max-size="maxSize" class="pagination pagination-ru" rotate="false" items-per-page="recordPerPage" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_PayDebt")
+</div>
+<script src="/Vendor/angular/angular.min.js"></script>
+<script src="/Vendor/angular-ui-mask/dist/mask.js"></script>
+<script src="~/Scripts/Dept/DeptController.js"></script>

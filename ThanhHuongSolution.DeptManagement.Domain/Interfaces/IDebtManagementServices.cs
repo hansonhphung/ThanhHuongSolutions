@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThanhHuongSolution.Common.Infrastrucure.Model;
+using ThanhHuongSolution.DeptManagement.Domain.Entity;
 using ThanhHuongSolution.DeptManagement.Domain.Model;
 
 namespace ThanhHuongSolution.DeptManagement.Domain.Interfaces
@@ -16,6 +17,6 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Interfaces
 
         Task<BaseDebtModel> GetDebtByTrackingNumber(string trackingNumber);
 
-        Task<SearchDebtResponse> Search(string customerId, string query, Pagination pagination);
+        Task<SearchDebtResponse> Search(string customerId, string query, Pagination pagination, string debtType);
     }
 }

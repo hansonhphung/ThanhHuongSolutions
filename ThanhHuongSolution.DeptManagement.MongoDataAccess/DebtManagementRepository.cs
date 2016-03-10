@@ -62,7 +62,7 @@ namespace ThanhHuongSolution.DeptManagement.MongoDataAccess
             return await Task.FromResult<MDBaseDebt>(data);
         }
 
-        public async Task<IList<MDBaseDebt>> Search(string customerId, string query, Pagination pagination)
+        public async Task<IList<MDBaseDebt>> Search(string customerId, string query, Pagination pagination, string debtType)
         {
             var keyLower = query.ToLower();
 
@@ -72,12 +72,14 @@ namespace ThanhHuongSolution.DeptManagement.MongoDataAccess
 
             var builder = Builders<MDBaseDebt>.Filter;
 
-            var filterWithoutCustomerId = builder.Or(
-                builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
-                builder.Where(x => x.TrackingNumber.Contains(keyLower))),
-                builder.Or(builder.Regex(x => x.Customer.CustomerName, new BsonRegularExpression(keyLower, "i"))),
-                builder.Where(x => x.Customer.CustomerName.Contains(keyLower)),
-                builder.Where(x => x.DebtCreatedDate.Contains(keyLower))
+            var filterWithoutCustomerId = builder.And(
+                    builder.Or(
+                        builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
+                        builder.Where(x => x.TrackingNumber.Contains(keyLower))),
+                        builder.Or(builder.Regex(x => x.Customer.CustomerName, new BsonRegularExpression(keyLower, "i"))),
+                        builder.Where(x => x.Customer.CustomerName.Contains(keyLower)),
+                        builder.Where(x => x.DebtCreatedDate.Contains(keyLower))),
+                    builder.Eq("_t", debtType)
                 );
 
             var filterWithCustomerId = builder.And(
@@ -87,7 +89,8 @@ namespace ThanhHuongSolution.DeptManagement.MongoDataAccess
                     builder.Or(builder.Regex(x => x.Customer.CustomerName, new BsonRegularExpression(keyLower, "i")),
                     builder.Where(x => x.Customer.CustomerName.Contains(keyLower))),
                     builder.Where(x => x.DebtCreatedDate.Contains(keyLower))),
-                builder.Where(x => x.Customer.CustomerId.Equals(customerId)));
+                builder.Where(x => x.Customer.CustomerId.Equals(customerId)),
+                builder.Eq("_t", debtType));
             var sortBy = Builders<MDBaseDebt>.Sort.Descending(pagination.SortBy);
 
             List<MDBaseDebt> data = null;
@@ -108,22 +111,24 @@ namespace ThanhHuongSolution.DeptManagement.MongoDataAccess
             return await Task.FromResult(data);
         }
 
-        public async Task<long> Count(string customerId, string query)
+        public async Task<long> Count(string customerId, string query, string debtType)
         {
             var keyLower = query.ToLower();
 
             var dbContext = _readDataContextFactory.CreateMongoDBReadContext();
 
-            var collection = dbContext.GetCollection<MDBaseDebt>(MongoDBEntityNames.BillingCollection.TableName);
+            var collection = dbContext.GetCollection<MDBaseDebt>(MongoDBEntityNames.DebtCollection.TableName);
 
             var builder = Builders<MDBaseDebt>.Filter;
 
-            var filterWithoutCustomerId = builder.Or(
-                builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
-                builder.Where(x => x.TrackingNumber.Contains(keyLower))),
-                builder.Or(builder.Regex(x => x.Customer.CustomerName, new BsonRegularExpression(keyLower, "i"))),
-                builder.Where(x => x.Customer.CustomerName.Contains(keyLower)),
-                builder.Where(x => x.DebtCreatedDate.Contains(keyLower))
+            var filterWithoutCustomerId = builder.And(
+                    builder.Or(
+                        builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
+                        builder.Where(x => x.TrackingNumber.Contains(keyLower))),
+                        builder.Or(builder.Regex(x => x.Customer.CustomerName, new BsonRegularExpression(keyLower, "i"))),
+                        builder.Where(x => x.Customer.CustomerName.Contains(keyLower)),
+                        builder.Where(x => x.DebtCreatedDate.Contains(keyLower))),
+                    builder.Eq("_t", debtType)
                 );
 
             var filterWithCustomerId = builder.And(
@@ -133,7 +138,8 @@ namespace ThanhHuongSolution.DeptManagement.MongoDataAccess
                     builder.Or(builder.Regex(x => x.Customer.CustomerName, new BsonRegularExpression(keyLower, "i")),
                     builder.Where(x => x.Customer.CustomerName.Contains(keyLower))),
                     builder.Where(x => x.DebtCreatedDate.Contains(keyLower))),
-                builder.Where(x => x.Customer.CustomerId.Equals(customerId)));
+                builder.Where(x => x.Customer.CustomerId.Equals(customerId)),
+                builder.Eq("_t", debtType));
 
             long count = 0;
 

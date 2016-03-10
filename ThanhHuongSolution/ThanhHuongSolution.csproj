@@ -215,7 +215,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Controllers\DeptController.cs" />
+    <Compile Include="Controllers\DebtController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -343,8 +343,8 @@
     <Content Include="Views\Customer\_Prompt.cshtml" />
     <Content Include="Views\Shared\_LayoutSignIn.cshtml" />
     <Content Include="Views\Product\_Prompt.cshtml" />
-    <Content Include="Views\Dept\Index.cshtml" />
-    <Content Include="Views\Dept\_PayDebt.cshtml" />
+    <Content Include="Views\Debt\Index.cshtml" />
+    <Content Include="Views\Debt\_PayDebt.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

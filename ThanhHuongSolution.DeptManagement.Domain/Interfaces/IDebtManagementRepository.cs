@@ -17,8 +17,8 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Interfaces
 
         Task<MDBaseDebt> GetDebtByTrackingNumber(string trackingNumber);
 
-        Task<IList<MDBaseDebt>> Search(string customerId, string query, Pagination pagination);
+        Task<IList<MDBaseDebt>> Search(string customerId, string query, Pagination pagination, string debtType);
 
-        Task<long> Count(string customerId, string query);
+        Task<long> Count(string customerId, string query, string debtType);
     }
 }

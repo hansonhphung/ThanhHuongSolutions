@@ -80,12 +80,12 @@ namespace ThanhHuongSolution.DeptManagement.Handler
 
                 var request = input.Request;
 
-                var data = await services.Search(request.CustomerId, request.Query, request.Pagination);
+                var data = await services.Search(request.CustomerId, request.Query, request.Pagination, request.DebtType);
 
                 return await Task.FromResult(new FrameworkParamOutput<SearchDebtResponse>(data));
             }
             catch (CustomException ex)
-            {
+            { 
                 throw new CustomException(ex);
             }
         }
