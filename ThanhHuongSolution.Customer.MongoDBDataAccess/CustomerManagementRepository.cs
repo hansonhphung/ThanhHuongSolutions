@@ -162,7 +162,7 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 
             var filter = builder.Where(x => x.Id.Equals(customerId));
 
-            var update = Builders<MDCustomer>.Update.Set("LiabilityAmount", debtAmount);
+            var update = Builders<MDCustomer>.Update.Inc(x => x.LiabilityAmount, debtAmount);
 
             await collection.UpdateOneAsync(filter, update);
 
