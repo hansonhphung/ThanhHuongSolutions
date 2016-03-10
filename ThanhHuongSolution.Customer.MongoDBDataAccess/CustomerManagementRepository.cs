@@ -151,5 +151,22 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 
             return await Task.FromResult(true);
         }
+
+        public async Task<bool> UpdateCustomerDebt(string customerId, long debtAmount)
+        {
+            var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
+
+            var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
+
+            var builder = Builders<MDCustomer>.Filter;
+
+            var filter = builder.Where(x => x.Id.Equals(customerId));
+
+            var update = Builders<MDCustomer>.Update.Set("LiabilityAmount", debtAmount);
+
+            await collection.UpdateOneAsync(filter, update);
+
+            return await Task.FromResult(true);
+        }
     }
 }

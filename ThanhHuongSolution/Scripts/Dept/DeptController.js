@@ -1,4 +1,4 @@
-﻿var app = angular.module('ThanhHuongSolution', ['toastr');
+﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.bootstrap']);
 app.controller('DebtController', function ($scope, toastr, $http){
     
     //Pagination
@@ -10,12 +10,23 @@ app.controller('DebtController', function ($scope, toastr, $http){
     $scope.isSearchName = true;
     $scope.mode = 'debt';
 
+    $scope.changeSearchMode = function()
+    {
+        $scope.isSearchName = !$scope.isSearchName;
+    }
+
     $scope.switchDebtMode = function ()
     {
         $scope.mode = 'debt';
     }
 
-    $scope.switchPaidDebtMode = function () {
+    $scope.switchPaidDebtMode = function ()
+    {
         $scope.mode = 'paiddebt';
+    }
+
+    $scope.createPayDebt = function()
+    {
+
     }
 });

@@ -9,6 +9,26 @@
     </header>
 
     <div class="panel-body">
+
+        <div class="pull-right form-inline">
+            <a type="button" href="" class="btn btn-success" data-toggle="modal" data-target="#payDebtFormModal"><i class="fa fa-user-plus"></i>Thanh Toán Nợ</a>
+
+            <div class="input-group" ng-show="isSearchName == true">
+                <input type="text" class="form-control" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="button" ng-click="changeSearchMode()"><i class="fa fa-sort-alpha-asc"></i></button>
+                </span>
+            </div>
+
+            <div class="input-group" ng-show="isSearchName == false">
+                <input type="text" id="search_date" ui-mask="99/99/9999" model-view-value="true" ui-mask-placeholder class="form-control" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="button" ng-click="changeSearchMode()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+
+        </div>
+
         <div class="tabs">
             <ul class="nav nav-tabs">
                 <li class="active">
@@ -18,21 +38,9 @@
                     <a data-toggle="tab" href="#" ng-click="switchPaidDebtMode()">Recent</a>
                 </li>
             </ul>
+
             <div class="tab-content">
-                <div class="tab-pane active" ng-if="mode == 'debt'">
-
-                    <div class="pull-right form-inline">
-                        <a type="button" class="btn btn-success" href="/Selling/Index"><i class="fa fa-user-plus"></i>Tạo Hóa Đơn</a>
-
-                        <div class="input-group" ng-show="isSearchName == true">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
-                            <span class="input-group-btn">
-                                <button class="btn btn-success" type="button" ng-click="changeSearchMode()"><i class="fa fa-sort-alpha-asc"></i></button>
-                            </span>
-                        </div>
-
-                    </div>
-
+                <div class="tab-pane {{mode == 'debt' ? 'active' : ''}}" ng-if="mode == 'debt'">
                     <table class="table table-responsive table-striped">
                         <thead>
                             <tr>
@@ -71,60 +79,57 @@
                     </table>
                     <div class="pull-right form-inline">
                         <div class="table-pagination">
-                            <uib-pagination boundary-links="true" total-items="totalBillings" ng-model="1" max-size="maxSize" class="pagination pagination-ru" rotate="false" items-per-page="recordPerPage" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+                            <uib-pagination boundary-links="true" total-items="totalBillings" ng-model="pageIndex" max-size="maxSize" class="pagination pagination-ru" rotate="false" items-per-page="recordPerPage" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane" ng-if="mode == 'paiddebt'">
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Khách Hàng <span class="required">*</span></label>
-                                <div class="col-sm-8">
-                                    <input type="number" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Còn Nợ <span class="required">*</span></label>
-                                <div class="col-sm-8">
-                                    <span>50,000,000 VND</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Ngày Lập <span class="required">*</span></label>
-                                <div class="col-md-8">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                        <input class="form-control" value="3/3/2016" ng-disabled="true">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Thanh Toán</label>
-                                <div class="col-sm-8">
-                                    <input type="number" class="form-control" />
-                                </div>
-                            </div>
+                <div class="tab-pane {{mode == 'paiddebt' ? 'active' : ''}}" ng-if="mode == 'paiddebt'">
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th>Mã Hóa Đơn</th>
+                                <th>Tên Khách Hàng</th>
+                                <th>Ngày Lập</th>
+                                <th>Thành Tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="gradeX">
+                                <td>NO-001</td>
+                                <td>ZZZZd>
+                                <td>3/3/2016</td>
+                                <td class="hidden-phone">50,000,000 VND</td>    
+                            </tr>
+                            <tr class="gradeX">
+                                <td>NO-002</td>
+                                <td>ZZZZd</td>
+                                <td>3/3/2016</td>
+                                <td class="hidden-phone">50,000,000 VND</td>
+                            </tr>
+                            <tr class="gradeX">
+                                <td>NO-003</td>
+                                <td>ZZZZd</td>
+                                <td>3/3/2016</td>
+                                <td class="hidden-phone">50,000,000 VND</td>
+                            </tr>
+                            <tr class="gradeX">
+                                <td>NO-004</td>
+                                <td>ZZZZd</td>
+                                <td>3/3/2016</td>
+                                <td class="hidden-phone">50,000,000 VND</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pull-right form-inline">
+                        <div class="table-pagination">
+                            <uib-pagination boundary-links="true" total-items="totalBillings" ng-model="pageIndex" max-size="maxSize" class="pagination pagination-ru" rotate="false" items-per-page="recordPerPage" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
                         </div>
                     </div>
-                    <footer class="panel-footer">
-                        <div class="row">
-                            <div class="col-sm-12 center">
-                                <button class="btn btn-success">Lập Phiếu</button>
-                                <button type="reset" class="btn btn-default">Hủy Bỏ</button>
-                            </div>
-                        </div>
-                    </footer>
                 </div>
             </div>
         </div>
     </div>
+    @Html.Partial("_PayDebt")
 </div>
 <script src="/Vendor/angular/angular.min.js"></script>
 <script src="/Vendor/angular-ui-mask/dist/mask.js"></script>

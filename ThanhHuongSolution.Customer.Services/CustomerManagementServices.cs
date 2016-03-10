@@ -133,5 +133,30 @@ namespace ThanhHuongSolution.Customer.Services
 
             return await Task.FromResult(true);
         }
+
+        public async Task<bool> IsCustomerExist(string customerId)
+        {
+            var repository = _objectContainer.Get<ICustomerRepository>();
+
+            var existCustomer = await repository.GetCustomerById(customerId);
+
+            if (existCustomer == null || existCustomer.Id == customerId)
+                return await Task.FromResult(false);
+
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> UpdateCustomerDebt(string customerId, long debtAmount)
+        {
+            var repository = _objectContainer.Get<ICustomerRepository>();
+
+            var isExist = await IsCustomerExist(customerId);
+
+            Check.ThrowExceptionIfTrue(isExist, CustomerManagementResources.CUSTOMER_EXIST);
+
+            var result = await repository.UpdateCustomerDebt(customerId, debtAmount);
+
+            return await Task.FromResult(result);
+        }
     }
 }
