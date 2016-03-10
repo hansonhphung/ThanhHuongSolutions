@@ -171,7 +171,7 @@ namespace ThanhHuongSolution.Customer.Handler
 
                 var services = _objectContainer.Get<ICustomerManagementServices>();
 
-                var result = await services.UpdateCustomerDebt(request.CustomerId, request.DebtAmount);
+                var result = await services.UpdateCustomerDebt(request.CustomerId, request.DebtAmount, request.IsIncDebt);
 
                 return await Task.FromResult(new FrameworkParamOutput<bool>(result));
 

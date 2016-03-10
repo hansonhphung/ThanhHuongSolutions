@@ -19,5 +19,7 @@ namespace ThanhHuongSolution.Customer.Domain.Model
         public string CustomerId { get; set; }
 
         public long DebtAmount { get; set; }
+
+        public bool IsIncDebt { get; set; }
     }
 }

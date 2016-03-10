@@ -198,6 +198,7 @@ namespace ThanhHuongSolution.Controllers
 
                 customerDebt.CustomerId = formCollection.Get("Id");
                 customerDebt.DebtAmount = long.Parse(formCollection.Get("DebtAmount"));
+                customerDebt.IsIncDebt = bool.Parse(formCollection.Get("IsIncDebt"));
 
                 var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
 

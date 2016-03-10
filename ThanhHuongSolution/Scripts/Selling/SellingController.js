@@ -121,12 +121,21 @@ app.controller('SellingController', function ($scope, toastr, $http) {
                                 }).success(function (response) {
 
                                     //update the DEBT of its customer by calling API to update customer DEBT
+                                    var form = new FormData();
+                                    form.append("Id", $scope.selectedCustomer.CustomerId);
+                                    form.append("DebtAmount", $scope.totalAmount - $scope.payAmount);
+                                    form.append("IsIncDebt", true);
 
+                                    $http.post("/Customer/UpdateCustomerDebt", form, {
+                                        withCredentials: true,
+                                        headers: { 'Content-Type': undefined },
+                                        transformRequest: angular.identity
+                                    }).success(function (response) {
+                                        $scope.initData();
+                                        signalRHub.server.send();
+                                    });
                                 });
                             }
-
-                            $scope.initData();
-                            signalRHub.server.send();
                         }
                         else {
                             toastr.error('error at: ' + response.message);

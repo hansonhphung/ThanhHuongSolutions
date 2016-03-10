@@ -106,6 +106,10 @@ namespace ThanhHuongSolution.Controllers
             {
                 var debtAPI = WebContainer.Instance.ResolveAPI<IDebtManagementAPI>();
 
+                var trackingNumberGenerator = WebContainer.Instance.ResolveAPI<ITrackingNumberGenerator>();
+
+                debt.TrackingNumber = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.PhieuNo);
+
                 var result = await debtAPI.CreateDebt(new FrameworkParamInput<BaseDebtModel>(debt));
 
                 return Json(new { isSuccess = true, message = "" }, JsonRequestBehavior.AllowGet);
