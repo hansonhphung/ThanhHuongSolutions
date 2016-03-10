@@ -24,4 +24,9 @@ app.controller('DebtController', function ($scope, toastr, $http){
     {
         $scope.mode = 'paiddebt';
     }
+
+    $scope.createPayDebt = function()
+    {
+
+    }
 });

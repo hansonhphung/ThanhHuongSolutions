@@ -162,5 +162,24 @@ namespace ThanhHuongSolution.Customer.Handler
                 throw new CustomException(ex);
             }
         }
+
+        public async Task<FrameworkParamOutput<bool>> UpdateCustomerDebt(FrameworkParamInput<CustomerDeptModel> input)
+        {
+            try
+            {
+                var request = input.Request;
+
+                var services = _objectContainer.Get<ICustomerManagementServices>();
+
+                var result = await services.UpdateCustomerDebt(request.CustomerId, request.DebtAmount);
+
+                return await Task.FromResult(new FrameworkParamOutput<bool>(result));
+
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex);
+            }
+        }
     }
 }

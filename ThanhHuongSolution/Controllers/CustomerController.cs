@@ -189,5 +189,27 @@ namespace ThanhHuongSolution.Controllers
                 return Json(new { isSuccess = false, message = e.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public async Task<ActionResult> UpdateCustomerDebt(FormCollection formCollection)
+        {
+            try
+            {
+                var customerDebt = new CustomerDeptModel();
+
+                customerDebt.CustomerId = formCollection.Get("Id");
+                customerDebt.DebtAmount = long.Parse(formCollection.Get("DebtAmount"));
+
+                var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
+
+                var data = await api.UpdateCustomerDebt(new FrameworkParamInput<CustomerDeptModel>(customerDebt));
+
+                return Json(new { isSuccess = true, data = data.Result }, JsonRequestBehavior.AllowGet);
+            }
+            catch (CustomException ex)
+            {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
+                return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }
