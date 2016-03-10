@@ -146,13 +146,16 @@ namespace ThanhHuongSolution.Customer.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateCustomerDebt(string customerId, long debtAmount)
+        public async Task<bool> UpdateCustomerDebt(string customerId, long debtAmount, bool isIncDebt)
         {
             var repository = _objectContainer.Get<ICustomerRepository>();
 
             var isExist = await IsCustomerExist(customerId);
 
             Check.ThrowExceptionIfTrue(isExist, CustomerManagementResources.CUSTOMER_EXIST);
+
+            if (!isIncDebt)
+                debtAmount *= -1;
 
             var result = await repository.UpdateCustomerDebt(customerId, debtAmount);
 
