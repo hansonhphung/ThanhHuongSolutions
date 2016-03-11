@@ -11,6 +11,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
     $scope.totalAmount = 0;
     $scope.payAmount = 0;
 
+    // true  Custom Price choosen  false, use standard price
     $scope.retailPriceChoosen = true;
 
     // Declare a proxy to reference the hub.
@@ -34,13 +35,37 @@ app.controller('SellingController', function ($scope, toastr, $http) {
             {
                 for(var j = 0; j < $scope.lstProduct.length; j++)
                 {
-                    if ($scope.pagingSource[i].TrackingNumber == $scope.lstProduct[i].TrackingNumber)
+                    if ($scope.pagingSource[i].TrackingNumber == $scope.lstProduct[j].TrackingNumber)
                     {
-                        $scope.pagingSource[i].TotalPrice = $scope.pagingSource[i].Number * $scope.lstProduct[i].WholesalePrice;
+                        $scope.totalAmount -= $scope.pagingSource[i].TotalPrice;
+                        $scope.pagingSource[i].TotalPrice = $scope.pagingSource[i].Number * $scope.lstProduct[j].RetailPrice;
+                        $scope.totalAmount += $scope.pagingSource[i].TotalPrice;
                         break;
                     }
                 }
             }
+
+            for (var i = 0; i < $scope.lstProduct.length; i++)
+            {
+                if ($scope.lstProduct[i].TrackingNumber == $scope.selectedProduct.TrackingNumber)
+                {
+                    $scope.selectedProduct = $scope.lstProduct[i];
+                    $scope.wholesalePrice = $scope.selectedProduct.WholesalePrice;
+                    $scope.retailPrice = $scope.selectedProduct.RetailPrice;
+                    break;
+                }
+            }
+
+            var payAmount = 0;
+
+            if ($scope.payAmount != null) {
+                payAmount = $scope.payAmount;
+            }
+
+            if (payAmount >= $scope.totalAmount)
+                $scope.liabilityAmount = 0;
+            else
+                $scope.liabilityAmount = $scope.totalAmount - payAmount;
 
             $scope.onChangePageIndex();
 

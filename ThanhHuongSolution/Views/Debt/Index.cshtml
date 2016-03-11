@@ -40,7 +40,7 @@
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane {{mode == 'DEBT' ? 'active' : ''}}">
+                <div class="tab-pane active">
                     <table class="table table-responsive table-striped">
                         <thead>
                             <tr>
@@ -55,7 +55,7 @@
                                 <td>{{debt.TrackingNumber}}</td>
                                 <td>{{debt.Customer.CustomerName}}</td>
                                 <td>{{debt.DebtCreatedDate}}</td>
-                                <td class="hidden-phone">{{debt.TotalAmount}}</td>
+                                <td>{{debt.TotalAmount}}</td>
                             </tr>
                         </tbody>
                     </table>

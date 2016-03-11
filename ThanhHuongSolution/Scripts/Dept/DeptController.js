@@ -4,7 +4,7 @@ app.controller('DebtController', function ($scope, toastr, $http){
     $scope.init = function (data) {
         //Pagination
         $scope.pageIndex = 1;
-        $scope.recordPerPage = 3;
+        $scope.recordPerPage = 10;
         $scope.maxSize = 5;
         $scope.pagingSource = [];
         $scope.currentIndex = 1;
@@ -19,7 +19,6 @@ app.controller('DebtController', function ($scope, toastr, $http){
         }).success(function (response) {
             if (response.isSuccess) {
                 var data = response.data.LstDebt;
-
                 $scope.lstDebt = data;
                 $scope.totalDebts = response.data.TotalItem;
             }
@@ -34,12 +33,20 @@ app.controller('DebtController', function ($scope, toastr, $http){
     $scope.changeSearchMode = function()
     {
         $scope.isSearchName = !$scope.isSearchName;
+        $scope.query = '';
     }
 
     $scope.switchDebtMode = function ()
     {
         $scope.mode = 'DEBT';
         $scope.search();
+    }
+
+    $scope.searchKeyDown = function (event) {
+        if (event.keyCode == 13) {
+            $scope.pageIndex = 1;
+            $scope.search();
+        }
     }
 
     $scope.switchPaidDebtMode = function ()
@@ -56,7 +63,6 @@ app.controller('DebtController', function ($scope, toastr, $http){
                 var data = response.data.LstDebt;
 
                 $scope.lstDebt = data;
-                //alert(JSON.stringify($scope.lstDebt));
                 $scope.totalDebts = response.data.TotalItem;
             }
             else {
@@ -68,5 +74,9 @@ app.controller('DebtController', function ($scope, toastr, $http){
     $scope.createPayDebt = function()
     {
 
+    }
+
+    $scope.onChangePageIndex = function () {
+        $scope.search();
     }
 });
