@@ -56,7 +56,7 @@ app.controller('DebtController', function ($scope, toastr, $http){
                 var data = response.data.LstDebt;
 
                 $scope.lstDebt = data;
-                alert(JSON.stringify($scope.lstDebt));
+                //alert(JSON.stringify($scope.lstDebt));
                 $scope.totalDebts = response.data.TotalItem;
             }
             else {

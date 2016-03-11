@@ -1,4 +1,4 @@
-﻿@using ThanhHuongSolution.Models.Selling;
+﻿@using ThanhHuongSolution.Models.Payment;
 @model PaymentInformationModel
 
 @{
@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Còn Nợ <span class="required">*</span></label>
                     <div class="col-sm-8">
-                        <span>50,000,000 VND</span>
+                        <span>{{liabilityAmount | number}} VND</span>
                     </div>
                 </div>
             </div>
@@ -44,14 +44,14 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </span>
-                            <input class="form-control" value="3/3/2016" ng-disabled="true">
+                            <input class="form-control" ng-disabled="true" ng-model="createBillDate">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Thanh Toán</label>
                     <div class="col-sm-8">
-                        <input type="number" class="form-control" />
+                        <input type="number" ng-model="debtAmount" class="form-control" />
                     </div>
                 </div>
             </div>

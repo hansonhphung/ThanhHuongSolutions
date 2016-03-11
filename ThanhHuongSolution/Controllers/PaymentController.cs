@@ -10,6 +10,7 @@ using ThanhHuongSolution.Notification;
 using ThanhHuongSolution.Extension;
 using ThanhHuongSolution.Security;
 using ThanhHuongSolution.Models.Selling;
+using ThanhHuongSolution.Models.Payment;
 
 
 namespace ThanhHuongSolution.Controllers
@@ -25,7 +26,7 @@ namespace ThanhHuongSolution.Controllers
 
                 var customerData = await customerAPI.GetAllCustomer();
 
-                var lstCustomerInfo = customerData.Result.Select(x => new CustomerInfoModel(x.Id, x.TrackingNumber, x.Name)).ToList();
+                var lstCustomerInfo = customerData.Result.Select(x => new CustomerDebtInfoModel(x.Id, x.TrackingNumber, x.Name, x.LiabilityAmount)).ToList();
 
                 var data = new PaymentInformationModel(lstCustomerInfo, DateTime.UtcNow.ToString("dd/MM/yyyy"));
                 
