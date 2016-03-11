@@ -41,6 +41,7 @@ app.controller('BillingController', function ($scope, toastr, $location, $http) 
     }
     $scope.searchKeyDown = function (event) {
         if (event.keyCode == 13) {
+            $scope.pageIndex = 1;
             $scope.search();
         }
     }
