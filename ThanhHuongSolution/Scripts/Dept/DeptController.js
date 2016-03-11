@@ -4,7 +4,7 @@ app.controller('DebtController', function ($scope, toastr, $http){
     $scope.init = function (data) {
         //Pagination
         $scope.pageIndex = 1;
-        $scope.recordPerPage = 3;
+        $scope.recordPerPage = 10;
         $scope.maxSize = 5;
         $scope.pagingSource = [];
         $scope.currentIndex = 1;

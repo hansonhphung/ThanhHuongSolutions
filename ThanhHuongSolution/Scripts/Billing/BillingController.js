@@ -4,7 +4,7 @@ app.controller('BillingController', function ($scope, toastr, $location, $http) 
 
     $scope.init = function (data) {
         $scope.pageIndex = 1;
-        $scope.recordPerPage = 5;
+        $scope.recordPerPage = 10;
         $scope.maxSize = 5;
         $scope.bills = [];
         $scope.sortBy = 'CreatedAt';
