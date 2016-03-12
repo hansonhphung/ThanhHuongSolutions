@@ -33,16 +33,16 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
         }
         else {
             $scope.customerId = $scope.selectedCustomer.CustomerId;
-        }   
+        }
 
-        if ($scope.debtAmount == null || $scope.debtAmount <= 0) {
+        if ($scope.paidAmount == null || $scope.paidAmount <= 0) {
             toastr.warning("Vui lòng nhập số tiền thanh toán.");
             return;
         }
 
         var form = new FormData();
         form.append("Id", $scope.customerId);
-        form.append("DebtAmount", $scope.debtAmount);
+        form.append("DebtAmount", $scope.paidAmount);
         form.append("IsIncDebt", false);
 
         $http.post("/Customer/UpdateCustomerDebt", form, {
@@ -51,7 +51,22 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
             transformRequest: angular.identity
         }).success(function (response) {
             if (response.isSuccess) {
-                toastr.success('Thanh toán nợ thành công');
+                var paidDebt = {
+                    Customer: {
+                        CustomerId: $scope.selectedCustomer.CustomerId,
+                        CustomerTrackingNumber: $scope.selectedCustomer.CustomerTrackingNumber,
+                        CustomerName: $scope.selectedCustomer.CustomerName
+                    },
+                    TotalAmount: $scope.paidAmount,
+                    DebtCreatedDate: $scope.createBillDate
+                };
+
+                $http.post("/Debt/CreatePaidDebt", { debt: paidDebt }, {
+                }).success(function (response) {
+                    toastr.success('Thanh toán nợ thành công');
+                    $scope.refreshData();                    
+                });
+
             }
             else {
                 toastr.error('error at: ' + response.message);
@@ -59,10 +74,29 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
         });
     }
 
-    $scope.refreshData = function ()
-    {
+    $scope.refreshData = function () {
         $scope.selectedCustomer = null;
         $scope.liabilityAmount = 0;
-        $scope.debtAmount = 0;
+        $scope.paidAmount = 0;
+
+        $http.post("/Payment/RefreshData", null, {
+            withCredentials: true,
+            headers: { 'Content-Type': undefined },
+            transformRequest: angular.identity
+        }).success(function (response) {
+            if (response.isSuccess) {
+                var data = response.data;
+                //alert(JSON.stringify(data));
+                $scope.lstCustomer = data;
+                
+            }
+            else {
+                toastr.error('error at: ' + response.message);
+            }
+        });
+    }
+
+    $scope.createPayDebt = function () {
+
     }
 });

@@ -36,6 +36,24 @@ namespace ThanhHuongSolution.DeptManagement.Handler
             }
         }
 
+        public async Task<FrameworkParamOutput<bool>> CreatePaidDebt(FrameworkParamInput<BaseDebtModel> input)
+        {
+            try
+            {
+                var request = input.Request;
+
+                var services = _objectContainer.Get<IDebtManagementServices>();
+
+                var data = await services.CreateDebt(request);
+
+                return await Task.FromResult(new FrameworkParamOutput<bool>(data));
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex);
+            }
+        }
+
         public async Task<FrameworkParamOutput<BaseDebtModel>> GetDebtById(FrameworkParamInput<string> input)
         {
             try

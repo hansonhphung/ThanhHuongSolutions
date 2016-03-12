@@ -40,6 +40,19 @@ namespace ThanhHuongSolution.DeptManagement.MongoDataAccess
             return await Task.FromResult(true);
         }
 
+        public async Task<bool> CreatePaidDebt(MDBaseDebt paidDebt)
+        {
+            var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
+
+            var collection = dbContext.GetCollection<MDBaseDebt>(MongoDBEntityNames.DebtCollection.TableName);
+
+            paidDebt.CreatedAt = DateTime.UtcNow;
+
+            await collection.InsertOneAsync(paidDebt);
+
+            return await Task.FromResult(true);
+        }
+
         public async Task<MDBaseDebt> GetDebtById(string debtId)
         {
             var dbContext = _readDataContextFactory.CreateMongoDBReadContext();

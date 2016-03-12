@@ -39,5 +39,24 @@ namespace ThanhHuongSolution.Controllers
             }
             
         }
+
+        public async Task<ActionResult> RefreshData()
+        {
+            try
+            {
+                var customerAPI = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
+
+                var customerData = await customerAPI.GetAllCustomer();
+
+                var dataa = customerData.Result.Select(x => new CustomerDebtInfoModel(x.Id, x.TrackingNumber, x.Name, x.LiabilityAmount)).ToList();
+
+                return Json(new { isSuccess = true, data = dataa }, JsonRequestBehavior.AllowGet);
+            }
+            catch (CustomException ex)
+            {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
+                return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

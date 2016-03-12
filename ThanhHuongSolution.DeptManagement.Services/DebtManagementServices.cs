@@ -39,6 +39,23 @@ namespace ThanhHuongSolution.DeptManagement.Services
             return await Task.FromResult(result);
         }
 
+        public async Task<bool> CreatePaidDebt(BaseDebtModel paidDebt)
+        {
+            var repository = _objectContainer.Get<IDebtManagementRepository>();
+
+            var visitor = await paidDebt.Visit(new GetEntityVisitor());
+
+            var mdDebt = visitor.MDBaseDebt;
+
+            var oldDebt = await repository.GetDebtByTrackingNumber(paidDebt.TrackingNumber);
+
+            Check.ThrowExceptionIfNotNull(oldDebt, BillManagementResources.DEBT_EXIST);
+
+            var result = await repository.CreateDebt(mdDebt);
+
+            return await Task.FromResult(result);
+        }
+
         public async Task<BaseDebtModel> GetDebtById(string debtId)
         {
             var repository = _objectContainer.Get<IDebtManagementRepository>();
