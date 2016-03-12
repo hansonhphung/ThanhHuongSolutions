@@ -129,6 +129,8 @@ app.controller('SellingController', function ($scope, toastr, $http) {
                         if (response.isSuccess) {
 
                             toastr.success('Tạo hoá đơn thành công');
+
+                            $scope.pagingSource = [];
                             
                             if ($scope.payAmount < $scope.totalAmount) //Need to create debt
                             {
