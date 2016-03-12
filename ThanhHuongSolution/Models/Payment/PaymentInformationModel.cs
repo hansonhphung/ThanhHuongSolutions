@@ -4,17 +4,17 @@ using System.Linq;
 using System.Web;
 using ThanhHuongSolution.Product.Domain.Model;
 
-namespace ThanhHuongSolution.Models.Selling
+namespace ThanhHuongSolution.Models.Payment
 {
     public class PaymentInformationModel
     {
-        public IList<CustomerInfoModel> LstCustomer { get; set; }
+        public IList<CustomerDebtInfoModel> LstCustomer { get; set; }
 
         public string CreateBillDate { get; set; }
 
         public PaymentInformationModel() { }
 
-        public PaymentInformationModel(IList<CustomerInfoModel> lstCustomer, string createBillDate)
+        public PaymentInformationModel(IList<CustomerDebtInfoModel> lstCustomer,  string createBillDate)
         {
             LstCustomer = lstCustomer;
             CreateBillDate = createBillDate;

@@ -71,11 +71,6 @@ app.controller('DebtController', function ($scope, toastr, $http){
         });
     }
 
-    $scope.createPayDebt = function()
-    {
-
-    }
-
     $scope.onChangePageIndex = function () {
         $scope.search();
     }
