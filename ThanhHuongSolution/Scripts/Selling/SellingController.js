@@ -228,7 +228,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
             if ($scope.pagingSource[i].TrackingNumber == $scope.selectedProduct.TrackingNumber) //already in cart
             {
                 $scope.pagingSource[i].Number += $scope.number;
-                $scope.pagingSource[i].TotalPrice += price * $scope.number;
+                $scope.pagingSource[i].TotalPrice += $scope.pagingSource[i].Price * $scope.number;
                 isExist = true;
                 break;
             }
@@ -236,7 +236,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
         if (!isExist)
         {
-            $scope.pagingSource.push({ TrackingNumber: $scope.selectedProduct.TrackingNumber, Name: $scope.selectedProduct.Name, Number: $scope.number, TotalPrice: price * $scope.number });
+            $scope.pagingSource.push({ TrackingNumber: $scope.selectedProduct.TrackingNumber, Name: $scope.selectedProduct.Name, Price: price ,Number: $scope.number, TotalPrice: price * $scope.number });
         }
 
         $scope.totalAmount += price * $scope.number;
@@ -254,7 +254,22 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
         $scope.updatePagingConfig();
         $scope.onChangePageIndex();
-      }
+    }
+
+    $scope.viewItemInCart = function (trackingNumber)
+    {
+        for (var i = 0; i < $scope.pagingSource.length; i++)
+        {
+            if ($scope.pagingSource[i].TrackingNumber == trackingNumber) {
+                $scope.itemTrackingNumber = $scope.pagingSource[i].TrackingNumber;
+                $scope.itemName = $scope.pagingSource[i].Name;
+                $scope.itemQuantity = $scope.pagingSource[i].Number;
+                $scope.itemTotalPrice = $scope.pagingSource[i].TotalPrice;
+                $scope.itemPrice = $scope.pagingSource[i].Price;
+                break;
+            }
+        }
+    }
 
     $scope.deleteItemInCart = function (trackingNumber)
     {
@@ -279,6 +294,35 @@ app.controller('SellingController', function ($scope, toastr, $http) {
             $scope.liabilityAmount = $scope.totalAmount - payAmount;
 
         $scope.updatePagingConfig();
+        $scope.onChangePageIndex();
+    }
+
+    $scope.saveItemInfo = function ()
+    {
+        for (var i = 0; i < $scope.pagingSource.length; i++)
+        {
+            if ($scope.pagingSource[i].TrackingNumber == $scope.itemTrackingNumber)
+            {
+                $scope.pagingSource[i].Number = $scope.itemQuantity;
+                $scope.totalAmount -= $scope.pagingSource[i].TotalPrice;
+                $scope.pagingSource[i].TotalPrice = $scope.itemTotalPrice;
+                $scope.totalAmount += $scope.pagingSource[i].TotalPrice;
+
+                var payAmount = 0;
+
+                if ($scope.payAmount != null) {
+                    payAmount = $scope.payAmount;
+                }
+
+                if (payAmount >= $scope.totalAmount)
+                    $scope.liabilityAmount = 0;
+                else
+                    $scope.liabilityAmount = $scope.totalAmount - payAmount;
+
+                break;
+            }
+        }
+
         $scope.onChangePageIndex();
     }
 
@@ -332,7 +376,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
     $scope.numberInputTypeKeyPress = function ($event)
     {
-        if (($event.keyCode >= 96 && $event.keyCode <= 105 ) || $event.keyCode == 8 || $event.keyCode == 46)
+        if (($event.keyCode >= 48 && $event.keyCode <= 57) ||($event.keyCode >= 96 && $event.keyCode <= 105 ) || $event.keyCode == 8 || $event.keyCode == 46)
         {
 
             var payAmount = 0;
@@ -346,6 +390,19 @@ app.controller('SellingController', function ($scope, toastr, $http) {
                 $scope.liabilityAmount = 0;
             else
                 $scope.liabilityAmount = $scope.totalAmount - payAmount;
+        }
+    }
+
+    $scope.quantityInputTypeKeyPress = function ($event) {
+        if (($event.keyCode >= 48 && $event.keyCode <= 57) || ($event.keyCode >= 96 && $event.keyCode <= 105) || $event.keyCode == 8 || $event.keyCode == 46) {
+
+            var quantity = 0;
+
+            if ($scope.itemQuantity != null) {
+                quantity = $scope.itemQuantity;
+            }
+
+            $scope.itemTotalPrice = quantity * $scope.itemPrice;
         }
     }
 });
