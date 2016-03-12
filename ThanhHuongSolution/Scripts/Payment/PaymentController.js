@@ -12,7 +12,6 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
     $scope.init = function (data) {
         $scope.lstCustomer = data.LstCustomer;
 
-        //$scope.selectedCustomer = $scope.lstCustomer[0];
         $scope.createBillDate = data.CreateBillDate;
         $scope.liabilityAmount = 0;
     }
@@ -79,14 +78,13 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
         $scope.liabilityAmount = 0;
         $scope.paidAmount = 0;
 
-        $http.post("/Payment/RefreshData", null, {
+        $http.post("/Payment/GetCustomerInfoAndDebt", null, {
             withCredentials: true,
             headers: { 'Content-Type': undefined },
             transformRequest: angular.identity
         }).success(function (response) {
             if (response.isSuccess) {
                 var data = response.data;
-                //alert(JSON.stringify(data));
                 $scope.lstCustomer = data;
                 
             }
@@ -94,9 +92,5 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
                 toastr.error('error at: ' + response.message);
             }
         });
-    }
-
-    $scope.createPayDebt = function () {
-
     }
 });

@@ -40,7 +40,7 @@ namespace ThanhHuongSolution.Controllers
             
         }
 
-        public async Task<ActionResult> RefreshData()
+        public async Task<ActionResult> GetCustomerInfoAndDebt()
         {
             try
             {
