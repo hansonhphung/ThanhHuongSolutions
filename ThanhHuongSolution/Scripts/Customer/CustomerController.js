@@ -80,8 +80,6 @@ app.controller('CustomerController', function ($scope, toastr, $location, $http)
 
     $scope.customerHistory = function(customerId)
     {
-        $scope.query = customerId;
-
         location.href = "/Billing/List?id=" + customerId;
     }
 
