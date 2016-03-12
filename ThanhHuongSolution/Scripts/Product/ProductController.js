@@ -15,9 +15,14 @@ app.controller('ProductController', function ($scope, toastr, $http) {
     // Create a function that the hub can call to broadcast messages.
     signalRHub.client.broadcastMessage = function () {
     
-        $http.post("/Product/GetAllProduct")
+        $http.post("/Product/Search", {query:''})
         .success(function (response) {
-            $scope.lstProduct = response.data;
+            $scope.availableProduct = response.data;
+            $scope.pagingSource = $scope.availableProduct;
+
+            $scope.updatePagingConfig();
+
+            $scope.onChangePageIndex();
             toastr.success("Dữ liệu được cập nhật lại.");
         });
     };
