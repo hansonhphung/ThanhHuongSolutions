@@ -1,0 +1,61 @@
+﻿<div id="editItemShoppingcartFormModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form name="form_edit_shopping_cart" novalidate enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Sửa thông tin giỏ hàng</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div>
+                                <img style="width:140px; height:140px" class="img-rounded center-block upload-images" ng-src="{{imgURL != '' ? imgURL : '/Images/image-placeholder.png'}}">
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-6"">
+                                    <div class="form-group">
+                                        <label class="control-label">Mã Sản Phẩm <span class="color-red">(*)</span></label>
+                                        <input type="text" ng-disabled="true" ng-model="itemTrackingNumber" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Tên Sản Phẩm <span class="color-red">(*)</span></label>
+                                        <input type="text" ng-model="itemName" ng-disabled="true" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Số Lượng</label>
+                                        <input type="number" name="Quantity" ng-model="itemQuantity" ng-keyup="quantityInputTypeKeyPress($event)" class="form-control" required min="1">
+                                    </div>
+                                    <span class="color-red" data-valmsg-for="Quantity" data-valmsg-replace="true" ng-show="form_edit_shopping_cart.Quantity.$dirty && form_edit_shopping_cart.Quantity.$error.min">
+                                        <span for="Quantity">Số lượng mặt hàng tối thiểu là 1.</span>
+                                    </span>
+                                    <span class="color-red" data-valmsg-for="Quantity" data-valmsg-replace="true" ng-show="form_edit_shopping_cart.Quantity.$dirty && form_edit_shopping_cart.Quantity.$error.required">
+                                        <span for="Quantity">Nhập số lượng mặt hàng.</span>
+                                    </span>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Thành tiền (VNĐ)</label>
+                                        <input type="number" ng-model="itemTotalPrice" ng-disabled="true" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" ng-disabled="form_edit_shopping_cart.$invalid" ng-click="saveItemInfo()" class="btn btn-success btn-block" value="Lưu" ng-click="saveItemInfo()" data-dismiss="modal"><i class="fa fa-user-plus"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
