@@ -13,8 +13,6 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Interfaces
     {
         Task<bool> CreateDebt(BaseDebtModel debt);
 
-        Task<bool> CreatePaidDebt(BaseDebtModel paidDebt);
-
         Task<BaseDebtModel> GetDebtById(string debtId);
 
         Task<BaseDebtModel> GetDebtByTrackingNumber(string trackingNumber);

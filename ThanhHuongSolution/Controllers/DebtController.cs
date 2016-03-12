@@ -49,7 +49,7 @@ namespace ThanhHuongSolution.Controllers
 
                 debt.TrackingNumber = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.PhieuNo);
 
-                var result = await debtAPI.CreatePaidDebt(new FrameworkParamInput<BaseDebtModel>(debt));
+                var result = await debtAPI.CreateDebt(new FrameworkParamInput<BaseDebtModel>(debt));
 
                 return Json(new { isSuccess = true, message = "" }, JsonRequestBehavior.AllowGet);
             }

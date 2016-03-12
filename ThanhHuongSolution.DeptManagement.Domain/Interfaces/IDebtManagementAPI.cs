@@ -12,8 +12,6 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Interfaces
     {
         Task<FrameworkParamOutput<bool>> CreateDebt(FrameworkParamInput<BaseDebtModel> input);
 
-        Task<FrameworkParamOutput<bool>> CreatePaidDebt(FrameworkParamInput<BaseDebtModel> input);
-
         Task<FrameworkParamOutput<BaseDebtModel>> GetDebtById(FrameworkParamInput<string> input);
 
         Task<FrameworkParamOutput<BaseDebtModel>> GetDebtByTrackingNumber(FrameworkParamInput<string> input);
