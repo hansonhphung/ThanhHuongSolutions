@@ -39,6 +39,7 @@ app.controller('DebtController', function ($scope, toastr, $http){
     $scope.switchDebtMode = function ()
     {
         $scope.mode = 'DEBT';
+        $scope.pageIndex = 1;
         $scope.search();
     }
 
@@ -52,6 +53,7 @@ app.controller('DebtController', function ($scope, toastr, $http){
     $scope.switchPaidDebtMode = function ()
     {
         $scope.mode = 'PAID_DEBT';
+        $scope.pageIndex = 1;
         $scope.search();
     }
 
