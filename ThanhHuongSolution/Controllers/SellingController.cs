@@ -71,7 +71,7 @@ namespace ThanhHuongSolution.Controllers
 
                     var result = await billingAPI.CreateBill(new FrameworkParamInput<BillingInfo>(billingModel));
 
-                    return Json(new { isSuccess = true, data = result.Result }, JsonRequestBehavior.AllowGet);
+                    return Json(new { isSuccess = true, data = result.Result, billingTrackingNumber = billingModel.TrackingNumber }, JsonRequestBehavior.AllowGet);
                 }
 
                 return Json(new { isSuccess = false, message = "Can not update model" }, JsonRequestBehavior.AllowGet);
@@ -100,7 +100,7 @@ namespace ThanhHuongSolution.Controllers
             }
         }
 
-        public async Task<ActionResult> CreateDebt(DebtInfo debt)
+        public async Task<ActionResult> CreateDebt(DebtInfo debt, string relatedBillTrackingNumber)
         {
             try
             {
@@ -109,6 +109,8 @@ namespace ThanhHuongSolution.Controllers
                 var trackingNumberGenerator = WebContainer.Instance.ResolveAPI<ITrackingNumberGenerator>();
 
                 debt.TrackingNumber = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.PhieuNo);
+
+                debt.RelatedBillTrackingNumber = relatedBillTrackingNumber;
 
                 var result = await debtAPI.CreateDebt(new FrameworkParamInput<BaseDebtModel>(debt));
 

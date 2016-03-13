@@ -10,6 +10,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
     $scope.pageIndex = 1;
     $scope.totalAmount = 0;
     $scope.payAmount = 0;
+    $scope.createdBillingTrackingNumber = '';
 
     // true  Custom Price choosen  false, use standard price
     $scope.retailPriceChoosen = true;
@@ -131,6 +132,8 @@ app.controller('SellingController', function ($scope, toastr, $http) {
                             toastr.success('Tạo hoá đơn thành công');
 
                             $scope.pagingSource = [];
+
+                            $scope.createdBillingTrackingNumber = response.billingTrackingNumber;
                             
                             if ($scope.payAmount < $scope.totalAmount) //Need to create debt
                             {
@@ -144,7 +147,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
                                     DebtCreatedDate : $scope.createBillDate
                                 };
 
-                                $http.post("/Selling/CreateDebt", { debt: debt }, {
+                                $http.post("/Selling/CreateDebt", { debt: debt, relatedBillTrackingNumber: $scope.createdBillingTrackingNumber }, {
                                 }).success(function (response) {
 
                                     //update the DEBT of its customer by calling API to update customer DEBT

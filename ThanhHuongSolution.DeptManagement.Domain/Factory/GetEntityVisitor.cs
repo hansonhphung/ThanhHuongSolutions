@@ -38,7 +38,8 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Factory
                 Customer = debt.Customer,
                 TotalAmount = debt.TotalAmount,
                 CreatedAt = debt.CreatedAt,
-                DebtCreatedDate = debt.DebtCreatedDate
+                DebtCreatedDate = debt.DebtCreatedDate,
+                RelatedBillTrackingNumber = debt.RelatedBillTrackingNumber
             };
 
             MDBaseDebt = mdDebt;

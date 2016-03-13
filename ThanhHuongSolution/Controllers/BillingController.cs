@@ -42,5 +42,24 @@ namespace ThanhHuongSolution.Controllers
                 return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public async Task<ActionResult> GetBillByTrackingNumber(string trackingnumber)
+        {
+            try
+            {
+                Check.ThrowExceptionIfNullOrEmpty(trackingnumber, Common.LocResources.BillManagementResources.TRACKINGNUMBER_EMPTY);
+
+                var api = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
+
+                var data = await api.GetBillByTrackingNumber(new FrameworkParamInput<string>(trackingnumber));
+
+                return Json(new { isSuccess = true, data = data.Result}, JsonRequestBehavior.AllowGet);
+            }
+            catch (CustomException ex)
+            {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
+                return Json(new { isSucess = false, message = ex.Message}, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

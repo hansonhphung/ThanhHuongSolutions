@@ -73,6 +73,23 @@ app.controller('DebtController', function ($scope, toastr, $http){
         });
     }
 
+    $scope.viewBill = function (billTrackingNumber) {
+        
+        $http.post("/Billing/GetBillByTrackingNumber", { trackingNumber: billTrackingNumber }, {
+        }).success(function (response) {
+
+            var data = response.data;
+
+            $scope.trackingNumber = data.TrackingNumber;
+            $scope.customerId = data.Customer.Id;
+            $scope.customerTrackingNumber = data.Customer.CustomerTrackingNumber;
+            $scope.customerName = data.Customer.CustomerName;
+            $scope.totalAmount = data.TotalAmount;
+            $scope.billCreatedDate = data.BillCreatedDate;
+            $scope.cart = data.Cart;
+        });
+    }
+
     $scope.onChangePageIndex = function () {
         $scope.search();
     }

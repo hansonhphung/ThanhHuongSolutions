@@ -59,9 +59,9 @@
                                             <tr class="gradeX" ng-repeat="item in cart">
                                                 <td>{{item.ProductTrackingNumber}}</td>
                                                 <td>{{item.ProductName}}</td>
-                                                <td>{{item.Price}}</td>
+                                                <td>{{item.Price / item.Number}}</td>
                                                 <td>{{item.Number}}kg</td>
-                                                <td>{{item.Price * item.Number}}</td>
+                                                <td>{{item.Price}}</td>
                                             </tr>                                            
                                         </tbody>
                                     </table>

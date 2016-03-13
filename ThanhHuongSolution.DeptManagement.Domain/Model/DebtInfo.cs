@@ -9,7 +9,7 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Model
     {
         public DebtInfo() { }
 
-        public DebtInfo(string id, string trackingNumber, STCustomer customer, long totalAmount, DateTime createdAt, string debtCreatedDate)
+        public DebtInfo(string id, string trackingNumber, STCustomer customer, long totalAmount, DateTime createdAt, string debtCreatedDate, string relatedBillTrackingNumber)
         {
             Id = id;
             TrackingNumber = trackingNumber;
@@ -17,7 +17,10 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Model
             TotalAmount = totalAmount;
             CreatedAt = createdAt;
             DebtCreatedDate = debtCreatedDate;
+            RelatedBillTrackingNumber = relatedBillTrackingNumber;
         }
+
+        public string RelatedBillTrackingNumber { get; set; }
 
         public override async Task<T> Visit<T>(IGetEntityVisitor<T> visitor)
         {

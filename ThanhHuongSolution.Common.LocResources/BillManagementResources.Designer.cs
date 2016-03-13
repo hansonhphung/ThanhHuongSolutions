@@ -77,5 +77,14 @@ namespace ThanhHuongSolution.Common.LocResources {
                 return ResourceManager.GetString("DEBT_EXIST", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã hoá đơn rỗng..
+        /// </summary>
+        public static string TRACKINGNUMBER_EMPTY {
+            get {
+                return ResourceManager.GetString("TRACKINGNUMBER_EMPTY", resourceCulture);
+            }
+        }
     }
 }

@@ -123,4 +123,7 @@
   <data name="DEBT_EXIST" xml:space="preserve">
     <value>Mã phiếu này đã tồn tại.</value>
   </data>
+  <data name="TRACKINGNUMBER_EMPTY" xml:space="preserve">
+    <value>Mã hoá đơn rỗng.</value>
+  </data>
 </root>

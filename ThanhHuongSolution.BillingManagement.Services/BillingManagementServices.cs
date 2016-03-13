@@ -50,7 +50,7 @@ namespace ThanhHuongSolution.BillingManagement.Services
         {
             var repository = _objectContainer.Get<IBillingManagementRepository>();
 
-            var data = await repository.GetBillById(trackingNumber);
+            var data = await repository.GetBillByTrackingNumber(trackingNumber);
 
             //Check.ThrowExceptionIfNotNull(oldBill, BillManagementResources.BILL_EXIST);
 

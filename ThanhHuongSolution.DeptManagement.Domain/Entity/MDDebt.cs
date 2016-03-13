@@ -7,6 +7,8 @@ namespace ThanhHuongSolution.DeptManagement.Domain.Entity
     [BsonDiscriminator(DebtType.DEBT)]
     public class MDDebt : MDBaseDebt
     {
+        public string RelatedBillTrackingNumber { get; set; }
+
         public override async Task<T> Visit<T>(IGetModelVisitor<T> visitor)
         {
             return await visitor.Visit(this);
