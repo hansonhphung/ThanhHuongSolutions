@@ -34,10 +34,10 @@
                 <div class="row">
                     <div class="col-md-4 col-xs-4 form-horizontal">
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Khách Hàng <span class="required">*</span></label>
+                            <label class="col-md-4 control-label">Mặt Hàng <span class="required">*</span></label>
                             <div class="col-md-8">
                                 <ui-select ng-model="selectedCustomer" theme="bootstrap" on-select="selectCustomer(selectedCustomer)">
-                                    <ui-select-match placeholder="Chọn khách hàng...">
+                                    <ui-select-match placeholder="Chọn mặt hàng...">
                                         {{selectedCustomer.CustomerName | limitTo:25}} {{selectedCustomer.CustomerName.length < 25 ? '' : '...'}}
                                     </ui-select-match>
 
