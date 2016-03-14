@@ -1,18 +1,15 @@
-﻿@using ThanhHuongSolution.Models.Selling;
-@model SellingInformationModel
-
-@{
-    ViewBag.Title = "Xuất Hàng";
+﻿@{
+    ViewBag.Title = "Nhập Hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <header class="page-header">
-    <h2>Xuất Hóa Đơn</h2>
+    <h2>Nhập Hàng</h2>
 </header>
 
 <!-- start: page -->
-<div class="row" ng-app="ThanhHuongSolution" ng-controller="SellingController">
-    <div class="col-md-12" ng-init="init(@Json.Encode(Model))">
+<div class="row" ng-app="ThanhHuongSolution" ng-controller="ReceivingController">
+    <div class="col-md-12" ng-init="init()">
         <section class="panel">
             <div class="panel-body">
 
@@ -159,4 +156,3 @@
 </div>
 
 <script src="/Vendor/angular/angular.min.js"></script>
-<script src="~/Scripts/Selling/SellingController.js"></script>
