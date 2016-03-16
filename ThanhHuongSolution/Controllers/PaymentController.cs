@@ -35,7 +35,7 @@ namespace ThanhHuongSolution.Controllers
             catch (CustomException ex)
             {
                 TempData.AddNotification(NotificationType.Failure, ex.Message);
-                return View("Index"); // TODO refractor to change another view when no product or customer
+                return View("Index");
             }
             
         }
