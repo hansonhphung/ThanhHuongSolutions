@@ -21,10 +21,16 @@ namespace ThanhHuongSolution.Common.MongoDBDataAccess.Entity
         [Description("Cà phê")]
         CaPhe = 4,
 
+        [Description("Phiếu trả nợ")]
+        PhieuTraNo = 9,
+
         [Description("Phiếu nợ")]
         PhieuNo = 10,
 
         [Description("Hoá Đơn")]
         HoaDon = 11,
+
+        [Description("Hoá Đơn Nhập hàng")]
+        HoaDonNhapHang = 12
     }
 }
