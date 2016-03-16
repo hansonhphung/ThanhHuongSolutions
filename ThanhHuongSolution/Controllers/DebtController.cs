@@ -47,7 +47,7 @@ namespace ThanhHuongSolution.Controllers
 
                 var trackingNumberGenerator = WebContainer.Instance.ResolveAPI<ITrackingNumberGenerator>();
 
-                debt.TrackingNumber = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.PhieuNo);
+                debt.TrackingNumber = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.PhieuTraNo);
 
                 var result = await debtAPI.CreateDebt(new FrameworkParamInput<BaseDebtModel>(debt));
 
