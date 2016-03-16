@@ -7,9 +7,9 @@ namespace ThanhHuongSolution.Models.Billing
 {
     public class ListBillingModel
     {
-        public IList<BillingInfo> LstBilling { get; set; }
+        public IList<BaseBillModel> LstBilling { get; set; }
 
-        public ListBillingModel(IList<BillingInfo> lstBilling)
+        public ListBillingModel(IList<BaseBillModel> lstBilling)
         {
             LstBilling = lstBilling;
         }

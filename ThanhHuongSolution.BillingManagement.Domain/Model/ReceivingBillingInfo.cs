@@ -8,11 +8,11 @@ using ThanhHuongSolution.BillingManagement.Domain.Factory;
 
 namespace ThanhHuongSolution.BillingManagement.Domain.Model
 {
-    public class BillingInfo : BaseBillModel
+    public class ReceivingBillingInfo : BaseBillModel
     {
-        public BillingInfo() { }
+        public ReceivingBillingInfo() { }
 
-        public BillingInfo(string id, string trackingNumber, STCustomer customer, long totalAmount, string billCreatedDate, DateTime createdAt, List<STBillingItem> cart)
+        public ReceivingBillingInfo(string id, string trackingNumber, STCustomer customer, long totalAmount, string billCreatedDate, DateTime createdAt, List<STBillingItem> cart)
         {
             Id = id;
             TrackingNumber = trackingNumber;

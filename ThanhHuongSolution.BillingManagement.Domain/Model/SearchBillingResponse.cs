@@ -10,11 +10,11 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Model
     {
         public long TotalItem { get; set; }
 
-        public IList<BillingInfo> LstBilling { get; set; }
+        public IList<BaseBillModel> LstBilling { get; set; }
 
         public SearchBillingResponse() { }
 
-        public SearchBillingResponse(long totalItem, IList<BillingInfo> lstBilling)
+        public SearchBillingResponse(long totalItem, IList<BaseBillModel> lstBilling)
         {
             TotalItem = totalItem;
             LstBilling = lstBilling;

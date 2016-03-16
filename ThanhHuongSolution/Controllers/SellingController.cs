@@ -69,7 +69,7 @@ namespace ThanhHuongSolution.Controllers
 
                     var billingAPI = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
 
-                    var result = await billingAPI.CreateBill(new FrameworkParamInput<BillingInfo>(billingModel));
+                    var result = await billingAPI.CreateBill(new FrameworkParamInput<BaseBillModel>(billingModel));
 
                     return Json(new { isSuccess = true, data = result.Result, billingTrackingNumber = billingModel.TrackingNumber }, JsonRequestBehavior.AllowGet);
                 }

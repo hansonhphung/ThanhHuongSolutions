@@ -19,7 +19,7 @@ namespace ThanhHuongSolution.BillingManagement.Handler
             _objectContainer = objectContainer;
         }
 
-        public async Task<FrameworkParamOutput<bool>> CreateBill(FrameworkParamInput<BillingInfo> input)
+        public async Task<FrameworkParamOutput<bool>> CreateBill(FrameworkParamInput<BaseBillModel> input)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace ThanhHuongSolution.BillingManagement.Handler
             }
         }
 
-        public async Task<FrameworkParamOutput<BillingInfo>> GetBillById(FrameworkParamInput<string> input)
+        public async Task<FrameworkParamOutput<BaseBillModel>> GetBillById(FrameworkParamInput<string> input)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace ThanhHuongSolution.BillingManagement.Handler
 
                 var data = await services.GetBillById(id);
 
-                return await Task.FromResult(new FrameworkParamOutput<BillingInfo>(data));
+                return await Task.FromResult(new FrameworkParamOutput<BaseBillModel>(data));
             }
             catch (CustomException ex)
             {
@@ -55,7 +55,7 @@ namespace ThanhHuongSolution.BillingManagement.Handler
             }
         }
 
-        public async Task<FrameworkParamOutput<BillingInfo>> GetBillByTrackingNumber(FrameworkParamInput<string> input)
+        public async Task<FrameworkParamOutput<BaseBillModel>> GetBillByTrackingNumber(FrameworkParamInput<string> input)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace ThanhHuongSolution.BillingManagement.Handler
 
                 var data = await services.GetBillByTrackingNumber(trackingNumber);
 
-                return await Task.FromResult(new FrameworkParamOutput<BillingInfo>(data));
+                return await Task.FromResult(new FrameworkParamOutput<BaseBillModel>(data));
             }
             catch(CustomException ex)
             {
@@ -81,7 +81,7 @@ namespace ThanhHuongSolution.BillingManagement.Handler
 
                 var request = input.Request;
 
-                var data = await services.Search(request.CustomerId, request.Query, request.Pagination);
+                var data = await services.Search(request.CustomerId, request.Query, request.Pagination, request.BillType);
 
                 return await Task.FromResult(new FrameworkParamOutput<SearchBillingResponse>(data));
             } 

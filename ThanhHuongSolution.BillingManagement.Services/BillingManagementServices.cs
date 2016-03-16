@@ -8,6 +8,7 @@ using ThanhHuongSolution.Common.LocResources;
 using ThanhHuongSolution.BillingManagement.Domain.Interface;
 using ThanhHuongSolution.BillingManagement.Domain.Model;
 using ThanhHuongSolution.Common.Infrastrucure.Model;
+using ThanhHuongSolution.BillingManagement.Domain.Factory;
 
 namespace ThanhHuongSolution.BillingManagement.Services
 {
@@ -20,11 +21,13 @@ namespace ThanhHuongSolution.BillingManagement.Services
             _objectContainer = objectContainer;
         }
 
-        public async Task<bool> CreateBill(BillingInfo bill)
+        public async Task<bool> CreateBill(BaseBillModel bill)
         {
             var repository = _objectContainer.Get<IBillingManagementRepository>();
 
-            var mdBill = bill.GetEntity();
+            var visitor = await bill.Visit(new GetEntityVisitor());
+
+            var mdBill = visitor.MDBaseBill;
 
             var oldBill = await repository.GetBillByTrackingNumber(bill.TrackingNumber);
 
@@ -35,37 +38,54 @@ namespace ThanhHuongSolution.BillingManagement.Services
             return await Task.FromResult(result);
         }
 
-        public async Task<BillingInfo> GetBillById(string billId)
+        public async Task<BaseBillModel> GetBillById(string billId)
         {
             var repository = _objectContainer.Get<IBillingManagementRepository>();
 
             var data = await repository.GetBillById(billId);
 
+            var visitor = await data.Visit(new GetModelVisitor());
+
+            var bill = visitor.Bill;
+
             //Check.ThrowExceptionIfNotNull(oldBill, BillManagementResources.BILL_EXIST);
 
-            return await Task.FromResult<BillingInfo>(new BillingInfo(data));
+            return await Task.FromResult(bill);
         }
 
-        public async Task<BillingInfo> GetBillByTrackingNumber(string trackingNumber)
+        public async Task<BaseBillModel> GetBillByTrackingNumber(string trackingNumber)
         {
             var repository = _objectContainer.Get<IBillingManagementRepository>();
 
             var data = await repository.GetBillByTrackingNumber(trackingNumber);
 
+            var visitor = await data.Visit(new GetModelVisitor());
+
+            var bill = visitor.Bill;
+
             //Check.ThrowExceptionIfNotNull(oldBill, BillManagementResources.BILL_EXIST);
 
-            return await Task.FromResult<BillingInfo>(new BillingInfo(data));
+            return await Task.FromResult(bill);
         }
 
-        public async Task<SearchBillingResponse> Search(string customerId, string query, Pagination pagination)
+        public async Task<SearchBillingResponse> Search(string customerId, string query, Pagination pagination, string billType)
         {
             var repository = _objectContainer.Get<IBillingManagementRepository>();
 
-            var data = await repository.Search(customerId, query, pagination);
+            var data = await repository.Search(customerId, query, pagination, billType);
 
-            var result = data.Select(x => new BillingInfo(x)).ToList();
+            var result = new List<BaseBillModel>();
 
-            var totalItem = await repository.Count(customerId, query);
+            foreach (var mdBill in data)
+            {
+                var visitor = await mdBill.Visit(new GetModelVisitor());
+
+                var bill = visitor.Bill;
+
+                result.Add(bill);
+            }
+
+            var totalItem = await repository.Count(customerId, query, billType);
 
             return await Task.FromResult(new SearchBillingResponse(totalItem, result));
         }

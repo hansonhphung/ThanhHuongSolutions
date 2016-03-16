@@ -10,11 +10,11 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
 {
     public interface IBillingManagementAPI
     {
-        Task<FrameworkParamOutput<bool>> CreateBill(FrameworkParamInput<BillingInfo> input);
+        Task<FrameworkParamOutput<bool>> CreateBill(FrameworkParamInput<BaseBillModel> input);
 
-        Task<FrameworkParamOutput<BillingInfo>> GetBillById(FrameworkParamInput<string> input);
+        Task<FrameworkParamOutput<BaseBillModel>> GetBillById(FrameworkParamInput<string> input);
 
-        Task<FrameworkParamOutput<BillingInfo>> GetBillByTrackingNumber(FrameworkParamInput<string> input);
+        Task<FrameworkParamOutput<BaseBillModel>> GetBillByTrackingNumber(FrameworkParamInput<string> input);
 		
         Task<FrameworkParamOutput<SearchBillingResponse>> Search(FrameworkParamInput<SearchBillingRequest> input);
     }

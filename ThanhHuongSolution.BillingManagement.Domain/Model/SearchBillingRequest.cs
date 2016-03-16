@@ -11,11 +11,12 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Model
     {
         public SearchBillingRequest() { }
 
-        public SearchBillingRequest(string customerId, string query, Pagination pagination)
+        public SearchBillingRequest(string customerId, string query, Pagination pagination, string billType)
         {
             CustomerId = customerId;
             Query = query;
             Pagination = pagination;
+            BillType = billType;
         }
 
         public string CustomerId { get; set; }
@@ -23,5 +24,7 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Model
         public string Query { get; set; }
 
         public Pagination Pagination { get; set; }
+
+        public string BillType { get; set; }
     }
 }

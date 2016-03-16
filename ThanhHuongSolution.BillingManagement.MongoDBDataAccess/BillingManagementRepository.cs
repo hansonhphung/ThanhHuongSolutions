@@ -25,11 +25,11 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
             _writeDataContextFactory = writeDataContextFactory;
         }
 
-        public async Task<bool> CreateBill(MDBilling bill)
+        public async Task<bool> CreateBill(MDBaseBill bill)
         {
             var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
 
-            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.BillingCollection.TableName);
+            var collection = dbContext.GetCollection<MDBaseBill>(MongoDBEntityNames.BillingCollection.TableName);
 
             bill.CreatedAt = DateTime.UtcNow;
 
@@ -38,45 +38,46 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
             return await Task.FromResult(true);
         }
 
-        public async Task<MDBilling> GetBillById(string billId)
+        public async Task<MDBaseBill> GetBillById(string billId)
         {
             var dbContext = _readDataContextFactory.CreateMongoDBReadContext();
 
-            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.BillingCollection.TableName);
+            var collection = dbContext.GetCollection<MDBaseBill>(MongoDBEntityNames.BillingCollection.TableName);
 
             var data = await collection.Find(x => x.Id == billId).FirstOrDefaultAsync();
 
-            return await Task.FromResult<MDBilling>(data);
+            return await Task.FromResult<MDBaseBill>(data);
         }
 
-        public async Task<MDBilling> GetBillByTrackingNumber(string trackingNumber)
+        public async Task<MDBaseBill> GetBillByTrackingNumber(string trackingNumber)
         {
             var dbContext = _readDataContextFactory.CreateMongoDBReadContext();
 
-            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.BillingCollection.TableName);
+            var collection = dbContext.GetCollection<MDBaseBill>(MongoDBEntityNames.BillingCollection.TableName);
 
             var data = await collection.Find(x => x.TrackingNumber == trackingNumber).FirstOrDefaultAsync();
 
-            return await Task.FromResult<MDBilling>(data);
+            return await Task.FromResult<MDBaseBill>(data);
         }
 		
-        public async Task<IList<MDBilling>> Search(string customerId, string query, Pagination pagination)
+        public async Task<IList<MDBaseBill>> Search(string customerId, string query, Pagination pagination, string billType)
         {
             var keyLower = query.ToLower();
 
             var dbContext = _readDataContextFactory.CreateMongoDBReadContext();
 
-            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.BillingCollection.TableName);
+            var collection = dbContext.GetCollection<MDBaseBill>(MongoDBEntityNames.BillingCollection.TableName);
 
-            var builder = Builders<MDBilling>.Filter;
+            var builder = Builders<MDBaseBill>.Filter;
 
-            var filterWithoutCustomerId = builder.Or(
-                builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
-                builder.Where(x => x.TrackingNumber.Contains(keyLower))),
-                builder.Or(builder.Regex(x => x.Customer.CustomerName, new BsonRegularExpression(keyLower, "i"))),
-                builder.Where(x => x.Customer.CustomerName.Contains(keyLower)),
-                builder.Where(x => x.BillCreatedDate.Contains(keyLower))
-                );
+            var filterWithoutCustomerId = builder.And(
+                builder.Or(
+                    builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
+                    builder.Where(x => x.TrackingNumber.Contains(keyLower))),
+                    builder.Or(builder.Regex(x => x.Customer.CustomerName, new BsonRegularExpression(keyLower, "i"))),
+                    builder.Where(x => x.Customer.CustomerName.Contains(keyLower)),
+                    builder.Where(x => x.BillCreatedDate.Contains(keyLower))),
+                builder.Eq("_t", billType));
 
             var filterWithCustomerId = builder.And(
                 builder.Or(
@@ -85,10 +86,11 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
                     builder.Or(builder.Regex(x => x.Customer.CustomerName, new BsonRegularExpression(keyLower, "i")),
                     builder.Where(x => x.Customer.CustomerName.Contains(keyLower))),
                     builder.Where(x => x.BillCreatedDate.Contains(keyLower))),
-                builder.Where(x => x.Customer.CustomerId.Equals(customerId)));
-            var sortBy = Builders<MDBilling>.Sort.Descending(pagination.SortBy);
+                builder.Where(x => x.Customer.CustomerId.Equals(customerId)),
+                builder.Eq("_t", billType));
+            var sortBy = Builders<MDBaseBill>.Sort.Descending(pagination.SortBy);
 
-            List<MDBilling> data = null;
+            List<MDBaseBill> data = null;
 
             if (Check.IsNullOrEmpty(customerId))
                 data = await collection.Find(filterWithoutCustomerId)
@@ -106,23 +108,24 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
             return await Task.FromResult(data);
         }
 
-        public async Task<long> Count(string customerId, string query)
+        public async Task<long> Count(string customerId, string query, string billType)
         {
             var keyLower = query.ToLower();
 
             var dbContext = _readDataContextFactory.CreateMongoDBReadContext();
 
-            var collection = dbContext.GetCollection<MDBilling>(MongoDBEntityNames.BillingCollection.TableName);
+            var collection = dbContext.GetCollection<MDBaseBill>(MongoDBEntityNames.BillingCollection.TableName);
 
-            var builder = Builders<MDBilling>.Filter;
+            var builder = Builders<MDBaseBill>.Filter;
 
-            var filterWithoutCustomerId = builder.Or(
-                builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
-                builder.Where(x => x.TrackingNumber.Contains(keyLower))),
-                builder.Or(builder.Regex(x => x.Customer.CustomerName, new BsonRegularExpression(keyLower, "i"))),
-                builder.Where(x => x.Customer.CustomerName.Contains(keyLower)),
-                builder.Where(x => x.BillCreatedDate.Contains(keyLower))
-                );
+            var filterWithoutCustomerId = builder.And(
+                builder.Or(
+                    builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
+                    builder.Where(x => x.TrackingNumber.Contains(keyLower))),
+                    builder.Or(builder.Regex(x => x.Customer.CustomerName, new BsonRegularExpression(keyLower, "i"))),
+                    builder.Where(x => x.Customer.CustomerName.Contains(keyLower)),
+                    builder.Where(x => x.BillCreatedDate.Contains(keyLower))),
+                builder.Eq("_t", billType));
 
             var filterWithCustomerId = builder.And(
                 builder.Or(
@@ -131,7 +134,8 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
                     builder.Or(builder.Regex(x => x.Customer.CustomerName, new BsonRegularExpression(keyLower, "i")),
                     builder.Where(x => x.Customer.CustomerName.Contains(keyLower))),
                     builder.Where(x => x.BillCreatedDate.Contains(keyLower))),
-                builder.Where(x => x.Customer.CustomerId.Equals(customerId)));
+                builder.Where(x => x.Customer.CustomerId.Equals(customerId)),
+                builder.Eq("_t", billType));
 
             long count = 0;
 

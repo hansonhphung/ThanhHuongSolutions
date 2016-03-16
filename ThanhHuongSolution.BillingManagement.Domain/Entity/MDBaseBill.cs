@@ -5,14 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
- 
+using ThanhHuongSolution.BillingManagement.Domain.Factory;
+
 namespace ThanhHuongSolution.BillingManagement.Domain.Entity
 {
-    public class MDBilling
+    [BsonKnownTypes(typeof(MDBill), typeof(MDReceivingBill))]
+    public abstract class MDBaseBill
     {
-        public MDBilling() { }
+        public MDBaseBill() { }
 
-        public MDBilling(string id, string trackingNumber, STCustomer customer, long totalAmount, string billCreatedDate, DateTime createdAt, List<STBillingItem> cart)
+        public MDBaseBill(string id, string trackingNumber, STCustomer customer, long totalAmount, string billCreatedDate, DateTime createdAt, List<STBillingItem> cart)
         {
             Id = id;
             TrackingNumber = trackingNumber;
@@ -38,5 +40,7 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Entity
         public string BillCreatedDate { get; set; }
 
         public List<STBillingItem> Cart { get; set; }
+
+        public abstract Task<T> Visit<T>(IGetModelVisitor<T> visitor);
     }
 }

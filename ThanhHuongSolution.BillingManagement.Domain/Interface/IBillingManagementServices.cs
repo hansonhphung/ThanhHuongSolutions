@@ -10,12 +10,12 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
 {
     public interface IBillingManagementServices
     {
-        Task<bool> CreateBill(BillingInfo bill);
+        Task<bool> CreateBill(BaseBillModel bill);
 
-        Task<BillingInfo> GetBillById(string billId);
+        Task<BaseBillModel> GetBillById(string billId);
 
-        Task<BillingInfo> GetBillByTrackingNumber(string trackingNumber);
+        Task<BaseBillModel> GetBillByTrackingNumber(string trackingNumber);
 
-        Task<SearchBillingResponse> Search(string customerId, string query, Pagination pagination);
+        Task<SearchBillingResponse> Search(string customerId, string query, Pagination pagination, string billType);
     }
 }

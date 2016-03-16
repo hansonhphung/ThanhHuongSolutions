@@ -26,13 +26,13 @@ namespace ThanhHuongSolution.Controllers
             return View(new BillingCustomerModel(id));
         }
 
-        public async Task<ActionResult> Search(string customerId, string query, Pagination pagination)
+        public async Task<ActionResult> Search(string customerId, string query, Pagination pagination, string billType)
         {
             try
             {
                 var api = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
 
-                var data = await api.Search(new FrameworkParamInput<SearchBillingRequest>(new SearchBillingRequest(customerId, query, pagination)));
+                var data = await api.Search(new FrameworkParamInput<SearchBillingRequest>(new SearchBillingRequest(customerId, query, pagination, billType)));
 
                 return Json(new { isSuccess = true, data = data.Result }, JsonRequestBehavior.AllowGet);
             }

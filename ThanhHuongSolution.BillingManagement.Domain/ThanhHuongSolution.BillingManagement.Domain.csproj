@@ -52,13 +52,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\MDBilling.cs" />
+    <Compile Include="Entity\BillType.cs" />
+    <Compile Include="Entity\MDBaseBill.cs" />
+    <Compile Include="Entity\MDBill.cs" />
+    <Compile Include="Entity\MDReceivingBill.cs" />
     <Compile Include="Entity\STBillingItem.cs" />
     <Compile Include="Entity\STCustomer.cs" />
+    <Compile Include="Factory\GetEntityVisitor.cs" />
+    <Compile Include="Factory\GetModelVisitor.cs" />
     <Compile Include="Interface\IBillingManagementAPI.cs" />
     <Compile Include="Interface\IBillingManagementRepository.cs" />
     <Compile Include="Interface\IBillingManagementServices.cs" />
+    <Compile Include="Factory\IGetEntityVisitor.cs" />
+    <Compile Include="Factory\IGetModelVisitor.cs" />
+    <Compile Include="Model\BaseBillModel.cs" />
     <Compile Include="Model\BillingInfo.cs" />
+    <Compile Include="Model\ReceivingBillingInfo.cs" />
     <Compile Include="Model\SearchBillingRequest.cs" />
     <Compile Include="Model\SearchBillingResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

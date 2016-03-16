@@ -10,14 +10,14 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
 {
     public interface IBillingManagementRepository
     {
-        Task<bool> CreateBill(MDBilling bill);
+        Task<bool> CreateBill(MDBaseBill bill);
 
-        Task<MDBilling> GetBillById(string billId);
+        Task<MDBaseBill> GetBillById(string billId);
 
-        Task<MDBilling> GetBillByTrackingNumber(string trackingNumber);
+        Task<MDBaseBill> GetBillByTrackingNumber(string trackingNumber);
 
-        Task<IList<MDBilling>> Search(string customerId, string query, Pagination pagination);
+        Task<IList<MDBaseBill>> Search(string customerId, string query, Pagination pagination, string billType);
 
-        Task<long> Count(string customerId, string query);
+        Task<long> Count(string customerId, string query, string billType);
     }
 }
