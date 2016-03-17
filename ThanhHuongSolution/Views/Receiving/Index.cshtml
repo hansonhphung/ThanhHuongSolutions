@@ -1,7 +1,4 @@
-﻿@using ThanhHuongSolution.Models.Receiving;
-@model ReceivingInformationModel
-
-@{
+﻿@{
     ViewBag.Title = "Nhập Hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -12,7 +9,7 @@
 
 <!-- start: page -->
 <div class="row" ng-app="ThanhHuongSolution" ng-controller="ReceivingController">
-    <div class="col-md-12" ng-init="init(@Json.Encode(Model))">
+    <div class="col-md-12" ng-init="init()">
         <section class="panel">
             <div class="panel-body">
 
@@ -32,52 +29,58 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12"><hr></div>
-
                 <div class="row">
-                    <div class="col-md-4 col-xs-4 form-horizontal">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Mặt Hàng <span class="required">*</span></label>
-                            <div class="col-md-8">
-                                <ui-select ng-model="selectedProduct" theme="bootstrap" on-select="selectProduct(selectedProduct)">
+                    <section class="panel-body">
+                        <div class="col-md-12 col-xs-12">
+                            <header class="panel-heading">
+                                <h2 class="panel-title">Thông Tin Nhập Hàng</h2>
+                            </header>
+                            <div class="panel-body">
+                                <div class="col-md-4 col-xs-4 form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Mặt Hàng <span class="required">*</span></label>
+                                        <div class="col-md-8">
+                                            <ui-select ng-model="selectedCustomer" theme="bootstrap" on-select="selectCustomer(selectedCustomer)">
+                                                <ui-select-match placeholder="Chọn mặt hàng...">
+                                                    {{selectedCustomer.CustomerName | limitTo:25}} {{selectedCustomer.CustomerName.length < 25 ? '' : '...'}}
+                                                </ui-select-match>
 
-                                    <ui-select-match placeholder="Chọn mặt hàng...">
-                                        {{selectedProduct.Name | limitTo:20}} {{selectedProduct.Name.length < 20 ? '' : '...'}}
-                                    </ui-select-match>
+                                                <ui-select-choices repeat="customer in lstCustomer | filter: $select.search">
+                                                    {{customer.CustomerName}}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                    <ui-select-choices repeat="product in lstProduct | filter: $select.search">
-                                        {{product.Name}}
-                                    </ui-select-choices>
-                                </ui-select>
+                                <div class="col-md-3 col-xs-3 form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label"> Giá Nhập <span class="required">*</span></label>
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" ng-model="number" required min="1" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-xs-3 form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Số Lượng <span class="required">*</span></label>
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" ng-model="number" required min="1" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-xs-2 center">
+                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-success" ng-click="createBilling()">Thêm</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3 col-xs-3 form-horizontal">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label"> Giá Nhập <span class="required">*</span></label>
-                            <div class="col-md-8">
-                                <input type="number" class="form-control" ng-model="inputPrice" required min="1" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-xs-3 form-horizontal">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Số Lượng <span class="required">*</span></label>
-                            <div class="col-md-8">
-                                <input type="number" class="form-control" ng-model="number" required min="1" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2 col-xs-2 center">
-                        <button type="button" class="mb-xs mt-xs mr-xs btn btn-md btn-success" ng-click="createBilling()">Thêm</button>
-                    </div>
+                    </section>
                 </div>
 
                 <div class="row">
-                    <section class="panel-body">  
+                    <section class="panel-body">
                         <div class="col-md-12 col-xs-12">
                             <header class="panel-heading">
                                 <h2 class="panel-title">Danh Sách Hàng Đã Chọn</h2>
