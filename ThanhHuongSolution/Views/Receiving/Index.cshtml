@@ -1,4 +1,7 @@
-﻿@{
+﻿@using ThanhHuongSolution.Models.Receiving;
+@model ReceivingInformationModel
+
+@{
     ViewBag.Title = "Nhập Hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,7 +12,7 @@
 
 <!-- start: page -->
 <div class="row" ng-app="ThanhHuongSolution" ng-controller="ReceivingController">
-    <div class="col-md-12" ng-init="init()">
+    <div class="col-md-12" ng-init="init(@Json.Encode(Model))">
         <section class="panel">
             <div class="panel-body">
 
@@ -40,13 +43,14 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Mặt Hàng <span class="required">*</span></label>
                                         <div class="col-md-8">
-                                            <ui-select ng-model="selectedCustomer" theme="bootstrap" on-select="selectCustomer(selectedCustomer)">
+                                            <ui-select ng-model="selectedProduct" theme="bootstrap" on-select="selectProduct(selectedProduct)">
+
                                                 <ui-select-match placeholder="Chọn mặt hàng...">
-                                                    {{selectedCustomer.CustomerName | limitTo:25}} {{selectedCustomer.CustomerName.length < 25 ? '' : '...'}}
+                                                    {{selectedProduct.Name | limitTo:20}} {{selectedProduct.Name.length < 20 ? '' : '...'}}
                                                 </ui-select-match>
 
-                                                <ui-select-choices repeat="customer in lstCustomer | filter: $select.search">
-                                                    {{customer.CustomerName}}
+                                                <ui-select-choices repeat="product in lstProduct | filter: $select.search">
+                                                    {{product.Name}}
                                                 </ui-select-choices>
                                             </ui-select>
                                         </div>
@@ -57,7 +61,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label"> Giá Nhập <span class="required">*</span></label>
                                         <div class="col-md-8">
-                                            <input type="number" class="form-control" ng-model="number" required min="1" />
+                                            <input type="number" class="form-control" ng-model="inputPrice" required min="1" />
                                         </div>
                                     </div>
                                 </div>
