@@ -66,3 +66,43 @@
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
 }
+
+/* BILL */
+.onoffswitch-bill {
+    position: relative; width: 200px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-inner-bill {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner-bill:before, .onoffswitch-inner-bill:after {
+    display: block; float: left; width: 50%; height: 35px; padding: 0; line-height: 35px;
+    font-size: 16px; color: white; font-family: Trebuchet, Arial, sans-serif;
+    box-sizing: border-box;
+}
+.onoffswitch-inner-bill:before {
+    content: "Hóa Đơn Bán Hàng";
+    padding-left: 15px;
+    background-color: #47A447; color: #FFFFFF;
+}
+.onoffswitch-inner-bill:after {
+    content: "Hóa Đơn Xuất Hàng";
+    padding-right: 15px;
+    background-color: #0088CC; color: #FFFFFF;
+    text-align: right;
+}
+.onoffswitch-switch-bill {
+    display: block; width: 25px; margin: 5px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 160px;
+    border: 2px solid #999999; border-radius: 0px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner-bill {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch-bill {
+    right: 0px; 
+}

@@ -30,6 +30,22 @@
 
         </div>
 
+        <div class="pull-left form-inline">
+            <div class="form-group">
+                <div class="col-sm-8">
+                    <!--<input type="checkbox" class="form-control" ng-model="wholesalePriceChoosen" data-toggle="toggle" data-on="<span style='color:#fff;'>Giá Lẻ</span>" data-off="Giá Sỉ" data-onstyle="success" data-offstyle="info">-->
+                    <div class="onoffswitch-bill">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked ng-model="BillChoosen" ng-change="onSwitchBillType()">
+                        <label class="onoffswitch-label" for="myonoffswitch">
+                            <span class="onoffswitch-inner-bill"></span>
+                            <span class="onoffswitch-switch-bill"></span>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <table class="table table-responsive table-striped">
             <thead>
                 <tr>
