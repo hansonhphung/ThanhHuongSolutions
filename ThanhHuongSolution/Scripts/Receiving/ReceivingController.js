@@ -10,6 +10,7 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
     $scope.pageIndex = 1;
     $scope.totalAmount = 0;
     $scope.incurredCost = 0; //chi phi phat sinh
+    $scope.finalTotalAmount = 0;
 
     $scope.isDisablePrice = false;
 
@@ -73,6 +74,7 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
         }
 
         $scope.totalAmount += $scope.inputPrice * $scope.number;
+        $scope.finalTotalAmount += $scope.inputPrice * $scope.number;
         $scope.isDisablePrice = true;
 
         $scope.updatePagingConfig();
@@ -100,4 +102,43 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
         }
     }
 
+    $scope.viewItemInCart = function (trackingNumber) {
+        for (var i = 0; i < $scope.pagingSource.length; i++) {
+            if ($scope.pagingSource[i].TrackingNumber == trackingNumber) {
+                $scope.itemTrackingNumber = $scope.pagingSource[i].TrackingNumber;
+                $scope.itemName = $scope.pagingSource[i].Name;
+                $scope.itemQuantity = $scope.pagingSource[i].Number;
+                $scope.itemTotalPrice = $scope.pagingSource[i].TotalPrice;
+                $scope.itemPrice = $scope.pagingSource[i].Price;
+                break;
+            }
+        }
+    }
+
+    $scope.deleteItemInCart = function (trackingNumber)
+    {
+        for (var i = 0; i < $scope.pagingSource.length; i++) {
+            if ($scope.pagingSource[i].TrackingNumber == trackingNumber) {
+                $scope.totalAmount -= $scope.pagingSource[i].TotalPrice;
+                $scope.finalTotalAmount -= $scope.pagingSource[i].TotalPrice;
+                $scope.pagingSource.splice(i, 1);
+            }
+        }
+
+        $scope.updatePagingConfig();
+        $scope.onChangePageIndex();
+    }
+    
+    $scope.numberInputTypeKeyPress = function ($event) {
+        if (($event.keyCode >= 48 && $event.keyCode <= 57) || ($event.keyCode >= 96 && $event.keyCode <= 105) || $event.keyCode == 8 || $event.keyCode == 46) {
+
+            var incurredCost = 0;
+
+            if ($scope.incurredCost != null) {
+                incurredCost = $scope.incurredCost;
+            }
+
+            $scope.finalTotalAmount += incurredCost;
+        }
+    }
 });
