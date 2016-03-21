@@ -61,7 +61,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label"> Giá Nhập <span class="required">*</span></label>
                                         <div class="col-md-8">
-                                            <input type="number" class="form-control" ng-model="inputPrice" required min="1" />
+                                            <input type="number" class="form-control" ng-model="inputPrice" ng-disabled="isDisablePrice == true" required min="1" />
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                                 </div>
 
                                 <div class="col-md-2 col-xs-2 center">
-                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-success" ng-click="createBilling()">Thêm</button>
+                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-success" ng-click="addProductItem()">Thêm</button>
                                 </div>
                             </div>
                         </div>
@@ -116,6 +116,7 @@
                                     </tbody>
                                 </table>
                             </div>
+
                             <div style="text-align:center">
                                 <div class="table-pagination">
                                     <uib-pagination boundary-links="true" total-items="totalProduct" ng-model="pageIndex" max-size="maxSize" class="pagination" rotate="false" items-per-page="recordPerPage" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
