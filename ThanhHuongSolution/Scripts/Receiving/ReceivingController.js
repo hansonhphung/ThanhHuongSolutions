@@ -142,6 +142,28 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
         }
     }
 
+    $scope.initData = function () {
+        $scope.shoppingCart = [];
+
+        $scope.pagingSource = [];
+
+        $scope.selectedProduct = $scope.lstProduct[0];
+
+        $scope.inputPrice = 0;
+
+        $scope.totalAmount = 0;
+
+        $scope.finalTotalAmount = 0;
+
+        $scope.number = 0;
+
+        $scope.incurredCost = 0;
+
+        $scope.isDisablePrice = false;
+
+        $scope.updatePagingConfig();
+    }
+
     $scope.createReceivingBill = function () {
         if ($scope.shoppingCart.length == 0) {
             toastr.warning("Hoá đơn chưa có mặt hàng.");
@@ -190,7 +212,7 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
 
                         toastr.success('Tạo hoá đơn nhập hàng thành công');
 
-                        $scope.pagingSource = [];
+                        $scope.initData();
                     }
                     else {
                         toastr.error('error at: ' + response.message);
