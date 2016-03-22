@@ -10,9 +10,11 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Model
 {
     public class ReceivingBillingInfo : BaseBillModel
     {
+        public long IncurredCost { get; set; }
+
         public ReceivingBillingInfo() { }
 
-        public ReceivingBillingInfo(string id, string trackingNumber, STCustomer customer, long totalAmount, string billCreatedDate, DateTime createdAt, List<STBillingItem> cart)
+        public ReceivingBillingInfo(string id, string trackingNumber, STCustomer customer, long totalAmount, string billCreatedDate, DateTime createdAt, List<STBillingItem> cart, long incurredCost)
         {
             Id = id;
             TrackingNumber = trackingNumber;
@@ -21,6 +23,7 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Model
             BillCreatedDate = billCreatedDate;
             CreatedAt = createdAt;
             Cart = cart;
+            IncurredCost = incurredCost;
         }
 
         public override async Task<T> Visit<T>(IGetEntityVisitor<T> visitor)

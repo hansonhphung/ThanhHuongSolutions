@@ -23,7 +23,8 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Factory
                 TotalAmount = bill.TotalAmount,
                 BillCreatedDate = bill.BillCreatedDate,
                 CreatedAt = bill.CreatedAt,
-                Cart = bill.Cart
+                Cart = bill.Cart,
+                IncurredCost = bill.IncurredCost
             };
 
             MDBaseBill = mdBaseBill;
