@@ -18,6 +18,7 @@ using ThanhHuongSolution.Models.Customer;
 using ThanhHuongSolution.Extension;
 using ThanhHuongSolution.Notification;
 using ThanhHuongSolution.Security;
+using ThanhHuongSolution.BillingManagement.Domain.Interface;
 
 namespace ThanhHuongSolution.Controllers
 {
@@ -70,9 +71,19 @@ namespace ThanhHuongSolution.Controllers
             {
                 var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
 
-                var data = await api.DeleteCustomer(new FrameworkParamInput<string>(customerId));
+                var billAPI = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
 
-                return Json(new { isSuccess = true, data = data.Result }, JsonRequestBehavior.AllowGet);
+                var isHaveTransaction = await billAPI.IsCustomerHaveTransaction(new FrameworkParamInput<string>(customerId));
+
+                if (!isHaveTransaction.Result)
+                {
+                    var data = await api.DeleteCustomer(new FrameworkParamInput<string>(customerId));
+
+                    return Json(new { isSuccess = true, data = data.Result }, JsonRequestBehavior.AllowGet);
+                }
+
+                return Json(new { isSuccess = true, data = false, message = Common.LocResources.CustomerManagementResources.CUSTOMER_CAN_NOT_DELETE }, JsonRequestBehavior.AllowGet);
+
             }
             catch (CustomException ex)
             {

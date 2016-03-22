@@ -116,8 +116,12 @@ app.controller('CustomerController', function ($scope, toastr, $location, $http)
         $http.post("/Customer/Delete", { customerId: customerId })
         .success(function (response) {
             if (response.isSuccess) {
-                $scope.search();
-                toastr.success('Xoá khách hàng thành công');
+                if (response.data) {
+                    $scope.search();
+                    toastr.success('Xoá khách hàng thành công');
+                }
+                else
+                    toastr.error(response.message);
             }
             else {
                 toastr.error('error at: ' + response.message);
