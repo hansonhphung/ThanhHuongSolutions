@@ -61,6 +61,15 @@ namespace ThanhHuongSolution.Common.LocResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Khách hàng này đã có lịch sử mua bán, không thể xoá được..
+        /// </summary>
+        public static string CUSTOMER_CAN_NOT_DELETE {
+            get {
+                return ResourceManager.GetString("CUSTOMER_CAN_NOT_DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mã khách hàng này đã tồn tại..
         /// </summary>
         public static string CUSTOMER_EXIST {

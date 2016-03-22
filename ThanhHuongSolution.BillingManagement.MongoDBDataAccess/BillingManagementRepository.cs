@@ -146,5 +146,16 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
 
             return await Task.FromResult(count);
         }
+
+        public async Task<bool> IsCustomerHaveTransaction(string customerId)
+        {
+            var dbContext = _readDataContextFactory.CreateMongoDBReadContext();
+
+            var collection = dbContext.GetCollection<MDBaseBill>(MongoDBEntityNames.BillingCollection.TableName);
+
+            var bills = await collection.Find(x => x.Customer.CustomerId == customerId).ToListAsync();
+
+            return await Task.FromResult(!Check.CollectionIsNullOrEmpty(bills));
+        }
     }
 }

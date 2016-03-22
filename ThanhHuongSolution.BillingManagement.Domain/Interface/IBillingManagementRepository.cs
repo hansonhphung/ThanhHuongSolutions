@@ -19,5 +19,7 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
         Task<IList<MDBaseBill>> Search(string customerId, string query, Pagination pagination, string billType);
 
         Task<long> Count(string customerId, string query, string billType);
+
+        Task<bool> IsCustomerHaveTransaction(string customerId);
     }
 }

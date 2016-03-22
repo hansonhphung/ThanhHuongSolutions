@@ -17,5 +17,7 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
         Task<BaseBillModel> GetBillByTrackingNumber(string trackingNumber);
 
         Task<SearchBillingResponse> Search(string customerId, string query, Pagination pagination, string billType);
+
+        Task<bool> IsCustomerHaveTransaction(string customerId);
     }
 }
