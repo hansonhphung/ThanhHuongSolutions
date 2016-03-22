@@ -3,7 +3,7 @@ app.controller('CustomerController', function ($scope, toastr, $location, $http)
 
     //Pagination
     $scope.pageIndex = 1;
-    $scope.recordPerPage = 3;
+    $scope.recordPerPage = 10;
     $scope.maxSize = 5;
     $scope.pagingSource = [];
     $scope.currentIndex = 1;

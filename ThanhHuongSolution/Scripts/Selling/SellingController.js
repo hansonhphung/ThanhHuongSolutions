@@ -5,8 +5,8 @@ app.controller('SellingController', function ($scope, toastr, $http) {
     $scope.pagingSource = [];
     $scope.needUpdateProduct = [];
 
-    $scope.maxSize = 1;
-    $scope.recordPerPage = 1;
+    $scope.maxSize = 3;
+    $scope.recordPerPage = 5;
     $scope.pageIndex = 1;
     $scope.totalAmount = 0;
     $scope.payAmount = 0;
@@ -367,6 +367,9 @@ app.controller('SellingController', function ($scope, toastr, $http) {
     $scope.onChangePageIndex = function ()
     {
         $scope.shoppingCart = [];
+
+        if ($scope.pagingSource.length == 0)
+            return;
 
         if ($scope.pageIndex == $scope.numPages) {
             for (var i = ($scope.pageIndex - 1) * $scope.recordPerPage; i < $scope.pagingSource.length; i++) {
