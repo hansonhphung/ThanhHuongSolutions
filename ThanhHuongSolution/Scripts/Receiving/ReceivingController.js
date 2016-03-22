@@ -138,7 +138,7 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
                 incurredCost = $scope.incurredCost;
             }
 
-            $scope.finalTotalAmount += incurredCost;
+            $scope.finalTotalAmount = $scope.totalAmount + incurredCost;
         }
     }
 });
