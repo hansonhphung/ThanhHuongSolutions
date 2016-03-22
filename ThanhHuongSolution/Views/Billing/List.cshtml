@@ -43,22 +43,22 @@
                 <thead>
                     <tr>
                         <th>Mã Hóa Đơn</th>
-                        <th ng-if="BillChoosen == true">Tên Khách Hàng</th>
+                        <th ng-if="billType == 'BILL'">Tên Khách Hàng</th>
                         <th>Ngày Lập</th>
                         <th>Thành Tiền</th>
-                        <th ng-if="BillChoosen == false">Chi Phí Phát Sinh</th>
-                        <th ng-if="BillChoosen == false">Tổng Thành Tiền</th>
+                        <th ng-if="billType == 'RECEIVING_BILL'">Chi Phí Phát Sinh</th>
+                        <th ng-if="billType == 'RECEIVING_BILL'">Tổng Thành Tiền</th>
                         <th class="hidden-phone"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="gradeX" ng-repeat="bill in bills">
                         <td>{{bill.TrackingNumber}}</td>
-                        <td ng-if="BillChoosen == true">{{bill.Customer.CustomerName}}</td>
+                        <td ng-if="billType = 'BILL'">{{bill.Customer.CustomerName}}</td>
                         <td>{{bill.BillCreatedDate}}</td>
                         <td class="hidden-phone">{{bill.TotalAmount}} VND</td>
-                        <td class="hidden-phone" ng-if="BillChoosen == false">{{bill.IncurredCost}} VND</td>
-                        <td class="hidden-phone" ng-if="BillChoosen == false">{{bill.FinalTotalAmount}} VND</td>
+                        <td class="hidden-phone" ng-if="billType == 'RECEIVING_BILL'">{{bill.IncurredCost}} VND</td>
+                        <td class="hidden-phone" ng-if="billType == 'RECEIVING_BILL'">{{bill.FinalTotalAmount}} VND</td>
                         <td class="hidden-phone">
                             <button type="button" class="mb-xs mt-xs mr-xs btn btn-info" data-toggle="modal" data-target="#detailBillingFormModal" ng-click="viewBill(bill.Id)">Xem Chi Tiết</button>
 
