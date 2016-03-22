@@ -27,11 +27,6 @@ app.controller('BillingController', function ($scope, toastr, $location, $http) 
         $('#search_date').trigger('input');
     }
 
-    $scope.onSwitchBillType = function()
-    {
-        $scope.search();
-    }
-
     $scope.search = function () {
 
         if ($scope.BillChoosen) {
@@ -68,13 +63,15 @@ app.controller('BillingController', function ($scope, toastr, $location, $http) 
             for (var i = 0; i < $scope.bills.length; i++) {
                 if ($scope.bills[i].Id == billId) {
                     $scope.trackingNumber = $scope.bills[i].TrackingNumber;
-                    $scope.customerId = $scope.bills[i].Customer.Id;
                     $scope.customerTrackingNumber = $scope.bills[i].Customer.CustomerTrackingNumber;
                     $scope.customerName = $scope.bills[i].Customer.CustomerName;
                     $scope.totalAmount = $scope.bills[i].TotalAmount;
                     $scope.billCreatedDate = $scope.bills[i].BillCreatedDate;
                     $scope.createdAt = $scope.bills[i].CreatedAt;
                     $scope.cart = $scope.bills[i].Cart;
+
+                    if ($scope.billType == 'RECEIVING_BILL')
+                        $scope.customerId = $scope.bills[i].Customer.Id;
                     return;
                 }
             }
@@ -87,6 +84,16 @@ app.controller('BillingController', function ($scope, toastr, $location, $http) 
     }
 
     $scope.onChangePageIndex = function () {
+        $scope.search();
+    }
+
+    $scope.switchSellingBill = function () {
+        $scope.BillChoosen = true;
+        $scope.search();
+    }
+
+    $scope.switchReceivingBill = function () {
+        $scope.BillChoosen = false;
         $scope.search();
     }
 });
