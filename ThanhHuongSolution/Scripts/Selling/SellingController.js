@@ -350,6 +350,8 @@ app.controller('SellingController', function ($scope, toastr, $http) {
         $scope.liabilityAmount = 0;
 
         $scope.payAmount = 0;
+
+        $scope.updatePagingConfig();
     }
 
     $scope.cancel = function ()
