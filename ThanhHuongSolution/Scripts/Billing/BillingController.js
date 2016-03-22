@@ -27,11 +27,6 @@ app.controller('BillingController', function ($scope, toastr, $location, $http) 
         $('#search_date').trigger('input');
     }
 
-    $scope.onSwitchBillType = function()
-    {
-        $scope.search();
-    }
-
     $scope.search = function () {
 
         if ($scope.BillChoosen) {
@@ -87,6 +82,16 @@ app.controller('BillingController', function ($scope, toastr, $location, $http) 
     }
 
     $scope.onChangePageIndex = function () {
+        $scope.search();
+    }
+
+    $scope.switchSellingBill = function () {
+        $scope.BillChoosen = true;
+        $scope.search();
+    }
+
+    $scope.switchReceivingBill = function () {
+        $scope.BillChoosen = false;
         $scope.search();
     }
 });
