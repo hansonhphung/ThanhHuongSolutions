@@ -10,6 +10,8 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Entity
     {
         public long IncurredCost { get; set; }
 
+        public long FinalTotalAmount { get; set; }
+
         public override async Task<T> Visit<T>(IGetModelVisitor<T> visitor)
         {
             return await visitor.Visit(this);
