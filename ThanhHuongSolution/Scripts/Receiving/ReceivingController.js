@@ -141,4 +141,65 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
             $scope.finalTotalAmount = $scope.totalAmount + incurredCost;
         }
     }
+
+    $scope.createReceivingBill = function () {
+        if ($scope.shoppingCart.length == 0) {
+            toastr.warning("Hoá đơn chưa có mặt hàng.");
+            return;
+        }
+
+
+        for (var i = 0; i < $scope.pagingSource.length; i++) {
+            for (var j = 0; j < $scope.lstProduct.length; j++) {
+                if ($scope.pagingSource[i].TrackingNumber == $scope.lstProduct[j].TrackingNumber) {
+                    $scope.needUpdateProduct.push({ ProductTrackingNumber: $scope.pagingSource[i].TrackingNumber, ProductRemainingNumber: $scope.lstProduct[j].Number + $scope.pagingSource[i].Number });
+                }
+            }
+        }
+
+        $http.post("/Selling/UpdateListSellingProduct", { lstProductInfo: $scope.needUpdateProduct }, {
+        }).success(function (response) {
+            if (response.isSuccess) {
+
+                var form = new FormData();
+                /*
+                form.append("Customer.CustomerId", $scope.selectedCustomer.CustomerId);
+                form.append("Customer.CustomerTrackingNumber", $scope.selectedCustomer.CustomerTrackingNumber);
+                form.append("Customer.CustomerName", $scope.selectedCustomer.CustomerName);
+                */
+
+                if ($scope.pagingSource != null && $scope.pagingSource.length > 0) {
+                    for (var i = 0; i < $scope.pagingSource.length; i++) {
+                        form.append("Cart[" + i + "].ProductTrackingNumber", $scope.pagingSource[i].TrackingNumber);
+                        form.append("Cart[" + i + "].ProductName", $scope.pagingSource[i].Name);
+                        form.append("Cart[" + i + "].Number", $scope.pagingSource[i].Number);
+                        form.append("Cart[" + i + "].Price", $scope.pagingSource[i].TotalPrice);
+                    }
+                }
+
+                form.append("TotalAmount", $scope.totalAmount);
+                form.append("IncurredCost", $scope.incurredCost);
+                form.append("FinalTotalAmount", $scope.finalTotalAmount);
+
+                $http.post("/Receiving/CreateReceivingBill", form, {
+                    withCredentials: true,
+                    headers: { 'Content-Type': undefined },
+                    transformRequest: angular.identity
+                }).success(function (response) {
+                    if (response.isSuccess) {
+
+                        toastr.success('Tạo hoá đơn nhập hàng thành công');
+
+                        $scope.pagingSource = [];
+                    }
+                    else {
+                        toastr.error('error at: ' + response.message);
+                    }
+                });
+            }
+            else {
+                toastr.error('error at: ' + response.message);
+            }
+        });
+    }
 });

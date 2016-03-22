@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ThanhHuongSolution.BillingManagement.Domain.Interface;
+using ThanhHuongSolution.BillingManagement.Domain.Model;
 using ThanhHuongSolution.Common.Infrastrucure;
+using ThanhHuongSolution.Common.MongoDBDataAccess.Entity;
+using ThanhHuongSolution.Common.MongoDBDataAccess.Interface;
 using ThanhHuongSolution.Extension;
 using ThanhHuongSolution.Models.Receiving;
 using ThanhHuongSolution.Models.Selling;
@@ -33,6 +37,36 @@ namespace ThanhHuongSolution.Controllers
             {
                 TempData.AddNotification(NotificationType.Failure, ex.Message);
                 return View("Index");
+            }
+        }
+
+        public async Task<ActionResult> CreateReceivingBill(FormCollection formCollection)
+        {
+            try
+            {
+                var billingModel = new ReceivingBillingInfo();
+
+                if (TryUpdateModel(billingModel, formCollection))
+                {
+                    var trackingNumberGenerator = WebContainer.Instance.ResolveAPI<ITrackingNumberGenerator>();
+
+                    billingModel.TrackingNumber = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.HoaDonNhapHang);
+
+                    billingModel.BillCreatedDate = DateTime.UtcNow.ToString("dd/MM/yyyy");
+
+                    var billingAPI = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
+
+                    var result = await billingAPI.CreateBill(new FrameworkParamInput<BaseBillModel>(billingModel));
+
+                    return Json(new { isSuccess = true, data = result.Result, billingTrackingNumber = billingModel.TrackingNumber }, JsonRequestBehavior.AllowGet);
+                }
+
+                return Json(new { isSuccess = false, message = "Can not update model" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (CustomException ex)
+            {
+                TempData.AddNotification(NotificationType.Failure, ex.Message);
+                return Json(new { isSuccess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
     }
