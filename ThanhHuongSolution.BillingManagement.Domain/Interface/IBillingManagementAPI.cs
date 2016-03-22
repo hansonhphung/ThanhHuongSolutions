@@ -17,5 +17,7 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
         Task<FrameworkParamOutput<BaseBillModel>> GetBillByTrackingNumber(FrameworkParamInput<string> input);
 		
         Task<FrameworkParamOutput<SearchBillingResponse>> Search(FrameworkParamInput<SearchBillingRequest> input);
+
+        Task<FrameworkParamOutput<bool>> IsCustomerHaveTransaction(FrameworkParamInput<string> input);
     }
 }

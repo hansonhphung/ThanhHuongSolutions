@@ -90,5 +90,23 @@ namespace ThanhHuongSolution.BillingManagement.Handler
                 throw new CustomException(ex);
             }
         }
+
+        public async Task<FrameworkParamOutput<bool>> IsCustomerHaveTransaction(FrameworkParamInput<string> input)
+        {
+            try
+            {
+                var services = _objectContainer.Get<IBillingManagementServices>();
+
+                var request = input.Request;
+
+                var data = await services.IsCustomerHaveTransaction(request);
+
+                return await Task.FromResult(new FrameworkParamOutput<bool>(data));
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex);
+            }
+        }
     }
 }

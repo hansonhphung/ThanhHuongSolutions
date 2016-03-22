@@ -52,7 +52,7 @@ namespace ThanhHuongSolution.BillingManagement.Services
 
             return await Task.FromResult(bill);
         }
-
+        
         public async Task<BaseBillModel> GetBillByTrackingNumber(string trackingNumber)
         {
             var repository = _objectContainer.Get<IBillingManagementRepository>();
@@ -88,6 +88,15 @@ namespace ThanhHuongSolution.BillingManagement.Services
             var totalItem = await repository.Count(customerId, query, billType);
 
             return await Task.FromResult(new SearchBillingResponse(totalItem, result));
+        }
+
+        public  async Task<bool> IsCustomerHaveTransaction(string customerId)
+        {
+            var repository = _objectContainer.Get<IBillingManagementRepository>();
+
+            var data = await repository.IsCustomerHaveTransaction(customerId);
+
+            return await Task.FromResult(data);
         }
     }
 }
