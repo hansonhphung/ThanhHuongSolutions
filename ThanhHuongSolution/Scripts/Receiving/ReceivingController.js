@@ -5,8 +5,8 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
     $scope.pagingSource = [];
     $scope.needUpdateProduct = [];
 
-    $scope.maxSize = 1;
-    $scope.recordPerPage = 1;
+    $scope.maxSize = 3;
+    $scope.recordPerPage = 5;
     $scope.pageIndex = 1;
     $scope.totalAmount = 0;
     $scope.incurredCost = 0; //chi phi phat sinh
@@ -89,6 +89,9 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
     $scope.onChangePageIndex = function () {
         $scope.shoppingCart = [];
 
+        if ($scope.pagingSource.length == 0)
+            return;
+
         if ($scope.pageIndex == $scope.numPages) {
             for (var i = ($scope.pageIndex - 1) * $scope.recordPerPage; i < $scope.pagingSource.length; i++) {
                 $scope.shoppingCart.push($scope.pagingSource[i]);
@@ -142,6 +145,28 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
         }
     }
 
+    $scope.initData = function () {
+        $scope.shoppingCart = [];
+
+        $scope.pagingSource = [];
+
+        $scope.selectedProduct = $scope.lstProduct[0];
+
+        $scope.inputPrice = 0;
+
+        $scope.totalAmount = 0;
+
+        $scope.finalTotalAmount = 0;
+
+        $scope.number = 0;
+
+        $scope.incurredCost = 0;
+
+        $scope.isDisablePrice = false;
+
+        $scope.updatePagingConfig();
+    }
+
     $scope.createReceivingBill = function () {
         if ($scope.shoppingCart.length == 0) {
             toastr.warning("Hoá đơn chưa có mặt hàng.");
@@ -190,7 +215,7 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
 
                         toastr.success('Tạo hoá đơn nhập hàng thành công');
 
-                        $scope.pagingSource = [];
+                        $scope.initData();
                     }
                     else {
                         toastr.error('error at: ' + response.message);

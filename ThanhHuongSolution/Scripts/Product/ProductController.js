@@ -4,7 +4,7 @@ app.controller('ProductController', function ($scope, toastr, $http) {
     $scope.productTypes = [{ 'key': 'Tất cả', 'value': '0' }, { 'key': 'Phân bón', 'value': '1' }, { 'key': 'Gạo', 'value': '2' }, { 'key': 'Cà phê', 'value': '3' }];
     $scope.newProductTypes = [{ 'key': 'Phân bón', 'value': '1' }, { 'key': 'Gạo', 'value': '2' }, { 'key': 'Cà phê', 'value': '3' }];
     $scope.newUnitTypes = [{ 'key': 'Kg', 'value': '1' }];
-    $scope.pageSize = 2;
+    $scope.pageSize = 10;
     $scope.pageIndex = 1;
     $scope.maxsize = 5;
     $scope.pagingSource = [];
