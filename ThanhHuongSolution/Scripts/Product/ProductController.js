@@ -66,7 +66,7 @@ app.controller('ProductController', function ($scope, toastr, $http) {
         $scope.selectedProductType = $scope.productTypes[0];
         $scope.newSelectedProductType = $scope.newProductTypes[0];
         $scope.newSelectedUnitType = $scope.newUnitTypes[0];
-        
+
         $scope.updatePagingConfig();
 
         $scope.onChangePageIndex();
@@ -197,6 +197,7 @@ app.controller('ProductController', function ($scope, toastr, $http) {
                     $scope.wholesalePrice = $scope.products[i].WholesalePrice;
                     $scope.retailPrice = $scope.products[i].RetailPrice;
                     $scope.number = $scope.products[i].Number;
+                    $scope.imgURL = $scope.products[i].ImgURL;
                     return;
                 }
             }
@@ -210,6 +211,7 @@ app.controller('ProductController', function ($scope, toastr, $http) {
             $scope.wholesalePrice = '';
             $scope.retailPrice = '';
             $scope.number = 0;
+            $scope.imgURL = '';
 
             $scope.form_product_details.$setPristine();
         }
