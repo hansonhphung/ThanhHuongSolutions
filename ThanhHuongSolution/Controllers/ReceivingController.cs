@@ -26,7 +26,7 @@ namespace ThanhHuongSolution.Controllers
 
                 var productData = await productAPI.GetAllProduct();
 
-                var lstProductInfo = productData.Result.Select(x => new ProductInfoModel(x.Id, x.TrackingNumber, x.Name, x.WholesalePrice, x.RetailPrice, x.Number)).ToList();
+                var lstProductInfo = productData.Result.Select(x => new ProductInfoModel(x.Id, x.TrackingNumber, x.Name, x.WholesalePrice, x.RetailPrice, x.Number, x.ImgURL)).ToList();
 
                 var data = new ReceivingInformationModel(lstProductInfo, DateTime.UtcNow.ToString("dd/MM/yyyy"));
 

@@ -9,7 +9,7 @@ namespace ThanhHuongSolution.Models.Selling
     {
         public ProductInfoModel() { }
 
-        public ProductInfoModel(string id, string trackingNumber, string name, long wholesalePrice, long retailPrice, long number)
+        public ProductInfoModel(string id, string trackingNumber, string name, long wholesalePrice, long retailPrice, long number, string imageURL)
         {
             Id = id;
             TrackingNumber = trackingNumber;
@@ -17,6 +17,7 @@ namespace ThanhHuongSolution.Models.Selling
             WholesalePrice = wholesalePrice;
             RetailPrice = retailPrice;
             Number = number;
+            ImageURL = imageURL;
         }
 
         public string Id { get; set; }
@@ -25,5 +26,6 @@ namespace ThanhHuongSolution.Models.Selling
         public long WholesalePrice { get; set; }
         public long RetailPrice { get; set; }
         public long Number { get; set; }
+        public string ImageURL { get; set; }
     }
 }

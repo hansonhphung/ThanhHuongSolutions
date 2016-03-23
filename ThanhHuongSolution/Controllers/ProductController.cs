@@ -56,7 +56,7 @@ namespace ThanhHuongSolution.Controllers
 
                 var productData = await productAPI.GetAllProduct();
 
-                var lstProductInfo = productData.Result.Select(x => new ProductInfoModel(x.Id, x.TrackingNumber, x.Name, x.WholesalePrice, x.RetailPrice, x.Number)).ToList();
+                var lstProductInfo = productData.Result.Select(x => new ProductInfoModel(x.Id, x.TrackingNumber, x.Name, x.WholesalePrice, x.RetailPrice, x.Number, x.ImgURL)).ToList();
 
                 return Json( new { isSuccess = true, data = lstProductInfo}, JsonRequestBehavior.AllowGet);
             }

@@ -241,7 +241,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
         if (!isExist)
         {
-            $scope.pagingSource.push({ TrackingNumber: $scope.selectedProduct.TrackingNumber, Name: $scope.selectedProduct.Name, Price: price ,Number: $scope.number, TotalPrice: price * $scope.number });
+            $scope.pagingSource.push({ TrackingNumber: $scope.selectedProduct.TrackingNumber, Name: $scope.selectedProduct.Name, Price: price, Number: $scope.number, TotalPrice: price * $scope.number, ImageURL: $scope.selectedProduct.ImageURL });
         }
 
         $scope.totalAmount += price * $scope.number;
@@ -271,6 +271,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
                 $scope.itemQuantity = $scope.pagingSource[i].Number;
                 $scope.itemTotalPrice = $scope.pagingSource[i].TotalPrice;
                 $scope.itemPrice = $scope.pagingSource[i].Price;
+                $scope.itemImageURL = $scope.pagingSource[i].ImageURL;
                 break;
             }
         }
