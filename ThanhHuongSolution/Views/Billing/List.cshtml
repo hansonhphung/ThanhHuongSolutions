@@ -54,14 +54,13 @@
                 <tbody>
                     <tr class="gradeX" ng-repeat="bill in bills">
                         <td>{{bill.TrackingNumber}}</td>
-                        <td ng-if="billType = 'BILL'">{{bill.Customer.CustomerName}}</td>
+                        <td ng-if="billType == 'BILL'">{{bill.Customer.CustomerName}}</td>
                         <td>{{bill.BillCreatedDate}}</td>
-                        <td class="hidden-phone">{{bill.TotalAmount}} VND</td>
-                        <td class="hidden-phone" ng-if="billType == 'RECEIVING_BILL'">{{bill.IncurredCost}} VND</td>
-                        <td class="hidden-phone" ng-if="billType == 'RECEIVING_BILL'">{{bill.FinalTotalAmount}} VND</td>
+                        <td class="hidden-phone">{{bill.TotalAmount | number}} VND</td>
+                        <td class="hidden-phone" ng-if="billType == 'RECEIVING_BILL'">{{bill.IncurredCost | number}} VND</td>
+                        <td class="hidden-phone" ng-if="billType == 'RECEIVING_BILL'">{{bill.FinalTotalAmount | number}} VND</td>
                         <td class="hidden-phone">
                             <button type="button" class="mb-xs mt-xs mr-xs btn btn-info" data-toggle="modal" data-target="#detailBillingFormModal" ng-click="viewBill(bill.Id)">Xem Chi Tiết</button>
-
                         </td>
                     </tr>
                 </tbody>

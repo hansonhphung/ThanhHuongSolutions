@@ -64,7 +64,12 @@ app.controller('BillingController', function ($scope, toastr, $location, $http) 
                         $scope.customerId = $scope.bills[i].Customer.Id;
                         $scope.customerTrackingNumber = $scope.bills[i].Customer.CustomerTrackingNumber;
                         $scope.customerName = $scope.bills[i].Customer.CustomerName;
-                    }     
+                    }
+
+                    if ($scope.billType == 'RECEIVING_BILL') {
+                        $scope.incurredCost = $scope.bills[i].IncurredCost;
+                        $scope.finalTotalAmount = $scope.bills[i].FinalTotalAmount;
+                    }
                     return;
                 }
             }
