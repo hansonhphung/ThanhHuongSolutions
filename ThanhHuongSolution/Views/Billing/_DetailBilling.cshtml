@@ -29,7 +29,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row" ng-if="billType == 'BILL'">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Mã Khách Hàng</label>
@@ -43,6 +43,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <table class="table table-responsive table-striped">
@@ -59,9 +60,9 @@
                                             <tr class="gradeX" ng-repeat="item in cart">
                                                 <td>{{item.ProductTrackingNumber}}</td>
                                                 <td>{{item.ProductName}}</td>
-                                                <td>{{item.Price / item.Number}}</td>
+                                                <td>{{item.Price / item.Number  | number}}</td>
                                                 <td>{{item.Number}}kg</td>
-                                                <td>{{item.Price}}</td>
+                                                <td>{{item.Price | number}}</td>
                                             </tr>                                            
                                         </tbody>
                                     </table>
@@ -79,7 +80,13 @@
                         </div>
                         <div class="col-md-6 col-xs-6 text-left">
                             <div class="m-none">
-                                <h4><span class="color-red">Thành Tiền : {{totalAmount}} VND</span></h4>
+                                <h4><span class="color-red">Thành Tiền : {{totalAmount | number}} VND</span></h4>
+                            </div>
+                            <div class="m-none" ng-if="billType == 'RECEIVING_BILL'">
+                                <h4><span class="color-red">Chi Phí Phát Sinh : {{incurredCost | number}} VND</span></h4>
+                            </div>
+                            <div class="m-none" ng-if="billType == 'RECEIVING_BILL'">
+                                <h4><span class="color-red">Tổng Thành Tiền : {{finalTotalAmount | number}} VND</span></h4>
                             </div>
                         </div>
                     </div>
