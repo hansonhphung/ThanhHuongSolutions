@@ -13,6 +13,8 @@ namespace ThanhHuongSolution.Customer.Services
 {
     public class CustomerManagementServices : ICustomerManagementServices
     {
+        public const string RETAIL_CUSTOMER_TRACKING_NUMBER = "KH-0000001";
+
         public IObjectContainer _objectContainer;
 
         public CustomerManagementServices(IObjectContainer objectContainer)
@@ -39,6 +41,12 @@ namespace ThanhHuongSolution.Customer.Services
         {
             var repository = _objectContainer.Get<ICustomerRepository>();
 
+            var retailCustomer = await GetCustomerByTrackingNumber(RETAIL_CUSTOMER_TRACKING_NUMBER);
+
+            if (!Check.IsNull(retailCustomer))
+                if (retailCustomer.Id.Equals(customerId))
+                    throw new CustomException(CustomerManagementResources.RETAIL_CUSTOMER_CAN_NOT_DELETED);
+
             var result = await repository.DeleteCustomer(customerId);
 
             return await Task.FromResult(result);
@@ -53,6 +61,17 @@ namespace ThanhHuongSolution.Customer.Services
             Check.ThrowExceptionIfCollectionIsNullOrZero(data, CustomerManagementResources.NO_CUSTOMER);
 
             var result = data.Select(x => new CustomerInfo(x)).ToList();
+
+            for (var i = 0; i < result.Count; i++)
+            {
+                if (result[i].TrackingNumber.Equals(RETAIL_CUSTOMER_TRACKING_NUMBER))
+                {
+                    var customerTmp = result[i];
+                    result[i] = result[0];
+                    result[0] = customerTmp;
+                    break;
+                }
+            }
 
             return await Task.FromResult<IList<CustomerInfo>>(result);
         }
@@ -91,12 +110,29 @@ namespace ThanhHuongSolution.Customer.Services
 
             var result = data.Select(x => new CustomerInfo(x)).ToList();
 
+            for (var i = 0; i < result.Count; i++)
+            {
+                if (result[i].TrackingNumber.Equals(RETAIL_CUSTOMER_TRACKING_NUMBER))
+                {
+                    var customerTmp = result[i];
+                    result[i] = result[0];
+                    result[0] = customerTmp;
+                    break;
+                }
+            }
+
             return await Task.FromResult(result);
         }
 
         public async Task<bool> SetVIPCustomer(string customerId, bool isVIP)
         {
             var repository = _objectContainer.Get<ICustomerRepository>();
+
+            var retailCustomer = await GetCustomerByTrackingNumber(RETAIL_CUSTOMER_TRACKING_NUMBER);
+
+            if (!Check.IsNull(retailCustomer))
+                if (retailCustomer.Id.Equals(customerId))
+                    throw new CustomException(CustomerManagementResources.RETAIL_CUSTOMER_CAN_NOT_UPDATED);
 
             var existCustomer = await repository.GetCustomerById(customerId);
 
@@ -109,6 +145,9 @@ namespace ThanhHuongSolution.Customer.Services
 
         public async Task<bool> UpdateCustomer(CustomerInfo customer)
         {
+            if (customer.TrackingNumber.Equals(RETAIL_CUSTOMER_TRACKING_NUMBER))
+                throw new CustomException(CustomerManagementResources.RETAIL_CUSTOMER_CAN_NOT_UPDATED);
+
             var repository = _objectContainer.Get<ICustomerRepository>();
 
             var isExist = await IsCustomerExist(customer.Id, customer.TrackingNumber);

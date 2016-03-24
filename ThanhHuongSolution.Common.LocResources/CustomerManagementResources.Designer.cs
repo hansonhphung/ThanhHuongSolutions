@@ -124,6 +124,24 @@ namespace ThanhHuongSolution.Common.LocResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Không thể xoá thông tin khách hàng bán lẻ..
+        /// </summary>
+        public static string RETAIL_CUSTOMER_CAN_NOT_DELETED {
+            get {
+                return ResourceManager.GetString("RETAIL_CUSTOMER_CAN_NOT_DELETED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không thể thay đổi thông tin của khách hàng bán lẻ..
+        /// </summary>
+        public static string RETAIL_CUSTOMER_CAN_NOT_UPDATED {
+            get {
+                return ResourceManager.GetString("RETAIL_CUSTOMER_CAN_NOT_UPDATED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mã khách hàng đã tồn tại..
         /// </summary>
         public static string TRACKING_NUMBER_EXIST {

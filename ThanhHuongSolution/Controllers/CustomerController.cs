@@ -25,6 +25,21 @@ namespace ThanhHuongSolution.Controllers
     [CustomAuthorize]
     public class CustomerController : Controller
     {
+        public const string RETAIL_CUSTOMER_TRACKING_NUMBER = "KH-0000001";
+        public const string RETAIL_CUSTOMER_NAME = "Khách hàng bán lẻ";
+
+        private async Task CreateRetailCustomer()
+        {
+            var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
+
+            var retailCustomerInfo = new CustomerInfo() {
+                TrackingNumber = RETAIL_CUSTOMER_TRACKING_NUMBER,
+                Name = RETAIL_CUSTOMER_NAME
+            };
+
+            var result = await api.CreateCustomer(new FrameworkParamInput<CustomerInfo>(retailCustomerInfo));
+        }
+
         // GET: Customer
         public ActionResult Index()
         {
@@ -36,6 +51,11 @@ namespace ThanhHuongSolution.Controllers
             try
             {
                 var api = WebContainer.Instance.ResolveAPI<ICustomerManagementAPI>();
+
+                var isRetailCustomerCreated = await api.IsRetailCustomerCreated();
+
+                if (!isRetailCustomerCreated.Result)
+                    await CreateRetailCustomer();
 
                 var data = await api.GetAllCustomer();
 

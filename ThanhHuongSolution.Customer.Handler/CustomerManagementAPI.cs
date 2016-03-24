@@ -12,6 +12,8 @@ namespace ThanhHuongSolution.Customer.Handler
 {
     public class CustomerManagementAPI : ICustomerManagementAPI
     {
+        public const string RETAIL_CUSTOMER_TRACKING_NUMBER = "KH-0000001";
+
         public IObjectContainer _objectContainer;
 
         public CustomerManagementAPI(IObjectContainer objectContainer)
@@ -33,7 +35,7 @@ namespace ThanhHuongSolution.Customer.Handler
             }
             catch (CustomException ex)
             {
-                throw new CustomException(ex);
+                throw new CustomException(ex.Message);
             }
         }
 
@@ -51,7 +53,7 @@ namespace ThanhHuongSolution.Customer.Handler
             }
             catch (CustomException ex)
             {
-                throw new CustomException(ex);
+                throw new CustomException(ex.Message);
             }
         }
 
@@ -159,7 +161,7 @@ namespace ThanhHuongSolution.Customer.Handler
             }
             catch (CustomException ex)
             {
-                throw new CustomException(ex);
+                throw new CustomException(ex.Message);
             }
         }
 
@@ -178,7 +180,25 @@ namespace ThanhHuongSolution.Customer.Handler
             }
             catch (CustomException ex)
             {
-                throw new CustomException(ex);
+                throw new CustomException(ex.Message);
+            }
+        }
+
+        public async Task<FrameworkParamOutput<bool>> IsRetailCustomerCreated()
+        {
+            try
+            {
+                var services = _objectContainer.Get<ICustomerManagementServices>();
+
+                var retailCustomer = await services.GetCustomerByTrackingNumber(RETAIL_CUSTOMER_TRACKING_NUMBER);
+
+                if (!Check.IsNull(retailCustomer))
+                    return await Task.FromResult(new FrameworkParamOutput<bool>(true));
+                return await Task.FromResult(new FrameworkParamOutput<bool>(false));
+            }
+            catch (CustomException ex)
+            {
+                return await Task.FromResult(new FrameworkParamOutput<bool>(false));
             }
         }
     }

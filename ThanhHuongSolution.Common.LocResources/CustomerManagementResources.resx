@@ -138,6 +138,12 @@
   <data name="NO_CUSTOMER" xml:space="preserve">
     <value>Hiện tại chưa có khách hàng.</value>
   </data>
+  <data name="RETAIL_CUSTOMER_CAN_NOT_DELETED" xml:space="preserve">
+    <value>Không thể xoá thông tin khách hàng bán lẻ.</value>
+  </data>
+  <data name="RETAIL_CUSTOMER_CAN_NOT_UPDATED" xml:space="preserve">
+    <value>Không thể thay đổi thông tin của khách hàng bán lẻ.</value>
+  </data>
   <data name="TRACKING_NUMBER_EXIST" xml:space="preserve">
     <value>Mã khách hàng đã tồn tại.</value>
   </data>

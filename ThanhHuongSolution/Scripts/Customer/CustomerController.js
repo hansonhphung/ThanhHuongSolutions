@@ -73,7 +73,7 @@ app.controller('CustomerController', function ($scope, toastr, $location, $http)
                 $scope.onChangePageIndex();
             }
             else {
-                toastr.error('error at: ' + response.message);
+                toastr.error(response.message);
             }
         });
     }
@@ -124,7 +124,7 @@ app.controller('CustomerController', function ($scope, toastr, $location, $http)
                     toastr.error(response.message);
             }
             else {
-                toastr.error('error at: ' + response.message);
+                toastr.error(response.message);
             }
         });
     }
@@ -140,7 +140,7 @@ app.controller('CustomerController', function ($scope, toastr, $location, $http)
                 toastr.success('Cập nhật khách hàng thân thiết thành công');
             }
             else {
-                toastr.error('error at: ' + response.message);
+                toastr.error(response.message);
             }
         });
     }
@@ -187,7 +187,7 @@ app.controller('CustomerController', function ($scope, toastr, $location, $http)
                 toastr.success('Lưu thông tin khách hàng thành công');
             }
             else {
-                toastr.error('error at: ' + response.message);
+                toastr.error(response.message);
             }
         });
     }

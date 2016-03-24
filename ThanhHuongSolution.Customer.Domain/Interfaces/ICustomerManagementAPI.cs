@@ -24,5 +24,7 @@ namespace ThanhHuongSolution.Customer.Domain.Interfaces
         Task<FrameworkParamOutput<bool>> SetVIPCustomer(FrameworkParamInput<CustomerVIPModel> input);
 
         Task<FrameworkParamOutput<bool>> UpdateCustomerDebt(FrameworkParamInput<CustomerDeptModel> input);
+
+        Task<FrameworkParamOutput<bool>> IsRetailCustomerCreated();
     }
 }
