@@ -102,6 +102,15 @@ app.controller('SellingController', function ($scope, toastr, $http) {
                 }
             }
 
+            if ($scope.payAmount < $scope.totalAmount) //Need to create debt
+            {
+                if ($scope.selectedCustomer.CustomerTrackingNumber == "KH-0000001") //Selected customer is retail customer
+                {
+                    toastr.warning("Khách hàng bán lẻ không thể thiếu.");
+                    return;
+                }
+            }
+            
             $http.post("/Selling/UpdateListSellingProduct", { lstProductInfo: $scope.needUpdateProduct }, {
             }).success(function (response) {
                 if (response.isSuccess) {
