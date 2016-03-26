@@ -140,8 +140,6 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
                             toastr.success('Tạo hoá đơn thành công');
 
-                            $scope.pagingSource = [];
-
                             $scope.createdBillingTrackingNumber = response.billingTrackingNumber;
                             
                             if ($scope.payAmount < $scope.totalAmount) //Need to create debt
@@ -371,6 +369,8 @@ app.controller('SellingController', function ($scope, toastr, $http) {
     {
         $scope.shoppingCart = [];
 
+        $scope.pagingSource = [];
+
         $scope.selectedProduct = $scope.lstProduct[0];
 
         $scope.selectedCustomer = $scope.lstCustomer[0];
@@ -388,6 +388,12 @@ app.controller('SellingController', function ($scope, toastr, $http) {
         $scope.payAmount = 0;
 
         $scope.updatePagingConfig();
+
+        $scope.isDisableOption = false;
+
+        $scope.customPrice = 0;
+
+        $scope.choosenPriceType = 'wholesale';
     }
 
     $scope.cancel = function ()
