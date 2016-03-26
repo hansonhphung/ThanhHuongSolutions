@@ -13,7 +13,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
     $scope.createdBillingTrackingNumber = '';
 
     // true  Custom Price choosen  false, use standard price
-    $scope.retailPriceChoosen = true;
+    $scope.choosenPriceType = 'retail';
 
     // Declare a proxy to reference the hub.
     var signalRHub = $.connection.signalRHub;
@@ -71,7 +71,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
             $scope.onChangePageIndex();
 
             toastr.success("Dữ liệu được cập nhật lại.");
-        });
+        }); 
     }
 
     $.connection.hub.start().done(function () { // start hub
@@ -209,6 +209,19 @@ app.controller('SellingController', function ($scope, toastr, $http) {
         $scope.retailPrice = selectedProduct.RetailPrice;
 
         $scope.number = 0;
+
+        for (var i = 0; i < $scope.pagingSource.length; i++)
+        {
+            if ($scope.pagingSource[i].TrackingNumber == selectedProduct.TrackingNumber)
+            {
+                $scope.choosenPriceType = $scope.pagingSource[i].priceType;
+                $scope.isDisableOption = true;
+                return;
+            }
+        }
+
+        $scope.choosenPriceType = 'retail';
+        $scope.isDisableOption = false;
     }
 
     $scope.addProductItem = function ()
@@ -226,14 +239,15 @@ app.controller('SellingController', function ($scope, toastr, $http) {
         }
 
         var price = 0;
-        if ($scope.retailPriceChoosen == true)
+        if ($scope.choosenPriceType == 'retail')
         {
             price = $scope.retailPrice; // price of per item
         }
-        else
-        {
+        else if ($scope.choosenPriceType == 'wholesale') {
             price = $scope.wholesalePrice; // price of per item
-        } 
+        } else {
+            price = $scope.customPrice;
+        }
 
         var isExist = false;
 
@@ -250,7 +264,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
         if (!isExist)
         {
-            $scope.pagingSource.push({ TrackingNumber: $scope.selectedProduct.TrackingNumber, Name: $scope.selectedProduct.Name, Price: price, Number: $scope.number, TotalPrice: price * $scope.number, ImageURL: $scope.selectedProduct.ImageURL });
+            $scope.pagingSource.push({ TrackingNumber: $scope.selectedProduct.TrackingNumber, Name: $scope.selectedProduct.Name, Price: price, Number: $scope.number, TotalPrice: price * $scope.number, ImageURL: $scope.selectedProduct.ImageURL, priceType: $scope.choosenPriceType });
         }
 
         $scope.totalAmount += price * $scope.number;
