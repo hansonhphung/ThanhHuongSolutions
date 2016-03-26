@@ -11,9 +11,9 @@ app.controller('SellingController', function ($scope, toastr, $http) {
     $scope.totalAmount = 0;
     $scope.payAmount = 0;
     $scope.createdBillingTrackingNumber = '';
+    $scope.customPrice = 0;
 
-    // true  Custom Price choosen  false, use standard price
-    $scope.choosenPriceType = 'retail';
+    $scope.choosenPriceType = 'wholesale';
 
     // Declare a proxy to reference the hub.
     var signalRHub = $.connection.signalRHub;
@@ -203,6 +203,7 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
     $scope.selectProduct = function (selectedProduct)
     {
+        $scope.customPrice = 0;
         $scope.selectedProduct = selectedProduct;
 
         $scope.wholesalePrice = selectedProduct.WholesalePrice;
@@ -216,11 +217,14 @@ app.controller('SellingController', function ($scope, toastr, $http) {
             {
                 $scope.choosenPriceType = $scope.pagingSource[i].priceType;
                 $scope.isDisableOption = true;
+                if ($scope.choosenPriceType == 'custom')
+                    $scope.customPrice = $scope.pagingSource[i].Price;
+                
                 return;
             }
         }
 
-        $scope.choosenPriceType = 'retail';
+        $scope.choosenPriceType = 'wholesale';
         $scope.isDisableOption = false;
     }
 
@@ -235,6 +239,12 @@ app.controller('SellingController', function ($scope, toastr, $http) {
         if ($scope.number == null || $scope.number == undefined || $scope.number == '')
         {
             toastr.warning("Vui lòng nhập số lượng sản phẩm");
+            return;
+        }
+
+        if ($scope.choosenPriceType == 'custom' && ($scope.customPrice == null || $scope.customPrice == undefined || $scope.customPrice == ''))
+        {
+            toastr.warning("Vui lòng nhập giá tiền");
             return;
         }
 
@@ -279,6 +289,8 @@ app.controller('SellingController', function ($scope, toastr, $http) {
             $scope.liabilityAmount = 0;
         else
             $scope.liabilityAmount = $scope.totalAmount - payAmount;
+
+        $scope.isDisableOption = true;
 
         $scope.updatePagingConfig();
         $scope.onChangePageIndex();
