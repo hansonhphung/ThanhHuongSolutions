@@ -149,5 +149,14 @@ namespace ThanhHuongSolution.Common.LocResources {
                 return ResourceManager.GetString("TRACKING_NUMBER_EXIST", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mã khách hàng không hợp lệ..
+        /// </summary>
+        public static string TRACKING_NUMBER_INVALID {
+            get {
+                return ResourceManager.GetString("TRACKING_NUMBER_INVALID", resourceCulture);
+            }
+        }
     }
 }

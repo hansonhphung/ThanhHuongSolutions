@@ -26,6 +26,12 @@ namespace ThanhHuongSolution.Customer.Services
         {
             var repository = _objectContainer.Get<ICustomerRepository>();
 
+            var isTrackingNumberValid = IsCustomerTrackingNumberValid(customer.TrackingNumber);
+
+            Check.ThrowExceptionIfFalse(isTrackingNumberValid, CustomerManagementResources.TRACKING_NUMBER_INVALID);
+
+            customer.TrackingNumber = CreateValidCustomerTrackingNumber(customer.TrackingNumber);
+
             var isExist = await IsCustomerExist(customer.Id, customer.TrackingNumber);
 
             Check.ThrowExceptionIfTrue(isExist, CustomerManagementResources.TRACKING_NUMBER_EXIST);
@@ -199,6 +205,30 @@ namespace ThanhHuongSolution.Customer.Services
             var result = await repository.UpdateCustomerDebt(customerId, debtAmount);
 
             return await Task.FromResult(result);
+        }
+
+        private bool IsCustomerTrackingNumberValid(string s_trackingNumber)
+        {
+            // not start with prefix "KH-"
+            if (!Check.IsStartWith(s_trackingNumber, "KH-"))
+                return false;
+            s_trackingNumber = s_trackingNumber.Substring(3);
+            var trackingNumber = 0;
+            if (Int32.TryParse(s_trackingNumber, out trackingNumber))
+            {
+                //trackingNumber length > 7
+                if (trackingNumber > 9999999)
+                    return false;
+                return true;
+            }
+            return false;
+        }
+
+        private string CreateValidCustomerTrackingNumber(string s_trackingNumber)
+        {
+            s_trackingNumber = s_trackingNumber.Substring(3);
+            var trackingNumber = Int32.Parse(s_trackingNumber);
+            return string.Format("{0}-{1}", "KH", trackingNumber.ToString("D7"));
         }
     }
 }

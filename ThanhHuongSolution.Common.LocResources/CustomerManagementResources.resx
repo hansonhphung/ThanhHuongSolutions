@@ -147,4 +147,7 @@
   <data name="TRACKING_NUMBER_EXIST" xml:space="preserve">
     <value>Mã khách hàng đã tồn tại.</value>
   </data>
+  <data name="TRACKING_NUMBER_INVALID" xml:space="preserve">
+    <value>Mã khách hàng không hợp lệ.</value>
+  </data>
 </root>
