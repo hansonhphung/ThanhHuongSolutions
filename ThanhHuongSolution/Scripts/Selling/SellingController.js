@@ -457,4 +457,5 @@ app.controller('SellingController', function ($scope, toastr, $http) {
             $scope.itemTotalPrice = quantity * $scope.itemPrice;
         }
     }
+
 });

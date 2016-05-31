@@ -286,6 +286,7 @@
     <Content Include="bower.json" />
     <Content Include="Content\assets\patterns\Thumbs.db" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\CommonHelper\angular-bootstrap-datepicker.js" />
     <Content Include="Scripts\CommonHelper\ChooseFileHelper.js" />
     <Content Include="Scripts\CommonHelper\modernizr.js" />
     <Content Include="Scripts\CommonHelper\nanoscroller.js" />
