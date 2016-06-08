@@ -1,4 +1,7 @@
-﻿var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.select', 'ui.bootstrap']);
+﻿'use strict';
+
+var app = angular.module('ThanhHuongSolution', ['toastr', 'ui.select', 'ui.bootstrap']);
+
 app.controller('SellingController', function ($scope, toastr, $http) {
 
     $scope.shoppingCart = [];
@@ -77,6 +80,11 @@ app.controller('SellingController', function ($scope, toastr, $http) {
     $.connection.hub.start().done(function () { // start hub
 
         $scope.createBilling = function () {
+
+            $scope.createBillDate = $('#startdate').val();
+            alert($scope.createBillDate);
+            return;
+
             if ($scope.selectedCustomer == null) {
                 toastr.warning("Vui lòng chọn khách hàng.");
                 return;
@@ -445,7 +453,8 @@ app.controller('SellingController', function ($scope, toastr, $http) {
         }
     }
 
-    $scope.quantityInputTypeKeyPress = function ($event) {
+    $scope.quantityInputTypeKeyPress = function ($event)
+    {
         if (($event.keyCode >= 48 && $event.keyCode <= 57) || ($event.keyCode >= 96 && $event.keyCode <= 105) || $event.keyCode == 8 || $event.keyCode == 46) {
 
             var quantity = 0;
