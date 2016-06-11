@@ -25,6 +25,7 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
     $scope.updateCustomerDept = function () {
 
         $scope.customerId = '';
+        $scope.createBillDate = $('#startdate').val();
 
         if ($scope.selectedCustomer == null || $scope.selectedCustomer == undefined) {
             toastr.warning("Vui lòng chọn khách hàng.");
@@ -32,6 +33,11 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
         }
         else {
             $scope.customerId = $scope.selectedCustomer.CustomerId;
+        }
+
+        if ($scope.createBillDate == null || $scope.createBillDate == "") {
+            toastr.warning("Vui lòng nhập ngày tháng.");
+            return;
         }
 
         if ($scope.paidAmount == null || $scope.paidAmount <= 0) {

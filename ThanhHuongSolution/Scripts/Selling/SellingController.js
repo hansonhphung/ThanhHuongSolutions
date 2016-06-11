@@ -82,8 +82,6 @@ app.controller('SellingController', function ($scope, toastr, $http) {
         $scope.createBilling = function () {
 
             $scope.createBillDate = $('#startdate').val();
-            alert($scope.createBillDate);
-            return;
 
             if ($scope.selectedCustomer == null) {
                 toastr.warning("Vui lòng chọn khách hàng.");

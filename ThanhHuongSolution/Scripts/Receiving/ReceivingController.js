@@ -42,6 +42,7 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
     }
 
     $scope.addProductItem = function () {
+
         if ($scope.selectedProduct == null || $scope.selectedProduct == undefined) {
             toastr.warning("Vui lòng chọn sản phẩm.");
             return;
@@ -169,6 +170,14 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
     }
 
     $scope.createReceivingBill = function () {
+
+        $scope.createBillDate = $('#startdate').val();
+
+        if ($scope.createBillDate == null || $scope.createBillDate == undefined) {
+            toastr.warning("Vui lòng chọn ngày tháng.");
+            return;
+        }
+
         if ($scope.shoppingCart.length == 0) {
             toastr.warning("Hoá đơn chưa có mặt hàng.");
             return;
