@@ -28,5 +28,7 @@ namespace ThanhHuongSolution.Customer.Domain.Interfaces
         Task<bool> IsCustomerExist(string customerId, string trackingNumber);
 
         Task<bool> UpdateCustomerDebt(string customerId, long debtAmount, bool isIncDebt);
+
+        Task<IList<CustomerInfo>> GetAllDebtCustomer();
     }
 }

@@ -207,6 +207,19 @@ namespace ThanhHuongSolution.Customer.Services
             return await Task.FromResult(result);
         }
 
+        public async Task<IList<CustomerInfo>> GetAllDebtCustomer()
+        {
+            var repository = _objectContainer.Get<ICustomerRepository>();
+
+            var data = await repository.GetAllCustomer();
+
+            Check.ThrowExceptionIfCollectionIsNullOrZero(data, CustomerManagementResources.NO_CUSTOMER);
+
+            var result = data.Select(x => new CustomerInfo(x)).ToList();
+
+            return await Task.FromResult(result);
+        }
+
         private bool IsCustomerTrackingNumberValid(string s_trackingNumber)
         {
             // not start with prefix "KH-"

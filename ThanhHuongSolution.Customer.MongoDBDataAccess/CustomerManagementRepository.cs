@@ -168,5 +168,22 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 
             return await Task.FromResult(true);
         }
+
+        public async Task<IList<MDCustomer>> GetAllDebtCustomer()
+        {
+            var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
+
+            var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
+
+            var builder = Builders<MDCustomer>.Filter;
+
+            var filter = builder.Where(x => x.LiabilityAmount > 0 && x.DeletedAt == null);
+
+            var sortBy = Builders<MDCustomer>.Sort.Descending(x => x.UpdatedAt);
+
+            var data = await collection.Find(filter).Sort(sortBy).ToListAsync();
+
+            return await Task.FromResult(data);
+        }
     }
 }

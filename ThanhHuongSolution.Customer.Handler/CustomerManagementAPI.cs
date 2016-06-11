@@ -201,5 +201,21 @@ namespace ThanhHuongSolution.Customer.Handler
                 return await Task.FromResult(new FrameworkParamOutput<bool>(false));
             }
         }
+
+        public async Task<FrameworkParamOutput<IList<CustomerInfo>>> GetAllDebtCustomer()
+        {
+            try
+            {
+                var services = _objectContainer.Get<ICustomerManagementServices>();
+
+                var data = await services.GetAllCustomer();
+
+                return await Task.FromResult(new FrameworkParamOutput<IList<CustomerInfo>>(data));
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex);
+            }
+        }
     }
 }
