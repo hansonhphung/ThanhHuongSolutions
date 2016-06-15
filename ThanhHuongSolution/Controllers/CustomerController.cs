@@ -43,7 +43,7 @@ namespace ThanhHuongSolution.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            return RedirectToAction("List");
+            return View("List");
         }
 
         public async Task<ActionResult> List()
@@ -59,7 +59,7 @@ namespace ThanhHuongSolution.Controllers
 
                 var data = await api.GetAllCustomer();
 
-                return View(new ListCustomerModel(data.Result));
+                return Json(new { isSuccess = true, data = data.Result }, JsonRequestBehavior.AllowGet);
             }
             catch (CustomException ex)
             {
