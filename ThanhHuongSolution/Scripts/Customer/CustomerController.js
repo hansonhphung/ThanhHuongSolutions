@@ -9,13 +9,19 @@ app.controller('CustomerController', function ($scope, toastr, $location, $http)
     $scope.currentIndex = 1;
 
 
-    $scope.init = function (data) {
-        $scope.availableCustomer = data.LstCustomer;
-        $scope.customers = data.LstCustomer;
-        $scope.pagingSource = $scope.availableCustomer;
+    $scope.init = function () {
+        $http.post("/Customer/List")
+        .success(function (response) {
+            if (response.isSuccess) {
+                var data = response.data;
+                $scope.availableCustomer = data;
+                $scope.customers = data;
+                $scope.pagingSource = $scope.availableCustomer;
         
-        $scope.updatePagingConfig();
-        $scope.onChangePageIndex();
+                $scope.updatePagingConfig();
+                $scope.onChangePageIndex();
+            }
+        });
     }
 
     $scope.updatePagingConfig = function ()

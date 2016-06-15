@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Thống kê";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-app="ThanhHuongSolution" ng-controller="DebtCustomerController">
+    <header class="page-header">
+        <h2>Danh Sách Khách Hàng</h2>
+    </header>
+
+    <section class="panel">
+        <div class="panel-body" ng-init="init()">
+            <div class="pull-left">
+                <h3>Tổng nợ của khách hàng là: {{totalDebt}} VND</h3>
+            </div>
+            
+            <div class="pull-right form-inline">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+
+            </div>
+
+            <table class="table table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th>Mã Khách Hàng</th>
+                        <th>Tên Khách Hàng</th>
+                        <th>Số Điện Thoại</th>
+                        <th>Địa Chỉ</th>
+                        <th class="hidden-phone">Tồn Nợ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="gradeX" ng-repeat="customer in customers">
+                        <td>{{customer.TrackingNumber}}</td>
+                        <td>{{customer.Name | limitTo:20}} {{customer.Name.length < 20 ? '' : '...'}}</td>
+                        <td>{{customer.PhoneNumber}}</td>
+                        <td class="hidden-phone">{{customer.Address | limitTo:20}} {{customer.Address.length < 20 ? '' : '...'}}</td>
+                        <td class="hidden-phone">{{customer.LiabilityAmount}} VND</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pull-right form-inline">
+                <div class="table-pagination">
+                    <uib-pagination boundary-links="true" total-items="totalCustomers" ng-model="pageIndex" max-size="maxSize" class="pagination pagination-ru" rotate="false" items-per-page="recordPerPage" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="/Vendor/angular/angular.min.js"></script>
+<script src="~/Scripts/Statistics/DebtCustomerController.js"></script>
