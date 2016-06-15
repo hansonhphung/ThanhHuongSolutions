@@ -27,6 +27,6 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
 
         Task<bool> UpdateCustomerDebt(string customerId, long debtAmount);
 
-        Task<IList<MDCustomer>> GetAllDebtCustomer();
+        Task<IList<MDCustomer>> SearchDebtCustomer(string query);
     }
 }

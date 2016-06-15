@@ -169,15 +169,23 @@ namespace ThanhHuongSolution.Customer.MongoDBDataAccess
             return await Task.FromResult(true);
         }
 
-        public async Task<IList<MDCustomer>> GetAllDebtCustomer()
+        public async Task<IList<MDCustomer>> SearchDebtCustomer(string query)
         {
+
+            var keyLower = query.ToLower();
+
             var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
 
             var collection = dbContext.GetCollection<MDCustomer>(MongoDBEntityNames.CustomerCollection.TableName);
 
             var builder = Builders<MDCustomer>.Filter;
 
-            var filter = builder.Where(x => x.LiabilityAmount > 0 && x.DeletedAt == null);
+            var filter = builder.Or(
+                         builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
+                         builder.Where(x => x.TrackingNumber.Contains(keyLower))),
+                         builder.Or(builder.Regex(x => x.Name, new BsonRegularExpression(keyLower, "i")),
+                         builder.Where(x => x.Name.Contains(keyLower))))
+                         & builder.Where(x => x.LiabilityAmount > 0 && x.DeletedAt == null);
 
             var sortBy = Builders<MDCustomer>.Sort.Descending(x => x.UpdatedAt);
 

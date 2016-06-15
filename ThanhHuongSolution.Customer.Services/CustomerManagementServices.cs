@@ -207,11 +207,11 @@ namespace ThanhHuongSolution.Customer.Services
             return await Task.FromResult(result);
         }
 
-        public async Task<IList<CustomerInfo>> GetAllDebtCustomer()
+        public async Task<IList<CustomerInfo>> SearchDebtCustomer(string query)
         {
             var repository = _objectContainer.Get<ICustomerRepository>();
 
-            var data = await repository.GetAllCustomer();
+            var data = await repository.SearchDebtCustomer(query);
 
             Check.ThrowExceptionIfCollectionIsNullOrZero(data, CustomerManagementResources.NO_CUSTOMER);
 
