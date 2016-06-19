@@ -20,6 +20,6 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
 
         Task<bool> IsCustomerHaveTransaction(string customerId);
 
-        Task<long> GetProductLastPrice(string productId);
+        Task<long> GetProductLastPrice(string productTrackingNumber);
     }
 }

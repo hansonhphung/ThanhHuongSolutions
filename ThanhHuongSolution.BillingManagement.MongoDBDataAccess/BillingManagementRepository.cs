@@ -160,7 +160,7 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
             return await Task.FromResult(!Check.CollectionIsNullOrEmpty(bills));
         }
 
-        public async Task<long> GetProductLastPrice(string productId)
+        public async Task<long> GetProductLastPrice(string productTrackingNumber)
         {
             var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
 
@@ -170,15 +170,15 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
 
             var filter = builder.And(
                 builder.Eq("_t", RECEIVING_BILL),
-                builder.Where(x => x.Cart.Any(y => y.ProductTrackingNumber == productId)));
+                builder.Where(x => x.Cart.Any(y => y.ProductTrackingNumber == productTrackingNumber)));
 
             var sortBy = Builders<MDBaseBill>.Sort.Descending(x => x.CreatedAt);
 
             var bill = await collection.Find(filter).Sort(sortBy).FirstOrDefaultAsync();
 
-            var totalPrice = bill.Cart.Where(x => x.ProductTrackingNumber == productId).FirstOrDefault().Price;
+            var totalPrice = bill.Cart.Where(x => x.ProductTrackingNumber == productTrackingNumber).FirstOrDefault().Price;
 
-            var quantity = bill.Cart.Where(x => x.ProductTrackingNumber == productId).FirstOrDefault().Number;
+            var quantity = bill.Cart.Where(x => x.ProductTrackingNumber == productTrackingNumber).FirstOrDefault().Number;
 
             var price = totalPrice / quantity;
 

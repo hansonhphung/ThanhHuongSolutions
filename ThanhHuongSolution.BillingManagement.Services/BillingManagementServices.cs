@@ -99,11 +99,11 @@ namespace ThanhHuongSolution.BillingManagement.Services
             return await Task.FromResult(data);
         }
 
-        public async Task<long> GetProductLastPrice(string productId)
+        public async Task<long> GetProductLastPrice(string productTrackingNumber)
         {
             var repository = _objectContainer.Get<IBillingManagementRepository>();
 
-            var data = await repository.GetProductLastPrice(productId);
+            var data = await repository.GetProductLastPrice(productTrackingNumber);
 
             return await Task.FromResult(data);
         }
