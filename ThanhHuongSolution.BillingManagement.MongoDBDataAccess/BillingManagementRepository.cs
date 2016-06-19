@@ -9,6 +9,7 @@ using ThanhHuongSolution.Common.Infrastrucure.MongoDBDataAccess.Entity;
 using ThanhHuongSolution.BillingManagement.Domain.Entity;
 using ThanhHuongSolution.BillingManagement.Domain.Interface;
 using ThanhHuongSolution.Common.Infrastrucure.Model;
+using System.Linq;
 
 namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
 {
@@ -16,6 +17,7 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
     {
         private readonly IReadDataContextFactory _readDataContextFactory;
         private readonly IWriteDataContextFactory _writeDataContextFactory;
+        private const string RECEIVING_BILL = "RECEIVING_BILL";
 
         public BillingManagementRepository(IReadDataContextFactory readDataContextFactory, IWriteDataContextFactory writeDataContextFactory)
         {
@@ -156,6 +158,31 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
             var bills = await collection.Find(x => x.Customer.CustomerId == customerId).ToListAsync();
 
             return await Task.FromResult(!Check.CollectionIsNullOrEmpty(bills));
+        }
+
+        public async Task<long> GetProductLastPrice(string productId)
+        {
+            var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
+
+            var collection = dbContext.GetCollection<MDBaseBill>(MongoDBEntityNames.BillingCollection.TableName);
+
+            var builder = Builders<MDBaseBill>.Filter;
+
+            var filter = builder.And(
+                builder.Eq("_t", RECEIVING_BILL),
+                builder.Where(x => x.Cart.Any(y => y.ProductTrackingNumber == productId)));
+
+            var sortBy = Builders<MDBaseBill>.Sort.Descending(x => x.CreatedAt);
+
+            var bill = await collection.Find(filter).Sort(sortBy).FirstOrDefaultAsync();
+
+            var totalPrice = bill.Cart.Where(x => x.ProductTrackingNumber == productId).FirstOrDefault().Price;
+
+            var quantity = bill.Cart.Where(x => x.ProductTrackingNumber == productId).FirstOrDefault().Number;
+
+            var price = totalPrice / quantity;
+
+            return await Task.FromResult(price);
         }
     }
 }

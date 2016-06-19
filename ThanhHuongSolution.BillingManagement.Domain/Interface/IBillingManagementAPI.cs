@@ -19,5 +19,7 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
         Task<FrameworkParamOutput<SearchBillingResponse>> Search(FrameworkParamInput<SearchBillingRequest> input);
 
         Task<FrameworkParamOutput<bool>> IsCustomerHaveTransaction(FrameworkParamInput<string> input);
+
+        Task<FraneworkParamOutput<long>> GetProductLastPrice(FrameworkParamInput<string> productId);
     }
 }

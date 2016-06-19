@@ -21,5 +21,7 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
         Task<long> Count(string customerId, string query, string billType);
 
         Task<bool> IsCustomerHaveTransaction(string customerId);
+
+        Task<long> GetProductLastPrice(string productId);
     }
 }
