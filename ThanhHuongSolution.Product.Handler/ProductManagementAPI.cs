@@ -167,7 +167,7 @@ namespace ThanhHuongSolution.Product.Handler
             }
         }
 
-        public async Task<FrameworkParamOutput<IList<string>>> GetAllRemainingProduct()
+        public async Task<FrameworkParamOutput<IList<RemainingProductInfo>>> GetAllRemainingProduct()
         {
             try
             {
@@ -175,7 +175,7 @@ namespace ThanhHuongSolution.Product.Handler
 
                 var data = await services.GetAllRemainingProduct();
 
-                return await Task.FromResult(new FrameworkParamOutput<IList<string>>(data));
+                return await Task.FromResult(new FrameworkParamOutput<IList<RemainingProductInfo>>(data));
             }
             catch (CustomException ex)
             {

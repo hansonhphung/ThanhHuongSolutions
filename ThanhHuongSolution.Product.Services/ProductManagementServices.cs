@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThanhHuongSolution.BillingManagement.Domain.Interface;
 using ThanhHuongSolution.Common.Infrastrucure;
 using ThanhHuongSolution.Common.LocResources;
 using ThanhHuongSolution.Product.Domain.Interfaces;
@@ -137,15 +138,35 @@ namespace ThanhHuongSolution.Product.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<IList<string>> GetAllRemainingProduct()
+        public async Task<IList<RemainingProductInfo>> GetAllRemainingProduct()
         {
-            var repository = _objectContainer.Get<IProductManagementRepository>();
+            var productRepository = _objectContainer.Get<IProductManagementRepository>();
 
-            var data = await repository.GetAllRemainingProduct();
+            var billRepository = _objectContainer.Get<IBillingManagementRepository>();
+
+            var data = await productRepository.GetAllRemainingProduct();
 
             Check.ThrowExceptionIfCollectionIsNullOrZero(data, ProductManagementResources.NO_REMAINING_PRODUCT);
 
-            return await Task.FromResult(data);
+            var result = new List<RemainingProductInfo>();
+
+            foreach (var product in data)
+            {
+                var remainingProduct = new RemainingProductInfo() {
+                    Id = product.Id,
+                    TrackingNumber = product.TrackingNumber,
+                    Name = product.Name,
+                    Description = product.Description,
+                    UnitType = product.UnitType,
+                    ProductType = product.ProductType,
+                    Price = await billRepository.GetProductLastPrice(product.TrackingNumber),
+                    Quantity = product.Number
+                };
+
+                result.Add(remainingProduct);
+            }
+
+            return await Task.FromResult(result);
         }
     }
 }

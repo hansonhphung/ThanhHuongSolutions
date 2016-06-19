@@ -59,6 +59,7 @@
     <Compile Include="Interfaces\IProductManagementRepository.cs" />
     <Compile Include="Interfaces\IProductManagementServices.cs" />
     <Compile Include="Model\ProductInfo.cs" />
+    <Compile Include="Model\RemainingProductInfo.cs" />
     <Compile Include="Model\UpdatedSellingProductInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

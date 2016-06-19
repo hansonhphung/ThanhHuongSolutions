@@ -27,6 +27,6 @@ namespace ThanhHuongSolution.Product.Domain.Interfaces
 
         Task<bool> UpdateListProductNumber(IList<UpdatedSellingProductInfo> lstProductInfo);
 
-        Task<IList<string>> GetAllRemainingProduct();
+        Task<IList<RemainingProductInfo>> GetAllRemainingProduct();
     }
 }

@@ -26,6 +26,6 @@ namespace ThanhHuongSolution.Product.Domain.Interfaces
 
         Task<FrameworkParamOutput<bool>> UpdateListProductNumber(FrameworkParamInput<IList<UpdatedSellingProductInfo>> input);
 
-        Task<FrameworkParamOutput<IList<string>>> GetAllRemainingProduct();
+        Task<FrameworkParamOutput<IList<RemainingProductInfo>>> GetAllRemainingProduct();
     }
 }
