@@ -25,5 +25,7 @@ namespace ThanhHuongSolution.Product.Domain.Interfaces
         Task<bool> UpdateProduct(MDProduct product);
 
         Task<bool> UpdateProductNumber(UpdatedSellingProductInfo productInfo);
+
+        Task<IList<string>> GetAllRemainingProduct();
     }
 }

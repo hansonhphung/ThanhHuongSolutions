@@ -123,6 +123,9 @@
   <data name="NO_PRODUCT" xml:space="preserve">
     <value>Hiện tại chưa có sản phẩm.</value>
   </data>
+  <data name="NO_REMAINING_PRODUCT" xml:space="preserve">
+    <value>Hiện tại không còn sản phẩm trong kho.</value>
+  </data>
   <data name="NUMBER_LESS_THAN_ZERO" xml:space="preserve">
     <value>Số lượng sản phẩm nhỏ hơn 0.</value>
   </data>

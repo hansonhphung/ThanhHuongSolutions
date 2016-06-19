@@ -136,5 +136,16 @@ namespace ThanhHuongSolution.Product.Services
 
             return await Task.FromResult(true);
         }
+
+        public async Task<IList<string>> GetAllRemainingProduct()
+        {
+            var repository = _objectContainer.Get<IProductManagementRepository>();
+
+            var data = await repository.GetAllRemainingProduct();
+
+            Check.ThrowExceptionIfCollectionIsNullOrZero(data, ProductManagementResources.NO_REMAINING_PRODUCT);
+
+            return await Task.FromResult(data);
+        }
     }
 }
