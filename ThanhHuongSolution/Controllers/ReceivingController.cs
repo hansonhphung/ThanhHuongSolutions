@@ -52,8 +52,6 @@ namespace ThanhHuongSolution.Controllers
 
                     billingModel.TrackingNumber = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.HoaDonNhapHang);
 
-                    billingModel.BillCreatedDate = DateTime.UtcNow.ToString("dd/MM/yyyy");
-
                     var billingAPI = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
 
                     var result = await billingAPI.CreateBill(new FrameworkParamInput<BaseBillModel>(billingModel));

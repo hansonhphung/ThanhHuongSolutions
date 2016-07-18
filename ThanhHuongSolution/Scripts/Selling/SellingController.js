@@ -81,9 +81,12 @@ app.controller('SellingController', function ($scope, toastr, $http) {
 
         $scope.createBilling = function () {
 
-            $scope.createBillDate = $('#startdate').val();
-            alert($scope.createBillDate);
-            return;
+            $scope.createBillDate = $('#billCreatedDate').val();
+
+            if ($scope.createBillDate == null || $scope.createBillDate == ''){
+                toastr.warning("Vui lòng chọn ngày lập hóa đơn");
+                return;
+            }
 
             if ($scope.selectedCustomer == null) {
                 toastr.warning("Vui lòng chọn khách hàng.");
@@ -137,7 +140,9 @@ app.controller('SellingController', function ($scope, toastr, $http) {
                         }
                     }
 
+                    form.append("BillCreatedDate", $scope.createBillDate);
                     form.append("TotalAmount", $scope.totalAmount);
+                    
 
                     $http.post("/Selling/CreateBilling", form, {
                         withCredentials: true,
@@ -199,7 +204,6 @@ app.controller('SellingController', function ($scope, toastr, $http) {
         $scope.lstCustomer = data.LstCustomer;
         $scope.lstProduct = data.LstProduct;
         $scope.number = 0;
-        $scope.createBillDate = data.CreateBillDate;
     }
 
     $scope.selectCustomer = function (selectedCustomer)

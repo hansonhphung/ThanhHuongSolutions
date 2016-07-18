@@ -169,6 +169,13 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
     }
 
     $scope.createReceivingBill = function () {
+        $scope.billCreatedDate = $('#billCreatedDate').val();
+
+        if ($scope.billCreatedDate == null || $scope.billCreatedDate == ''){
+            toastr.warning("Vui lòng chọn ngày lập hóa đơn");
+            return;
+        }
+
         if ($scope.shoppingCart.length == 0) {
             toastr.warning("Hoá đơn chưa có mặt hàng.");
             return;
@@ -203,6 +210,7 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
                     }
                 }
 
+                form.append("BillCreatedDate", $scope.billCreatedDate);
                 form.append("TotalAmount", $scope.totalAmount);
                 form.append("IncurredCost", $scope.incurredCost);
                 form.append("FinalTotalAmount", $scope.finalTotalAmount);

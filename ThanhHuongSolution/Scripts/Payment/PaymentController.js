@@ -11,8 +11,6 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
 
     $scope.init = function (data) {
         $scope.lstCustomer = data.LstCustomer;
-
-        $scope.createBillDate = data.CreateBillDate;
         $scope.liabilityAmount = 0;
     }
 
@@ -23,8 +21,13 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
     }
 
     $scope.updateCustomerDept = function () {
-
         $scope.customerId = '';
+        
+        $scope.paymentCreatedDate = $('#paymentCreatedDate').val();
+        if ($scope.paymentCreatedDate == null || $scope.paymentCreatedDate == '') {
+            toastr.warning("Vui lòng chọn ngày lập phiếu trả nợ");
+            return;
+        }        
 
         if ($scope.selectedCustomer == null || $scope.selectedCustomer == undefined) {
             toastr.warning("Vui lòng chọn khách hàng.");
@@ -57,7 +60,7 @@ app.controller('PaymentController', function ($scope, toastr, $http) {
                         CustomerName: $scope.selectedCustomer.CustomerName
                     },
                     TotalAmount: $scope.paidAmount,
-                    DebtCreatedDate: $scope.createBillDate
+                    DebtCreatedDate: $scope.paymentCreatedDate
                 };
 
                 $http.post("/Debt/CreatePaidDebt", { debt: paidDebt }, {

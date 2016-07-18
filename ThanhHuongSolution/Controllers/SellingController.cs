@@ -41,7 +41,7 @@ namespace ThanhHuongSolution.Controllers
 
                 var lstProductInfo = productData.Result.Select(x => new ProductInfoModel(x.Id, x.TrackingNumber, x.Name, x.WholesalePrice, x.RetailPrice, x.Number, x.ImgURL)).ToList();
 
-                var data = new SellingInformationModel(lstCustomerInfo, lstProductInfo, DateTime.UtcNow.ToString("dd/MM/yyyy"));
+                var data = new SellingInformationModel(lstCustomerInfo, lstProductInfo);
 
                 return View("Selling", data);
 
@@ -64,8 +64,6 @@ namespace ThanhHuongSolution.Controllers
                     var trackingNumberGenerator = WebContainer.Instance.ResolveAPI<ITrackingNumberGenerator>();
 
                     billingModel.TrackingNumber = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.HoaDon);
-
-                    billingModel.BillCreatedDate = DateTime.UtcNow.ToString("dd/MM/yyyy");
 
                     var billingAPI = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
 
