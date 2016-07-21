@@ -11,14 +11,15 @@ namespace ThanhHuongSolution.Product.Domain.Model
     {
         public RemainingProductInfo() { }
 
-        public RemainingProductInfo(string id, string trackingNumber, string name, string description, UnitType unitype, ProductType productType, long price, long quantity)
+        public RemainingProductInfo(string id, string trackingNumber, string name, string description, UnitType unitype, ProductType productType, long totalCost, long quantity)
         {
             Id = id;
             Name = name;
             Description = description;
             UnitType = unitype;
             ProductType = productType;
-            Price = price;
+            //Gia tien cua 1 don vi tinh. Ex: gia tien 1 kg
+            TotalCost = totalCost;
             Quantity = quantity;
         }
 
@@ -28,7 +29,7 @@ namespace ThanhHuongSolution.Product.Domain.Model
         public string Description { get; set; }
         public UnitType UnitType { get; set; }
         public ProductType ProductType { get; set; }
-        public long Price { get; set; }
+        public long TotalCost { get; set; }
         public long Quantity { get; set; }
     }
 }
