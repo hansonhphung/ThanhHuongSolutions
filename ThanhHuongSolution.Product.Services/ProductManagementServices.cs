@@ -138,20 +138,22 @@ namespace ThanhHuongSolution.Product.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<IList<RemainingProductInfo>> GetAllRemainingProduct()
+        public async Task<IList<RemainingProductInfo>> GetAllRemainingProduct(string query)
         {
             var productRepository = _objectContainer.Get<IProductManagementRepository>();
 
             var billRepository = _objectContainer.Get<IBillingManagementRepository>();
 
-            var data = await productRepository.GetAllRemainingProduct();
+            var data = await productRepository.GetAllRemainingProduct(query);
 
-            Check.ThrowExceptionIfCollectionIsNullOrZero(data, ProductManagementResources.NO_REMAINING_PRODUCT);
+            //Check.ThrowExceptionIfCollectionIsNullOrZero(data, ProductManagementResources.NO_REMAINING_PRODUCT);
 
             var result = new List<RemainingProductInfo>();
 
             foreach (var product in data)
             {
+                var price = await billRepository.GetProductLastPrice(product.TrackingNumber);
+
                 var remainingProduct = new RemainingProductInfo() {
                     Id = product.Id,
                     TrackingNumber = product.TrackingNumber,
@@ -159,7 +161,7 @@ namespace ThanhHuongSolution.Product.Services
                     Description = product.Description,
                     UnitType = product.UnitType,
                     ProductType = product.ProductType,
-                    Price = await billRepository.GetProductLastPrice(product.TrackingNumber),
+                    TotalCost = price * product.Number,
                     Quantity = product.Number
                 };
 

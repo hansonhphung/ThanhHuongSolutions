@@ -167,13 +167,15 @@ namespace ThanhHuongSolution.Product.Handler
             }
         }
 
-        public async Task<FrameworkParamOutput<IList<RemainingProductInfo>>> GetAllRemainingProduct()
+        public async Task<FrameworkParamOutput<IList<RemainingProductInfo>>> GetAllRemainingProduct(FrameworkParamInput<string> input)
         {
             try
             {
+                var query = input.Request;
+
                 var services = _objectContainer.Get<IProductManagementServices>();
 
-                var data = await services.GetAllRemainingProduct();
+                var data = await services.GetAllRemainingProduct(query);
 
                 return await Task.FromResult(new FrameworkParamOutput<IList<RemainingProductInfo>>(data));
             }
