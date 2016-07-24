@@ -1,0 +1,92 @@
+﻿@using ThanhHuongSolution.Models.Billing;
+@model BillingCustomerModel
+
+@{
+    ViewBag.Title = "Thống kê Hóa Đơn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-app="ThanhHuongSolution" ng-controller="BillingStatisticsController">
+    <header class="page-header">
+        <h2>Thống kê Hóa Đơn</h2>
+    </header>
+
+    <div class="panel-body" ng-init="init()">
+        <div class="col-lg-12" style="margin-bottom:20px">
+            <label class="col-md-1 control-label">Từ ngày <span class="required">*</span></label>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+                    <input data-plugin-datepicker class="form-control datepicker" id="fromDate">
+                </div>
+            </div>
+
+            <label class="col-md-1 control-label">Đến ngày <span class="required">*</span></label>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+                    <input data-plugin-datepicker class="form-control datepicker" id="toDate">
+                </div>
+            </div>
+
+            <div class="col-md-4 form-inline">
+                <button type="button" class="btn btn-success" ng-click="doStatistics()">Thống kê</button>
+            </div>
+        </div>
+
+        <div>
+            <h3>Tổng tiền là: {{totalCost}} VND</h3>
+        </div>
+
+        <div class="tabs">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#" ng-click="switchSellingBill()">Hóa Đơn Bán Hàng</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#" ng-click="switchReceivingBill()">Hóa Đơn Nhập Hàng</a>
+                </li>
+            </ul>
+            <table class="table table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th>Mã Hóa Đơn</th>
+                        <th ng-if="billType == 'BILL'">Tên Khách Hàng</th>
+                        <th>Ngày Lập</th>
+                        <th>Thành Tiền</th>
+                        <th ng-if="billType == 'RECEIVING_BILL'">Chi Phí Phát Sinh</th>
+                        <th ng-if="billType == 'RECEIVING_BILL'">Tổng Thành Tiền</th>
+                        <th class="hidden-phone"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="gradeX" ng-repeat="bill in bills">
+                        <td>{{bill.TrackingNumber}}</td>
+                        <td ng-if="billType == 'BILL'">{{bill.Customer.CustomerName}}</td>
+                        <td>{{bill.BillCreatedDate}}</td>
+                        <td class="hidden-phone">{{bill.TotalAmount | number}} VND</td>
+                        <td class="hidden-phone" ng-if="billType == 'RECEIVING_BILL'">{{bill.IncurredCost | number}} VND</td>
+                        <td class="hidden-phone" ng-if="billType == 'RECEIVING_BILL'">{{bill.FinalTotalAmount | number}} VND</td>
+                        <td class="hidden-phone">
+                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info" data-toggle="modal" data-target="#detailBillingFormModal" ng-click="viewBill(bill.Id)">Xem Chi Tiết</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pull-right form-inline">
+                <div class="table-pagination">
+                    <uib-pagination boundary-links="true" total-items="totalBillings" ng-model="pageIndex" max-size="maxSize" class="pagination pagination-ru" rotate="false" items-per-page="recordPerPage" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+                </div>
+            </div>
+            @Html.Partial("../Billing/_DetailBilling")
+        </div>
+    </div>
+</div>
+
+<script src="/Vendor/angular/angular.min.js"></script>
+<script src="/Vendor/angular-ui-mask/dist/mask.js"></script>
+<script src="~/Scripts/Statistics/BillingStatisticsController.js"></script>

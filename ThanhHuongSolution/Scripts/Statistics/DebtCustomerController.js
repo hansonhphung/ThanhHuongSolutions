@@ -10,6 +10,10 @@ app.controller('DebtCustomerController', function ($scope, toastr, $location, $h
     $scope.totalDebt = 0;
 
     $scope.init = function () {
+        $scope.pageIndex = 1;
+        $scope.sortBy = 'CreatedAt';
+        $scope.sortDirection = false;
+
         $http.post("/Statistics/SearchDebtCustomer", {query:''})
         .success(function (response) {
             if (response.isSuccess) {
