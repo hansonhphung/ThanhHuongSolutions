@@ -21,5 +21,7 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
         Task<FrameworkParamOutput<bool>> IsCustomerHaveTransaction(FrameworkParamInput<string> input);
 
         Task<FrameworkParamOutput<long>> GetProductLastPrice(FrameworkParamInput<string> input);
+
+        Task<FrameworkParamOutput<SearchBillingResponse>> GetBillInRangeDate(FrameworkParamInput<StatisticsBillRequest> input);
     }
 }

@@ -23,5 +23,9 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
         Task<bool> IsCustomerHaveTransaction(string customerId);
 
         Task<long> GetProductLastPrice(string productTrackingNumber);
+
+        Task<IList<MDBaseBill>> GetBillInRangeDate(string query, DateTime fromDate, DateTime toDate, Pagination pagination, string billType);
+
+        Task<long> CountStatisticsBill(string query, DateTime fromDate, DateTime toDate, string billType);
     }
 }

@@ -126,5 +126,23 @@ namespace ThanhHuongSolution.BillingManagement.Handler
                 throw new CustomException(ex);
             }
         }
-     }
+
+        public async Task<FrameworkParamOutput<SearchBillingResponse>> GetBillInRangeDate(FrameworkParamInput<StatisticsBillRequest> input)
+        {
+            try
+            {
+                var services = _objectContainer.Get<IBillingManagementServices>();
+
+                var request = input.Request;
+
+                var data = await services.GetBillInRangeDate(request.Query, request.FromDate, request.ToDate, request.Pagination, request.BillType);
+
+                return await Task.FromResult(new FrameworkParamOutput<SearchBillingResponse>(data));
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex);
+            }
+        }
+    }
 }
