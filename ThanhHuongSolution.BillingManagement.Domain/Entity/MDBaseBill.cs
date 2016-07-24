@@ -14,13 +14,14 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Entity
     {
         public MDBaseBill() { }
 
-        public MDBaseBill(string id, string trackingNumber, STCustomer customer, long totalAmount, string billCreatedDate, DateTime createdAt, List<STBillingItem> cart)
+        public MDBaseBill(string id, string trackingNumber, STCustomer customer, long totalAmount, string billCreatedDate, DateTime billCreatedDate_DT, DateTime createdAt, List<STBillingItem> cart)
         {
             Id = id;
             TrackingNumber = trackingNumber;
             Customer = customer;
             TotalAmount = totalAmount;
             BillCreatedDate = billCreatedDate;
+            BillCreatedDate_DT = billCreatedDate_DT;
             CreatedAt = createdAt;
             Cart = cart;
         }
@@ -38,6 +39,9 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Entity
         public DateTime CreatedAt { get; set; }
 
         public string BillCreatedDate { get; set; }
+
+        //Bill created date with datetime data type
+        public DateTime BillCreatedDate_DT { get; set; }
 
         public List<STBillingItem> Cart { get; set; }
 
