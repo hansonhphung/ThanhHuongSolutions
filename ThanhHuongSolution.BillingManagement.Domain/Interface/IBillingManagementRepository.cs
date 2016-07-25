@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThanhHuongSolution.BillingManagement.Domain.Entity;
+using ThanhHuongSolution.BillingManagement.Domain.Model;
 using ThanhHuongSolution.Common.Infrastrucure.Model;
 
 namespace ThanhHuongSolution.BillingManagement.Domain.Interface
@@ -26,6 +27,6 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
 
         Task<IList<MDBaseBill>> GetBillInRangeDate(string query, DateTime fromDate, DateTime toDate, Pagination pagination, string billType);
 
-        Task<long> CountStatisticsBill(string query, DateTime fromDate, DateTime toDate, string billType);
+        Task<StatisticsBillingInfo> CountStatisticsBill(string query, DateTime fromDate, DateTime toDate, string billType);
     }
 }

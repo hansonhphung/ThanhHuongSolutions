@@ -40,6 +40,7 @@ app.controller('BillingStatisticsController', function ($scope, toastr, $http) {
 
                 $scope.bills = data;
                 $scope.totalBillings = response.data.TotalItem;
+                $scope.totalCost = response.data.TotalCost;
             }
             else {
                 toastr.error('error at: ' + response.message);

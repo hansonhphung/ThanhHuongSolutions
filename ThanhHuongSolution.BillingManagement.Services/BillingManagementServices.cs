@@ -127,7 +127,7 @@ namespace ThanhHuongSolution.BillingManagement.Services
 
             var totalItem = await repository.CountStatisticsBill(query, fromDate, toDate, billType);
 
-            return await Task.FromResult(new SearchBillingResponse(totalItem, result));
+            return await Task.FromResult(new SearchBillingResponse(totalItem.NumberOfBill, totalItem.TotalCost, result));
         }
     }
 }

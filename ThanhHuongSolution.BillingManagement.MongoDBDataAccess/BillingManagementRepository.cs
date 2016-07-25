@@ -10,6 +10,7 @@ using ThanhHuongSolution.BillingManagement.Domain.Entity;
 using ThanhHuongSolution.BillingManagement.Domain.Interface;
 using ThanhHuongSolution.Common.Infrastrucure.Model;
 using System.Linq;
+using ThanhHuongSolution.BillingManagement.Domain.Model;
 
 namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
 {
@@ -219,7 +220,7 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
             return await Task.FromResult(data);
         }
 
-        public async Task<long> CountStatisticsBill(string query, DateTime fromDate, DateTime toDate, string billType)
+        public async Task<StatisticsBillingInfo> CountStatisticsBill(string query, DateTime fromDate, DateTime toDate, string billType)
         {
             var keyLower = query.ToLower();
 
@@ -239,9 +240,18 @@ namespace ThanhHuongSolution.BillingManagement.MongoDBDataAccess
                     builder.Where(x => x.Customer.CustomerName.Contains(keyLower))),
                 builder.Eq("_t", billType));
 
-            long count = await collection.CountAsync(filterWithoutCustomerId);
+            //long count = await collection.CountAsync(filterWithoutCustomerId);
 
-            return await Task.FromResult(count);
+            var lstBill = await collection.Find(filterWithoutCustomerId).ToListAsync();
+
+            long totalCost = 0;
+
+            foreach (var bill in lstBill)
+            {
+                totalCost += bill.TotalAmount;
+            }
+
+            return await Task.FromResult(new StatisticsBillingInfo() { NumberOfBill = lstBill.Count, TotalCost = totalCost});
         }
     }
 }
