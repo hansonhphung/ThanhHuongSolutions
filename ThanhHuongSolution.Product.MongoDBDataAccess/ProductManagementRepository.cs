@@ -135,5 +135,30 @@ namespace ThanhHuongSolution.Product.MongoDBDataAccess
 
             return await Task.FromResult(true);
         }
+
+        public async Task<IList<MDProduct>> GetAllRemainingProduct(string query)
+        {
+            var dbContext = _writeDataContextFactory.CreateMongoDBWriteContext();
+
+            var collection = dbContext.GetCollection<MDProduct>(MongoDBEntityNames.ProductCollection.TableName);
+
+            var keyLower = query.ToLower();
+
+            var builder = Builders<MDProduct>.Filter;
+
+            var filter =  builder.And(
+                builder.Or(
+                         builder.Or(builder.Regex(x => x.TrackingNumber, new BsonRegularExpression(keyLower, "i")),
+                         builder.Where(x => x.TrackingNumber.Contains(keyLower))),
+                         builder.Or(builder.Regex(x => x.Name, new BsonRegularExpression(keyLower, "i")),
+                         builder.Where(x => x.Name.Contains(keyLower)))),
+                builder.Where(x => x.Number > 0));
+
+            var sortBy = Builders<MDProduct>.Sort.Descending(x => x.UpdatedAt);
+
+            var lstProduct = await collection.Find(filter).ToListAsync();
+
+            return await Task.FromResult(lstProduct);
+        }
     }
 }

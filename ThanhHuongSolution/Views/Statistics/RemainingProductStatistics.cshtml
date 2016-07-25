@@ -1,0 +1,64 @@
+﻿@using ThanhHuongSolution.Models.Product;
+@model ListProductModel
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div ng-app="ThanhHuongSolution" ng-controller="RemainingProductController">
+    <header class="page-header">
+        <h2>Danh Sách Sản Phẩm</h2>
+    </header>
+
+    <section class="panel">
+        <div class="panel-body" ng-init="init()">
+            <div class="col-lg-12">
+                <div class="col-lg-2">
+                    <select class="form-control" data-width="150px" data-style="btn-white" data-container="body" ng-options="option.key for option in productTypes" ng-model="selectedProductType" ng-change="onChangeProductType(selectedProductType)"></select>
+                </div>
+                <div class="pull-right form-inline">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm..." ng-model="query" ng-keydown="searchKeyDown($event)">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="pull-left">
+                <h3>Tổng giá trị hàng tồn là: {{totalRemainingProductCost}} VND</h3>
+            </div>
+            <table class="table table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th style="width:150px">Mô tả</th>
+                        <th>Phân Loại</th>
+                        <th class="hidden-phone">Số lượng</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="gradeX" ng-repeat="product in products">
+                        <td>{{product.TrackingNumber}}</td>
+                        <td>{{product.Name | limitTo:20}} {{product.Name.length < 20 ? '' : '...'}}</td>
+                        <td>{{product.Description | limitTo:20}} {{product.Description.length < 20 ? '' : '...'}}</td>
+                        <td class="hidden-phone">{{getProductType(product.ProductType).key}}</td>
+                        <td class="hidden-phone">{{product.Quantity}}</td>
+                        <td class="hidden-phone">{{product.TotalCost}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pull-right form-inline">
+                <div class="table-pagination">
+                    <uib-pagination boundary-links="true" total-items="totalServerItems" ng-model="pageIndex" max-size="maxsize" class="pagination pagination-ru" rotate="false" items-per-page="pageSize" ng-change="onChangePageIndex()" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="/Vendor/angular/angular.min.js"></script>
+<script src="~/Scripts/Statistics/RemainingProductController.js"></script>

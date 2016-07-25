@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -52,7 +53,9 @@ namespace ThanhHuongSolution.Controllers
 
                     billingModel.TrackingNumber = await trackingNumberGenerator.GenerateTrackingNumber(ObjectType.HoaDonNhapHang);
 
-                    billingModel.BillCreatedDate = DateTime.UtcNow.ToString("dd/MM/yyyy");
+                    DateTime billCreatedDate_DT = DateTime.ParseExact(billingModel.BillCreatedDate, "dd/MM/yyyy", null, DateTimeStyles.None);
+
+                    billingModel.BillCreatedDate_DT = billCreatedDate_DT;
 
                     var billingAPI = WebContainer.Instance.ResolveAPI<IBillingManagementAPI>();
 

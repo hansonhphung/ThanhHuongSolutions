@@ -166,5 +166,23 @@ namespace ThanhHuongSolution.Product.Handler
                 throw new CustomException(ex);
             }
         }
+
+        public async Task<FrameworkParamOutput<IList<RemainingProductInfo>>> GetAllRemainingProduct(FrameworkParamInput<string> input)
+        {
+            try
+            {
+                var query = input.Request;
+
+                var services = _objectContainer.Get<IProductManagementServices>();
+
+                var data = await services.GetAllRemainingProduct(query);
+
+                return await Task.FromResult(new FrameworkParamOutput<IList<RemainingProductInfo>>(data));
+            }
+            catch (CustomException ex)
+            {
+                throw new CustomException(ex);
+            }
+        }
     }
 }

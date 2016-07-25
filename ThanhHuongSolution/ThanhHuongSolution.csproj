@@ -221,6 +221,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ReceivingController.cs" />
     <Compile Include="Controllers\SellingController.cs" />
+    <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Extension\NotificationMessageExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -311,6 +312,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Selling\SellingController.js" />
+    <Content Include="Scripts\Statistics\BillingStatisticsController.js" />
+    <Content Include="Scripts\Statistics\DebtCustomerController.js" />
+    <Content Include="Scripts\Statistics\RemainingProductController.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -354,6 +358,9 @@
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Selling\_EditShoppingCart.cshtml" />
     <Content Include="Views\Receiving\Index.cshtml" />
+    <Content Include="Views\Statistics\DebtCustomerStatistics.cshtml" />
+    <Content Include="Views\Statistics\RemainingProductStatistics.cshtml" />
+    <Content Include="Views\Statistics\BillingStatistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,6 +12,8 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Entity
 
         public string ProductName { get; set; }
 
+        // Total price, equal to Number * price per item
+        // So if want to calculae price for per item, use Price / Number
         public long Price { get; set; }
 
         public long Number { get; set; }

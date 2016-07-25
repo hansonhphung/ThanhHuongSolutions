@@ -22,6 +22,9 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Model
 
         public string BillCreatedDate { get; set; }
 
+        //Bill created date with datetime data type
+        public DateTime BillCreatedDate_DT { get; set; }
+
         public List<STBillingItem> Cart { get; set; }
 
         public BaseBillModel() { }

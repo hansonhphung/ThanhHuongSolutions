@@ -70,6 +70,8 @@
     <Compile Include="Model\ReceivingBillingInfo.cs" />
     <Compile Include="Model\SearchBillingRequest.cs" />
     <Compile Include="Model\SearchBillingResponse.cs" />
+    <Compile Include="Model\StatisticsBillingInfo.cs" />
+    <Compile Include="Model\StatisticsBillRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,15 +12,12 @@ namespace ThanhHuongSolution.Models.Selling
 
         public IList<ProductInfoModel> LstProduct { get; set; }
 
-        public string CreateBillDate { get; set; }
-
         public SellingInformationModel() { }
 
-        public SellingInformationModel(IList<CustomerInfoModel> lstCustomer, IList<ProductInfoModel> lstProduct, string createBillDate)
+        public SellingInformationModel(IList<CustomerInfoModel> lstCustomer, IList<ProductInfoModel> lstProduct)
         {
             LstCustomer = lstCustomer;
             LstProduct = lstProduct;
-            CreateBillDate = createBillDate;
         }
     }
 }

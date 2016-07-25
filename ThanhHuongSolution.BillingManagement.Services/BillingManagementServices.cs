@@ -98,5 +98,36 @@ namespace ThanhHuongSolution.BillingManagement.Services
 
             return await Task.FromResult(data);
         }
+
+        public async Task<long> GetProductLastPrice(string productTrackingNumber)
+        {
+            var repository = _objectContainer.Get<IBillingManagementRepository>();
+
+            var data = await repository.GetProductLastPrice(productTrackingNumber);
+
+            return await Task.FromResult(data);
+        }
+
+        public async Task<SearchBillingResponse> GetBillInRangeDate(string query, DateTime fromDate, DateTime toDate, Pagination pagination, string billType)
+        {
+            var repository = _objectContainer.Get<IBillingManagementRepository>();
+
+            var data = await repository.GetBillInRangeDate(query, fromDate, toDate,pagination, billType);
+
+            var result = new List<BaseBillModel>();
+
+            foreach (var mdBill in data)
+            {
+                var visitor = await mdBill.Visit(new GetModelVisitor());
+
+                var bill = visitor.Bill;
+
+                result.Add(bill);
+            }
+
+            var totalItem = await repository.CountStatisticsBill(query, fromDate, toDate, billType);
+
+            return await Task.FromResult(new SearchBillingResponse(totalItem.NumberOfBill, totalItem.TotalCost, result));
+        }
     }
 }

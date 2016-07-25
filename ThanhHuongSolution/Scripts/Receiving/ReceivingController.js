@@ -42,7 +42,6 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
     }
 
     $scope.addProductItem = function () {
-
         if ($scope.selectedProduct == null || $scope.selectedProduct == undefined) {
             toastr.warning("Vui lòng chọn sản phẩm.");
             return;
@@ -170,11 +169,10 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
     }
 
     $scope.createReceivingBill = function () {
+        $scope.billCreatedDate = $('#billCreatedDate').val();
 
-        $scope.createBillDate = $('#startdate').val();
-
-        if ($scope.createBillDate == null || $scope.createBillDate == undefined) {
-            toastr.warning("Vui lòng chọn ngày tháng.");
+        if ($scope.billCreatedDate == null || $scope.billCreatedDate == ''){
+            toastr.warning("Vui lòng chọn ngày lập hóa đơn");
             return;
         }
 
@@ -212,6 +210,7 @@ app.controller('ReceivingController', function ($scope, toastr, $http) {
                     }
                 }
 
+                form.append("BillCreatedDate", $scope.billCreatedDate);
                 form.append("TotalAmount", $scope.totalAmount);
                 form.append("IncurredCost", $scope.incurredCost);
                 form.append("FinalTotalAmount", $scope.finalTotalAmount);

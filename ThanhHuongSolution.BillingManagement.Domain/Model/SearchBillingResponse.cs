@@ -10,6 +10,8 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Model
     {
         public long TotalItem { get; set; }
 
+        public long TotalCost { get; set; }
+
         public IList<BaseBillModel> LstBilling { get; set; }
 
         public SearchBillingResponse() { }
@@ -17,6 +19,13 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Model
         public SearchBillingResponse(long totalItem, IList<BaseBillModel> lstBilling)
         {
             TotalItem = totalItem;
+            LstBilling = lstBilling;
+        }
+
+        public SearchBillingResponse(long totalItem, long totalCost, IList<BaseBillModel> lstBilling)
+        {
+            TotalItem = totalItem;
+            TotalCost = totalCost;
             LstBilling = lstBilling;
         }
     }

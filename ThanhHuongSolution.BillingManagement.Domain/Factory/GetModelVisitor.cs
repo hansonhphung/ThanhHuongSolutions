@@ -19,6 +19,7 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Factory
                 Customer = mdBill.Customer,
                 TotalAmount = mdBill.TotalAmount,
                 BillCreatedDate = mdBill.BillCreatedDate,
+                BillCreatedDate_DT = mdBill.BillCreatedDate_DT,
                 CreatedAt = mdBill.CreatedAt,
                 Cart = mdBill.Cart,
                 IncurredCost = mdBill.IncurredCost,
@@ -39,6 +40,7 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Factory
                 Customer = mdBill.Customer,
                 TotalAmount = mdBill.TotalAmount,
                 BillCreatedDate = mdBill.BillCreatedDate,
+                BillCreatedDate_DT = mdBill.BillCreatedDate_DT,
                 CreatedAt = mdBill.CreatedAt,
                 Cart = mdBill.Cart
             };

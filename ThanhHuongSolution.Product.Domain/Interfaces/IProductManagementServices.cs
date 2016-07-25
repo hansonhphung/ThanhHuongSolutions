@@ -26,5 +26,7 @@ namespace ThanhHuongSolution.Product.Domain.Interfaces
         Task<bool> IsProductExist(string productId, string trackingNumber);
 
         Task<bool> UpdateListProductNumber(IList<UpdatedSellingProductInfo> lstProductInfo);
+
+        Task<IList<RemainingProductInfo>> GetAllRemainingProduct(string query);
     }
 }

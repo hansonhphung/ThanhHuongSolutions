@@ -19,5 +19,9 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Interface
         Task<SearchBillingResponse> Search(string customerId, string query, Pagination pagination, string billType);
 
         Task<bool> IsCustomerHaveTransaction(string customerId);
+
+        Task<long> GetProductLastPrice(string productTrackingNumber);
+
+        Task<SearchBillingResponse> GetBillInRangeDate(string query, DateTime fromDate, DateTime toDate, Pagination pagination, string billType);
     }
 }

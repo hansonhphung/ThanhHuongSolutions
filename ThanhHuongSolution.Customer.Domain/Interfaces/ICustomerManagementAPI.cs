@@ -26,5 +26,7 @@ namespace ThanhHuongSolution.Customer.Domain.Interfaces
         Task<FrameworkParamOutput<bool>> UpdateCustomerDebt(FrameworkParamInput<CustomerDeptModel> input);
 
         Task<FrameworkParamOutput<bool>> IsRetailCustomerCreated();
+
+        Task<FrameworkParamOutput<IList<CustomerInfo>>> SearchDebtCustomer(FrameworkParamInput<string> input);
     }
 }

@@ -79,6 +79,15 @@ namespace ThanhHuongSolution.Common.LocResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hiện tại không còn sản phẩm trong kho..
+        /// </summary>
+        public static string NO_REMAINING_PRODUCT {
+            get {
+                return ResourceManager.GetString("NO_REMAINING_PRODUCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Số lượng sản phẩm nhỏ hơn 0..
         /// </summary>
         public static string NUMBER_LESS_THAN_ZERO {

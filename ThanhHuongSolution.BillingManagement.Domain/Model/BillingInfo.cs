@@ -12,13 +12,14 @@ namespace ThanhHuongSolution.BillingManagement.Domain.Model
     {
         public BillingInfo() { }
 
-        public BillingInfo(string id, string trackingNumber, STCustomer customer, long totalAmount, string billCreatedDate, DateTime createdAt, List<STBillingItem> cart)
+        public BillingInfo(string id, string trackingNumber, STCustomer customer, long totalAmount, string billCreatedDate, DateTime billCreatedDate_DT, DateTime createdAt, List<STBillingItem> cart)
         {
             Id = id;
             TrackingNumber = trackingNumber;
             Customer = customer;
             TotalAmount = totalAmount;
             BillCreatedDate = billCreatedDate;
+            BillCreatedDate_DT = billCreatedDate_DT;
             CreatedAt = createdAt;
             Cart = cart;
         }

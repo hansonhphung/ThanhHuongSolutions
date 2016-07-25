@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThanhHuongSolution.BillingManagement.Domain.Interface;
 using ThanhHuongSolution.Common.Infrastrucure;
 using ThanhHuongSolution.Common.LocResources;
 using ThanhHuongSolution.Product.Domain.Interfaces;
@@ -135,6 +136,39 @@ namespace ThanhHuongSolution.Product.Services
             }
 
             return await Task.FromResult(true);
+        }
+
+        public async Task<IList<RemainingProductInfo>> GetAllRemainingProduct(string query)
+        {
+            var productRepository = _objectContainer.Get<IProductManagementRepository>();
+
+            var billRepository = _objectContainer.Get<IBillingManagementRepository>();
+
+            var data = await productRepository.GetAllRemainingProduct(query);
+
+            //Check.ThrowExceptionIfCollectionIsNullOrZero(data, ProductManagementResources.NO_REMAINING_PRODUCT);
+
+            var result = new List<RemainingProductInfo>();
+
+            foreach (var product in data)
+            {
+                var price = await billRepository.GetProductLastPrice(product.TrackingNumber);
+
+                var remainingProduct = new RemainingProductInfo() {
+                    Id = product.Id,
+                    TrackingNumber = product.TrackingNumber,
+                    Name = product.Name,
+                    Description = product.Description,
+                    UnitType = product.UnitType,
+                    ProductType = product.ProductType,
+                    TotalCost = price * product.Number,
+                    Quantity = product.Number
+                };
+
+                result.Add(remainingProduct);
+            }
+
+            return await Task.FromResult(result);
         }
     }
 }
